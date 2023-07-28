@@ -16,3 +16,8 @@
 ;; Behavior:
 (setq project-enable-caching nil
       projectile-project-search-path '("~/Projects"))
+(use-package! lsp-mode                                                    
+  :commands lsp                                                           
+  :config                                                                 
+  (setq lsp-semantic-tokens-enable t)                                     
+  (add-hook 'lsp-after-apply-edits-hook (lambda (&rest _) (save-buffer))))
