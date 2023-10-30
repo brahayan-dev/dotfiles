@@ -8,7 +8,7 @@
   :config (fn []
             (let [theme (require :tokyonight)
                   theme-util (require :tokyonight.util)]
-              (theme.setup {:style :night
+              (theme.setup {:style :day
                             :transparent true
                             :styles {:comments {:italic true}
                                      :floats :dark
