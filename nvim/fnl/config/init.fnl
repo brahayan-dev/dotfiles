@@ -4,7 +4,9 @@
 
 (let [options
        {:number true
-        :relativenumber true}]
+        :expandtap true
+        :relativenumber true
+	:clipboard "unnamedplus"}]
   (each [option value (pairs options)]
     (core.assoc nvim.o option value)))
 
