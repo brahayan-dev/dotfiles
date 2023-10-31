@@ -4,7 +4,7 @@ local autoload = _local_1_["autoload"]
 local nvim = autoload("nvim")
 local core = autoload("nfnl.core")
 do
-  local options = {number = true, expandtap = true, relativenumber = true, clipboard = "unnamedplus"}
+  local options = {number = true, expandtap = true, relativenumber = true, clipboard = "unnamedplus", wrap = false}
   for option, value in pairs(options) do
     core.assoc(nvim.o, option, value)
   end

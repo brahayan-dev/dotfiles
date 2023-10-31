@@ -3,7 +3,8 @@
 (local core (autoload :nfnl.core))
 
 (let [options
-       {:number true
+       {:wrap false
+        :number true
         :expandtap true
         :relativenumber true
 	:clipboard "unnamedplus"}]
