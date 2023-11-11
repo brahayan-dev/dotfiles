@@ -5,18 +5,18 @@
       user-mail-address "brahayan@live.com")
 
 ;; Light themes:
-;; (setq doom-theme 'doom-one-light)
+(setq doom-theme 'doom-one-light)
 ;; (setq doom-theme 'doom-nord-light)
 ;; (setq doom-theme 'doom-gruvbox-light)
 
 ;; Dark themes:
 ;; (setq doom-theme 'doom-dracula)
 ;; (setq doom-theme 'doom-ayu-dark)
-(setq doom-theme 'doom-miramare)
+;; (setq doom-theme 'doom-miramare)
 
 ;; Configuration:
-(setq display-line-numbers-type 't)
-;; (setq display-line-numbers-type 'relative)
+;; (setq display-line-numbers-type 't)
+(setq display-line-numbers-type 'relative)
 (setq org-directory "~/Projects/writtings/")
 (setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 18)
       doom-symbol-font doom-font
