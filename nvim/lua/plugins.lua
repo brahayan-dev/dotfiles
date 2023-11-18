@@ -1,14 +1,9 @@
 return {
   {
     "folke/lazy.nvim",
-    version = "*"
-  },
-  {
-    "Olical/nfnl",
-    ft = "fennel",
-    dependencies = { "norcalli/nvim.lua" },
+    version = "*",
     init = function()
-      require("config")
-    end,
+	    require("config")
+    end
   },
 }
