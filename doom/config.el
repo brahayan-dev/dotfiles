@@ -26,6 +26,7 @@
 ;; Behavior:
 (setq doom-localleader-key ","
       project-enable-caching nil
+      no-byte-compile nil
       projectile-project-search-path '("~/Projects"))
 (use-package! lsp-mode
   :commands lsp

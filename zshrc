@@ -27,3 +27,9 @@ alias vdiff='nvim -d'
 # -------
 alias clj="clojure"
 export PATH="/opt/homebrew/bin/lein:$PATH"
+
+
+# Golang
+# ------
+export GOPATH="$(go env GOPATH)"
+export PATH="${PATH}:${GOPATH}/bin"
