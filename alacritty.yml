@@ -1,12 +1,15 @@
 live_config_reload: true
 
 window:
+  opacity: 0.1
   padding:
     x: 20
     y: 10
   dynamic_padding: false
   decorations: buttonless
-  startup_mode: fullscreen
+  # startup_mode: fullscreen
+  # startup_mode: windowed
+  startup_mode: maximized
 
 font:
   normal:
@@ -25,3 +28,8 @@ font:
 
 import:
   - ~/.config/alacritty/themes/rose-pine/light.yml
+  #  - ~/.config/alacritty/themes/rose-pine/dark.yml
+
+key_bindings:
+  - { key: Return, mods: Super|Shift, action: SpawnNewInstance }
+

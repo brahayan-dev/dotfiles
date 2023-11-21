@@ -15,4 +15,8 @@ ln -fs ~/Projects/dotfiles/alacritty ~/.config
 # Neovim
 # ------
 ln -fs ~/Projects/dotfiles/nvim ~/.config
+
+# Starship
+# ------
+ln -fs ~/Projects/dotfiles/starship.toml ~/.config/starship.toml
 ```

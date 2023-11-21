@@ -14,7 +14,5 @@ end
 vim.opt.runtimepath:prepend(lazypath)
 vim.loader.enable()
 
-vim.g.mapleader = " "
-vim.g.maplocalleader = ","
-
-require("lazy").setup("plugins")
+require("config").enable()
+require("lazy").setup("core")
