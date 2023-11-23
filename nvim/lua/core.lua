@@ -3,6 +3,7 @@ local function load_lualine()
 	
 	return lualine.setup({
 		options = {
+			icons_enabled = false,
 			theme = "papercolor_dark"
 		}
 	})
@@ -12,7 +13,7 @@ local function load_theme()
 	local name = "tokyonight"
 	local theme = require(name)
 	theme.setup({
-		style = "day",
+		style = "night",
 		transparent = true,
 		terminal_colors = true,
 		styles = {
@@ -32,12 +33,21 @@ end
 local function load_modes()
 	local modes = require('modes')
 	return modes.setup({
-		set_cursorline = false
+		set_cursorline = false,
+		colors = {
+			insert = "#F8DE67"
+		}
 	})
+end
+
+local function load_lsp()
+	local lspconfig = require("lspconfig")
+	lspconfig.gopls.setup({})
 end
 
 return {
   {"folke/lazy.nvim", version = "*"},
+  {"neovim/nvim-lspconfig", config = load_lsp},
   {'folke/tokyonight.nvim', config = load_theme},
   {'nvim-lualine/lualine.nvim', config = load_lualine},
   {'mvllow/modes.nvim', tag = 'v0.2.0', config = load_modes},
