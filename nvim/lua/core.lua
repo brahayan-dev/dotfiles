@@ -1,54 +1,18 @@
-local function load_lualine()
-	local lualine = require("lualine")
-	
-	return lualine.setup({
-		options = {
-			icons_enabled = false,
-			theme = "papercolor_dark"
-		}
-	})
-end
-
-local function load_theme()
-	local name = "tokyonight"
-	local theme = require(name)
-	theme.setup({
-		style = "night",
-		transparent = true,
-		terminal_colors = true,
-		styles = {
-			floats = "dark", 
-			sidebars = "dark",
-			comments = {italic = true},
-			keywords = {italic = true}
-		},
-		on_colors = function(colors)
-    			colors.fg_gutter = "#F8DE67"
-  		end
-	})
-	
-	return vim.cmd("colorscheme " .. name)
-end
-
-local function load_modes()
-	local modes = require('modes')
-	return modes.setup({
-		set_cursorline = false,
-		colors = {
-			insert = "#F8DE67"
-		}
-	})
-end
-
 local function load_lsp()
 	local lspconfig = require("lspconfig")
-	lspconfig.gopls.setup({})
+	local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
+	
+	lspconfig.gopls.setup({
+		capabilities = lsp_capabilities
+	})
 end
 
 return {
+  {"hrsh7th/nvim-cmp"},
+  {"hrsh7th/cmp-nvim-lsp"},
   {"folke/lazy.nvim", version = "*"},
   {"neovim/nvim-lspconfig", config = load_lsp},
-  {'folke/tokyonight.nvim', config = load_theme},
-  {'nvim-lualine/lualine.nvim', config = load_lualine},
-  {'mvllow/modes.nvim', tag = 'v0.2.0', config = load_modes},
+  {'folke/tokyonight.nvim', config = require("components.ui").load_theme},
+  {'nvim-lualine/lualine.nvim', config = require("components.ui").load_lualine},
+  {'mvllow/modes.nvim', tag = 'v0.2.0', config = require("components.ui").load_modes},
 }
