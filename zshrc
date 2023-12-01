@@ -1,12 +1,12 @@
 # Starship
 # --------
-eval "$(starship init zsh)"
+# eval "$(starship init zsh)"
 
 # Neovim
 # ------
-export EDITOR=nvim
-alias vdiff='nvim -d'
-alias v="nvim"
+# export EDITOR=nvim
+# alias vdiff='nvim -d'
+# alias v="nvim"
 
 # Doom
 # ----
@@ -20,22 +20,22 @@ fi
 
 # JVM
 # ---
-# export PATH="/Library/Java/JavaVirtualMachines/temurin-21.jdk/Contents/Home/bin:$PATH"
+export PATH="/Library/Java/JavaVirtualMachines/temurin-21.jdk/Contents/Home/bin:$PATH"
 
 # Clojure
 # -------
-# alias clj="clojure"
-# export PATH="/opt/homebrew/bin/lein:$PATH"
+alias clj="clojure"
+export PATH="/opt/homebrew/bin/lein:$PATH"
 
 # Golang
 # ------
-export GOPATH="$(go env GOPATH)"
-export PATH="${PATH}:${GOPATH}/bin"
+# export GOPATH="$(go env GOPATH)"
+# export PATH="${PATH}:${GOPATH}/bin"
 
 # Zsh
 # ---
-source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source $(brew --prefix)/share/zsh-history-substring-search/zsh-history-substring-search.zsh
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
+# source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+# source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# source $(brew --prefix)/share/zsh-history-substring-search/zsh-history-substring-search.zsh
+# bindkey '^[[A' history-substring-search-up
+# bindkey '^[[B' history-substring-search-down
