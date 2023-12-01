@@ -5,12 +5,12 @@
       user-mail-address "brahayan@live.com")
 
 ;; Light themes:
-;; (setq doom-theme 'doom-bluloco-light)
 ;; (setq doom-theme 'doom-nord-light)
+;; (setq doom-theme 'doom-bluloco-light)
 ;; (setq doom-theme 'doom-gruvbox-light)
 
 ;; Dark themes:
-(setq doom-theme 'doom-dracula)
+;; (setq doom-theme 'doom-dracula)
 ;; (setq doom-theme 'doom-ayu-dark)
 ;; (setq doom-theme 'doom-miramare)
 

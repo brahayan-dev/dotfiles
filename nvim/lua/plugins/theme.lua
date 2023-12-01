@@ -1,6 +1,6 @@
 local M = {}
 
-local is_night = false
+local is_night = true
 local name = "tokyonight"
 
 local function select_style()

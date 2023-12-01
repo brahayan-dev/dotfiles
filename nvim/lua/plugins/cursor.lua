@@ -1,6 +1,6 @@
 local M = {}
 
-local is_night = false
+local is_night = true
 
 function M.setup()
 	local modes = require('modes')

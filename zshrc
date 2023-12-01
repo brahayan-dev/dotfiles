@@ -5,18 +5,18 @@ eval "$(starship init zsh)"
 # Neovim
 # ------
 export EDITOR=nvim
-alias v="nvim"
 alias vdiff='nvim -d'
+alias v="nvim"
 
 # Doom
 # ----
-# export PATH="$HOME/.emacs.d/bin:$PATH"
+export PATH="$HOME/.emacs.d/bin:$PATH"
 
 # Grep (used by Doom)
 # -------------------
-# if [ -d "$(brew --prefix)/opt/grep/libexec/gnubin" ]; then
-#    PATH="$(brew --prefix)/opt/grep/libexec/gnubin:$PATH"
-# fi
+if [ -d "$(brew --prefix)/opt/grep/libexec/gnubin" ]; then
+   PATH="$(brew --prefix)/opt/grep/libexec/gnubin:$PATH"
+fi
 
 # JVM
 # ---

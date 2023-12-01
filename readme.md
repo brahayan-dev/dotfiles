@@ -17,6 +17,12 @@ ln -fs ~/Projects/dotfiles/alacritty ~/.config
 ln -fs ~/Projects/dotfiles/nvim ~/.config
 
 # Starship
-# ------
+# --------
 ln -fs ~/Projects/dotfiles/starship.toml ~/.config/starship.toml
+
+# Doom
+# ----
+ln -s -f ~/Projects/dotfiles/doom/packages.el ~/.doom.d/packages.el
+ln -s -f ~/Projects/dotfiles/doom/init.el ~/.doom.d/init.el
+ln -s -f ~/Projects/dotfiles/doom/config.el ~/.doom.d/config.el
 ```
