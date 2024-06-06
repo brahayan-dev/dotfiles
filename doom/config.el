@@ -16,6 +16,7 @@
 
 ;; Configuration:
 ;; (setq display-line-numbers-type 't)
+(setq +latex-viewers '(skim.app))
 (setq display-line-numbers-type 'relative)
 (setq org-directory "~/Projects/writtings/")
 (setq doom-font (font-spec :family "JetBrains Mono" :size 18)
