@@ -6,6 +6,7 @@
 (setq inhibit-startup-message   t
       frame-resize-pixelwise    t
       package-native-compile    t
+      initial-scratch-message   nil
       package-enable-at-startup nil)
 
 (if (fboundp 'visible-bell) (visible-bell -1))
@@ -38,6 +39,6 @@
 ;; Packages
 ;; ------------
 (setq package-archives
-      '(("melpa"        . "http://melpa.org/packages/")
-        ("gnu"          . "http://elpa.gnu.org/packages/")
-        ("melpa-stable" . "http://stable.melpa.org/packages/")))
+      '(("gnu"          . "https://elpa.gnu.org/packages/")
+        ("nongnu"       . "https://elpa.nongnu.org/nongnu/")
+        ("melpa-stable" . "https://stable.melpa.org/packages/")))
