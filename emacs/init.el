@@ -1,4 +1,4 @@
-;; init.el --- The Emacs init file. -*- lexical-binding: t; -*-
+;;; init.el --- The Emacs init file. -*- lexical-binding: t; -*-
 
 ;; ------------
 ;; Disablings
@@ -30,8 +30,9 @@
 
 (setopt use-short-answers t)
 
-(dolist (mode '(<<prog-modes-gen()>>))
-  (add-hook mode #'display-line-numbers-mode))
+;; (dolist (mode '(<<prog-modes-gen()>>))
+;;  (add-hook mode #'display-line-numbers-mode))
+(setq display-line-numbers-type 'relative)
 
 ;; ------------
 ;; Packages
