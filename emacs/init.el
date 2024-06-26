@@ -24,6 +24,7 @@
 ;; Enablings
 ;; ------------
 (if (fboundp 'set-fringe-mode) (set-fringe-mode 10))
+(if (fboundp 'toggle-frame-fullscreen) (toggle-frame-fullscreen))
 (if (fboundp 'blink-cursor-mode) (blink-cursor-mode 0))
 (if (fboundp 'global-display-line-numbers-mode) (global-display-line-numbers-mode 1))
 
@@ -32,11 +33,3 @@
 
 (setopt use-short-answers t)
 (setq display-line-numbers-type 'relative)
-
-;; ------------
-;; Packages
-;; ------------
-(setq package-archives
-      '(("gnu"          . "https://elpa.gnu.org/packages/")
-        ("nongnu"       . "https://elpa.nongnu.org/nongnu/")
-        ("melpa-stable" . "https://stable.melpa.org/packages/")))
