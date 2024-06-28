@@ -24,6 +24,7 @@
 ;; Enablings
 ;; ------------
 (if (fboundp 'set-fringe-mode) (set-fringe-mode 10))
+(if (fboundp 'toggle-frame-fullscreen) (toggle-frame-fullscreen))
 (if (fboundp 'blink-cursor-mode) (blink-cursor-mode 0))
 (if (fboundp 'global-display-line-numbers-mode) (global-display-line-numbers-mode 1))
 
