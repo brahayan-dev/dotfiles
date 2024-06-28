@@ -34,9 +34,5 @@
 (setq display-line-numbers-type 'relative)
 
 ;; ------------
-;; Packages
+;; Includes
 ;; ------------
-(setq package-archives
-      '(("gnu"          . "https://elpa.gnu.org/packages/")
-        ("nongnu"       . "https://elpa.nongnu.org/nongnu/")
-        ("melpa-stable" . "https://stable.melpa.org/packages/")))
