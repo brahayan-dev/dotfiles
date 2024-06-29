@@ -6,9 +6,7 @@
 (setq inhibit-startup-message   t
       frame-resize-pixelwise    t
       package-native-compile    t
-      initial-scratch-message   nil
-
-      )
+      initial-scratch-message   nil)
 
 (if (fboundp 'visible-bell) (visible-bell -1))
 (if (fboundp 'tooltip-mode) (tooltip-mode -1))
@@ -19,7 +17,8 @@
     (horizontal-scroll-bar-mode -1))
 
 (setq backup-by-copying t)
-(setq backup-directory-alist `(("." . ,(expand-file-name ".tmp/backups/" user-emacs-directory))))
+(setq backup-directory-alist
+      `(("." . ,(expand-file-name ".tmp/backups/" user-emacs-directory))))
 
 ;; ------------
 ;; Enablings
@@ -33,25 +32,39 @@
 (add-hook 'before-save-hook #'whitespace-cleanup)
 
 (setopt use-short-answers t)
-(setq
-package-enable-at-startup t
- display-line-numbers-type 'relative)
+(setq package-enable-at-startup t
+      display-line-numbers-type 'relative)
+
+;; Load customization settings first.
+
+(setq custom-file (expand-file-name "~/.emacs.d/custom.el"))
+(when (file-exists-p custom-file)
+  (load custom-file))
 
 ;; ------------
-;; Includes
+;; Packages
 ;; ------------
-(setq package-file (expand-file-name "~/.emacs.d/packages.el"))
-(when (file-exists-p package-file)
-  (load package-file))
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages '(magit)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+(setq package-archives
+      '(("gnu"          . "https://elpa.gnu.org/packages/")
+	("nongnu"       . "https://elpa.nongnu.org/nongnu/")
+	("melpa-stable" . "https://stable.melpa.org/packages/")))
+
+(use-package vertico
+  :ensure t
+  :custom (vertico-cycle t)
+  :hook (after-init . vertico-mode))
+
+(use-package projectile
+  :ensure t
+  :hook ((after-init . projectile-mode))
+  :bind (("C-x C-f" . projectile-find-file))
+  :custom (projectile-completion-system 'default)
+  :bind-keymap (("C-c p" . projectile-command-map)))
+
+(use-package magit
+  :ensure t
+  :bind (("C-x g" . magit-status)))
+
+(use-package org
+  :ensure t
+  :mode ("\\.org\\'" . org-mode))
