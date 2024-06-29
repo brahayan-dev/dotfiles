@@ -7,7 +7,8 @@
       frame-resize-pixelwise    t
       package-native-compile    t
       initial-scratch-message   nil
-      package-enable-at-startup nil)
+
+      )
 
 (if (fboundp 'visible-bell) (visible-bell -1))
 (if (fboundp 'tooltip-mode) (tooltip-mode -1))
@@ -32,8 +33,25 @@
 (add-hook 'before-save-hook #'whitespace-cleanup)
 
 (setopt use-short-answers t)
-(setq display-line-numbers-type 'relative)
+(setq
+package-enable-at-startup t
+ display-line-numbers-type 'relative)
 
 ;; ------------
 ;; Includes
 ;; ------------
+(setq package-file (expand-file-name "~/.emacs.d/packages.el"))
+(when (file-exists-p package-file)
+  (load package-file))
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages '(magit)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
