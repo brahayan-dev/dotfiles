@@ -68,3 +68,14 @@
 (use-package org
   :ensure t
   :mode ("\\.org\\'" . org-mode))
+
+(use-package tex
+  :ensure auctex
+  :mode ("\\.tex\\'" . latex-mode)
+  :config
+  (setq TeX-auto-save t
+	TeX-parse-self t
+	font-latex-fontify-script nil
+	font-latex-fontify-sectioning 1.0
+	font-latex-fontify-sectioning 'color)
+  (setq-default TeX-master nil)) ;; Gives support for multifile document structure
