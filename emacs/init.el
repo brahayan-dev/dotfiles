@@ -79,3 +79,53 @@
 	font-latex-fontify-sectioning 1.0
 	font-latex-fontify-sectioning 'color)
   (setq-default TeX-master nil)) ;; Gives support for multifile document structure
+
+(use-package cider
+  :ensure t
+  :pin melpa-stable)
+
+(use-package lsp-mode
+  :ensure t
+  :commands lsp
+  :init (setq lsp-keymap-prefix "C-c l")
+  :hook ((clojure-mode . lsp)
+	 (emacs-lisp-mode . lsp)
+	 (clojurescript-mode . lsp)))
+
+(use-package clojure-mode
+  :ensure t
+  :mode (("\\.edn\\'" . clojure-mode)
+	 ("\\.cljx\\'" . clojurex-mode)
+	 ("\\.cljc\\'" . clojurec-mode)
+	 ("\\.cljs\\'" . clojurescript-mode))
+  :config
+  (add-hook 'clojure-mode-hook #'subword-mode)
+  (add-hook 'clojure-mode-hook #'paredit-mode))
+
+(use-package emacs-lisp-mode
+  :no-require t
+  :mode ("\\.el\\'" "Cask")
+  :bind (:map emacs-lisp-mode-map
+	      ("C-c C-k" . eval-buffer)
+	      ("C-c e c" . cancel-debug-on-entry)
+	      ("C-c e d" . debug-on-entry)
+	      ("C-c e e" . toggle-debug-on-error)
+	      ("C-c e f" . emacs-lisp-byte-compile-and-load)
+	      ("C-c e l" . find-library)
+	      ("C-c e r" . eval-region)))
+
+(use-package ert
+  :ensure t
+  ;; :mode ("\\.el\\'")
+  :bind (:map emacs-lisp-mode-map
+	      ("C-c ," . ert)
+	      ("C-c C-," . ert)))
+
+(use-package paredit
+  :diminish
+  :ensure t
+  ;; Bind RET to nil, to fix Cider REPL buffer eval issue
+  :bind (:map paredit-mode-map ("RET" . nil))
+  :hook ((clojure-mode . paredit-mode)
+	 (emacs-lisp-mode . paredit-mode)
+	 (clojurescript-mode . paredit-mode)))
