@@ -63,7 +63,7 @@
 
 (use-package magit
   :ensure t
-  :bind (("C-x g" . magit-status)))
+  :bind (("C-x C-g C-r" . magit-status)))
 
 (use-package org
   :ensure t
