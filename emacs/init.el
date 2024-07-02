@@ -89,7 +89,6 @@
   :commands lsp
   :init (setq lsp-keymap-prefix "C-c l")
   :hook ((clojure-mode . lsp)
-	 (emacs-lisp-mode . lsp)
 	 (clojurescript-mode . lsp)))
 
 (use-package clojure-mode
@@ -113,13 +112,6 @@
 	      ("C-c e f" . emacs-lisp-byte-compile-and-load)
 	      ("C-c e l" . find-library)
 	      ("C-c e r" . eval-region)))
-
-(use-package ert
-  :ensure t
-  ;; :mode ("\\.el\\'")
-  :bind (:map emacs-lisp-mode-map
-	      ("C-c ," . ert)
-	      ("C-c C-," . ert)))
 
 (use-package paredit
   :diminish
