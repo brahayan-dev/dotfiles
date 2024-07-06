@@ -1,16 +1,6 @@
-# Starship
-# --------
-# eval "$(starship init zsh)"
-
-# Neovim
-# ------
-# export EDITOR=nvim
-# alias vdiff='nvim -d'
-# alias v="nvim"
-
 # Doom
 # ----
-export PATH="$HOME/.emacs.d/bin:$PATH"
+export PATH="$HOME/.config/emacs/bin:$PATH"
 
 # Grep (used by Doom)
 # -------------------
@@ -29,15 +19,10 @@ alias native-image="./Library/Java/JavaVirtualMachines/graalvm-jdk-21.0.1+12.1/C
 alias clj="clojure"
 export PATH="/opt/homebrew/bin/lein:$PATH"
 
-# Golang
-# ------
-# export GOPATH="$(go env GOPATH)"
-# export PATH="${PATH}:${GOPATH}/bin"
+# Dotfiles
+# --------
+ln -s -f ~/Projects/dotfiles/doom/init.el ~/.doom.d/init.el
+ln -s -f ~/Projects/dotfiles/doom/config.el ~/.doom.d/config.el
+ln -s -f ~/Projects/dotfiles/doom/packages.el ~/.doom.d/packages.el
 
-# Zsh
-# ---
-# source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-# source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-# source $(brew --prefix)/share/zsh-history-substring-search/zsh-history-substring-search.zsh
-# bindkey '^[[A' history-substring-search-up
-# bindkey '^[[B' history-substring-search-down
+# ln -s -f ~/Projects/dotfiles/emacs/init.el ~/.emacs.d/init.el
