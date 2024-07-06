@@ -81,10 +81,10 @@
 
        :checkers
        syntax              ; tasing you for every semicolon you forget
-       ;; grammar          ; tasing grammar mistake every you make
-       ;; (spell +enchant
-       ;;        +flyspell
-       ;;        +everywhere) ; tasing you for misspelling mispelling
+       ;;grammar           ; tasing grammar mistake every you make
+       ;;(spell +enchant
+       ;;       +flyspell
+       ;;       +everywhere) ; tasing you for misspelling mispelling
 
        :tools
        ;;ansible
@@ -127,7 +127,7 @@
        ;;(dart +flutter)              ; paint ui and not much else
        ;;dhall
        ;;elixir                       ; erlang done right
-       (elm +lsp +tree-sitter)        ; care for a cup of TEA?
+       ;;(elm +lsp +tree-sitter)      ; care for a cup of TEA?
        emacs-lisp                     ; drown in parentheses
        ;;erlang                       ; an elegant language for a more civilized age
        ;;ess                          ; emacs speaks statistics
@@ -159,7 +159,7 @@
        ;;php                          ; perl's insecure younger brother
        ;;plantuml                     ; diagrams for confusing people more
        ;;purescript                   ; javascript, but functional
-       (python +lsp +pyright)         ; beautiful is better than ugly
+       ;;(python +lsp +pyright)       ; beautiful is better than ugly
        ;;qt                           ; the 'cutest' gui framework ever
        ;;racket                       ; a DSL for DSLs
        ;;raku                         ; the artist formerly known as perl6

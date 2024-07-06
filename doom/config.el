@@ -12,7 +12,6 @@
 
 ;; Configuration:
 ;; (setq display-line-numbers-type 't)
-(setq +latex-viewers '(skim.app))
 (setq display-line-numbers-type 'relative)
 (setq org-directory "~/Projects/writtings/")
 (setq doom-font (font-spec :family "JetBrains Mono" :size 18)
@@ -25,8 +24,10 @@
       project-enable-caching nil
       no-byte-compile nil
       projectile-project-search-path '("~/Projects"))
+
 (use-package! lsp-mode
   :commands lsp
   :config
   (setq lsp-semantic-tokens-enable t)
-  (add-hook 'lsp-after-apply-edits-hook (lambda (&rest _) (save-buffer))))
+  (add-hook 'lsp-after-apply-edits-hook
+            (lambda (&rest _) (save-buffer))))
