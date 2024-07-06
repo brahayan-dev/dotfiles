@@ -18,9 +18,9 @@
 ;; ---------
 (if (fboundp 'toggle-frame-fullscreen) (toggle-frame-fullscreen))
 (setq no-byte-compile nil
-      project-enable-caching nil
       frame-resize-pixelwise t
       package-native-compile t
+      projectile-enable-caching nil
       display-line-numbers-type 'relative
       org-directory "~/Projects/workbooks/"
       read-process-output-max (* 1024 1024)
@@ -42,7 +42,7 @@
   (setq-default TeX-master nil)
   (setq TeX-auto-save t
         TeX-parse-self t
-        prettify-symbols-mode nil
+        prettify-symbols-mode -1
         font-latex-fontify-script nil
         font-latex-fontify-sectioning 1.0
         font-latex-fontify-sectioning 'color))
