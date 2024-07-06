@@ -3,10 +3,12 @@
 ;; ------------
 ;; Disablings
 ;; ------------
-(setq inhibit-startup-message   t
-      frame-resize-pixelwise    t
-      package-native-compile    t
-      initial-scratch-message   nil)
+(setq backup-by-copying t
+      frame-resize-pixelwise t
+      inhibit-startup-message t
+      package-native-compile t
+      initial-scratch-message nil
+      package-enable-at-startup nil)
 
 (if (fboundp 'visible-bell) (visible-bell -1))
 (if (fboundp 'tooltip-mode) (tooltip-mode -1))
@@ -16,13 +18,14 @@
 (if (fboundp 'horizontal-scroll-bar-mode)
     (horizontal-scroll-bar-mode -1))
 
-(setq backup-by-copying t)
-(setq backup-directory-alist
-      `(("." . ,(expand-file-name ".tmp/backups/" user-emacs-directory))))
-
 ;; ------------
 ;; Enablings
 ;; ------------
+(setopt use-short-answers t)
+(setq package-native-compile    t
+      display-line-numbers-type 'relative
+      backup-directory-alist `(("." . ,(expand-file-name ".tmp/backups/" user-emacs-directory))))
+
 (if (fboundp 'set-fringe-mode) (set-fringe-mode 10))
 (if (fboundp 'toggle-frame-fullscreen) (toggle-frame-fullscreen))
 (if (fboundp 'blink-cursor-mode) (blink-cursor-mode 0))
@@ -30,10 +33,6 @@
 
 (set-face-attribute 'default nil :font "JetBrains Mono-22")
 (add-hook 'before-save-hook #'whitespace-cleanup)
-
-(setopt use-short-answers t)
-(setq package-enable-at-startup t
-      display-line-numbers-type 'relative)
 
 ;; Load customization settings first.
 
@@ -45,8 +44,8 @@
 ;; Packages
 ;; ------------
 (setq package-archives
-      '(("gnu"          . "https://elpa.gnu.org/packages/")
-	("nongnu"       . "https://elpa.nongnu.org/nongnu/")
+      '(("gnu" . "https://elpa.gnu.org/packages/")
+	("nongnu" . "https://elpa.nongnu.org/nongnu/")
 	("melpa-stable" . "https://stable.melpa.org/packages/")))
 
 (use-package vertico
@@ -64,7 +63,7 @@
 
 (use-package magit
   :ensure t
-  :bind (("C-x C-g C-r" . magit-status)))
+  :bind (("C-x C-p" . magit-status)))
 
 (use-package org
   :ensure t
@@ -106,13 +105,7 @@
   :no-require t
   :mode ("\\.el\\'" "Cask")
   :bind (:map emacs-lisp-mode-map
-	      ("C-c C-k" . eval-buffer)
-	      ("C-c e c" . cancel-debug-on-entry)
-	      ("C-c e d" . debug-on-entry)
-	      ("C-c e e" . toggle-debug-on-error)
-	      ("C-c e f" . emacs-lisp-byte-compile-and-load)
-	      ("C-c e l" . find-library)
-	      ("C-c e r" . eval-region)))
+	      ("C-c C-k" . eval-buffer)))
 
 (use-package paredit
   :diminish
