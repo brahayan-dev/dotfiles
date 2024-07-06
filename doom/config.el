@@ -9,8 +9,8 @@
 ;; ------
 ;; Doom
 ;; ------
-(setq doom-symbol-font doom-font
-      doom-localleader-key ","
+(setq doom-localleader-key ","
+      doom-symbol-font doom-font
       doom-font (font-spec :family "JetBrains Mono" :size 18))
 
 ;; ---------
@@ -42,7 +42,6 @@
   (setq-default TeX-master nil)
   (setq TeX-auto-save t
         TeX-parse-self t
-        prettify-symbols-mode -1
         font-latex-fontify-script nil
         font-latex-fontify-sectioning 1.0
         font-latex-fontify-sectioning 'color))
