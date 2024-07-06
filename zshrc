@@ -21,8 +21,8 @@ export PATH="/opt/homebrew/bin/lein:$PATH"
 
 # Dotfiles
 # --------
-ln -s -f ~/Projects/dotfiles/doom/init.el ~/.doom.d/init.el
-ln -s -f ~/Projects/dotfiles/doom/config.el ~/.doom.d/config.el
-ln -s -f ~/Projects/dotfiles/doom/packages.el ~/.doom.d/packages.el
+ln -s -f ~/Projects/dotfiles/doom/init.el ~/.config/doom/init.el
+ln -s -f ~/Projects/dotfiles/doom/config.el ~/.config/doom/config.el
+ln -s -f ~/Projects/dotfiles/doom/packages.el ~/.config/doom/packages.el
 
 # ln -s -f ~/Projects/dotfiles/emacs/init.el ~/.emacs.d/init.el
