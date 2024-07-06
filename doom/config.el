@@ -41,10 +41,11 @@
   :config
   (setq-default TeX-master nil)
   (setq TeX-auto-save t
-	TeX-parse-self t
-	font-latex-fontify-script nil
-	font-latex-fontify-sectioning 1.0
-	font-latex-fontify-sectioning 'color))
+        TeX-parse-self t
+        prettify-symbols-mode nil
+        font-latex-fontify-script nil
+        font-latex-fontify-sectioning 1.0
+        font-latex-fontify-sectioning 'color))
 
 ;; ------
 ;; Lsp
