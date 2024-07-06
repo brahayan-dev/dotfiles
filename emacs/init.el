@@ -3,9 +3,9 @@
 ;; ------------
 ;; Disablings
 ;; ------------
-(setq inhibit-startup-message   t
+(setq backup-by-copying         t
       frame-resize-pixelwise    t
-      package-native-compile    t
+      inhibit-startup-message   t
       initial-scratch-message   nil
       package-enable-at-startup nil)
 
@@ -17,22 +17,21 @@
 (if (fboundp 'horizontal-scroll-bar-mode)
     (horizontal-scroll-bar-mode -1))
 
-(setq backup-by-copying t)
-(setq backup-directory-alist `(("." . ,(expand-file-name ".tmp/backups/" user-emacs-directory))))
-
 ;; ------------
 ;; Enablings
 ;; ------------
-(if (fboundp 'set-fringe-mode) (set-fringe-mode 10))
-(if (fboundp 'toggle-frame-fullscreen) (toggle-frame-fullscreen))
-(if (fboundp 'blink-cursor-mode) (blink-cursor-mode 0))
-(if (fboundp 'global-display-line-numbers-mode) (global-display-line-numbers-mode 1))
-
 (set-face-attribute 'default nil :font "JetBrains Mono-22")
 (add-hook 'before-save-hook #'whitespace-cleanup)
 
 (setopt use-short-answers t)
-(setq display-line-numbers-type 'relative)
+(setq package-native-compile    t
+      display-line-numbers-type 'relative
+      backup-directory-alist `(("." . ,(expand-file-name ".tmp/backups/" user-emacs-directory))))
+
+(if (fboundp 'set-fringe-mode) (set-fringe-mode 10))
+(if (fboundp 'toggle-frame-fullscreen) (toggle-frame-fullscreen))
+(if (fboundp 'blink-cursor-mode) (blink-cursor-mode 0))
+(if (fboundp 'global-display-line-numbers-mode) (global-display-line-numbers-mode 1))
 
 ;; ------------
 ;; Includes
