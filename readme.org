@@ -1,19 +1,1 @@
 #+title: Dotfiles
-
-*** Symlinks
-
-#+begin_src bash
-# Zsh
-# ---
-ln -fs ~/Projects/dotfiles/zshrc ~/.zshrc
-
-# Emacs
-# -----
-ln -s -f ~/Projects/dotfiles/emacs/init.el ~/.emacs.d/init.el
-
-# Doom
-# ----
-ln -s -f ~/Projects/dotfiles/doom/packages.el ~/.doom.d/packages.el
-ln -s -f ~/Projects/dotfiles/doom/init.el ~/.doom.d/init.el
-ln -s -f ~/Projects/dotfiles/doom/config.el ~/.doom.d/config.el
-#+end_src
