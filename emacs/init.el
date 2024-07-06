@@ -57,7 +57,8 @@
 (use-package projectile
   :ensure t
   :hook ((after-init . projectile-mode))
-  :bind (("C-x C-f" . projectile-find-file))
+  :bind (("C-x C-f" . projectile-find-file)
+	 ("C-x C-p" . projectile-switch-project))
   :custom (projectile-completion-system 'default)
   :bind-keymap (("C-c p" . projectile-command-map)))
 
