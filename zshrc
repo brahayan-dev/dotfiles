@@ -26,3 +26,4 @@ ln -s -f ~/Projects/dotfiles/doom/config.el ~/.config/doom/config.el
 ln -s -f ~/Projects/dotfiles/doom/packages.el ~/.config/doom/packages.el
 
 # ln -s -f ~/Projects/dotfiles/emacs/init.el ~/.emacs.d/init.el
+# ln -s -f ~/Projects/dotfiles/zshrc ~/.zshrc
