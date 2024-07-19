@@ -18,13 +18,13 @@
 ;; ---------
 (if (fboundp 'toggle-frame-fullscreen) (toggle-frame-fullscreen))
 (setq no-byte-compile nil
-      frame-resize-pixelwise t
-      package-native-compile t
+      frame-resize-pixelwise 't
+      package-native-compile 't
       projectile-enable-caching nil
       display-line-numbers-type 'relative
       org-directory "~/Projects/workbooks/"
       read-process-output-max (* 1024 1024)
-      projectile-project-search-path '("~/Projects")
+      projectile-project-search-path '("~/Projects" "~/dev/nu")
       backup-directory-alist `(("." . ,(expand-file-name ".tmp/backups/" user-emacs-directory))))
 
 ;; ------
@@ -40,8 +40,8 @@
   :mode ("\\.tex\\'" . latex-mode)
   :config
   (setq-default TeX-master nil)
-  (setq TeX-auto-save t
-        TeX-parse-self t
+  (setq TeX-auto-save 't
+        TeX-parse-self 't
         font-latex-fontify-script nil
         font-latex-fontify-sectioning 1.0
         font-latex-fontify-sectioning 'color))
@@ -50,19 +50,26 @@
 ;; Lsp
 ;; ------
 (use-package! lsp-mode
-  :ensure t
+  :ensure 't
   :commands lsp
   :config
-  (setq lsp-semantic-tokens-enable t)
+  (setq lsp-semantic-tokens-enable 't)
   (add-hook 'lsp-after-apply-edits-hook
             (lambda (&rest _) (save-buffer))))
+
+(let ((nudev-emacs-path "~/dev/nu/nudev/ides/emacs/"))
+  (when (file-directory-p nudev-emacs-path)
+    (add-to-list 'load-path nudev-emacs-path)
+    (require 'nu nil t)))
+
+(add-hook 'clojure-mode-hook #'evil-cleverparens-mode)
 
 ;; ---------
 ;; Paredit
 ;; ---------
 (use-package! paredit
   :diminish
-  :ensure t
+  :ensure 't
   ;; Bind RET to nil, to fix Cider REPL buffer eval issue
   :bind (:map paredit-mode-map ("RET" . nil))
   :hook ((clojure-mode . paredit-mode)
