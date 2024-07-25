@@ -47,6 +47,7 @@
   (setq-default TeX-master nil)
   (setq TeX-auto-save t
         TeX-parse-self t
+        lsp-tex-server 'texlab
         font-latex-fontify-script nil
         font-latex-fontify-sectioning 1.0
         font-latex-fontify-sectioning 'color))
