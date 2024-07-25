@@ -38,7 +38,7 @@
        ;;indent-guides     ; highlighted indent columns
        ;;ligatures         ; ligatures and symbols to make your code pretty again
        ;;minimap           ; show a map of the code on the side
-       modeline            ; snazzy, Atom-inspired modeline, plus API
+       (modeline +light)   ; snazzy, Atom-inspired modeline, plus API
        ;;nav-flash         ; blink cursor line after big motions
        ;;neotree           ; a project drawer, like NERDTree for vim
        ophints             ; highlight the region an operation acts on
@@ -123,8 +123,8 @@
        ;;coq                          ; proofs-as-programs
        ;;crystal                      ; ruby at the speed of c
        ;;csharp                       ; unity, .NET, and mono shenanigans
-       ;;data                         ; config/data formats
-       ;;(dart +flutter)              ; paint ui and not much else
+       data                           ; config/data formats
+       (dart +lsp +flutter)           ; paint ui and not much else
        ;;dhall
        ;;elixir                       ; erlang done right
        ;;(elm +lsp +tree-sitter)      ; care for a cup of TEA?
@@ -137,7 +137,7 @@
        ;;fsharp                       ; ML stands for Microsoft's Language
        ;;fstar                        ; (dependent) types and (monadic) effects and Z3
        ;;gdscript                     ; the language you waited for
-       ;;(go +lsp +tree-sitter)         ; the hipster dialect
+       ;;(go +lsp +tree-sitter)       ; the hipster dialect
        ;;(graphql +lsp)               ; Give queries a REST
        ;;(haskell +lsp)               ; a language that's lazier than I am
        ;;hy                           ; readability of scheme w/ speed of python
@@ -167,7 +167,7 @@
        ;;rst                          ; ReST in peace
        ;;(ruby +rails)                ; 1.step {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
        ;;(rust +lsp)                  ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
-       ;;scala                        ; java, but good
+       (scala)                        ; java, but good
        ;;(scheme +guile)              ; a fully conniving family of lisps
        sh                             ; she sells {ba,z,fi}sh shells on the C xor
        ;;sml
@@ -175,7 +175,7 @@
        ;;swift                        ; who asked for emoji variables?
        ;;terra                        ; Earth and Moon in alignment for performance.
        web                            ; the tubes
-       ;;yaml                         ; JSON, but readable
+       yaml                         ; JSON, but readable
        ;;zig                          ; C, but simpler
 
        :email

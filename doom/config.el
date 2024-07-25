@@ -51,6 +51,11 @@
         font-latex-fontify-sectioning 1.0
         font-latex-fontify-sectioning 'color))
 
+(after! tex
+  (setq TeX-view-program-selection nil)
+  (setq +latex-viewers '(pdf-tools skim))
+  (load! "~/.config/emacs/modules/lang/latex/+viewers"))
+
 ;; ------
 ;; Lsp
 ;; ------
