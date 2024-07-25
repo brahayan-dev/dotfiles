@@ -24,6 +24,8 @@ export PATH="/opt/homebrew/bin/lein:$PATH"
 ln -s -f ~/Projects/dotfiles/doom/init.el ~/.config/doom/init.el
 ln -s -f ~/Projects/dotfiles/doom/config.el ~/.config/doom/config.el
 ln -s -f ~/Projects/dotfiles/doom/packages.el ~/.config/doom/packages.el
+ln -s -f ~/Projects/dotfiles/kitty/kitty.conf ~/.config/kitty/kitty.conf
+ln -s -f ~/Projects/dotfiles/kitty/current-theme.conf ~/.config/kitty/current-theme.conf
 
 # ln -s -f ~/Projects/dotfiles/emacs/init.el ~/.emacs.d/init.el
 # ln -s -f ~/Projects/dotfiles/zshrc ~/.zshrc
