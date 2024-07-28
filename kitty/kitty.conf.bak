@@ -1,6 +1,4 @@
 # BEGIN_KITTY_THEME
-# Rosé Pine Moon
-include dark-theme.conf
 # Rosé Pine Dawn
 include light-theme.conf
 # END_KITTY_THEME

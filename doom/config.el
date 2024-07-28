@@ -3,8 +3,8 @@
 ;; ---------
 ;; Themes
 ;; ---------
-(setq doom-theme 'doom-nord-light)
-;; (setq doom-theme 'doom-miramare)
+;; (setq doom-theme 'doom-nord-light)
+(setq doom-theme 'doom-miramare)
 
 ;; ------
 ;; Doom
