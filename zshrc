@@ -27,6 +27,8 @@ export PATH="/opt/homebrew/bin/lein:$PATH"
 # --------
 ln -s -f ~/Projects/dotfiles/zshrc ~/.zshrc
 
+ln -s -f ~/Projects/dotfiles/nvim/init.lua ~/.config/init.lua
+
 ln -s -f ~/Projects/dotfiles/starship.toml ~/.config/starship.toml
 
 ln -s -f ~/Projects/dotfiles/doom/init.el ~/.config/doom/init.el
