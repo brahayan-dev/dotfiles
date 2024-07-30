@@ -26,16 +26,12 @@ export PATH="/opt/homebrew/bin/lein:$PATH"
 # Dotfiles
 # --------
 ln -s -f ~/Projects/dotfiles/zshrc ~/.zshrc
-
-ln -s -f ~/Projects/dotfiles/nvim/init.lua ~/.config/init.lua
-
 ln -s -f ~/Projects/dotfiles/starship.toml ~/.config/starship.toml
 
-ln -s -f ~/Projects/dotfiles/doom/init.el ~/.config/doom/init.el
-ln -s -f ~/Projects/dotfiles/doom/config.el ~/.config/doom/config.el
-ln -s -f ~/Projects/dotfiles/doom/packages.el ~/.config/doom/packages.el
+for file in ~/Projects/dotfiles/nvim/*; do ln -s "$file" ~/.config/nvim/; done
+for file in ~/Projects/dotfiles/doom/*; do ln -s "$file" ~/.config/doom/; done
+for file in ~/Projects/dotfiles/kitty/*; do ln -s "$file" ~/.config/kitty/; done
 
-ln -s -f ~/Projects/dotfiles/kitty/kitty.conf ~/.config/kitty/kitty.conf
-ln -s -f ~/Projects/dotfiles/kitty/dark-theme.conf ~/.config/kitty/dark-theme.conf
-ln -s -f ~/Projects/dotfiles/kitty/light-theme.conf ~/.config/kitty/light-theme.conf
-# ln -s -f ~/Projects/dotfiles/emacs/init.el ~/.emacs.d/init.el
+# Aliases
+# -------
+alias lg="lazygit"
