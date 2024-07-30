@@ -28,9 +28,17 @@ export PATH="/opt/homebrew/bin/lein:$PATH"
 ln -s -f ~/Projects/dotfiles/zshrc ~/.zshrc
 ln -s -f ~/Projects/dotfiles/starship.toml ~/.config/starship.toml
 
-for file in ~/Projects/dotfiles/nvim/*; do ln -s "$file" ~/.config/nvim/; done
-for file in ~/Projects/dotfiles/doom/*; do ln -s "$file" ~/.config/doom/; done
-for file in ~/Projects/dotfiles/kitty/*; do ln -s "$file" ~/.config/kitty/; done
+to_symlink() {
+	for file in ~/Projects/dotfiles/$1/*; do
+		if [ ! -e $file ]; then
+			ln -s "$file" ~/.config/$1
+		fi
+	done
+}
+
+to_symlink "nvim"
+to_symlink "doom"
+to_symlink "kitty"
 
 # Aliases
 # -------
