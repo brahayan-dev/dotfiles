@@ -52,8 +52,8 @@
         font-latex-fontify-sectioning 'color))
 
 (after! tex
-  (setq TeX-view-program-selection nil
-        +latex-viewers '(pdf-tools skim))
+  (setq +latex-viewers '(skim)
+        TeX-view-program-selection '((output-pdf "skim")))
   (load! "~/.config/emacs/modules/lang/latex/+viewers"))
 
 ;; ------
