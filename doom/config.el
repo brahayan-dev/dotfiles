@@ -3,8 +3,8 @@
 ;; ---------
 ;; Themes
 ;; ---------
-;; (setq doom-theme 'doom-nord-light)
-(setq doom-theme 'doom-miramare)
+(setq doom-theme 'doom-nord-light)
+;; (setq doom-theme 'doom-miramare)
 
 ;; ------
 ;; Doom
@@ -52,8 +52,8 @@
         font-latex-fontify-sectioning 'color))
 
 (after! tex
-  ;; (setq TeX-view-program-selection nil)
-  (setq +latex-viewers '(pdf-tools skim))
+  (setq +latex-viewers '(skim)
+        TeX-view-program-selection '((output-pdf "skim")))
   (load! "~/.config/emacs/modules/lang/latex/+viewers"))
 
 ;; ------
