@@ -95,4 +95,3 @@
         "C-c <left>" #'paredit-backward
         :desc "Forward"
         "C-c <right>" #'paredit-forward))
-
