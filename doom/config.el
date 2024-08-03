@@ -47,13 +47,11 @@
   (setq-default TeX-master nil)
   (setq TeX-auto-save t
         TeX-parse-self t
+        +latex-viewers '(skim)
         font-latex-fontify-script nil
         font-latex-fontify-sectioning 1.0
-        font-latex-fontify-sectioning 'color))
-
-(after! tex
-  (setq +latex-viewers '(skim)
-        TeX-view-program-selection '((output-pdf "skim")))
+        font-latex-fontify-sectioning 'color
+        TeX-view-program-selection '((output-pdf "Skim")))
   (load! "~/.config/emacs/modules/lang/latex/+viewers"))
 
 ;; ------
