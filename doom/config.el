@@ -3,8 +3,8 @@
 ;; ---------
 ;; Themes
 ;; ---------
-;; (setq doom-theme 'doom-nord-light)
-(setq doom-theme 'doom-miramare)
+(setq doom-theme 'doom-nord-light)
+;; (setq doom-theme 'doom-miramare)
 
 ;; ------
 ;; Doom
@@ -28,8 +28,9 @@
       backup-directory-alist `(("." . ,(expand-file-name ".tmp/backups/" user-emacs-directory)))
       projectile-project-root-functions '(projectile-root-local
                                           projectile-root-top-down
+                                          projectile-root-bottom-up
                                           projectile-root-top-down-recurring
-                                          projectile-root-bottom-up))
+                                          ))
 
 ;; ------
 ;; Hook
@@ -47,14 +48,11 @@
   (setq-default TeX-master nil)
   (setq TeX-auto-save t
         TeX-parse-self t
-        lsp-tex-server 'texlab
+        +latex-viewers '(Skim)
         font-latex-fontify-script nil
         font-latex-fontify-sectioning 1.0
-        font-latex-fontify-sectioning 'color))
-
-(after! tex
-  (setq TeX-view-program-selection nil)
-  (setq +latex-viewers '(pdf-tools skim))
+        font-latex-fontify-sectioning 'color
+        TeX-view-program-selection '((output-pdf "Skim")))
   (load! "~/.config/emacs/modules/lang/latex/+viewers"))
 
 ;; ------
