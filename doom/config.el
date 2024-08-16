@@ -29,8 +29,7 @@
       projectile-project-root-functions '(projectile-root-local
                                           projectile-root-top-down
                                           projectile-root-bottom-up
-                                          projectile-root-top-down-recurring
-                                          ))
+                                          projectile-root-top-down-recurring))
 
 ;; ------
 ;; Hook
