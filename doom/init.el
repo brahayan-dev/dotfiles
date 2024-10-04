@@ -69,11 +69,11 @@
        word-wrap           ; soft wrapping with language-aware indent
 
        :emacs
-       dired             ; making dired pretty [functional]
-       electric          ; smarter, keyword-based electric-indent
-       ;;ibuffer         ; interactive buffer management
-       undo              ; persistent, smarter undo for your inevitable mistakes
-       vc                ; version-control and Emacs, sitting in a tree
+       dired               ; making dired pretty [functional]
+       electric            ; smarter, keyword-based electric-indent
+       ;;ibuffer           ; interactive buffer management
+       undo                ; persistent, smarter undo for your inevitable mistakes
+       vc                  ; version-control and Emacs, sitting in a tree
 
        :term
        ;;eshell            ; the elisp shell that works everywhere
@@ -84,9 +84,10 @@
        :checkers
        syntax              ; tasing you for every semicolon you forget
        ;;grammar           ; tasing grammar mistake every you make
-       ;;(spell +enchant
-       ;;       +flyspell
-       ;;       +everywhere) ; tasing you for misspelling mispelling
+       ;; (spell +enchant
+       ;;        +flyspell
+       ;;        +everywhere)
+       ;;                  ; tasing you for misspelling mispelling
 
        :tools
        ;;ansible
@@ -160,7 +161,7 @@
        org                            ; organize your plain life in plain text
        ;;php                          ; perl's insecure younger brother
        ;;plantuml                     ; diagrams for confusing people more
-       (purescript +lsp)              ; javascript, but functional
+       ;;(purescript +lsp)            ; javascript, but functional
        ;;(python +lsp +pyright)       ; beautiful is better than ugly
        ;;qt                           ; the 'cutest' gui framework ever
        ;;racket                       ; a DSL for DSLs
