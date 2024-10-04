@@ -24,7 +24,7 @@
       display-line-numbers-type 'relative
       org-directory "~/Projects/workbooks/"
       read-process-output-max (* 1024 1024)
-      projectile-project-search-path '("~/Projects" "~/dev/nu" "~/dev/nu/mini-meta-repo/packages")
+      projectile-project-search-path '("~/Projects")
       backup-directory-alist `(("." . ,(expand-file-name ".tmp/backups/" user-emacs-directory)))
       projectile-project-root-functions '(projectile-root-local
                                           projectile-root-top-down
@@ -93,12 +93,3 @@
         "C-c <left>" #'paredit-backward
         :desc "Forward"
         "C-c <right>" #'paredit-forward))
-
-;; ---------
-;; Nubank
-;; ---------
-(let ((nudev-emacs-path "~/dev/nu/nudev/ides/emacs/"))
-  (when (file-directory-p nudev-emacs-path)
-    (add-to-list 'load-path nudev-emacs-path)
-    (require 'nu nil t)))
-

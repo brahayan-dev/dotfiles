@@ -127,7 +127,7 @@
        ;;crystal                      ; ruby at the speed of c
        ;;csharp                       ; unity, .NET, and mono shenanigans
        data                           ; config/data formats
-       (dart +lsp +flutter)           ; paint ui and not much else
+       ;;(dart +lsp +flutter)         ; paint ui and not much else
        ;;dhall
        ;;elixir                       ; erlang done right
        ;;(elm +lsp +tree-sitter)      ; care for a cup of TEA?
@@ -161,7 +161,7 @@
        org                            ; organize your plain life in plain text
        ;;php                          ; perl's insecure younger brother
        ;;plantuml                     ; diagrams for confusing people more
-       ;;purescript                   ; javascript, but functional
+       (purescript +lsp)              ; javascript, but functional
        ;;(python +lsp +pyright)       ; beautiful is better than ugly
        ;;qt                           ; the 'cutest' gui framework ever
        ;;racket                       ; a DSL for DSLs
@@ -170,7 +170,7 @@
        ;;rst                          ; ReST in peace
        ;;(ruby +rails)                ; 1.step {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
        ;;(rust +lsp)                  ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
-       (scala)                        ; java, but good
+       ;;(scala)                      ; java, but good
        ;;(scheme +guile)              ; a fully conniving family of lisps
        sh                             ; she sells {ba,z,fi}sh shells on the C xor
        ;;sml

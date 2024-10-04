@@ -2,6 +2,10 @@
 # ----
 export PATH="$HOME/.config/emacs/bin:$PATH"
 
+# Starship
+# --------
+eval "$(starship init zsh)"
+
 # Grep (used by Doom)
 # -------------------
 if [ -d "$(brew --prefix)/opt/grep/libexec/gnubin" ]; then
@@ -26,6 +30,20 @@ ln -s -f ~/Projects/dotfiles/doom/config.el ~/.config/doom/config.el
 ln -s -f ~/Projects/dotfiles/doom/packages.el ~/.config/doom/packages.el
 ln -s -f ~/Projects/dotfiles/zed/keymap.json ~/.config/zed/keymap.json
 ln -s -f ~/Projects/dotfiles/zed/settings.json ~/.config/zed/settings.json
+ln -s -f ~/Projects/dotfiles/zshrc ~/.zshrc
 
-# ln -s -f ~/Projects/dotfiles/emacs/init.el ~/.emacs.d/init.el
-# ln -s -f ~/Projects/dotfiles/zshrc ~/.zshrc
+to_symlink() {
+	for file in ~/Projects/dotfiles/$1/*; do
+		if [ ! -e $file ]; then
+			ln -s "$file" ~/.config/$1
+		fi
+	done
+}
+
+to_symlink "nvim"
+to_symlink "doom"
+to_symlink "kitty"
+
+# Aliases
+# -------
+alias lg="lazygit"
