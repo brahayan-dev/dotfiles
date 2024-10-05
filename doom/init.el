@@ -129,7 +129,7 @@
        ;;(dart +lsp +flutter)         ; paint ui and not much else
        ;;dhall
        ;;elixir                       ; erlang done right
-       ;;(elm +lsp +tree-sitter)      ; care for a cup of TEA?
+       (elm +lsp +tree-sitter)        ; care for a cup of TEA?
        emacs-lisp                     ; drown in parentheses
        ;;erlang                       ; an elegant language for a more civilized age
        ;;ess                          ; emacs speaks statistics
@@ -160,7 +160,7 @@
        org                            ; organize your plain life in plain text
        ;;php                          ; perl's insecure younger brother
        ;;plantuml                     ; diagrams for confusing people more
-       (purescript +lsp)              ; javascript, but functional
+       ;;(purescript +lsp)            ; javascript, but functional
        ;;(python +lsp +pyright)       ; beautiful is better than ugly
        ;;qt                           ; the 'cutest' gui framework ever
        ;;racket                       ; a DSL for DSLs
