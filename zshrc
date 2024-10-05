@@ -2,10 +2,6 @@
 # ----
 export PATH="$HOME/.config/emacs/bin:$PATH"
 
-# Starship
-# --------
-eval "$(starship init zsh)"
-
 # Grep (used by Doom)
 # -------------------
 if [ -d "$(brew --prefix)/opt/grep/libexec/gnubin" ]; then
@@ -26,7 +22,6 @@ export PATH="/opt/homebrew/bin/lein:$PATH"
 # Dotfiles
 # --------
 ln -s -f ~/Projects/dotfiles/zshrc ~/.zshrc
-ln -s -f ~/Projects/dotfiles/starship.toml ~/.config/starship.toml
 
 to_symlink() {
 	for file in ~/Projects/dotfiles/$1/*; do
@@ -36,9 +31,8 @@ to_symlink() {
 	done
 }
 
-to_symlink "nvim"
+to_symlink "zed"
 to_symlink "doom"
-to_symlink "kitty"
 
 # Aliases
 # -------

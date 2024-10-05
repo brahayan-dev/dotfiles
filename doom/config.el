@@ -32,8 +32,8 @@
       backup-directory-alist `(("." . ,(expand-file-name ".tmp/backups/" user-emacs-directory)))
       projectile-project-root-functions '(projectile-root-local
                                           projectile-root-top-down
-                                          projectile-root-top-down-recurring
-                                          projectile-root-bottom-up))
+                                          projectile-root-bottom-up
+                                          projectile-root-top-down-recurring))
 
 ;; ------
 ;; Hook
@@ -51,7 +51,7 @@
   (setq-default TeX-master nil)
   (setq TeX-auto-save t
         TeX-parse-self t
-        +latex-viewers '(skim)
+        +latex-viewers '(Skim)
         font-latex-fontify-script nil
         font-latex-fontify-sectioning 1.0
         font-latex-fontify-sectioning 'color
@@ -97,3 +97,11 @@
         "C-c <left>" #'paredit-backward
         :desc "Forward"
         "C-c <right>" #'paredit-forward))
+
+;; ---------
+;; Nubank
+;; ---------
+(let ((nudev-emacs-path "~/dev/nu/nudev/ides/emacs/"))
+  (when (file-directory-p nudev-emacs-path)
+    (add-to-list 'load-path nudev-emacs-path)
+    (require 'nu nil t)))
