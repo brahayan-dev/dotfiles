@@ -22,17 +22,11 @@ export PATH="/opt/homebrew/bin/lein:$PATH"
 # Dotfiles
 # --------
 ln -s -f ~/Projects/dotfiles/zshrc ~/.zshrc
-
-to_symlink() {
-	for file in ~/Projects/dotfiles/$1/*; do
-		if [ ! -e $file ]; then
-			ln -s "$file" ~/.config/$1
-		fi
-	done
-}
-
-to_symlink "zed"
-to_symlink "doom"
+ln -s -f ~/Projects/dotfiles/zed/keymap.json ~/.config/zed/keymap.json
+ln -s -f ~/Projects/dotfiles/zed/settings.json ~/.config/zed/settings.json
+ln -s -f ~/Projects/dotfiles/doom/init.el ~/.config/zed/init.el
+ln -s -f ~/Projects/dotfiles/doom/config.el ~/.config/zed/config.el
+ln -s -f ~/Projects/dotfiles/doom/packages.el ~/.config/zed/packages.el
 
 # Aliases
 # -------
