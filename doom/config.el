@@ -3,8 +3,8 @@
 ;; ---------
 ;; Themes
 ;; ---------
-(setq doom-theme 'doom-bluloco-light)
-;; (setq doom-theme 'doom-nord-light)
+;; (setq doom-theme 'doom-bluloco-light)
+(setq doom-theme 'doom-nord-light)
 ;; (setq doom-theme 'doom-ayu-light)
 ;; (setq doom-theme 'doom-solarized-light)
 ;; (setq doom-theme 'doom-nord-aurora)
@@ -50,7 +50,6 @@
   :config
   (setq-default TeX-master nil)
   (setq TeX-auto-save t
-        TeX-parse-self t
         +latex-viewers '(Skim)
         font-latex-fontify-script nil
         font-latex-fontify-sectioning 1.0
@@ -97,6 +96,26 @@
         "C-c <left>" #'paredit-backward
         :desc "Forward"
         "C-c <right>" #'paredit-forward))
+
+;; -----------
+;; Company
+;; -----------
+(use-package! company
+  :ensure t
+  :config
+  (global-company-mode t)
+  (setq company-idle-delay 0)
+  (setq company-minimum-prefix-length 2)
+  (setq company-tooltip-align-annotations t
+        company-frontends '(company-pseudo-tooltip-frontend)))
+
+(use-package! company-quickhelp
+  :init
+  (company-quickhelp-mode)
+  :config
+  (setq company-quickhelp-delay nil
+        company-quickhelp-use-propertized-text t
+        company-quickhelp-max-lines 10))
 
 ;; ---------
 ;; Nubank
