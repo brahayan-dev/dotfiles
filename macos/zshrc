@@ -22,15 +22,9 @@ export PATH="/opt/homebrew/bin/lein:$PATH"
 # Dotfiles
 # --------
 ln -s -f ~/Projects/dotfiles/zshrc ~/.zshrc
-ln -s -f ~/Projects/dotfiles/zed/keymap.json ~/.config/zed/keymap.json
-ln -s -f ~/Projects/dotfiles/zed/settings.json ~/.config/zed/settings.json
-ln -s -f ~/Projects/dotfiles/doom/init.el ~/.config/zed/init.el
-ln -s -f ~/Projects/dotfiles/doom/config.el ~/.config/zed/config.el
-ln -s -f ~/Projects/dotfiles/doom/packages.el ~/.config/zed/packages.el
-
-# Aliases
-# -------
-alias lg="lazygit"
+ln -s -f ~/Projects/dotfiles/macos/doom/init.el ~/.config/doom/init.el
+ln -s -f ~/Projects/dotfiles/macos/doom/config.el ~/.config/doom/config.el
+ln -s -f ~/Projects/dotfiles/macos/doom/packages.el ~/.config/doom/packages.el
 
 # NVM
 # ---
