@@ -19,7 +19,8 @@ fi
 #+begin_src sh
 # Symlinks
 # --------
-ln -s -f ~/Projects/dotfiles/doom/init.el ~/.config/doom/init.el
-ln -s -f ~/Projects/dotfiles/doom/config.el ~/.config/doom/config.el
-ln -s -f ~/Projects/dotfiles/doom/packages.el ~/.config/doom/packages.el
+ln -s -f ~/.dotfiles/misc/macos/zshrc ~/.zshrc
+ln -s -f ~/.dotfiles/misc/macos/doom/init.el ~/.config/doom/init.el
+ln -s -f ~/.dotfiles/misc/macos/doom/config.el ~/.config/doom/config.el
+ln -s -f ~/.dotfiles/misc/macos/doom/packages.el ~/.config/doom/packages.el
 #+end_src
