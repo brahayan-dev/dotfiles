@@ -25,8 +25,8 @@ nu-refresh() {
     echo 0 | nu aws credentials refresh
 
     nu update
-    nu aws shared-role-credentials refresh --account-alias=br
     nu aws credentials refresh
+    nu aws shared-role-credentials refresh --account-alias=br
     nu codeartifact login maven
     nu codeartifact login npm
 
