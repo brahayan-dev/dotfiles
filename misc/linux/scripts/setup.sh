@@ -10,6 +10,8 @@ sudo apt install -y \
     curl \
     neovim \
     clojure \
+    ripgrep \
+    fd-find \
     guile-3.0 \
     openjdk-21-jdk
 
@@ -31,3 +33,7 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 
 # Build emacs
 sudo bash ./build-emacs.sh
+
+# Install doom
+git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.config/emacs
+~/.config/emacs/bin/doom install
