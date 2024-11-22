@@ -16,7 +16,7 @@ sudo apt install -y \
 # Install babashka
 curl -sLO https://raw.githubusercontent.com/babashka/babashka/master/install
 chmod +x install
-bash ./install
+sudo bash ./install
 rm install
 
 # Install nvm
@@ -30,4 +30,4 @@ chsh -s $(which zsh)
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 # Build emacs
-bash ./build-emacs.sh
+sudo bash ./build-emacs.sh
