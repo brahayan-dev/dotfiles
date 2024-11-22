@@ -59,7 +59,7 @@ DEBIAN_FRONTEND=noninteractive
 export CC=/usr/bin/gcc-11 CXX=/usr/bin/g++-11
 
 # Configure and run.
-# NOTE(abi): binaries should go to /usr/local/bin by default.
+# NOTE: binaries should go to /usr/local/bin by default.
 #
 # Options:
 #    --with-native-compilation  ->  use the libgccjit native compiler
@@ -69,7 +69,6 @@ export CC=/usr/bin/gcc-11 CXX=/usr/bin/g++-11
 #    --with-wide-int            ->  larger file size limit
 #    --with-json                ->  fast JSON
 #    --with-gnutls              ->  TLS/SSL
-#    --with-mailutils           ->  e-mail
 #    --without-pop              ->  no pop3 (insecure channels)
 #    --with-cairo               ->  vector graphics backend
 #    --with-imagemagick         ->  raster images backend
@@ -83,12 +82,15 @@ export CC=/usr/bin/gcc-11 CXX=/usr/bin/g++-11
         --with-json \
         --with-modules \
         --with-gnutls \
+        --with-cairo \
+        --with-imagemagick \
         --without-dbus \
         --without-pop
 
 # Other interesting compilation options:
 #
 #--prefix=""                    # output binaries location
+#--with-mailutils               # e-mail
 #--with-x-toolkit=lucid         # supposedly more stable
 #--with-xwidgets
 
