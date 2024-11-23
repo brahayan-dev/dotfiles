@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
-NODE_VERSION="22"
-GUILE_VERSION="3.0"
-OPENJDK_VERSION="21"
-NVM_VERSION="0.40.0"
+export NODE_VERSION="22"
+export GUILE_VERSION="3.0"
+export OPENJDK_VERSION="21"
+export NVM_VERSION="0.40.0"
 
 function install-basic-packages() {
     sudo apt upgrade
