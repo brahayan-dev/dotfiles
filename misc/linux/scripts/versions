@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+export NODE_VERSION="22"
+export GUILE_VERSION="3.0"
+export OPENJDK_VERSION="21"
+export NVM_VERSION="0.40.0"

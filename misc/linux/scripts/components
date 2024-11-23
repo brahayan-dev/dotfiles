@@ -1,9 +1,6 @@
 #!/usr/bin/env bash
 
-export NODE_VERSION="22"
-export GUILE_VERSION="3.0"
-export OPENJDK_VERSION="21"
-export NVM_VERSION="0.40.0"
+source ./versions
 
 function install-basic-packages() {
     sudo apt upgrade
@@ -50,7 +47,7 @@ function configure-shell() {
 }
 
 function configure-emacs() {
-    sudo bash ./build-emacs.sh
+    sudo bash ./build-emacs
 
     # Install doom
     git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.config/emacs
