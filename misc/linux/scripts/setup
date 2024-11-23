@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+NODE_VERSION="22"
+GUILE_VERSION="3.0"
+OPENJDK_VERSION="21"
+NVM_VERSION="0.40.0"
+
 function install_basic_packages() {
     sudo apt upgrade
     sudo apt install -y \
@@ -34,7 +39,7 @@ function install_nvm() {
     # This loads nvm bash_completion
     [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
-    nvm install 22
+    nvm install NODE_VERSION
 }
 
 function configure_shell() {
