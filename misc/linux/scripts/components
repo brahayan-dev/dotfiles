@@ -1,0 +1,58 @@
+#!/usr/bin/env bash
+
+NODE_VERSION="22"
+GUILE_VERSION="3.0"
+OPENJDK_VERSION="21"
+NVM_VERSION="0.40.0"
+
+function install-basic-packages() {
+    sudo apt upgrade
+    sudo apt install -y \
+        jq \
+        fzf \
+        git \
+        zsh \
+        guix \
+        curl \
+        neovim \
+        clojure \
+        ripgrep \
+        fd-find \
+        guile-3.0 \
+        openjdk-21-jdk
+}
+
+function install-babashka() {
+    curl -sLO https://raw.githubusercontent.com/babashka/babashka/master/install
+    chmod +x install
+    sudo bash ./install
+    rm install
+}
+
+function install-nvm() {
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.0/install.sh | bash
+
+    NVM_DIR="$HOME/.nvm"
+    # This loads nvm
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+    # This loads nvm bash_completion
+    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+
+    nvm install NODE_VERSION
+}
+
+function configure-shell() {
+    # Define default shell
+    chsh -s $(which zsh)
+
+    # Install oh-my-zsh
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+}
+
+function configure-emacs() {
+    sudo bash ./build-emacs.sh
+
+    # Install doom
+    git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.config/emacs
+    ~/.config/emacs/bin/doom install
+}
