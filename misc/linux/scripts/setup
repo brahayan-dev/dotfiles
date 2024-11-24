@@ -1,9 +1,0 @@
-#!/usr/bin/env bash
-
-source ./components
-
-install-basic-packages
-install-babashka
-install-nvm
-configure-emacs
-configure-shell
