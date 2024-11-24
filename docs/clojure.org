@@ -1,4 +1,4 @@
-* Clojure
+#+title: Clojure
 
 ** MacOS
 

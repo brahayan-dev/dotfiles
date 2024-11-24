@@ -1,4 +1,4 @@
-* Doom
+#+title: Doom
 
 ** MacOS
 
