@@ -1,0 +1,7 @@
+#+title: Setup
+
+** Linux
+
+#+begin_src sh
+wget https://raw.githubusercontent.com/brahayan-dev/dotfiles/refs/heads/main/misc/linux/install | bash
+#+end_src
