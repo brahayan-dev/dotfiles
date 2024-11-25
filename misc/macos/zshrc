@@ -20,15 +20,13 @@ export PATH="${NUCLI_HOME}:${PATH}"
 
 export PATH="$HOME/.config/emacs/bin:$PATH"
 if [ -d "$(brew --prefix)/opt/grep/libexec/gnubin" ]; then
-   PATH="$(brew --prefix)/opt/grep/libexec/gnubin:$PATH"
+    PATH="$(brew --prefix)/opt/grep/libexec/gnubin:$PATH"
 fi
 
 # PERSONAL CONFIGURATION
 # ----------------------
 
 nu-refresh() {
-    echo 0 | nu aws credentials refresh
-
     nu update
 
     nu-co certs setup --env prod
@@ -84,4 +82,24 @@ nu-refresh() {
     nu-data auth get-refresh-token --env staging --force
     nu-data auth get-access-token --env prod
     nu-data auth get-access-token --env staging
+}
+
+nu-start() {
+    nu update
+    nu aws credentials refresh
+    nu aws shared-role-credentials refresh --account-alias br
+    nu cert setup --country co --env staging
+    nu-co auth get-refresh-token --env prod
+    nu-co auth get-access-token --env prod
+    nu-co auth jwt --env prod
+    nu-co sec scope show xavier.ramirez --env prod
+    nu-co auth get-refresh-token --env staging
+    nu-co auth get-access-token --env staging
+    nu-co auth jwt --env staging
+    nu-co sec scope show xavier.ramirez --env staging
+    nu-ist auth get-refresh-token --env staging
+    nu-ist auth get-access-token --env staging
+    nu-ist sec scope add xavier.ramirez admin --env staging
+    nu codeartifact login maven
+    nu codeartifact login npm
 }
