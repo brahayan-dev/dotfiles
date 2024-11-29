@@ -28,6 +28,16 @@ fi
 
 nu-refresh() {
     nu update
+    nu aws credentials reset
+    nu aws credentials setup
+    # nu aws credentials refresh --aws-account='co-prod'
+    nu aws credentials refresh
+    nu aws shared-role-credentials refresh --interactive
+    # nu aws shared-role-credentials refresh --account-alias=br
+    # nu aws shared-role-credentials refresh --account-alias=co
+    nu aws shared-role-credentials available --account-alias=br
+    nu codeartifact login maven
+    nu codeartifact login npm
 
     nu-co certs setup --env prod
     nu-co certs setup --env staging
@@ -40,16 +50,6 @@ nu-refresh() {
     # nu-co sec scope show xavier.ramirez --env prod
     # nu-co sec scope show xavier.ramirez --env staging
 
-    # nu-co aws credentials setup
-
-    nu aws credentials refresh
-    nu aws shared-role-credentials refresh --interactive
-    # nu aws shared-role-credentials refresh --account-alias=br
-    # nu aws shared-role-credentials refresh --account-alias=co
-    nu aws shared-role-credentials available --account-alias=br
-    nu codeartifact login maven
-    nu codeartifact login npm
-
     nu-ist certs setup --env prod
     nu-ist certs setup --env staging
     nu-ist auth get-refresh-token --env prod --force
@@ -58,9 +58,6 @@ nu-refresh() {
     nu-ist auth get-access-token --env staging
     # nu-ist sec scope add xavier.ramirez admin --env staging
     # nu-ist sec scope add xavier.ramirez admin --env prod
-
-    nu-ist sec scope add xavier.ramirez admin --env staging
-    nu-ist-staging certs setup
 
     nu-br-staging certs setup
     nu-br-staging auth get-refresh-token
@@ -84,4 +81,3 @@ nu-refresh() {
     nu-data auth get-access-token --env prod
     nu-data auth get-access-token --env staging
 }
-
