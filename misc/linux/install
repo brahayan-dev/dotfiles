@@ -172,10 +172,6 @@ function configure_emacs() {
     sudo bash build_emacs
     sudo rm -r emacs
 
-    # Install doom
-    git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.config/emacs
-    ~/.config/emacs/bin/doom install
-
     # Change icon
     mkdir -p "$HOME/.local/share/icons"
     ICON="$HOME/.local/share/icons/doom.png"
@@ -184,9 +180,33 @@ function configure_emacs() {
         sudo --preserve-env=ICON,DESKTOP_FILE sed -i "s|Icon=.*|Icon=$ICON|" $DESKTOP_FILE
 }
 
+function add_doom() {
+    # Install doom
+    git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.config/emacs
+    ~/.config/emacs/bin/doom install
+
+}
+
+function configure_github() {
+    (type -p wget >/dev/null || (sudo apt update && sudo apt-get install wget -y)) \
+        && sudo mkdir -p -m 755 /etc/apt/keyrings \
+        && wget -qO- https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo tee /etc/apt/keyrings/githubcli-archive-keyring.gpg > /dev/null \
+        && sudo chmod go+r /etc/apt/keyrings/githubcli-archive-keyring.gpg \
+        && echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null \
+        && sudo apt update \
+        && sudo apt install gh -y
+
+    sudo apt update
+    sudo apt install gh
+
+    open "https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent"
+    ssh-keygen -t ed25519 -C "brahayan.suarez@gmail.com"
+}
 
 install_basic_packages
 install_babashka
 install_nvm
 configure_emacs
+# add_doom
+configure_github
 configure_shell
