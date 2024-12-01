@@ -184,7 +184,6 @@ function add_doom() {
     # Install doom
     git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.config/emacs
     ~/.config/emacs/bin/doom install
-
 }
 
 function configure_github() {
@@ -197,7 +196,7 @@ function configure_github() {
         && sudo apt install gh -y
 
     open "https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent"
-    ssh-keygen -t ed25519 -C "brahayan.suarez@gmail.com"
+    ssh-keygen -t ed25519 -C "bxsr@proton.me"
 }
 
 install_basic_packages
