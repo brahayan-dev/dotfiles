@@ -196,9 +196,6 @@ function configure_github() {
         && sudo apt update \
         && sudo apt install gh -y
 
-    sudo apt update
-    sudo apt install gh
-
     open "https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent"
     ssh-keygen -t ed25519 -C "brahayan.suarez@gmail.com"
 }
@@ -207,6 +204,6 @@ install_basic_packages
 install_babashka
 install_nvm
 configure_emacs
-# add_doom
+add_doom
 configure_github
 configure_shell
