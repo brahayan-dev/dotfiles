@@ -4,6 +4,6 @@
 
 #+begin_src sh
 wget https://raw.githubusercontent.com/brahayan-dev/dotfiles/refs/heads/main/misc/linux/setup
-chmod +x install
-sudo ./install
+chmod +x setup
+sudo ./setup
 #+end_src
