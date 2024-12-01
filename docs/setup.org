@@ -3,5 +3,7 @@
 ** Linux
 
 #+begin_src sh
-wget https://raw.githubusercontent.com/brahayan-dev/dotfiles/refs/heads/main/misc/linux/install | bash
+wget https://raw.githubusercontent.com/brahayan-dev/dotfiles/refs/heads/main/misc/linux/install
+chmod +x install
+./install
 #+end_src
