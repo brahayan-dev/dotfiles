@@ -1,6 +1,6 @@
-#+title: Setup
+#+title: Install
 
-** Linux
+** Linux (Ubuntu)
 
 #+begin_src sh
 wget https://raw.githubusercontent.com/brahayan-dev/dotfiles/refs/heads/main/misc/linux/install
