@@ -195,7 +195,6 @@ function configure_github() {
         && sudo apt update \
         && sudo apt install gh -y
 
-    start "" "https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent"
     ssh-keygen -t ed25519 -C "bxsr@proton.me"
 }
 
