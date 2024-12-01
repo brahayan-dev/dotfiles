@@ -25,10 +25,10 @@ function install_basic_packages() {
 }
 
 function install_babashka() {
-    curl -sLO https://raw.githubusercontent.com/babashka/babashka/master/install
-    chmod +x install
-    sudo bash ./install
-    rm install
+    curl -o babashka -sLO https://raw.githubusercontent.com/babashka/babashka/master/install
+    chmod +x babashka
+    sudo bash ./babashka
+    rm babashka
 }
 
 function install_nvm() {
@@ -169,7 +169,7 @@ function build_emacs() {
 
 function configure_emacs() {
     # Build emacs
-    sudo bash build_emacs
+    build_emacs
     sudo rm -r emacs
 
     # Change icon
