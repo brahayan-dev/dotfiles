@@ -3,7 +3,7 @@
 ** Linux (Ubuntu)
 
 #+begin_src sh
-wget https://raw.githubusercontent.com/brahayan-dev/dotfiles/refs/heads/main/misc/linux/install
+wget https://raw.githubusercontent.com/brahayan-dev/dotfiles/refs/heads/main/misc/linux/setup
 chmod +x install
 sudo ./install
 #+end_src
