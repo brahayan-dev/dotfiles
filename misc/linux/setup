@@ -14,10 +14,12 @@ function install_basic_packages() {
         zsh \
         guix \
         curl \
+        stow \
         neovim \
         clojure \
         ripgrep \
         fd-find \
+        chromium \
         markdown \
         guile-3.0 \
         shellcheck \
@@ -45,7 +47,7 @@ function install_nvm() {
 
 function configure_shell() {
     # Define default shell
-    chsh -s $(which zsh)
+    chsh -s "$(which zsh)"
 
     # Install oh-my-zsh
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
@@ -196,6 +198,7 @@ function configure_github() {
         && sudo apt install gh -y
 
     ssh-keygen -t ed25519 -C "bxsr@proton.me"
+    git config --global user.email "bxsr@proton.me"
 }
 
 install_basic_packages
