@@ -17,7 +17,6 @@ sudo apt install -y \
     chromium \
     markdown \
     guile-3.0 \
-    leiningen \
     shellcheck \
     libxml2-utils \
     openjdk-21-jdk
