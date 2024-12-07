@@ -8,7 +8,8 @@ sudo apt install -y \
     guix \
     curl \
     tree \
-    stow \
+    tidy \
+    shfmt \
     neovim \
     clojure \
     ripgrep \
@@ -17,4 +18,7 @@ sudo apt install -y \
     markdown \
     guile-3.0 \
     shellcheck \
+    libxml2-utils \
     openjdk-21-jdk
+
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/weavejester/cljfmt/HEAD/install.sh)"

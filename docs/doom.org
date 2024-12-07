@@ -3,6 +3,9 @@
 ** Evil
 [[https://medium.com/@aria_39488/the-niceties-of-evil-in-doom-emacs-cabb46a9446b][Commands]]
 
+** Font
+[[https://dev.to/muhammadasif_wd/setting-up-jetbrains-mono-font-on-ubuntu-is-straightforward-5d8i][JetBrains Mono]]
+
 ** MacOS
 
 #+begin_src sh

@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-export NODE_VERSION="22"
-
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.0/install.sh | bash
 
 NVM_DIR="$HOME/.nvm"
@@ -10,4 +8,5 @@ NVM_DIR="$HOME/.nvm"
 # This loads nvm bash_completion
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
-nvm install NODE_VERSION
+nvm install 22
+npm install -g stylelint js-beautify
