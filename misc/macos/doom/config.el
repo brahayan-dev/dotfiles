@@ -41,22 +41,6 @@
 (add-hook 'before-save-hook #'whitespace-cleanup)
 (add-hook 'clojure-mode-hook #'evil-cleverparens-mode)
 
-;; ---------
-;; Latex
-;; ---------
-(use-package! tex
-  :ensure auctex
-  :mode ("\\.tex\\'" . latex-mode)
-  :config
-  (setq-default TeX-master nil)
-  (setq TeX-auto-save t
-        +latex-viewers '(Skim)
-        font-latex-fontify-script nil
-        font-latex-fontify-sectioning 1.0
-        font-latex-fontify-sectioning 'color
-        TeX-view-program-selection '((output-pdf "Skim")))
-  (load! "~/.config/emacs/modules/lang/latex/+viewers"))
-
 ;; ------
 ;; Lsp
 ;; ------
