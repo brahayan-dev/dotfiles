@@ -1,5 +1,8 @@
 #+title: Doom
 
+** Evil
+[[https://medium.com/@aria_39488/the-niceties-of-evil-in-doom-emacs-cabb46a9446b][Commands]]
+
 ** MacOS
 
 #+begin_src sh

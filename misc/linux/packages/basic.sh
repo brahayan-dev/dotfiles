@@ -7,6 +7,7 @@ sudo apt install -y \
     git \
     guix \
     curl \
+    tree \
     stow \
     neovim \
     clojure \
