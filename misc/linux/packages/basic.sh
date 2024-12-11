@@ -18,6 +18,7 @@ sudo apt install -y \
     markdown \
     guile-3.0 \
     shellcheck \
+    texlive-full \
     libxml2-utils \
     openjdk-21-jdk
 
