@@ -19,4 +19,5 @@ sudo apt install -y \
     shellcheck \
     texlive-full \
     libxml2-utils \
-    openjdk-21-jdk
+    openjdk-21-jdk \
+    libncurses-dev
