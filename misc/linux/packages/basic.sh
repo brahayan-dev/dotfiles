@@ -15,9 +15,7 @@ sudo apt install -y \
     clojure \
     ripgrep \
     fd-find \
-    chromium \
     markdown \
-    guile-3.0 \
     shellcheck \
     texlive-full \
     libxml2-utils \

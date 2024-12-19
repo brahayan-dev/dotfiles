@@ -11,5 +11,6 @@ wget https://raw.githubusercontent.com/brahayan-dev/dotfiles/refs/heads/main/mis
 
 *** Stow
 #+begin_src
-stow -d ~/.dotfiles -t ~/
+cd ~/.dotfiles/
+stow .
 #+end_src
