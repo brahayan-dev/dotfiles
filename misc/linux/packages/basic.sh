@@ -10,6 +10,7 @@ sudo apt install -y \
     tree \
     tidy \
     shfmt \
+    direnv \
     neovim \
     clojure \
     ripgrep \
@@ -21,5 +22,3 @@ sudo apt install -y \
     texlive-full \
     libxml2-utils \
     openjdk-21-jdk
-
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/weavejester/cljfmt/HEAD/install.sh)"

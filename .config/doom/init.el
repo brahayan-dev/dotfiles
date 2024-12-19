@@ -21,7 +21,7 @@
        ;;layout            ; auie,ctsrnm is the superior home row
 
        :completion
-       ;;company           ; the ultimate code completion backend
+       company             ; the ultimate code completion backend
        (corfu +orderless)  ; complete with cap(f), cape and a flying feather!
        ;;helm              ; the *other* search engine for love and life
        ;;ido               ; the other *other* search engine...
@@ -90,8 +90,8 @@
        ;;biblio            ; Writes a PhD for you (citation needed)
        ;;collab            ; buffers with friends
        ;;debugger          ; FIXME stepping through code, to help you add bugs
-       ;;direnv
-       ;;docker
+       direnv
+       docker
        ;;editorconfig      ; let someone else argue about tabs vs spaces
        ;;ein               ; tame Jupyter notebooks with emacs
        (eval +overlay)     ; run code, run (also, repls)
@@ -100,7 +100,7 @@
        magit               ; a git porcelain for Emacs
        ;;make              ; run make tasks from Emacs
        ;;pass              ; password manager for nerds
-       pdf                 ; pdf enhancements
+       ;;pdf               ; pdf enhancements
        ;;prodigy           ; FIXME managing external services & code builders
        ;;terraform         ; infrastructure as code
        ;;tmux              ; an API for interacting with tmux
@@ -144,7 +144,9 @@
        (javascript +lsp +tree-sitter) ; all(hope(abandon(ye(who(enter(here))))))
        ;;julia                        ; a better, faster MATLAB
        ;;kotlin                       ; a better, slicker Java(Script)
-       (latex +cdlatex +lsp +latexmk) ; writing papers in Emacs has never been so fun
+       ;;(latex +lsp
+       ;;       +cdlatex
+       ;;       +latexmk)             ; writing papers in Emacs has never been so fun
        ;;lean                         ; for folks with too much to prove
        ;;ledger                       ; be audit you can be
        (lua +fennel +lsp)             ; one-based indices? one-based indices
