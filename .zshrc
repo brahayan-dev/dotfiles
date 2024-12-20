@@ -26,6 +26,11 @@ alias zshconfig="source ~/.zshrc"
 # -----
 export PATH="$HOME/.config/emacs/bin:$PATH"
 
+# -------
+# Neovim
+# -------
+export PATH="$PATH:/opt/nvim-linux64/bin"
+
 # ----
 # Nvm
 # ----
