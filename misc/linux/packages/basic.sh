@@ -11,13 +11,11 @@ sudo apt install -y \
     tidy \
     shfmt \
     direnv \
-    neovim \
     clojure \
     ripgrep \
     fd-find \
     markdown \
     shellcheck \
-    texlive-full \
     libxml2-utils \
     openjdk-21-jdk \
     libncurses-dev
