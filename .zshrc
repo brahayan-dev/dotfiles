@@ -5,7 +5,7 @@
 # ----
 export ZSH="$HOME/.oh-my-zsh"
 
-ZSH_THEME="aussiegeek"
+ZSH_THEME="af-magic"
 HYPHEN_INSENSITIVE="true"
 
 zstyle ':omz:update' mode auto
