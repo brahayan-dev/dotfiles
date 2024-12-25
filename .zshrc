@@ -1,10 +1,5 @@
 #!/usr/bin/env zsh
 
-# ------
-# Basic
-# ------
-export PATH="~/.local/bin:$PATH"
-
 # ----
 # Zsh
 # ----
@@ -47,11 +42,12 @@ export NVM_DIR="$HOME/.nvm"
 # Sdkman
 # -------
 # NOTE: This must be at the end of the file for sdkman to work
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+# export SDKMAN_DIR="$HOME/.sdkman"
+# [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 # ------
 # Kitty
 # ------
 # NOTE: Create symbolic links to add kitty and kitten to PATH (assuming ~/.local/bin is in your system-wide PATH)
-ln -sf ~/.local/kitty.app/bin/kitty ~/.local/kitty.app/bin/kitten ~/.local/bin/
+# export PATH="~/.local/bin:$PATH"
+# ln -sf ~/.local/kitty.app/bin/kitty ~/.local/kitty.app/bin/kitten ~/.local/bin/
