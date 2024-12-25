@@ -21,7 +21,7 @@
        ;;layout            ; auie,ctsrnm is the superior home row
 
        :completion
-       company             ; the ultimate code completion backend
+       ;;company           ; the ultimate code completion backend
        (corfu +orderless)  ; complete with cap(f), cape and a flying feather!
        ;;helm              ; the *other* search engine for love and life
        ;;ido               ; the other *other* search engine...
@@ -78,7 +78,7 @@
        ;;eshell            ; the elisp shell that works everywhere
        ;;shell             ; simple shell REPL for Emacs
        ;;term              ; basic terminal emulator for Emacs
-       ;;vterm             ; the best terminal emulation in Emacs
+       vterm               ; the best terminal emulation in Emacs
 
        :checkers
        syntax              ; tasing you for every semicolon you forget
@@ -102,14 +102,14 @@
        ;;pass              ; password manager for nerds
        ;;pdf               ; pdf enhancements
        ;;prodigy           ; FIXME managing external services & code builders
-       ;;terraform         ; infrastructure as code
+       terraform           ; infrastructure as code
        ;;tmux              ; an API for interacting with tmux
        tree-sitter         ; syntax and parsing, sitting in a tree...
        ;;upload            ; map local to remote projects via ssh/ftp
 
        :os
        (:if (featurep :system 'macos) macos)  ; improve compatibility with macOS
-       ;;tty                                  ; improve the terminal Emacs experience
+       tty                                    ; improve the terminal Emacs experience
 
        :lang
        ;;agda                         ; types of types of types of types...
@@ -149,7 +149,7 @@
        ;;       +latexmk)             ; writing papers in Emacs has never been so fun
        ;;lean                         ; for folks with too much to prove
        ;;ledger                       ; be audit you can be
-       (lua +fennel +lsp)             ; one-based indices? one-based indices
+       ;;(lua +fennel +lsp)           ; one-based indices? one-based indices
        markdown                       ; writing docs for people to ignore
        ;;nim                          ; python + lisp at the speed of c
        ;;nix                          ; I hereby declare "nix geht mehr!"
@@ -168,7 +168,7 @@
        ;;(ruby +rails)                ; 1.step {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
        ;;(rust +lsp)                  ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
        ;;scala                        ; java, but good
-       (scheme +chez)                 ; a fully conniving family of lisps
+       ;;(scheme +chez)               ; a fully conniving family of lisps
        (sh +lsp)                      ; she sells {ba,z,fi}sh shells on the C xor
        ;;sml
        ;;solidity                     ; do you need a blockchain? No.

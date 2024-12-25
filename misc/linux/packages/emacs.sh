@@ -17,9 +17,12 @@ pushd emacs
 # Get essential dependencies.
 sudo apt install -y build-essential \
     texinfo \
+    cmake \
+    libtool \
     libgnutls28-dev \
     libjpeg-dev \
     libpng-dev \
+    libvterm-dev \
     libtiff5-dev \
     libgif-dev \
     libxpm-dev \
@@ -49,8 +52,8 @@ sudo apt install -y mailutils
 # Taken from here:
 # https://www.masteringemacs.org/article/speed-up-emacs-libjansson-native-elisp-compilation
 #sudo sed -i 's/# deb-src/deb-src/' /etc/apt/sources.list \
-    #    && apt update \
-    #    && apt build-dep -y emacs
+#    && apt update \
+#    && apt build-dep -y emacs
 
 # Stop debconf from complaining about postfix nonsense.
 DEBIAN_FRONTEND=noninteractive

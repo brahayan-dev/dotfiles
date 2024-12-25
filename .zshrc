@@ -1,5 +1,10 @@
 #!/usr/bin/env zsh
 
+# ------
+# Basic
+# ------
+export PATH="~/.local/bin:$PATH"
+
 # ----
 # Zsh
 # ----
