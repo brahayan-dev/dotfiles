@@ -1,8 +1,8 @@
 #!/usr/bin/env zsh
 
-# ----
+# -----
 # Zsh
-# ----
+# -----
 export ZSH="$HOME/.oh-my-zsh"
 
 ZSH_THEME="af-magic"
@@ -38,6 +38,11 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 
+# ------
+# Kitty
+# ------
+# ln -sf ~/.local/kitty.app/bin/kitty ~/.local/kitty.app/bin/kitten ~/.local/bin/
+
 # -------
 # Sdkman
 # -------
@@ -45,9 +50,8 @@ export NVM_DIR="$HOME/.nvm"
 # export SDKMAN_DIR="$HOME/.sdkman"
 # [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
-# ------
-# Kitty
-# ------
-# NOTE: Create symbolic links to add kitty and kitten to PATH (assuming ~/.local/bin is in your system-wide PATH)
-# export PATH="~/.local/bin:$PATH"
-# ln -sf ~/.local/kitty.app/bin/kitty ~/.local/kitty.app/bin/kitten ~/.local/bin/
+# --------
+# Common
+# --------
+# NOTE: Used to add Lua and Kitty in PATH (assuming ~/.local/bin is in your system-wide PATH)
+export PATH="$HOME/.local/bin:$PATH"
