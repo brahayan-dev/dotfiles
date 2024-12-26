@@ -16,5 +16,6 @@ sudo apt install -y \
     markdown \
     shellcheck \
     libxml2-utils \
-    build-essential \
-    libncurses-dev
+    openjdk-21-jdk \
+    libncurses-dev \
+    build-essential

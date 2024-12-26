@@ -23,3 +23,8 @@ rm babashka
 # -------------
 
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/weavejester/cljfmt/HEAD/install.sh)"
+
+# -------------
+# Lsp
+# -------------
+sudo bash < <(curl -s https://raw.githubusercontent.com/clojure-lsp/clojure-lsp/master/install)
