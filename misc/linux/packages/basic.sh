@@ -5,10 +5,10 @@ sudo apt install -y \
     jq \
     fzf \
     git \
-    tmux \
     curl \
     tree \
     tidy \
+    stow \
     shfmt \
     direnv \
     ripgrep \
@@ -16,4 +16,5 @@ sudo apt install -y \
     markdown \
     shellcheck \
     libxml2-utils \
+    build-essential \
     libncurses-dev

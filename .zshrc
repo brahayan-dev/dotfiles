@@ -14,7 +14,7 @@ zstyle ':omz:update' frequency 13
 DISABLE_AUTO_TITLE="true"
 ENABLE_CORRECTION="true"
 
-plugins=(git)
+plugins=(git direnv)
 source $ZSH/oh-my-zsh.sh
 
 export LANG=en_US.UTF-8
