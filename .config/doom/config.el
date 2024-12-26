@@ -15,7 +15,7 @@
 ;; ------
 (setq doom-localleader-key ","
       doom-symbol-font doom-font
-      doom-font (font-spec :family "JetBrains Mono" :size 18))
+      doom-font (font-spec :family "FiraCode Nerd Font" :size 18))
 
 ;; ---------
 ;; Editor
@@ -48,7 +48,8 @@
   :ensure t
   :commands lsp
   :config
-  (setq lsp-semantic-tokens-enable t)
+  (setq lsp-semantic-tokens-enable t
+        lsp-warn-no-matched-clients t)
   (add-hook 'lsp-after-apply-edits-hook
             (lambda (&rest _) (save-buffer))))
 
@@ -80,4 +81,3 @@
         "C-c <left>" #'paredit-backward
         :desc "Forward"
         "C-c <right>" #'paredit-forward))
-
