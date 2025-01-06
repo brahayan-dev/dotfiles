@@ -5,6 +5,7 @@ sudo apt install -y \
     jq \
     fzf \
     git \
+    tmux \
     curl \
     tree \
     tidy \
