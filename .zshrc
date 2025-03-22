@@ -55,5 +55,7 @@ export NVM_DIR="$HOME/.nvm"
 # --------
 # NOTE: Used to add Lua and Kitty in PATH (assuming ~/.local/bin is in your system-wide PATH)
 export PATH="$HOME/.local/bin:$PATH"
+# NOTE: Elixir config
+export PATH="$PATH:$HOME/.elixir-ls/release"
 export PATH="$HOME/.elixir-install/installs/otp/27.2.3/bin:$PATH"
 export PATH="$HOME/.elixir-install/installs/elixir/1.18.3-otp-27/bin:$PATH"
