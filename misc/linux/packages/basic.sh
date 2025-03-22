@@ -18,8 +18,13 @@ sudo apt install -y \
     fd-find \
     markdown \
     shellcheck \
-    libxml2-utils \
+    postgresql \
     texlive-full \
+    libxml2-utils \
+    inotify-tools \
     openjdk-21-jdk \
     libncurses-dev \
-    build-essential
+    build-essential \
+    postgresql-contrib
+
+sudo snap install dbeaver-ce
