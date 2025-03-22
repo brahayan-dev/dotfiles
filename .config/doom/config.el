@@ -4,19 +4,19 @@
 ;; Themes
 ;; ---------
 ;; (setq doom-theme 'doom-bluloco-light)
-;; (setq doom-theme 'doom-nord-light)
+(setq doom-theme 'doom-nord-light)
 ;; (setq doom-theme 'doom-ayu-light)
 ;; (setq doom-theme 'doom-solarized-light)
 ;; (setq doom-theme 'doom-nord-aurora)
-(setq doom-theme 'doom-dracula)
+;; (setq doom-theme 'doom-dracula)
 
 ;; ------
 ;; Doom
 ;; ------
 (setq doom-localleader-key ","
       doom-symbol-font doom-font
-      ;; doom-modeline-buffer-file-name-style 'truncate-all
-      doom-modeline-buffer-file-name-style 'file-name
+      doom-modeline-buffer-file-name-style 'truncate-all
+      ;; doom-modeline-buffer-file-name-style 'file-name
       doom-font (font-spec :family "FiraCode Nerd Font" :size 18))
 
 ;; ---------
