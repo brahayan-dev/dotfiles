@@ -11,7 +11,7 @@ set -euxo pipefail
 JOBS=$(nproc --ignore=2)
 
 # Clone repo locally and get into it.
-git clone --depth 1 --branch emacs-29 git://git.savannah.gnu.org/emacs.git
+git clone --depth 1 --branch emacs-30 git://git.savannah.gnu.org/emacs.git
 pushd emacs
 
 # Get essential dependencies.
