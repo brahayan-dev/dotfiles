@@ -1,7 +1,7 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
 if not vim.loop.fs_stat(lazypath) then
-  print("nvim is bootstrapping.")
+  print("Neovim is bootstrapping.")
   local fn = vim.fn
 
   fn.system({
