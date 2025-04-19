@@ -13,6 +13,7 @@ sudo apt install -y \
     shfmt \
     xclip \
     pdftk \
+    rlwrap \
     direnv \
     ripgrep \
     fd-find \
