@@ -3,7 +3,7 @@ local _local_1_ = require("nfnl.module")
 local autoload = _local_1_["autoload"]
 local core = autoload("nfnl.core")
 do
-  local options = {number = true, relativenumber = true, undofile = true, showmode = false}
+  local options = {number = true, relativenumber = true, ignorecase = true, smartcase = true, cursorline = true, expandtab = true, tabstop = 4, shiftwidth = 4, softtabstop = 4, scrolloff = 10, splitright = true, splitbelow = true, timeoutlen = 300, breakindent = true, undofile = true, showmode = false}
   for option, value in pairs(options) do
     core.assoc(vim.o, option, value)
   end
