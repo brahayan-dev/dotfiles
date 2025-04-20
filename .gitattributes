@@ -1,1 +1,2 @@
-**/lua/**/*.lua linguist-generated
+**/lua/config/**/*.lua linguist-generated
+**/lua/plugins/**/*.lua linguist-generated
