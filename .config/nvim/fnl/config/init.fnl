@@ -34,7 +34,10 @@
   (each [option value (pairs options)]
     (core.assoc vim.g option value)))
 
-;; Sync clipboard between OS and Neovim.
+;; Sync clipboard between OS and Neovim
 (vim.schedule (fn [] (core.assoc vim.o :clipboard "unnamedplus")))
+
+;; Keymaps
+(require :config.remap)
 
 {}

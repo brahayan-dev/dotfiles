@@ -18,4 +18,5 @@ local function _2_()
   return core.assoc(vim.o, "clipboard", "unnamedplus")
 end
 vim.schedule(_2_)
+require("config.remap")
 return {}
