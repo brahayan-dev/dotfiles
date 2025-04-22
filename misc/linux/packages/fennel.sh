@@ -23,6 +23,20 @@ cd luarocks-3.11.1
 ./configure && make && sudo make install
 
 # -----------
-# Luarocks
+# Fennel
 # -----------
 sudo luarocks install fennel
+
+# -----------------------------
+# Fennel LS and Fnlfmt
+# -----------------------------
+cd /tmp
+git clone https://git.sr.ht/~xerool/fennel-ls
+cd fennel-ls
+sudo make --force install
+cd ..
+# git clone https://git.sr.ht/~technomancy/fnlfmt
+# cd fnlfmt
+# sudo make --force install
+
+

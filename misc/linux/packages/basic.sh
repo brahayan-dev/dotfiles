@@ -13,6 +13,7 @@ sudo apt install -y \
     shfmt \
     xclip \
     pdftk \
+    pandoc \
     rlwrap \
     direnv \
     ripgrep \
@@ -28,4 +29,6 @@ sudo apt install -y \
     build-essential \
     postgresql-contrib
 
-sudo snap install dbeaver-ce
+sudo snap install dbeaver-ce 
+sudo snap install ghostty --classic
+
