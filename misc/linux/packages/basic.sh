@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-sudo apt upgrade
-sudo apt install -y \
+sudo dnf update
+sudo dnf -y install \
     jq \
     git \
     curl \
@@ -9,13 +9,13 @@ sudo apt install -y \
     stow \
     xclip \
     pdftk \
-    pandoc \
     rlwrap \
     direnv \
     ripgrep \
-    openjdk-21-jdk \
-    build-essential 
+    openjdk-21-jdk 
 
-sudo snap install dbeaver-ce 
-sudo snap install ghostty --classic
+sudo dnf copr enable birkch/dbeaver
+sudo dnf install dbeaver-ce 
+sudo dnf copr enable pgdev/ghostty
+sudo dnf install ghostty
 
