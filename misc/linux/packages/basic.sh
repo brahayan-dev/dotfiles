@@ -9,6 +9,7 @@ sudo dnf -y install \
     nodejs \
     curl \
     fennel \
+    emacs \
     docker-ce \
     docker-ce-cli \
     containerd.io \
@@ -58,3 +59,15 @@ sudo bash < <(curl -s https://raw.githubusercontent.com/clojure-lsp/clojure-lsp/
 chsh -s "$(which zsh)"
 # Install oh-my-zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+# Install doom
+git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.config/emacs
+~/.config/emacs/bin/doom install
+
+# Change emacs icon
+mkdir -p "$HOME/.local/share/icons"
+ICON="$HOME/.local/share/icons/doom.png"
+DESKTOP_FILE=/usr/local/share/applications/emacs.desktop
+wget https://raw.githubusercontent.com/eccentric-j/doom-icon/master/cute-doom/doom.png -O "$ICON" &&
+    sudo --preserve-env=ICON,DESKTOP_FILE sed -i "s|Icon=.*|Icon=$ICON|" $DESKTOP_FILE
+
