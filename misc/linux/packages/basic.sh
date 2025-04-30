@@ -1,29 +1,29 @@
 #!/usr/bin/env bash
 
 sudo dnf update
-sudo dnf -y install \
-    jq \
-    git \
-    lua \
-    npm \
-    nodejs \
-    curl \
-    fennel \
-    emacs \
-    docker-ce \
-    docker-ce-cli \
-    containerd.io \
-    docker-buildx-plugin \
-    docker-compose-plugin \
-    tree \
-    stow \
-    xclip \
-    pdftk \
-    rlwrap \
-    clojure \
-    direnv \
-    ripgrep \
-    openjdk-21-jdk 
+
+sudo dnf install jq 
+sudo dnf install git 
+sudo dnf install lua 
+sudo dnf install npm 
+sudo dnf install nodejs 
+sudo dnf install curl 
+sudo dnf install fennel 
+sudo dnf install emacs 
+sudo dnf install docker-ce 
+sudo dnf install docker-ce-cli 
+sudo dnf install containerd.io 
+sudo dnf install docker-buildx-plugin 
+sudo dnf install docker-compose-plugin 
+sudo dnf install tree 
+sudo dnf install stow 
+sudo dnf install xclip 
+sudo dnf install pdftk 
+sudo dnf install rlwrap 
+sudo dnf install clojure
+sudo dnf install direnv 
+sudo dnf install ripgrep 
+sudo dnf install openjdk-21-jdk 
 
 sudo dnf copr enable birkch/dbeaver
 sudo dnf install dbeaver-ce 
@@ -67,7 +67,7 @@ git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.config/emacs
 # Change emacs icon
 mkdir -p "$HOME/.local/share/icons"
 ICON="$HOME/.local/share/icons/doom.png"
-DESKTOP_FILE=/usr/local/share/applications/emacs.desktop
+DESKTOP_FILE=/usr/share/applications/emacs.desktop
 wget https://raw.githubusercontent.com/eccentric-j/doom-icon/master/cute-doom/doom.png -O "$ICON" &&
     sudo --preserve-env=ICON,DESKTOP_FILE sed -i "s|Icon=.*|Icon=$ICON|" $DESKTOP_FILE
 
