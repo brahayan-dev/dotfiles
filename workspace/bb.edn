@@ -1,0 +1,3 @@
+{:tasks
+ {ping (shell "ansible -i hosts.ini workspace -c local -m ping")
+  install (shell "ansible-playbook -i hosts.ini -c local -K setup.yml")}}

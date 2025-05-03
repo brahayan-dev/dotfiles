@@ -1,0 +1,31 @@
+---
+
+- hosts: workspace
+  become: yes
+
+  tasks:
+    - name: install-dependencies-for-programming
+      dnf:
+        name:
+          - emacs
+          - neovim
+          - lua
+          - fennel
+          - clojure
+          - vagrant
+          # - virtualbox
+        state: present
+
+    - name: install-dependencies-for-doom
+      dnf:
+        name:
+          - cmake
+          # - dockfmt
+          - grip
+          # - markdown
+          - shellcheck
+          - shfmt
+          - tidy
+          # - stylelint
+          # - js-beautify
+        state: present

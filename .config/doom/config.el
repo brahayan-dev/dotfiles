@@ -17,7 +17,7 @@
       doom-symbol-font doom-font
       doom-modeline-buffer-file-name-style 'truncate-all
       ;; doom-modeline-buffer-file-name-style 'file-name
-      doom-font (font-spec :family "FiraCode Nerd Font" :size 18))
+      doom-font (font-spec :family "Fira Code" :size 18))
 
 ;; ---------
 ;; Editor

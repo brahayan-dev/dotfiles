@@ -86,7 +86,7 @@
        ;;grammar           ; tasing grammar mistake every you make
 
        :tools
-       ;;ansible
+       ansible
        ;;biblio            ; Writes a PhD for you (citation needed)
        ;;collab            ; buffers with friends
        ;;debugger          ; FIXME stepping through code, to help you add bugs
@@ -102,7 +102,7 @@
        ;;pass              ; password manager for nerds
        ;;pdf               ; pdf enhancements
        ;;prodigy           ; FIXME managing external services & code builders
-       terraform           ; infrastructure as code
+       ;;terraform         ; infrastructure as code
        ;;tmux              ; an API for interacting with tmux
        tree-sitter         ; syntax and parsing, sitting in a tree...
        ;;upload            ; map local to remote projects via ssh/ftp
@@ -116,7 +116,7 @@
        ;;beancount                    ; mind the GAAP
        ;;(cc +lsp)                    ; C > C++ == 1
        (clojure +lsp +tree-sitter)    ; java with a lisp
-       (common-lisp)                  ; if you've seen one lisp, you've seen them all
+       ;;(common-lisp)                ; if you've seen one lisp, you've seen them all
        ;;coq                          ; proofs-as-programs
        ;;crystal                      ; ruby at the speed of c
        ;;csharp                       ; unity, .NET, and mono shenanigans
@@ -148,8 +148,10 @@
        ;;       +cdlatex
        ;;       +latexmk)             ; writing papers in Emacs has never been so fun
        ;;lean                         ; for folks with too much to prove
-       ;;ledger                       ; be audit you can be
-       (lua +lsp +tree-sitter)        ; one-based indices? one-based indices
+       ;;ledger                       ; be audit you can number-to-string
+       (lua +lsp
+            +fennel
+            +tree-sitter)             ; one-based indices? one-based indices
        (markdown +grip)               ; writing docs for people to ignore
        ;;nim                          ; python + lisp at the speed of c
        ;;nix                          ; I hereby declare "nix geht mehr!"
