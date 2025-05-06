@@ -1,0 +1,14 @@
+---
+
+- name: Install Doom Emacs
+  block:
+    - name: Clone Doom Emacs repository
+      git:
+        repo: https://github.com/doomemacs/doomemacs
+        dest: ~/.config/emacs
+        depth: 1
+
+    - name: Run Doom Emacs install script
+      command: ~/.config/emacs/bin/doom install
+      args:
+        creates: ~/.config/emacs/.local
