@@ -13,19 +13,33 @@
           - fennel
           - clojure
           - vagrant
-          # - virtualbox
-        state: present
-
-    - name: install-dependencies-for-doom
-      dnf:
-        name:
+          - jq
+          - git
+          - npm
+          - nodejs
+          - curl
+          - docker-ce
+          - docker-ce-cli
+          - containerd.io
+          - docker-buildx-plugin
+          - docker-compose-plugin
+          - tree
+          - stow
+          - xclip
+          - pdftk
+          - rlwrap
+          - direnv
+          - ripgrep
+          - openjdk-21-jdk
           - cmake
-          # - dockfmt
           - grip
-          # - markdown
           - shellcheck
-          - shfmt
           - tidy
+          - shfmt
+          # - virtualbox
+          # - dockfmt
+          # - markdown
           # - stylelint
           # - js-beautify
         state: present
+

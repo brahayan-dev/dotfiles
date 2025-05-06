@@ -1,30 +1,5 @@
 #!/usr/bin/env bash
 
-sudo dnf update
-
-sudo dnf install jq 
-sudo dnf install git 
-sudo dnf install lua 
-sudo dnf install npm 
-sudo dnf install nodejs 
-sudo dnf install curl 
-sudo dnf install fennel 
-sudo dnf install emacs 
-sudo dnf install docker-ce 
-sudo dnf install docker-ce-cli 
-sudo dnf install containerd.io 
-sudo dnf install docker-buildx-plugin 
-sudo dnf install docker-compose-plugin 
-sudo dnf install tree 
-sudo dnf install stow 
-sudo dnf install xclip 
-sudo dnf install pdftk 
-sudo dnf install rlwrap 
-sudo dnf install clojure
-sudo dnf install direnv 
-sudo dnf install ripgrep 
-sudo dnf install openjdk-21-jdk 
-
 sudo dnf copr enable birkch/dbeaver
 sudo dnf install dbeaver-ce 
 sudo dnf copr enable pgdev/ghostty

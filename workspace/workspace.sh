@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Function to ping the workspace
 ping() {
@@ -6,7 +6,7 @@ ping() {
 }
 
 # Function to install using ansible-playbook
-install() {
+setup() {
     ansible-playbook -i host.ini -c local -K playbooks/main.yml
 }
 
@@ -15,11 +15,11 @@ case "$1" in
     "ping")
         ping
         ;;
-    "install")
-        install
+    "setup")
+        setup
         ;;
     *)
-        echo "Usage: $0 {ping|install}"
+        echo "Usage: $0 {ping|setup}"
         exit 1
         ;;
 esac 
