@@ -1,0 +1,15 @@
+---
+- name: Install stack
+  dnf:
+    name:
+      - lua
+      - fennel
+      - clojure
+      - npm
+      - nodejs
+      - containerd
+      - podman
+      - podman-compose
+      - java-latest-openjdk
+      - vagrant
+    state: present

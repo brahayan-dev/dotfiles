@@ -3,38 +3,6 @@
   become: true
 
   tasks:
-    - name: install-dependencies-for-programming
-      dnf:
-        name:
-          - neovim
-          - lua
-          - fennel
-          - clojure
-          - jq
-          - git
-          - npm
-          - nodejs
-          - curl
-          - containerd
-          - podman
-          - podman-compose
-          - tree
-          - stow
-          - xclip
-          - pdftk
-          - rlwrap
-          - direnv
-          - ripgrep
-          - java-latest-openjdk
-          - cmake
-          - libtool
-          - grip
-          - shellcheck
-          - tidy
-          - shfmt
-          - pandoc
-          - vagrant
-          # - dockfmt
-          # - stylelint
-          # - js-beautify
-        state: present
+    - import_tasks: tasks/common.yml
+    - import_tasks: tasks/stack.yml
+    - import_tasks: tasks/editor.yml

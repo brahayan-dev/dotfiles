@@ -1,8 +1,8 @@
 ---
-- name: Install Emacs
+- name: Install emacs
   dnf: name=emacs state=present
 
-- name: Install Doom
+- name: Install doom
   block:
     - name: Varify installation
       command: doom --version
@@ -29,7 +29,7 @@
         sudo --preserve-env=ICON,DESKTOP_FILE sed -i "s|Icon=.*|Icon=$ICON|" $DESKTOP_FILE
       when: not has_doom_installed.stat.exists
 
-- name: Install dependencies for Doom
+- name: Install dependencies for doom
   dnf:
     name:
       - ripgrep
@@ -40,4 +40,7 @@
       - tidy
       - shfmt
       - pandoc
+      # - dockfmt
+      # - stylelint
+      # - js-beautify
     state: present
