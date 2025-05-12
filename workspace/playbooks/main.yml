@@ -1,7 +1,7 @@
 ---
 
 - hosts: workspace
-  become: yes
+  become: true
 
   tasks:
     - name: install-dependencies-for-programming
@@ -12,17 +12,14 @@
           - lua
           - fennel
           - clojure
-          - vagrant
           - jq
           - git
           - npm
           - nodejs
           - curl
-          - docker-ce
-          - docker-ce-cli
-          - containerd.io
-          - docker-buildx-plugin
-          - docker-compose-plugin
+          - containerd
+          - podman
+          - podman-compose
           - tree
           - stow
           - xclip
@@ -30,15 +27,17 @@
           - rlwrap
           - direnv
           - ripgrep
-          - openjdk-21-jdk
+          - java-latest-openjdk
           - cmake
+          - libtool
           - grip
           - shellcheck
           - tidy
           - shfmt
+          - pandoc
           # - virtualbox
+          # - vagrant
           # - dockfmt
-          # - markdown
           # - stylelint
           # - js-beautify
         state: present
