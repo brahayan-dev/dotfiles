@@ -4,16 +4,32 @@
 
 - name: Install Doom
   block:
+    - name: Varify installation
+      command: doom --version
+      register: has_doom_installed
+      changed_when: false
+
     - name: Clone repository
       git:
         repo: https://github.com/doomemacs/doomemacs
         dest: ~/.config/emacs
         depth: 1
+        when: not has_doom_installed.stat.exists
 
     - name: Run install script
       command: ~/.config/emacs/bin/doom install
+      when: not has_doom_installed.stat.exists
 
-- name: Install dependencies for Doom [I]
+    - name: Change icon
+      command: >
+        mkdir -p "$HOME/.local/share/icons"
+        ICON="$HOME/.local/share/icons/doom.png"
+        DESKTOP_FILE=/usr/share/applications/emacs.desktop
+        wget https://raw.githubusercontent.com/eccentric-j/doom-icon/master/cute-doom/doom.png -O "$ICON" &&
+        sudo --preserve-env=ICON,DESKTOP_FILE sed -i "s|Icon=.*|Icon=$ICON|" $DESKTOP_FILE
+      when: not has_doom_installed.stat.exists
+
+- name: Install dependencies for Doom
   dnf:
     name:
       - ripgrep
