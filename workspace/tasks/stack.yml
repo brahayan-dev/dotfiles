@@ -1,8 +1,4 @@
 ---
-- name: Add DBeaver
-  command: dnf copr enable birkch/dbeaver
-  changed_when: true
-
 - name: Install Stack
   dnf:
     name:
