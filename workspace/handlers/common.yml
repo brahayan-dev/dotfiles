@@ -1,0 +1,5 @@
+---
+- name: Reload Shell
+  meta: flush_handlers
+
+

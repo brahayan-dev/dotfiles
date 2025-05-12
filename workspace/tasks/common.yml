@@ -1,9 +1,16 @@
 ---
+- name: Enable COPR Repository
+  dnf:
+    name: dnf-plugins-core
+    state: present
+
+- name: Add Ghostty
+  command: dnf copr enable pgdev/ghostty -y
+  changed_when: true
 
 - name: Install Common Dependencies
   dnf:
     name:
-      - neovim
       - jq
       - git
       - curl
@@ -13,4 +20,20 @@
       - pdftk
       - rlwrap
       - direnv
+      - neovim
+      - ghostty
+      - fira-code-fonts
     state: present
+
+- name: Install OH-MY-ZSH
+  shell: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+  args:
+    creates: "{{ ansible_env.HOME }}/.oh-my-zsh"
+  changed_when: true
+
+- name: Set ZSH As Default Shell
+  shell: chsh -s $(which zsh)
+  register: chsh_result
+  changed_when: chsh_result.rc == 0
+  notify:
+    - Reload Shell

@@ -1,4 +1,8 @@
 ---
+- name: Add DBeaver
+  command: dnf copr enable birkch/dbeaver
+  changed_when: true
+
 - name: Install Stack
   dnf:
     name:
@@ -12,4 +16,15 @@
       - podman-compose
       - java-latest-openjdk
       - vagrant
+      - dbeaver-ce
     state: present
+
+# Babashka
+#curl -o babashka -sLO https://raw.githubusercontent.com/babashka/babashka/master/install
+#chmod +x babashka
+#sudo bash ./babashka
+#rm babashka
+# Cljfmt
+#/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/weavejester/cljfmt/HEAD/install.sh)"
+# Clojure Lsp
+# sudo bash < <(curl -s https://raw.githubusercontent.com/clojure-lsp/clojure-lsp/master/install)
