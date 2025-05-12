@@ -2,24 +2,24 @@
 
 # Function to ping the workspace
 ping() {
-    ansible -i host.ini workspace -c local -m ping
+    ansible -i hosts.ini workspace -c local -m ping
 }
 
 # Function to install using ansible-playbook
 setup() {
-    ansible-playbook -i host.ini -c local -K playbooks/main.yml
+    ansible-playbook -i hosts.ini -c local -K playbook.yml
 }
 
 # Main script logic
 case "$1" in
-    "ping")
-        ping
-        ;;
-    "setup")
-        setup
-        ;;
-    *)
-        echo "Usage: $0 {ping|setup}"
-        exit 1
-        ;;
-esac 
+"ping")
+    ping
+    ;;
+"setup")
+    setup
+    ;;
+*)
+    echo "Usage: $0 {ping|setup}"
+    exit 1
+    ;;
+esac

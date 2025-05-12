@@ -1,0 +1,27 @@
+---
+- name: Install Emacs
+  dnf: name=emacs state=present
+
+- name: Install Doom
+  block:
+    - name: Clone repository
+      git:
+        repo: https://github.com/doomemacs/doomemacs
+        dest: ~/.config/emacs
+        depth: 1
+
+    - name: Run install script
+      command: ~/.config/emacs/bin/doom install
+
+- name: Install dependencies for Doom [I]
+  dnf:
+    name:
+      - ripgrep
+      - cmake
+      - libtool
+      - grip
+      - shellcheck
+      - tidy
+      - shfmt
+      - pandoc
+    state: present

@@ -1,5 +1,4 @@
 ---
-
 - hosts: workspace
   become: true
 
@@ -7,7 +6,6 @@
     - name: install-dependencies-for-programming
       dnf:
         name:
-          - emacs
           - neovim
           - lua
           - fennel
@@ -35,10 +33,8 @@
           - tidy
           - shfmt
           - pandoc
-          # - virtualbox
-          # - vagrant
+          - vagrant
           # - dockfmt
           # - stylelint
           # - js-beautify
         state: present
-

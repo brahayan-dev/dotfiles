@@ -1,0 +1,16 @@
+---
+
+- name: Install common dependencies
+  dnf:
+    name:
+      - neovim
+      - jq
+      - git
+      - curl
+      - tree
+      - stow
+      - xclip
+      - pdftk
+      - rlwrap
+      - direnv
+    state: present

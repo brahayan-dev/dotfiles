@@ -4,3 +4,5 @@
 \.git
 docs
 misc
+node_modules
+workspace
