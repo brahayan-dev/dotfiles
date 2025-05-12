@@ -1,6 +1,6 @@
 ---
 
-- name: Install common dependencies
+- name: Install Common Dependencies
   dnf:
     name:
       - neovim

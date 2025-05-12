@@ -1,23 +1,23 @@
 ---
-- name: Install emacs
+- name: Install Emacs
   dnf: name=emacs state=present
 
-- name: Install doom
+- name: Install Doom
   block:
-    - name: Varify installation
+    - name: Varify Installation
       stat:
         path: ~/.config/emacs/bin/doom
       register: has_doom_installed
       changed_when: false
 
-    - name: Clone repository
+    - name: Clone Repository
       git:
         repo: https://github.com/doomemacs/doomemacs
         dest: ~/.config/emacs
         depth: 1
-        when: not has_doom_installed.stat.exists
+      when: not has_doom_installed.stat.exists
 
-    - name: Run install script
+    - name: Run Install Script
       command: ~/.config/emacs/bin/doom install
       when: not has_doom_installed.stat.exists
 
@@ -30,7 +30,7 @@
         sudo --preserve-env=ICON,DESKTOP_FILE sed -i "s|Icon=.*|Icon=$ICON|" $DESKTOP_FILE
       when: not has_doom_installed.stat.exists
 
-- name: Install dependencies for doom
+- name: Install Dependencies For Doom
   dnf:
     name:
       - ripgrep

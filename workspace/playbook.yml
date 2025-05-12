@@ -1,5 +1,5 @@
 ---
-- hosts: workspace
+- hosts: Workspace
   become: true
 
   tasks:

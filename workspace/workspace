@@ -2,7 +2,7 @@
 
 # Function to ping the workspace
 ping() {
-    ansible -i hosts.ini workspace -c local -m ping
+    ansible -i hosts.ini Workspace -c local -m ping
 }
 
 # Function to install using ansible-playbook
