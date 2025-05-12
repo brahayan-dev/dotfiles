@@ -5,7 +5,8 @@
 - name: Install doom
   block:
     - name: Varify installation
-      command: doom --version
+      stat:
+        path: ~/.config/emacs/bin/doom
       register: has_doom_installed
       changed_when: false
 
