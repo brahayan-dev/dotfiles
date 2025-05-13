@@ -2,8 +2,9 @@
 - hosts: Workspace
   become: true
 
-  # handlers:
-  # - import_tasks: handlers/common.yml
+  vars_prompt:
+    - name: password
+      prompt: "USER password"
 
   pre_tasks:
     - name: Add Ghostty

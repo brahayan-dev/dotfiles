@@ -17,10 +17,11 @@
       - fira-code-fonts
     state: present
 
-- name: Set Zsh As Default Shell
-  user:
-    name: "{{ ansible_user_id }}"
-    shell: /usr/bin/zsh
+- name: Set Zsh As Shell By Default
+  expect:
+    command: chsh -s /usr/bin/zsh
+    responses:
+      (?i)password: "{{ password }}"
 
 - name: Install Ohmyzsh
   block:
@@ -28,7 +29,7 @@
       get_url:
         url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
         dest: /tmp/ohmyzsh.sh
-        mode: 0755
+        mode: 0777
     - name: Install Ohmyzsh - Run Installer
       shell: echo "Y" | /tmp/ohmyzsh.sh
       args:
