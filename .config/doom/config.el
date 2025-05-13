@@ -27,6 +27,7 @@
       package-native-compile t
       projectile-enable-caching nil
       display-line-numbers-type 'relative
+      vterm-shell "/bin/zsh"
       org-directory "~/Projects/workbooks/"
       read-process-output-max (* 1024 1024)
       projectile-project-search-path '("~/Projects")
