@@ -18,10 +18,9 @@
     state: present
 
 - name: Set Zsh As Shell By Default
-  expect:
-    command: chsh -s /usr/bin/zsh
-    responses:
-      (?i)password: "{{ password }}"
+  user:
+    name: "{{ current_user }}"
+    shell: /bin/zsh
 
 - name: Install Ohmyzsh
   block:

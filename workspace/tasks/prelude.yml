@@ -1,0 +1,10 @@
+---
+- name: Add Ghostty
+  community.general.copr:
+    name: pgdev/ghostty
+    state: enabled
+
+- name: Add DBeaver
+  community.general.copr:
+    name: birkch/dbeaver
+    state: enabled
