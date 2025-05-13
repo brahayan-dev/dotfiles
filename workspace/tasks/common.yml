@@ -4,6 +4,7 @@
     name:
       - jq
       - git
+      - zsh
       - curl
       - tree
       - stow
@@ -15,15 +16,20 @@
       - ghostty
       - fira-code-fonts
     state: present
-# - name: Install OH-MY-ZSH
-#   shell: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
-#   args:
-#     creates: "{{ ansible_env.HOME }}/.oh-my-zsh"
-#   changed_when: true
 
-# - name: Set ZSH As Default Shell
-#   shell: chsh -s $(which zsh)
-#   register: chsh_result
-#   changed_when: chsh_result.rc == 0
-#   notify:
-#     - Reload Shell
+- name: Set Zsh As Default Shell
+  user:
+    name: "{{ ansible_user_id }}"
+    shell: /usr/bin/zsh
+
+- name: Install Ohmyzsh
+  block:
+    - name: Install Ohmyzsh - Download Installer
+      get_url:
+        url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
+        dest: /tmp/ohmyzsh.sh
+        mode: 0755
+    - name: Install Ohmyzsh - Run Installer
+      shell: echo "Y" | /tmp/ohmyzsh.sh
+      args:
+        creates: ~/.oh-my-zsh

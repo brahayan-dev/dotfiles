@@ -4,24 +4,21 @@
 
 - name: Install Doom
   block:
-    - name: Varify Installation
+    - name: Install Doom - Varify Installation
       stat:
         path: ~/.config/emacs/bin/doom
       register: has_doom_installed
       changed_when: false
-
-    - name: Clone Repository
+    - name: Install Doom - Clone Repository
       git:
         repo: https://github.com/doomemacs/doomemacs
         dest: ~/.config/emacs
         depth: 1
       when: not has_doom_installed.stat.exists
-
-    - name: Run Install Script
+    - name: Install Doom - Run Install Script
       command: ~/.config/emacs/bin/doom install
       when: not has_doom_installed.stat.exists
-
-    - name: Change Icon
+    - name: Install Doom - Change Icon
       command: >
         mkdir -p "$HOME/.local/share/icons"
         ICON="$HOME/.local/share/icons/doom.png"
