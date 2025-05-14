@@ -24,9 +24,8 @@
         mode: 0777
     - name: Install Babashka - Run Installer
       shell: /tmp/babashka
-      # Validate with `whereis babashka`
-      # args:
-      #   creates: ~/path
+      args:
+        creates: /usr/local/bin/bb
 
 - name: Install Cljfmt
   block:
@@ -37,9 +36,8 @@
         mode: 0777
     - name: Install Cljfmt - Run Installer
       shell: /tmp/cljfmt
-      # Validate with `whereis cljfmt`
-      # args:
-      #   creates: ~/path
+      args:
+        creates: /usr/local/bin/cljfmt
 
 - name: Install Clojure-lsp
   block:
@@ -50,18 +48,15 @@
         mode: 0777
     - name: Install Clojure-lsp - Run Installer
       shell: /tmp/clojure-lsp
-      # Validate with `whereis clojure-lsp`
-      # args:
-      #   creates: ~/path
+      args:
+        creates: /usr/local/bin/clojure-lsp
 
 - name: Install Luarocks
   block:
     - name: Install Luarocks - Download Installer
       get_url:
         url: https://luarocks.org/releases/luarocks-3.11.1.tar.gz
-      # Validate with `whereis clojure-lsp`
-      # args:
-      #   creates: ~/path
+        dest: /tmp/luarocks-3.11.1.tar.gz
       # tar zxpf luarocks-3.11.1.tar.gz
       # cd luarocks-3.11.1
       # ./configure && make && sudo make install
