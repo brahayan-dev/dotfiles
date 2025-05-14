@@ -14,21 +14,54 @@
       - vagrant
       - dbeaver-ce
     state: present
-# ---------------------------
-# Babashka
-# curl -o babashka -sLO https://raw.githubusercontent.com/babashka/babashka/master/install
-# chmod +x babashka
-# sudo bash ./babashka
-# rm babashka
-# ---------------------------
-# Cljfmt
-# /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/weavejester/cljfmt/HEAD/install.sh)"
-# Clojure Lsp
-# sudo bash < <(curl -s https://raw.githubusercontent.com/clojure-lsp/clojure-lsp/master/install)
-# -----------
-# Luarocks
-# cd /tmp/
-# wget https://luarocks.org/releases/luarocks-3.11.1.tar.gz
-# tar zxpf luarocks-3.11.1.tar.gz
-# cd luarocks-3.11.1
-# ./configure && make && sudo make install
+
+- name: Install Babashka
+  block:
+    - name: Install Babashka - Download Installer
+      get_url:
+        url: https://raw.githubusercontent.com/babashka/babashka/master/install
+        dest: /tmp/babashka
+        mode: 0777
+    - name: Install Babashka - Run Installer
+      shell: /tmp/babashka
+      # Validate with `whereis babashka`
+      # args:
+      #   creates: ~/path
+
+- name: Install Cljfmt
+  block:
+    - name: Install Cljfmt - Download Installer
+      get_url:
+        url: https://raw.githubusercontent.com/weavejester/cljfmt/HEAD/install.sh
+        dest: /tmp/cljfmt
+        mode: 0777
+    - name: Install Cljfmt - Run Installer
+      shell: /tmp/cljfmt
+      # Validate with `whereis cljfmt`
+      # args:
+      #   creates: ~/path
+
+- name: Install Clojure-lsp
+  block:
+    - name: Install Clojure-lsp - Download Installer
+      get_url:
+        url: https://raw.githubusercontent.com/clojure-lsp/clojure-lsp/master/install
+        dest: /tmp/clojure-lsp
+        mode: 0777
+    - name: Install Clojure-lsp - Run Installer
+      shell: /tmp/clojure-lsp
+      # Validate with `whereis clojure-lsp`
+      # args:
+      #   creates: ~/path
+
+- name: Install Luarocks
+  block:
+    - name: Install Luarocks - Download Installer
+      get_url:
+        url: https://luarocks.org/releases/luarocks-3.11.1.tar.gz
+      # Validate with `whereis clojure-lsp`
+      # args:
+      #   creates: ~/path
+      # tar zxpf luarocks-3.11.1.tar.gz
+      # cd luarocks-3.11.1
+      # ./configure && make && sudo make install
