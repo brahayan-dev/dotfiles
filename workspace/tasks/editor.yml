@@ -20,7 +20,7 @@
         ~/.config/emacs/bin/doom install
       when: not has_doom_installed.stat.exists
     - name: Install Doom - Change Icon
-      command: >
+      shell: |
         mkdir -p "$HOME/.local/share/icons"
         ICON="$HOME/.local/share/icons/doom.png"
         DESKTOP_FILE=/usr/share/applications/emacs.desktop

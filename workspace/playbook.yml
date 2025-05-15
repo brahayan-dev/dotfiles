@@ -12,3 +12,4 @@
     - import_tasks: tasks/common.yml
     - import_tasks: tasks/stack.yml
     - import_tasks: tasks/editor.yml
+    - import_tasks: tasks/security.yml

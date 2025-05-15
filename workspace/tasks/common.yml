@@ -3,6 +3,7 @@
   dnf:
     name:
       - jq
+      - gh
       - git
       - zsh
       - curl
@@ -21,6 +22,9 @@
   user:
     name: "{{ current_user }}"
     shell: /bin/zsh
+    generate_ssh_key: true
+    ssh_key_bits: 4096
+    ssh_key_file: ".ssh/{{ current_user }}_rsa"
 
 - name: Install Ohmyzsh
   block:

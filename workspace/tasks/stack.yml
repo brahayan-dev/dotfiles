@@ -6,12 +6,12 @@
       - luarocks
       - fennel
       - clojure
+      - java-latest-openjdk
       - npm
       - nodejs
       - containerd
       - podman
       - podman-compose
-      - java-latest-openjdk
       - vagrant
       - dbeaver-ce
     state: present
