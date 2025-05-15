@@ -3,6 +3,7 @@
   dnf:
     name:
       - lua
+      - luarocks
       - fennel
       - clojure
       - npm
@@ -50,13 +51,3 @@
       shell: /tmp/clojure-lsp
       args:
         creates: /usr/local/bin/clojure-lsp
-
-- name: Install Luarocks
-  block:
-    - name: Install Luarocks - Download Installer
-      get_url:
-        url: https://luarocks.org/releases/luarocks-3.11.1.tar.gz
-        dest: /tmp/luarocks-3.11.1.tar.gz
-      # tar zxpf luarocks-3.11.1.tar.gz
-      # cd luarocks-3.11.1
-      # ./configure && make && sudo make install

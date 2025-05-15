@@ -16,7 +16,8 @@
         depth: 1
       when: not has_doom_installed.stat.exists
     - name: Install Doom - Run Install Script
-      command: ~/.config/emacs/bin/doom install
+      command: >
+        ~/.config/emacs/bin/doom install
       when: not has_doom_installed.stat.exists
     - name: Install Doom - Change Icon
       command: >
