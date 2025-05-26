@@ -1,6 +1,20 @@
 ---
 - name: Install Emacs
   dnf: name=emacs state=present
+  
+- name: Install Zed
+  block:
+    - name: Install Zed - Download Installer
+      get_url:
+        url: https://zed.dev/install.sh
+        dest: /tmp/zed.sh
+        mode: 0777
+    - name: Install Zed - Run Installer
+      shell: /tmp/zed.sh
+      args:
+        executable: /bin/bash
+        creates: ~/.local/bin/zed
+
 
 - name: Install Doom
   block:
