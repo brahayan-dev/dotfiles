@@ -34,14 +34,9 @@ export PATH="$PATH:/opt/nvim-linux64/bin"
 # ----
 # Nvm
 # ----
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
-
-# ------
-# Kitty
-# ------
-# ln -sf ~/.local/kitty.app/bin/kitty ~/.local/kitty.app/bin/kitten ~/.local/bin/
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 
 # -------
 # Sdkman
@@ -54,8 +49,8 @@ export NVM_DIR="$HOME/.nvm"
 # Common
 # --------
 # NOTE: Used to add Lua and Kitty in PATH (assuming ~/.local/bin is in your system-wide PATH)
-export PATH="$HOME/.local/bin:$PATH"
+# export PATH="$HOME/.local/bin:$PATH"
 # NOTE: Elixir config
-export PATH="$PATH:$HOME/.elixir-ls/release"
-export PATH="$HOME/.elixir-install/installs/otp/27.2.3/bin:$PATH"
-export PATH="$HOME/.elixir-install/installs/elixir/1.18.3-otp-27/bin:$PATH"
+# export PATH="$PATH:$HOME/.elixir-ls/release"
+# export PATH="$HOME/.elixir-install/installs/otp/27.2.3/bin:$PATH"
+# export PATH="$HOME/.elixir-install/installs/elixir/1.18.3-otp-27/bin:$PATH"
