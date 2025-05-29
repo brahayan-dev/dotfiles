@@ -1,5 +1,10 @@
 .gitignore
-.workrc.example
+
+.workrc
+.scriptrc
+.privaterc
+.akeptousrc
+.privaterc.example
 
 ^/.*\.org
 \.git
