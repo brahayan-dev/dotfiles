@@ -12,4 +12,8 @@
     - import_tasks: tasks/common.yml
     - import_tasks: tasks/stack.yml
     - import_tasks: tasks/editor.yml
+    - import_tasks: tasks/environment.yml
     - import_tasks: tasks/security.yml
+
+  handlers:
+    - import_tasks: handlers/common.yml

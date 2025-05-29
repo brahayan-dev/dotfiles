@@ -20,4 +20,3 @@
     gh ssh-key add "/home/{{ current_user }}/.ssh/{{ current_user }}_rsa.pub" --type signing
   args:
     executable: /bin/bash
-    creates: "/home/{{ current_user }}/.ssh/{{ current_user }}_rsa"

@@ -1,7 +1,9 @@
 .gitignore
-^/.*\.org
+.workrc.example
 
+^/.*\.org
 \.git
+
 docs
 misc
 node_modules
