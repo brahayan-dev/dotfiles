@@ -5,9 +5,22 @@ ping() {
     ansible -i hosts.ini Workspace -c local -m ping
 }
 
-# Function to install using ansible-playbook
+# Function to install and use ansible-playbook
 setup() {
-    ansible-playbook -i hosts.ini -c local -K playbook.yml
+    local OS
+    OS="$(uname -a)"
+
+    if [[ $OS =~ Darwin ]]; then
+        echo "============= Running Darwin Playbook ============="
+        [ ! -e /opt/homebrew/bin/ansible ] && brew install ansible
+        ansible-playbook -i hosts.ini -c local -K darwin.yml
+    fi
+
+    if [[ $OS =~ Linux ]]; then
+        echo "============= Running Linux Playbook ============="
+        [ ! -e /usr/bin/ansible ] && dnf install ansible
+        ansible-playbook -i hosts.ini -c local -K linux.yml
+    fi
 }
 
 # Main script logic
