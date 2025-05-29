@@ -1,0 +1,10 @@
+---
+- hosts: Workspace
+  become: false
+
+  tasks:
+    - name: Install Dependencies
+      community.general.homebrew:
+        name:
+          - stow
+        state: present

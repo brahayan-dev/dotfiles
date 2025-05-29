@@ -2,37 +2,64 @@
 
 # Function to ping the workspace
 ping() {
-    ansible -i hosts.ini Workspace -c local -m ping
+    cd "$1" || return
+    ansible -i ../hosts.ini Workspace -c local -m ping
+    return
 }
 
-# Function to install and use ansible-playbook
+# Function to ping the workspace
 setup() {
-    local OS
-    OS="$(uname -a)"
+    cd "$1" || return
+    ansible-playbook -i ../hosts.ini -c local -K playbook.yml
+    return
+}
 
-    if [[ $OS =~ Darwin ]]; then
-        echo "============= Running Darwin Playbook ============="
-        [ ! -e /opt/homebrew/bin/ansible ] && brew install ansible
-        ansible-playbook -i hosts.ini -c local -K darwin.yml
-    fi
+install-darwin-dependencies() {
+    [ ! -e /opt/homebrew/bin/ansible ] && brew install ansible
+}
 
-    if [[ $OS =~ Linux ]]; then
-        echo "============= Running Linux Playbook ============="
-        [ ! -e /usr/bin/ansible ] && dnf install ansible
-        ansible-playbook -i hosts.ini -c local -K linux.yml
-    fi
+install-linux-dependencies() {
+    [ ! -e /usr/bin/ansible ] && dnf install ansible
 }
 
 # Main script logic
-case "$1" in
-"ping")
-    ping
-    ;;
-"setup")
-    setup
-    ;;
-*)
-    echo "Usage: $0 {ping|setup}"
-    exit 1
-    ;;
-esac
+main() {
+    local OS
+    local FLAG
+    OS="$(uname -a)"
+
+    if [[ $OS =~ Darwin ]]; then
+        OS="darwin"
+    fi
+
+    if [[ $OS =~ Linux ]]; then
+        OS="linux"
+    fi
+
+    FLAG="$1+$OS"
+
+    case "$FLAG" in
+    "ping+darwin")
+        install-darwin-dependencies
+        ping ./darwin
+        ;;
+    "ping+linux")
+        install-linux-dependencies
+        ping ./linux
+        ;;
+    "setup+darwin")
+        install-darwin-dependencies
+        setup ./darwin
+        ;;
+    "setup+linux")
+        install-linux-dependencies
+        setup ./linux
+        ;;
+    *)
+        echo "Usage: $0 {ping|setup}"
+        exit 1
+        ;;
+    esac
+}
+
+main "$1"
