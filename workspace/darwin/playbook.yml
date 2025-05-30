@@ -10,5 +10,5 @@
         name:
           - stow
         state: present
-    - import_tasks: tasks/environment.yml
     - import_tasks: ../common/tasks/environment.yml
+    - import_tasks: tasks/environment.yml
