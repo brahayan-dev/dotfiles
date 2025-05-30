@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
 
 export GITHUB_TOKEN=
+export CURRENT_USER=

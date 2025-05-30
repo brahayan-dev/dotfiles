@@ -22,6 +22,12 @@ install-linux-dependencies() {
     [ ! -e /usr/bin/ansible ] && dnf install ansible
 }
 
+set-ssh-key-to-github() {
+    gh auth login
+    gh auth refresh -h github.com -s admin:ssh_signing_key
+    gh ssh-key add "$HOME/.ssh/${CURRENT_USER}_rsa.pub" --type signing
+}
+
 # Main script logic
 main() {
     local OS
@@ -54,6 +60,9 @@ main() {
     "setup+linux")
         install-linux-dependencies
         setup ./linux
+        ;;
+    github*)
+        set-ssh-key-to-github
         ;;
     *)
         echo "Usage: $0 {ping|setup}"

@@ -1,0 +1,9 @@
+---
+- name: Set Symlinks With Stow
+  shell: |
+    stow .
+    source "/{{ base_dir }}/{{ current_user }}/.zshrc"
+  args:
+    executable: /bin/bash
+    creates: "/{{ base_dir }}/{{ current_user }}/.privaterc"
+    chdir: "/{{ base_dir }}/{{ current_user }}/.dotfiles"

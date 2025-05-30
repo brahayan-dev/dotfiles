@@ -1,0 +1,10 @@
+---
+- name: Set Symlinks
+  shell: |
+    ln -s -f .workrc ~/.workrc
+    ln -s -f .scriptrc ~/.scriptrc
+    ln -s -f .privaterc ~/.privaterc
+  args:
+    executable: /bin/bash
+    creates: "/{{ base_dir }}/{{ current_user }}/.privaterc"
+    chdir: "/{{ base_dir }}/{{ current_user }}/.dotfiles"
