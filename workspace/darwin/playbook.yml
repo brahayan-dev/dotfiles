@@ -12,3 +12,6 @@
           - stow
         state: present
     - import_tasks: ../common/tasks/environment.yml
+
+  handlers:
+    - import_tasks: ../common/handlers/base.yml

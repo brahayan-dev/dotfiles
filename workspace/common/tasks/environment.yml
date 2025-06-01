@@ -4,22 +4,24 @@
     regexp: "^export CURRENT_USER="
     line: "export CURRENT_USER={{ current_user }}"
     path: "/{{ base_dir }}/{{ current_user }}/.dotfiles/.{{ workspace_id }}_profile"
+  notify: Reload Zsh Files
 
 - name: Propagate Token
-  lineinfile:
+  blockinfile:
     create: true
-    line: "export GITHUB_TOKEN={{ github_token }}"
+    block: |
+      #!/usr/bin/env zsh
+      "export GITHUB_TOKEN={{ github_token }}"
     path: "/{{ base_dir }}/{{ current_user }}/.dotfiles/.private_profile"
+  notify: Reload Zsh Files
 
 - name: Set Symlinks
   shell: |
     stow .
-    ln -s -f ".{{ workspace_id }}rc" "/{{ base_dir }}/{{ current_user }}/.{{ workspace_id }}rc"
-    ln -s -f ".{{ workspace_id }}_profile" "/{{ base_dir }}/{{ current_user }}/.{{ workspace_id }}_profile"
-    ln -s -f .private_profile "/{{ base_dir }}/{{ current_user }}/.private_profile"
-    source "/{{ base_dir }}/{{ current_user }}/.zshrc"
-    source "/{{ base_dir }}/{{ current_user }}/.zprofile"
+    ln -s -f "/{{ base_dir }}/{{ current_user }}/.dotfiles/.{{ workspace_id }}rc" "/{{ base_dir }}/{{ current_user }}/.{{ workspace_id }}rc"
+    ln -s -f "/{{ base_dir }}/{{ current_user }}/.dotfiles/.{{ workspace_id }}_profile" "/{{ base_dir }}/{{ current_user }}/.{{ workspace_id }}_profile"
+    ln -s -f "/{{ base_dir }}/{{ current_user }}/.dotfiles/.private_profile" "/{{ base_dir }}/{{ current_user }}/.private_profile"
   args:
-    executable: /bin/bash
     chdir: "/{{ base_dir }}/{{ current_user }}/.dotfiles"
     creates: "/{{ base_dir }}/{{ current_user }}/.{{ workspace_id }}_profile"
+  notify: Reload Zsh Files
