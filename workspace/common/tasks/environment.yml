@@ -7,11 +7,9 @@
   notify: Reload Zsh Files
 
 - name: Propagate Token
-  blockinfile:
+  lineinfile:
     create: true
-    block: |
-      #!/usr/bin/env zsh
-      "export GITHUB_TOKEN={{ github_token }}"
+    line: "export GITHUB_TOKEN={{ github_token }}"
     path: "/{{ base_dir }}/{{ current_user }}/.dotfiles/.private_profile"
   notify: Reload Zsh Files
 

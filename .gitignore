@@ -1,2 +1,5 @@
 node_modules
 .private_profile
+
+**/.vault_password
+**/.become_password
