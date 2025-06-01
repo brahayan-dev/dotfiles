@@ -55,6 +55,4 @@ export PATH="$PATH:/opt/nvim-linux64/bin"
 # export PATH="$HOME/.elixir-install/installs/otp/27.2.3/bin:$PATH"
 # export PATH="$HOME/.elixir-install/installs/elixir/1.18.3-otp-27/bin:$PATH"
 [ -f ~/.workrc ] && source ~/.workrc
-[ -f ~/.scriptrc ] && source ~/.scriptrc
-[ -f ~/.privaterc ] && source ~/.privaterc
 [ -f ~/.akeptousrc ] && source ~/.akeptousrc

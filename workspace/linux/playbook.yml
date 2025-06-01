@@ -3,18 +3,15 @@
   become: true
 
   vars_files:
-    - vars/common.yml
+    - vars/base.yml
+    - vars/secret.yml
 
   pre_tasks:
     - import_tasks: tasks/prelude.yml
 
   tasks:
-    - import_tasks: tasks/common.yml
+    - import_tasks: tasks/base.yml
     - import_tasks: tasks/stack.yml
     - import_tasks: tasks/editor.yml
     - import_tasks: tasks/security.yml
-    - import_tasks: tasks/environment.yml
     - import_tasks: ../common/tasks/environment.yml
-
-  handlers:
-    - import_tasks: handlers/common.yml

@@ -10,7 +10,7 @@ ping() {
 # Function to ping the workspace
 setup() {
     cd "$1" || return
-    ansible-playbook -i ../hosts.ini -c local -K playbook.yml
+    ansible-playbook -i ../hosts.ini -c local -K playbook.yml --ask-vault-pass
     return
 }
 
@@ -23,7 +23,7 @@ install-linux-dependencies() {
 }
 
 set-ssh-key-to-github() {
-    gh auth login
+    gh auth login --with-token
     gh auth refresh -h github.com -s admin:ssh_signing_key
     gh ssh-key add "$HOME/.ssh/${CURRENT_USER}_rsa.pub" --type signing
 }

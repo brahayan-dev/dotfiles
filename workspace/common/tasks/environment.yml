@@ -1,9 +1,25 @@
 ---
-- name: Set Symlinks With Stow
+- name: Propagate Current User
+  lineinfile:
+    regexp: "^export CURRENT_USER="
+    line: "export CURRENT_USER={{ current_user }}"
+    path: "/{{ base_dir }}/{{ current_user }}/.dotfiles/.{{ workspace_id }}_profile"
+
+- name: Propagate Token
+  lineinfile:
+    create: true
+    line: "export GITHUB_TOKEN={{ github_token }}"
+    path: "/{{ base_dir }}/{{ current_user }}/.dotfiles/.private_profile"
+
+- name: Set Symlinks
   shell: |
     stow .
+    ln -s -f ".{{ workspace_id }}rc" "/{{ base_dir }}/{{ current_user }}/.{{ workspace_id }}rc"
+    ln -s -f ".{{ workspace_id }}_profile" "/{{ base_dir }}/{{ current_user }}/.{{ workspace_id }}_profile"
+    ln -s -f .private_profile "/{{ base_dir }}/{{ current_user }}/.private_profile"
     source "/{{ base_dir }}/{{ current_user }}/.zshrc"
+    source "/{{ base_dir }}/{{ current_user }}/.zprofile"
   args:
     executable: /bin/bash
-    creates: "/{{ base_dir }}/{{ current_user }}/.privaterc"
     chdir: "/{{ base_dir }}/{{ current_user }}/.dotfiles"
+    creates: "/{{ base_dir }}/{{ current_user }}/.{{ workspace_id }}_profile"

@@ -1,55 +1,92 @@
 #!/usr/bin/env bash
 
-# BASIC CONFIGURATION
-# -------------------
+nu-refresh() {
+    echo -e "================ Updating NU CLI ================"
+    nu update
 
-export PATH="/usr/local/bin:$PATH"
-export PATH="/usr/local/sbin:$PATH"
-export PATH="/opt/homebrew/bin:$PATH"
-export PATH="/opt/homebrew/sbin:$PATH"
-export PATH="/usr/local/opt/curl/bin:$PATH"
+    echo -e "================ AWS Credentials ================"
+    echo -e "================ Refreshing AWS Credentials ================"
+    nu aws credentials reset
+    nu aws credentials setup
+    nu aws credentials refresh
+    nu aws shared-role-credentials refresh --interactive
+    nu aws shared-role-credentials refresh --account-alias=br --keep-policies admin/cs,admin,eng,prod-eng,databricks-mx-general,databricks-general,casual-dev,lending-engineering,shared-systems-resources
+    nu aws credentials refresh --aws-account='mx'
+    nu aws credentials refresh --aws-account='br'
+    nu aws shared-role-credentials refresh --account-alias br-staging --keep-policies admin/cs,admin,eng,prod-eng,databricks-mx-general,databricks-general,casual-dev,lending-engineering,shared-systems-resources
+    nu aws shared-role-credentials available --account-alias=br
 
-export PATH="/opt/homebrew/bin:$PATH"
-export PATH="/opt/homebrew/sbin:$PATH"
-export PATH="/usr/local/opt/file-formula/bin:$PATH"
-export PYENV_ROOT="$HOME/.pyenv"
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-export PATH="/usr/local/opt/file-formula/bin:$PATH"
-export NU_HOME="${HOME}/dev/nu"
-export NUCLI_HOME="${NU_HOME}/nucli"
-export PATH="${NUCLI_HOME}:${PATH}"
+    echo -e "================ Loading Dependencies ================"
+    nu codeartifact login maven
+    nu codeartifact login npm
 
-export PATH="$HOME/.config/emacs/bin:$PATH"
-if [ -d "$(brew --prefix)/opt/grep/libexec/gnubin" ]; then
-    PATH="$(brew --prefix)/opt/grep/libexec/gnubin:$PATH"
-fi
+    echo -e "================ Setting up certificates and tokens ================"
 
-# {mark} START IT-ENG JAMF SETUP MOBILE ZSHRC
-export MONOREPO_ROOT="$NU_HOME/mini-meta-repo"
-export PATH="$PATH:$MONOREPO_ROOT/monocli/bin"
-export FLUTTER_SDK_HOME="$HOME/sdk-flutter"
-export FLUTTER_ROOT="$FLUTTER_SDK_HOME"
-export PATH="$PATH:$FLUTTER_SDK_HOME/bin:$NU_HOME/.pub-cache/bin:$FLUTTER_ROOT/bin/cache/dart-sdk/bin"
-export ANDROID_HOME="$HOME/Library/Android/sdk"
-export ANDROID_SDK="$ANDROID_HOME"
-export PATH="$PATH:$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME:$ANDROID_HOME/platform-tools:$ANDROID_HOME/emulator"
-# {mark} END IT-ENG JAMF SETUP MOBILE ZSHRC
+    # CO Environment
+    echo -e "================ Setting up CO environment ================"
+    nu-co certs setup --env prod
+    nu-co certs setup --env staging
+    nu-co auth jwt --env prod
+    nu-co auth jwt --env staging
+    nu-co auth get-refresh-token --env prod --force
+    nu-co auth get-refresh-token --env staging --force
+    nu-co auth get-access-token --env prod
+    nu-co auth get-access-token --env staging
 
-# Monocli needed config
-export GOPATH=$HOME/go && export PATH=$GOPATH/bin:$PATH
-export PATH="$PATH:/Users/xavier.ramirez/Library/Application Support/Coursier/bin"
+    # IST Environment
+    echo -e "================ Setting up IST environment ================"
+    nu-ist certs setup --env prod
+    nu-ist certs setup --env staging
+    nu-ist auth get-refresh-token --env prod --force
+    nu-ist auth get-access-token --env prod
+    nu-ist auth get-refresh-token --env staging --force
+    nu-ist auth get-access-token --env staging
 
-# {mark} START IT-ENG JAMF SETUP - ~/.nurc File
-export GITHUB_TOKEN=$GITHUBTOKEN
-export LC_ALL=en_US.UTF-8
-export LANG=en_US.UTF-8
-export NU_HOME=~/dev/nu
-export NUCLI_HOME=~/dev/nu/nucli
-export IOS_CLI_HOME=~/dev/nu/ios-cli
-export PATH="$NUCLI_HOME:$PATH"
-export PATH="$IOS_CLI_HOME:$PATH"
-# {mark} END IT-ENG JAMF SETUP - ~/.nurc File
+    # BR Staging Environment
+    echo -e "================ Setting up BR Staging environment ================"
+    nu-br-staging certs setup
+    nu-br-staging auth get-refresh-token
+    nu-br-staging auth get-access-token
+    nu-br-staging aws shared-role-credentials refresh --account-alias=br --keep-policies casual-dev,eng,prod-eng
 
-export NU_COUNTRY=co
-eval "$(rbenv init -)"
+    # BR Production Environment
+    echo -e "================ Setting up BR Production environment ================"
+    nu-br certs setup --env prod
+    nu-br auth get-refresh-token --env prod --force
+    nu-br auth get-access-token --env prod
+    nu-br aws shared-role-credentials refresh --account-alias=br --keep-policies casual-dev,eng,prod-eng
+
+    # MX Environment
+    echo -e "================ Setting up MX environment ================"
+    nu-mx certs setup --env prod
+    nu-mx certs setup --env staging
+    nu-mx auth get-refresh-token --env prod --force
+    nu-mx auth get-refresh-token --env staging --force
+    nu-mx auth get-access-token --env prod
+    nu-mx auth get-access-token --env staging
+
+    # Data Environment
+    echo -e "================ Setting up Data environment ================"
+    nu-data certs setup --env staging
+    nu-data certs setup --env prod
+    nu-data auth get-refresh-token --env prod --force
+    nu-data auth get-refresh-token --env staging --force
+    nu-data auth get-access-token --env prod
+    nu-data auth get-access-token --env staging
+
+    # cp -r $HOME/dev/nu/.nu/tokens/br-staging/staging $HOME/dev/nu/.nu/tokens/br/
+    # cp -r $HOME/dev/nu/.nu/tokens/br-staging/staging $HOME/dev/nu/.nu/tokens/br-staging/
+}
+
+nu-mmr() {
+    xcrun simctl create 'iPhone 16 18-2' \
+        com.apple.CoreSimulator.SimDeviceType.iPhone-16 \
+        com.apple.CoreSimulator.SimRuntime.iOS-18-2
+    xcrun simctl boot 'iPhone 16 18-2'
+    cd ~/dev/nu/mini-meta-repo
+    monocli doctor
+    monocli l10n get
+    monocli deps get -p flutter-desktop
+    nu-co customer get-keys-and-certificates --env staging
+    flutter run -d macos -t lib/main_desktop.dart
+}

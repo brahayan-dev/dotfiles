@@ -1,13 +1,18 @@
 .gitignore
+.gitattributes
 
 .workrc
-.scriptrc
-.privaterc
+.work_profile
 .akeptousrc
-.privaterc.example
+.akeptous_profile
+.private_profile.example
+.prettierrc.json
 
 ^/.*\.org
 \.git
+
+package.json
+package-lock.json
 
 docs
 misc

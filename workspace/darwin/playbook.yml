@@ -2,7 +2,8 @@
 - hosts: Workspace
 
   vars_files:
-    - vars/common.yml
+    - vars/base.yml
+    - vars/secret.yml
 
   tasks:
     - name: Install Dependencies
@@ -11,4 +12,3 @@
           - stow
         state: present
     - import_tasks: ../common/tasks/environment.yml
-    - import_tasks: tasks/environment.yml
