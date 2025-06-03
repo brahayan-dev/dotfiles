@@ -1,8 +1,0 @@
----
-- name: Add Ssh Key To Github
-  shell: |
-    gh auth login --with-token
-    gh auth refresh -h github.com -s admin:ssh_signing_key
-    gh ssh-key add "/home/{{ current_user }}/.ssh/{{ current_user }}_rsa.pub" --type signing
-  args:
-    executable: /bin/bash

@@ -4,6 +4,7 @@
 # Zsh
 # -----
 export ZSH="$HOME/.oh-my-zsh"
+export LANG=en_US.UTF-8
 
 ZSH_THEME="af-magic"
 HYPHEN_INSENSITIVE="true"
@@ -17,19 +18,7 @@ ENABLE_CORRECTION="true"
 plugins=(git direnv)
 source $ZSH/oh-my-zsh.sh
 
-export LANG=en_US.UTF-8
-
 alias zshconfig="source ~/.zshrc"
-
-# -----
-# Doom
-# -----
-export PATH="$HOME/.config/emacs/bin:$PATH"
-
-# -------
-# Neovim
-# -------
-export PATH="$PATH:/opt/nvim-linux64/bin"
 
 # ----
 # Nvm
@@ -45,16 +34,29 @@ export PATH="$PATH:/opt/nvim-linux64/bin"
 # export SDKMAN_DIR="$HOME/.sdkman"
 # [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
-# --------
-# Common
-# --------
+# ---------
+# Settings
+# ---------
 # NOTE: Used to add Lua and Kitty in PATH (assuming ~/.local/bin is in your system-wide PATH)
 # export PATH="$HOME/.local/bin:$PATH"
-# NOTE: Elixir config
+# NOTE: Elixir
 # export PATH="$PATH:$HOME/.elixir-ls/release"
 # export PATH="$HOME/.elixir-install/installs/otp/27.2.3/bin:$PATH"
 # export PATH="$HOME/.elixir-install/installs/elixir/1.18.3-otp-27/bin:$PATH"
+# NOTE: Workspace CLI
+export PATH="$HOME/.dotfiles/workspace/:$PATH"
+# NOTE: Configurations
 [ -f ~/.workrc ] && source ~/.workrc
-[ -f ~/.scriptrc ] && source ~/.scriptrc
-[ -f ~/.privaterc ] && source ~/.privaterc
 [ -f ~/.akeptousrc ] && source ~/.akeptousrc
+
+# -----
+# Doom
+# -----
+export PATH="$HOME/.config/emacs/bin:$PATH"
+
+# -------
+# Neovim
+# -------
+if [[ "$(uname -a)" =~ Linux ]]; then
+    export PATH="$PATH:/opt/nvim-linux64/bin"
+fi

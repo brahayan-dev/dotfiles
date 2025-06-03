@@ -1,0 +1,8 @@
+---
+- name: Reload Zsh Files
+  shell: |
+    source "/{{ base_dir }}/{{ current_user }}/.zshrc"
+    source "/{{ base_dir }}/{{ current_user }}/.zprofile"
+    exit 0
+  args:
+    executable: /bin/zsh

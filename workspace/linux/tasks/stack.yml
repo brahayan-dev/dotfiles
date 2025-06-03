@@ -2,14 +2,10 @@
 - name: Install Stack
   dnf:
     name:
-      - lua
-      - luarocks
-      - fennel
       - clojure
       - java-latest-openjdk
       - npm
       - nodejs
-      - containerd
       - podman
       - podman-compose
       - vagrant

@@ -10,7 +10,11 @@ ping() {
 # Function to ping the workspace
 setup() {
     cd "$1" || return
-    ansible-playbook -i ../hosts.ini -c local -K playbook.yml
+    ansible-playbook -c local \
+        -i ../hosts.ini \
+        --become-password-file "$1/.become_password" \
+        --vault-password-file "$1/.vault_password" \
+        playbook.yml
     return
 }
 
@@ -23,7 +27,7 @@ install-linux-dependencies() {
 }
 
 set-ssh-key-to-github() {
-    gh auth login
+    gh auth login --with-token
     gh auth refresh -h github.com -s admin:ssh_signing_key
     gh ssh-key add "$HOME/.ssh/${CURRENT_USER}_rsa.pub" --type signing
 }
@@ -32,6 +36,7 @@ set-ssh-key-to-github() {
 main() {
     local OS
     local FLAG
+    local WORKSPACE_PATH
     OS="$(uname -a)"
 
     if [[ $OS =~ Darwin ]]; then
@@ -43,23 +48,24 @@ main() {
     fi
 
     FLAG="$1+$OS"
+    WORKSPACE_PATH="$HOME/.dotfiles/workspace/$OS"
 
     case "$FLAG" in
     "ping+darwin")
         install-darwin-dependencies
-        ping ./darwin
+        ping "$WORKSPACE_PATH"
         ;;
     "ping+linux")
         install-linux-dependencies
-        ping ./linux
+        ping "$WORKSPACE_PATH"
         ;;
     "setup+darwin")
         install-darwin-dependencies
-        setup ./darwin
+        setup "$WORKSPACE_PATH"
         ;;
     "setup+linux")
         install-linux-dependencies
-        setup ./linux
+        setup "$WORKSPACE_PATH"
         ;;
     github*)
         set-ssh-key-to-github
