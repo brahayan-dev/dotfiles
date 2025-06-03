@@ -45,7 +45,7 @@
        (popup +defaults)   ; tame sudden yet inevitable temporary windows
        ;;tabs              ; a tab bar for Emacs
        ;;treemacs          ; a project drawer, like neotree but cooler
-       ;;unicode           ; extended unicode support for various languages
+       unicode             ; extended unicode support for various languages
        (vc-gutter +pretty) ; vcs diff in the fringe
        vi-tilde-fringe     ; fringe tildes to mark beyond EOB
        ;;window-select     ; visually switch windows
@@ -121,7 +121,9 @@
        ;;crystal                      ; ruby at the speed of c
        ;;csharp                       ; unity, .NET, and mono shenanigans
        data                           ; config/data formats
-       ;;(dart +flutter)              ; paint ui and not much else
+       (when (equal system-type 'darwin)
+         (scala +lsp)                 ; java, but good
+         (dart +lsp +flutter))        ; paint ui and not much else
        ;;dhall
        ;;(elixir +lsp)                ; erlang done right
        ;;(elm +lsp)                   ; care for a cup of TEA?
@@ -139,7 +141,7 @@
        ;;(haskell +lsp)               ; a language that's lazier than I am
        ;;hy                           ; readability of scheme w/ speed of python
        ;;idris                        ; a language you can depend on
-       ;;json                         ; At least it ain't XML
+       json                           ; At least it ain't XML
        ;;(java +lsp)                  ; the poster child for carpal tunnel syndrome
        (javascript +lsp +tree-sitter) ; all(hope(abandon(ye(who(enter(here))))))
        ;;julia                        ; a better, faster MATLAB
@@ -149,9 +151,9 @@
        ;;       +latexmk)             ; writing papers in Emacs has never been so fun
        ;;lean                         ; for folks with too much to prove
        ;;ledger                       ; be audit you can number-to-string
-       (lua +lsp
-            +fennel
-            +tree-sitter)             ; one-based indices? one-based indices
+       ;;(lua +lsp
+       ;;   +fennel
+       ;;   +tree-sitter)             ; one-based indices? one-based indices
        (markdown +grip)               ; writing docs for people to ignore
        ;;nim                          ; python + lisp at the speed of c
        ;;nix                          ; I hereby declare "nix geht mehr!"
