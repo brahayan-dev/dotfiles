@@ -54,4 +54,4 @@ export PATH="$IOS_CLI_HOME:$PATH"
 export NU_COUNTRY=co
 eval "$(rbenv init -)"
 
-export CURRENT_USER=
+export CURRENT_USER=xavier.ramirez
