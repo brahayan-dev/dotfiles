@@ -19,7 +19,7 @@ ping() {
     return
 }
 
-# Function to ping the workspace
+# Function to setup the workspace
 setup() {
     cd "$1" || return
     ansible-playbook -c local \
