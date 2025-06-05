@@ -39,7 +39,7 @@ install_linux_dependencies() {
 }
 
 set_ssh_key_to_github() {
-    gh auth login --with-token
+    gh auth login
     gh auth refresh -h github.com -s admin:ssh_signing_key
     gh ssh-key add "$HOME/.ssh/${CURRENT_USER}_rsa.pub" --type signing
 }
