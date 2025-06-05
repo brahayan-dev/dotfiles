@@ -1,5 +1,6 @@
 ---
 - name: Add Ssh Key To Agent
+  become: true
   shell: |
     eval "$(ssh-agent -s)"
     ssh-add "/home/{{ current_user }}/.ssh/{{ current_user }}_rsa"

@@ -16,7 +16,7 @@ DISABLE_AUTO_TITLE="true"
 ENABLE_CORRECTION="true"
 
 plugins=(git direnv)
-source $ZSH/oh-my-zsh.sh
+[ -s $ZSH/oh-my-zsh.sh ] && source $ZSH/oh-my-zsh.sh
 
 alias zshconfig="source ~/.zshrc"
 
@@ -46,8 +46,8 @@ alias zshconfig="source ~/.zshrc"
 # NOTE: Workspace CLI
 export PATH="$HOME/.dotfiles/workspace/:$PATH"
 # NOTE: Configurations
-[ -f ~/.workrc ] && source ~/.workrc
-[ -f ~/.akeptousrc ] && source ~/.akeptousrc
+[ -s ~/.workrc ] && source ~/.workrc
+[ -s ~/.akeptousrc ] && source ~/.akeptousrc
 
 # -----
 # Doom

@@ -1,5 +1,6 @@
 ---
 - name: Install Stack
+  become: true
   dnf:
     name:
       - clojure
@@ -20,6 +21,7 @@
         dest: /tmp/babashka
         mode: 0777
     - name: Install Babashka - Run Installer
+      become: true
       shell: /tmp/babashka
       args:
         creates: /usr/local/bin/bb
@@ -32,6 +34,7 @@
         dest: /tmp/cljfmt
         mode: 0777
     - name: Install Cljfmt - Run Installer
+      become: true
       shell: /tmp/cljfmt
       args:
         creates: /usr/local/bin/cljfmt
@@ -44,6 +47,7 @@
         dest: /tmp/clojure-lsp
         mode: 0777
     - name: Install Clojure-lsp - Run Installer
+      become: true
       shell: /tmp/clojure-lsp
       args:
         creates: /usr/local/bin/clojure-lsp

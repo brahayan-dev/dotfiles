@@ -5,7 +5,6 @@
 .work_profile
 .akeptousrc
 .akeptous_profile
-.private_profile.example
 .prettierrc.json
 
 ^/.*\.org

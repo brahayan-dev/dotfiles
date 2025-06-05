@@ -1,6 +1,5 @@
 ---
 - hosts: Workspace
-  become: true
 
   vars_files:
     - vars/base.yml

@@ -1,5 +1,6 @@
 ---
 - name: Install Common Dependencies
+  become: true
   dnf:
     name:
       - jq
@@ -19,6 +20,7 @@
     state: present
 
 - name: Set Zsh As Shell By Default
+  become: true
   user:
     name: "{{ current_user }}"
     shell: /bin/zsh
@@ -34,6 +36,7 @@
         dest: /tmp/ohmyzsh.sh
         mode: 0777
     - name: Install Ohmyzsh - Run Installer
-      shell: echo "Y" | /tmp/ohmyzsh.sh
+      shell: |
+        echo "Y" | sh /tmp/ohmyzsh.sh
       args:
-        creates: ~/.oh-my-zsh
+        creates: "/{{ base_dir }}/{{ current_user }}/.oh-my-zsh"

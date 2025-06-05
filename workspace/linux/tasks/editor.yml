@@ -1,34 +1,43 @@
 ---
 - name: Install Emacs
+  become: true
   dnf: name=emacs state=present
 
 - name: Install Doom
   block:
-    - name: Install Doom - Varify Installation
-      stat:
-        path: ~/.config/emacs/bin/doom
-      register: has_doom_installed
-      changed_when: false
+    - name: Install Doom - Verify CLI
+      command: >
+        "/{{ base_dir }}/{{ current_user }}/.config/emacs/bin/doom"
+      register: answer_doom_cli
+      ignore_errors: true
     - name: Install Doom - Clone Repository
       git:
         repo: https://github.com/doomemacs/doomemacs
-        dest: ~/.config/emacs
+        dest: "/{{ base_dir }}/{{ current_user }}/.config/emacs"
         depth: 1
-      when: not has_doom_installed.stat.exists
+      when: answer_doom_cli.rc != 0
     - name: Install Doom - Run Install Script
       command: >
-        ~/.config/emacs/bin/doom install
-      when: not has_doom_installed.stat.exists
+        "/{{ base_dir }}/{{ current_user }}/.config/emacs/bin/doom" install
+        --no-config
+        --install 
+        --fonts 
+        --color 
+        --force
+        --env 
+      when: answer_doom_cli.rc != 0
     - name: Install Doom - Change Icon
+      become: true
       shell: |
         mkdir -p "$HOME/.local/share/icons"
         ICON="$HOME/.local/share/icons/doom.png"
         DESKTOP_FILE=/usr/share/applications/emacs.desktop
         wget https://raw.githubusercontent.com/eccentric-j/doom-icon/master/cute-doom/doom.png -O "$ICON" &&
         sudo --preserve-env=ICON,DESKTOP_FILE sed -i "s|Icon=.*|Icon=$ICON|" $DESKTOP_FILE
-      when: not has_doom_installed.stat.exists
+      when: answer_doom_cli.rc != 0
 
 - name: Install Dependencies For Doom
+  become: true
   dnf:
     name:
       - ripgrep
