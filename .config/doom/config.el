@@ -12,24 +12,11 @@
 ;; (setq doom-theme 'doom-dracula)
 
 ;; ------
-;; OS
-;; ------
-(when (equal system-type 'darwin)
-  (setq doom-font (font-spec :family "FiraCode Mono" :size 18))
-  (let ((nudev-emacs-path "~/dev/nu/nudev/ides/emacs/"))
-    (when (file-directory-p nudev-emacs-path)
-      (add-to-list 'load-path nudev-emacs-path)
-      (require 'nu nil t))))
-
-(when (equal system-type 'gnu/linux)
-  (setq projectile-project-search-path '("~/Akeptous")
-        doom-font (font-spec :family "Fira Code" :size 18)))
-
-;; ------
 ;; Doom
 ;; ------
 (setq doom-localleader-key ","
       doom-symbol-font doom-font
+      doom-font (font-spec :family "Fira Code" :size 18)
       doom-modeline-buffer-file-name-style 'truncate-all)
 
 ;; ---------
@@ -96,3 +83,15 @@
         "C-c <left>" #'paredit-backward
         :desc "Forward"
         "C-c <right>" #'paredit-forward))
+
+;; ------
+;; OS
+;; ------
+(when (equal system-type 'darwin)
+  (let ((nudev-emacs-path "~/dev/nu/nudev/ides/emacs/"))
+    (when (file-directory-p nudev-emacs-path)
+      (add-to-list 'load-path nudev-emacs-path)
+      (require 'nu nil t))))
+
+(when (equal system-type 'gnu/linux)
+  (setq projectile-project-search-path '("~/Akeptous")))
