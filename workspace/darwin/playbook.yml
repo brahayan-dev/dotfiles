@@ -9,7 +9,9 @@
     - name: Install Dependencies
       community.general.homebrew:
         name:
+          - grip
           - stow
+          - direnv
         state: present
     - import_tasks: ../common/tasks/environment.yml
 
