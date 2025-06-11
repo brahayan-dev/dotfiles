@@ -52,17 +52,16 @@
       args:
         creates: /usr/local/bin/clojure-lsp
 
-- name: Install Ruby LSP
+- name: Install Ruby Dependencies
   community.general.gem:
-    name: ruby-lsp
+    name: "{{ item }}"
+    user_install: false
     state: latest
-
-- name: Install Ruby Bundler
-  community.general.gem:
-    name: bundler
-    state: latest
-
-- name: Install Ruby Rubocop
-  community.general.gem:
-    name: rubocop
-    state: latest
+  loop:
+    - ruby-lsp
+    - prettier_print
+    - syntax_tree
+    - syntax_tree-haml
+    - syntax_tree-rbs
+    - bundler
+    - rubocop
