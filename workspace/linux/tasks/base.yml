@@ -18,6 +18,7 @@
       - neovim
       - ghostty
       - fd-find
+      - ruby-devel
       - fira-code-fonts
     state: present
 
