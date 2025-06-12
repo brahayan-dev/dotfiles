@@ -1,19 +1,11 @@
 .gitignore
-.gitattributes
 
 .workrc
 .work_profile
 .akeptousrc
 .akeptous_profile
-.prettierrc.json
 
 ^/.*\.org
 \.git
 
-package.json
-package-lock.json
-
-docs
-misc
-node_modules
 workspace

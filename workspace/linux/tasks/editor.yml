@@ -1,42 +1,12 @@
 ---
-- name: Install Emacs
+- name: Install Emacs And Neovim
   become: true
-  dnf: name=emacs state=present
+  dnf:
+    name:
+      - emacs
+    state: present
 
-- name: Install Doom
-  block:
-    - name: Install Doom - Verify CLI
-      command: >
-        "/{{ base_dir }}/{{ current_user }}/.config/emacs/bin/doom"
-      register: answer_doom_cli
-      ignore_errors: true
-    - name: Install Doom - Clone Repository
-      git:
-        repo: https://github.com/doomemacs/doomemacs
-        dest: "/{{ base_dir }}/{{ current_user }}/.config/emacs"
-        depth: 1
-      when: answer_doom_cli.rc != 0
-    - name: Install Doom - Run Install Script
-      command: >
-        "/{{ base_dir }}/{{ current_user }}/.config/emacs/bin/doom" install
-        --no-config
-        --install 
-        --fonts 
-        --color 
-        --force
-        --env 
-      when: answer_doom_cli.rc != 0
-    - name: Install Doom - Change Icon
-      become: true
-      shell: |
-        mkdir -p "$HOME/.local/share/icons"
-        ICON="$HOME/.local/share/icons/doom.png"
-        DESKTOP_FILE=/usr/share/applications/emacs.desktop
-        wget https://raw.githubusercontent.com/eccentric-j/doom-icon/master/cute-doom/doom.png -O "$ICON" &&
-        sudo --preserve-env=ICON,DESKTOP_FILE sed -i "s|Icon=.*|Icon=$ICON|" $DESKTOP_FILE
-      when: answer_doom_cli.rc != 0
-
-- name: Install Dependencies For Doom
+- name: Install Dependencies For Emacs
   become: true
   dnf:
     name:
@@ -50,14 +20,13 @@
       - pandoc
       # - dockfmt
     state: present
-
-- name: Install NPM Dependencies
-  become: true
-  community.general.npm:
-    name: "{{ item }}"
-    global: true
-  loop:
-    - stylelint
-    - js-beautify
-    - prettier
-    - "@prettier/plugin-ruby"
+# - name: Install NPM Dependencies
+#   become: true
+#   community.general.npm:
+#     name: "{{ item }}"
+#     global: true
+#   loop:
+#     - stylelint
+#     - js-beautify
+#     - prettier
+#     - "@prettier/plugin-ruby"
