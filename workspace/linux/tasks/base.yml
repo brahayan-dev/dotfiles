@@ -10,15 +10,12 @@
       - curl
       - tree
       - stow
-      - rbenv
       - xclip
       - pdftk
       - rlwrap
       - direnv
-      - neovim
       - ghostty
       - fd-find
-      - ruby-devel
       - fira-code-fonts
     state: present
 

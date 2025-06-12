@@ -4,6 +4,7 @@
   dnf:
     name:
       - emacs
+      - neovim
     state: present
 
 - name: Install Dependencies For Emacs
