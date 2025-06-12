@@ -2,3 +2,5 @@
 
 **/.vault_password
 **/.become_password
+
+.config/emacs/auto-save-list/
