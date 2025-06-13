@@ -12,13 +12,13 @@
   :hook ((after-init . global-corfu-mode)))
 
 (use-package cape
-    :init
-    (add-to-list 'completion-at-point-functions #'cape-dabbrev)
-    (add-to-list 'completion-at-point-functions #'cape-file)
-    (add-to-list 'completion-at-point-functions #'cape-elisp-block)
-    (add-to-list 'completion-at-point-functions #'cape-history)
-    (add-to-list 'completion-at-point-functions #'cape-keyword)
-    (add-to-list 'completion-at-point-functions #'cape-elisp-symbol))
+  :init
+  (add-to-list 'completion-at-point-functions #'cape-dabbrev)
+  (add-to-list 'completion-at-point-functions #'cape-file)
+  (add-to-list 'completion-at-point-functions #'cape-elisp-block)
+  (add-to-list 'completion-at-point-functions #'cape-history)
+  (add-to-list 'completion-at-point-functions #'cape-keyword)
+  (add-to-list 'completion-at-point-functions #'cape-elisp-symbol))
 
 (use-package eglot
   :config
@@ -27,3 +27,7 @@
   :custom
   (eglot-connect-timeout 120)
   (eglot-extend-to-xref t))
+
+(use-package project)
+
+(use-package magit)

@@ -20,8 +20,8 @@
 (setq display-line-numbers-type 'relative)
 (setq package-archives
       '(("melpa" . "http://melpa.org/packages/")
-        ("melpa-stable" . "http://stable.melpa.org/packages/")
-        ("gnu" . "http://elpa.gnu.org/packages/")))
+        ("gnu" . "http://elpa.gnu.org/packages/")
+	("melpa-stable" . "http://stable.melpa.org/packages/")))
 
 (setq comp-num-cpus 4)
 (setq comp-deferred-compilation t)
@@ -41,4 +41,20 @@
 (setq use-package-minimum-reported-time 0)
 (setq use-package-always-ensure t)
 
-(load-file "~/.config/emacs/+common.el")
+(setq auto-save-file-name-transforms
+      `((".*" ,(expand-file-name "auto-save-list/" user-emacs-directory) t)))
+(make-directory (expand-file-name "auto-save-list/" user-emacs-directory) t)
+
+(load-file "~/.config/emacs/+package.el")
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages nil))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )

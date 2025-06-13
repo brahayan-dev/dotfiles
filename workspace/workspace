@@ -250,7 +250,6 @@ main() {
     
     # Check if command is provided
     if [[ -z "$command" ]]; then
-        log_error "No command provided"
         show_usage
         exit 1
     fi
