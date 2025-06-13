@@ -3,54 +3,13 @@
   become: true
   dnf:
     name:
-      - clojure
-      - java-latest-openjdk
-      - npm
-      - nodejs
+      - rbenv
+      - ruby-devel
       - podman
       - podman-compose
       - vagrant
       - dbeaver-ce
     state: present
-
-- name: Install Babashka
-  block:
-    - name: Install Babashka - Download Installer
-      get_url:
-        url: https://raw.githubusercontent.com/babashka/babashka/master/install
-        dest: /tmp/babashka
-        mode: 0777
-    - name: Install Babashka - Run Installer
-      become: true
-      shell: /tmp/babashka
-      args:
-        creates: /usr/local/bin/bb
-
-- name: Install Cljfmt
-  block:
-    - name: Install Cljfmt - Download Installer
-      get_url:
-        url: https://raw.githubusercontent.com/weavejester/cljfmt/HEAD/install.sh
-        dest: /tmp/cljfmt
-        mode: 0777
-    - name: Install Cljfmt - Run Installer
-      become: true
-      shell: /tmp/cljfmt
-      args:
-        creates: /usr/local/bin/cljfmt
-
-- name: Install Clojure-lsp
-  block:
-    - name: Install Clojure LSP - Download Installer
-      get_url:
-        url: https://raw.githubusercontent.com/clojure-lsp/clojure-lsp/master/install
-        dest: /tmp/clojure-lsp
-        mode: 0777
-    - name: Install Clojure-lsp - Run Installer
-      become: true
-      shell: /tmp/clojure-lsp
-      args:
-        creates: /usr/local/bin/clojure-lsp
 
 - name: Install Ruby Dependencies
   community.general.gem:
@@ -58,10 +17,6 @@
     user_install: false
     state: latest
   loop:
-    - ruby-lsp
-    - prettier_print
-    - syntax_tree
-    - syntax_tree-haml
-    - syntax_tree-rbs
+    - solargraph
     - bundler
     - rubocop
