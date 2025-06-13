@@ -19,6 +19,7 @@
       - tidy
       - shfmt
       - pandoc
+      - nodejs-bash-language-server
       # - dockfmt
     state: present
 # - name: Install NPM Dependencies

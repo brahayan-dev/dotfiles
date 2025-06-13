@@ -35,7 +35,10 @@
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
+
+(require 'use-package-ensure)
 (setq use-package-verbose t)
 (setq use-package-minimum-reported-time 0)
+(setq use-package-always-ensure t)
 
 (load-file "~/.config/emacs/+common.el")

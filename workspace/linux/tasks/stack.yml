@@ -15,8 +15,9 @@
   community.general.gem:
     name: "{{ item }}"
     user_install: false
+    bindir: "/usr/local/bin"
     state: latest
   loop:
-    - solargraph
+    - ruby-lsp
     - bundler
     - rubocop

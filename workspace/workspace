@@ -2,7 +2,7 @@
 
 # Constants
 readonly DOTFILES_DIR="$HOME/.dotfiles"
-readonly SUPPORTED_COMMANDS=("ping" "setup" "clean" "github")
+readonly SUPPORTED_COMMANDS=("ping" "setup" "clean" "github" "connect")
 readonly SUPPORTED_OS=("darwin" "linux")
 
 # Color codes for output
@@ -30,12 +30,17 @@ setup() {
     return
 }
 
+connect () {
+    cd ~/.dotfiles
+    git remote set-url origin git@github.com:brahayan-dev/dotfiles.git
+}
+
 install_darwin_dependencies() {
     [ ! -e /opt/homebrew/bin/ansible ] && brew install ansible
 }
 
 install_linux_dependencies() {
-    [ ! -e /usr/bin/ansible ] && dnf install ansible
+    [ ! -e /usr/bin/ansible ] && sudo dnf install ansible
 }
 
 set_ssh_key_to_github() {
@@ -161,6 +166,11 @@ execute_github() {
     set_ssh_key_to_github
 }
 
+execute_connect() {
+    log_info "Connect dotfiles to GitHub by SSH"
+    connect
+}
+
 # Dependency installation dispatcher
 install_dependencies() {
     local os="$1"
@@ -200,6 +210,9 @@ dispatch_command() {
         "github")
             execute_github
             ;;
+	"connect")
+            execute_connect
+            ;;
         *)
             log_error "Unknown command: $command"
             return 1
@@ -217,6 +230,7 @@ Commands:
     setup    - Install dependencies and setup workspace
     clean    - Remove symlinks (Linux only)
     github   - Set up SSH key for GitHub
+    connect  - Connect dotfiles repository to GitHub by SSH
 
 Supported OS: ${SUPPORTED_OS[*]}
 
@@ -242,7 +256,7 @@ main() {
     fi
     
     # Special handling for commands that don't need OS detection
-    if [[ "$command" == "clean" || "$command" == "github" ]]; then
+    if [[ "$command" == "clean" || "$command" == "github" || "$command" == "connect" ]]; then
         validate_command "$command" || exit 1
         dispatch_command "$command"
         exit $?

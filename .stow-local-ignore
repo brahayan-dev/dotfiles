@@ -9,3 +9,4 @@
 \.git
 
 workspace
+.config/emacs/auto-save-list/
