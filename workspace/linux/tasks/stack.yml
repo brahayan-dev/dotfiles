@@ -19,6 +19,7 @@
     bindir: "/usr/local/bin"
     state: latest
   loop:
-    - ruby-lsp
+    - solargraph
     - rails
+    - rubocop
 
