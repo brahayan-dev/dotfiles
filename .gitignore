@@ -4,3 +4,5 @@
 **/.become_password
 
 .config/emacs/auto-save-list/**
+.config/emacs/eln-cache/
+.config/emacs/elpa/
