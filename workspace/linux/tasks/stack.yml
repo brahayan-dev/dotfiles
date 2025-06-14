@@ -12,6 +12,7 @@
     state: present
 
 - name: Install Ruby Dependencies
+  become: true
   community.general.gem:
     name: "{{ item }}"
     user_install: false
@@ -19,5 +20,5 @@
     state: latest
   loop:
     - ruby-lsp
-    - bundler
-    - rubocop
+    - rails
+

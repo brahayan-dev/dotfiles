@@ -19,16 +19,14 @@
       - tidy
       - shfmt
       - pandoc
-      - nodejs-bash-language-server
       # - dockfmt
     state: present
-# - name: Install NPM Dependencies
-#   become: true
-#   community.general.npm:
-#     name: "{{ item }}"
-#     global: true
-#   loop:
-#     - stylelint
-#     - js-beautify
-#     - prettier
-#     - "@prettier/plugin-ruby"
+
+- name: Install NPM Dependencies
+  become: true
+  community.general.npm:
+    name: "{{ item }}"
+    global: true
+  loop:
+    - bash-language-server
+    - yaml-language-server

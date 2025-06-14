@@ -21,8 +21,13 @@
   (add-to-list 'completion-at-point-functions #'cape-elisp-symbol))
 
 (use-package eglot
+  :hook
+  (ruby-mode . eglot-ensure)
+  (ruby-ts-mode . eglot-ensure)
+  (sh-mode . eglot-ensure)
+  (bash-ts-mode . eglot-ensure)
   :config
-  (add-to-list 'eglot-server-programs '((ruby-mode ruby-ts-mode) "ruby-lsp"))
+  (add-to-list 'eglot-server-programs '((ruby-mode ruby-ts-mode) . ("ruby-lsp")))
   (add-to-list 'eglot-server-programs '((sh-mode bash-ts-mode) . ("bash-language-server" "start")))
   :custom
   (eglot-connect-timeout 120)
