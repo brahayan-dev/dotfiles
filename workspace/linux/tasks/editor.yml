@@ -1,9 +1,8 @@
 ---
-- name: Install Emacs And Neovim
+- name: Install Neovim
   become: true
   dnf:
     name:
-      - emacs
       - neovim
     state: present
 
@@ -11,15 +10,22 @@
   become: true
   dnf:
     name:
+      - jq
+      - gh
       - ripgrep
-      - cmake
+      - make
       - libtool
       - grip
       - shellcheck
       - tidy
       - shfmt
-      - pandoc
-      # - dockfmt
+      - fd-find
+      - gcc
+      - unzip
+      - direnv
+      - xclip
+      - ghostty
+      - fira-code-fonts
     state: present
 
 - name: Install NPM Dependencies

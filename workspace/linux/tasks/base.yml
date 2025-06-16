@@ -3,20 +3,13 @@
   become: true
   dnf:
     name:
-      - jq
-      - gh
       - git
       - zsh
       - curl
       - tree
       - stow
-      - xclip
       - pdftk
       - rlwrap
-      - direnv
-      - ghostty
-      - fd-find
-      - fira-code-fonts
     state: present
 
 - name: Set Zsh As Shell By Default
