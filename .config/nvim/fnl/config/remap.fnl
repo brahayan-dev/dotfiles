@@ -13,24 +13,7 @@
                  :lhs "<Esc><Esc>"
                  :rhs "<C-\\><C-n>"
                  :opts {:desc "Exit terminal mode"}}
-                ;; Disable arrow keys in normal mode
-                {:mode "n"
-                 :lhs "<right>"
-                 :rhs "<cmd>echo \"Use l to move\"<CR>"
-                 :opts {}}
-                {:mode "n"
-                 :lhs "<up>"
-                 :rhs "<cmd>echo \"Use k to move\"<CR>"
-                 :opts {}}
-                {:mode "n"
-                 :lhs "<down>"
-                 :rhs "<cmd>echo \"Use j to move\"<CR>"
-                 :opts {}}
-                {:mode "n"
-                 :lhs "<left>"
-                 :rhs "<cmd>echo \"Use h to move\"<CR>"
-                 :opts {}}
-                ;; Keybinds to make split navigation easier
+               ;; Keybinds to make split navigation easier
                 {:mode "n"
                  :lhs "<C-h>"
                  :rhs "<C-w><C-h>"

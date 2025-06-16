@@ -49,6 +49,15 @@
       - shfmt
       - pandoc
       # - dockfmt
-      # - stylelint
-      # - js-beautify
     state: present
+
+- name: Install NPM Dependencies
+  become: true
+  community.general.npm:
+    name: "{{ item }}"
+    global: true
+  loop:
+    - stylelint
+    - js-beautify
+    - prettier
+    - "@prettier/plugin-ruby"

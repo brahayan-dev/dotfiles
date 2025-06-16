@@ -41,7 +41,7 @@
 
 - name: Install Clojure-lsp
   block:
-    - name: Install Clojure-lsp - Download Installer
+    - name: Install Clojure LSP - Download Installer
       get_url:
         url: https://raw.githubusercontent.com/clojure-lsp/clojure-lsp/master/install
         dest: /tmp/clojure-lsp
@@ -51,3 +51,17 @@
       shell: /tmp/clojure-lsp
       args:
         creates: /usr/local/bin/clojure-lsp
+
+- name: Install Ruby Dependencies
+  community.general.gem:
+    name: "{{ item }}"
+    user_install: false
+    state: latest
+  loop:
+    - ruby-lsp
+    - prettier_print
+    - syntax_tree
+    - syntax_tree-haml
+    - syntax_tree-rbs
+    - bundler
+    - rubocop
