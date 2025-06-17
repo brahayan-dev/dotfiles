@@ -33,3 +33,10 @@
         echo "Y" | sh /tmp/ohmyzsh.sh
       args:
         creates: "/{{ base_dir }}/{{ current_user }}/.oh-my-zsh"
+
+- name: Rename Zshrc File
+  command: >
+    mv "/{{ base_dir }}/{{ current_user }}/.zshrc" "/{{ base_dir }}/{{ current_user }}/.zshrc--"
+  args:
+    creates: "/{{ base_dir }}/{{ current_user }}/.zshrc--"
+

@@ -6,7 +6,7 @@
       - neovim
     state: present
 
-- name: Install Dependencies For Emacs
+- name: Install Neovim Dependencies
   become: true
   dnf:
     name:
