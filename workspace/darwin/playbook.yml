@@ -13,6 +13,10 @@
           - stow
           - direnv
         state: present
+    - name: Install Python Dependencies
+      pip:
+        name: black
+        state: present
     - import_tasks: ../common/tasks/environment.yml
 
   handlers:
