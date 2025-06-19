@@ -3,23 +3,13 @@
   become: true
   dnf:
     name:
-      - jq
-      - gh
       - git
       - zsh
       - curl
       - tree
       - stow
-      - rbenv
-      - xclip
       - pdftk
       - rlwrap
-      - direnv
-      - neovim
-      - ghostty
-      - fd-find
-      - ruby-devel
-      - fira-code-fonts
     state: present
 
 - name: Set Zsh As Shell By Default
@@ -43,3 +33,19 @@
         echo "Y" | sh /tmp/ohmyzsh.sh
       args:
         creates: "/{{ base_dir }}/{{ current_user }}/.oh-my-zsh"
+
+- name: Rename Zshrc File
+  command: >
+    mv
+    "/{{ base_dir }}/{{ current_user }}/.zshrc"
+    "/{{ base_dir }}/{{ current_user }}/.zshrc--"
+  args:
+    creates: "/{{ base_dir }}/{{ current_user }}/.zshrc--"
+
+- name: Rename Ghostty File
+  command: >
+    mv
+    "/{{ base_dir }}/{{ current_user }}/.config/ghostty/config"
+    "/{{ base_dir }}/{{ current_user }}/.config/ghostty/config--"
+  args:
+    creates: "/{{ base_dir }}/{{ current_user }}/.config/ghostty/config--"

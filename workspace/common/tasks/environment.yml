@@ -13,7 +13,7 @@
     path: "/{{ base_dir }}/{{ current_user }}/.dotfiles/.private_profile"
   notify: Reload Zsh Files
 
-- name: Set Symlinks
+- name: Set Symlinks By Stow
   command: >
     stow .
   args:
