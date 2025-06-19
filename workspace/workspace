@@ -51,6 +51,14 @@ remove_symlinks_linux() {
     cd ~/.dotfiles && stow -D .
 }
 
+
+remove_symlinks_darwin() {
+    [ -L ~/.workrc       ] && rm ~/.workrc
+    [ -L ~/.work_profile ] && rm ~/.work_profile
+    [ -L ~/.private_profile  ] && rm ~/.private_profile
+    cd ~/.dotfiles && stow -D .
+}
+
 # Logging functions
 log_info() {
     echo -e "${GREEN}[INFO]${NC} $1"
@@ -152,8 +160,19 @@ execute_setup() {
 }
 
 execute_clean() {
+    local os="$1"
+
     log_info "Cleaning symlinks"
-    remove_symlinks_linux
+
+    if [[ "$os" == "linux" ]]; then
+    	remove_symlinks_linux
+    fi
+
+    if [[ "$os" == "darwin" ]]; then
+    	remove_symlinks_darwin
+    fi
+        
+    exit $?
 }
 
 execute_github() {
@@ -195,7 +214,7 @@ dispatch_command() {
             execute_setup "$os" "$workspace_path"
             ;;
         "clean")
-            execute_clean
+            execute_clean "$os"
             ;;
         "github")
             execute_github
@@ -242,7 +261,7 @@ main() {
     fi
     
     # Special handling for commands that don't need OS detection
-    if [[ "$command" == "clean" || "$command" == "github" ]]; then
+    if [[ "$command" == "github" ]]; then
         validate_command "$command" || exit 1
         dispatch_command "$command"
         exit $?
