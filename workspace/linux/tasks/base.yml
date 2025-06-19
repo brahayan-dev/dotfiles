@@ -36,7 +36,16 @@
 
 - name: Rename Zshrc File
   command: >
-    mv "/{{ base_dir }}/{{ current_user }}/.zshrc" "/{{ base_dir }}/{{ current_user }}/.zshrc--"
+    mv
+    "/{{ base_dir }}/{{ current_user }}/.zshrc"
+    "/{{ base_dir }}/{{ current_user }}/.zshrc--"
   args:
     creates: "/{{ base_dir }}/{{ current_user }}/.zshrc--"
 
+- name: Rename Ghostty File
+  command: >
+    mv
+    "/{{ base_dir }}/{{ current_user }}/.config/ghostty/config"
+    "/{{ base_dir }}/{{ current_user }}/.config/ghostty/config--"
+  args:
+    creates: "/{{ base_dir }}/{{ current_user }}/.config/ghostty/config--"
