@@ -162,7 +162,7 @@ change_theme() {
     if [[ -f "$file_path" ]]; then
         ln -sf "$file_path" "$GHOSTTY_CONFIG"
         pkill -x ghostty && ghostty &
-	return 0
+		return 0
     fi
 
     log_error "Configuration file not found: $file_path"
@@ -282,8 +282,8 @@ Commands:
     github   - Set up SSH key for GitHub
     connect  - Connect dotfiles repository to GitHub by SSH
 
-    night    - XXX
-    day      - YYY
+    night    - Set the the Ghostty's dark theme
+    day      - Set the the Ghostty's light theme
 
 Supported OS: ${SUPPORTED_OS[*]}
 
