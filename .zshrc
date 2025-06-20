@@ -31,7 +31,7 @@ alias zrc="source ~/.zshrc"
 # Settings
 # ---------
 # NOTE: Workstation CLI
-export PATH="$HOME/.dotfiles/workstation/:$PATH"
+export PATH="$HOME/.dotfiles/:$PATH"
 # NOTE: Configurations
 [ -s ~/.workrc ] && source ~/.workrc
 [ -s ~/.akeptousrc ] && source ~/.akeptousrc
