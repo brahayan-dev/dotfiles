@@ -4,6 +4,7 @@
 readonly DOTFILES_DIR="$HOME/.dotfiles"
 readonly SUPPORTED_COMMANDS=("ping" "setup" "clean" "github" "connect" "day" "night")
 readonly SUPPORTED_OS=("darwin" "linux")
+readonly GHOSTTY_CONFIG="$HOME/.config/ghostty/config"
 
 # Color codes for output
 readonly RED='\033[0;31m'
@@ -13,14 +14,18 @@ readonly NC='\033[0m' # No Color
 
 # Function to ping the workspace
 ping() {
-    cd "$1" || return
+    local workspace_path="$1"
+
+    cd "$workspace_path" || return
     ansible -i ../hosts.ini Workspace -c local -m ping
     return
 }
 
 # Function to setup the workspace
 setup() {
-    cd "$1" || return
+    local workspace_path="$1"
+
+    cd "$workspace_path" || return
     ansible-playbook -c local \
         -i ../hosts.ini \
         --become-password-file "$1/.become_password" \
@@ -53,12 +58,12 @@ remove_symlinks() {
     [ -L ~/.zshrc ] && rm ~/.zshrc
     [ -L ~/.zprofile ] && rm ~/.zprofile
     [ -L ~/.private_profile ] && rm ~/.private_profile
+    [ -L ~/.config/ghostty ] && rm ~/.config/ghostty
 }
 
 remove_symlinks_linux() {
     [ -L ~/.akeptousrc ] && rm ~/.akeptousrc
     [ -L ~/.akeptous_profile ] && rm ~/.akeptous_profile
-    [ -L ~/.config/ghostty ] && rm ~/.config/ghostty
     [ -L ~/.config/nvim ] && rm ~/.config/nvim
 }
 
@@ -66,7 +71,6 @@ remove_symlinks_linux() {
 remove_symlinks_darwin() {
     [ -L ~/.workrc ] && rm ~/.workrc
     [ -L ~/.work_profile ] && rm ~/.work_profile
-    [ -L ~/.config/ghostty ] && rm ~/.config/ghostty
     [ -L ~/.config/doom ] && rm ~/.config/doom
 }
 
@@ -151,6 +155,20 @@ ensure_dotfiles_dir() {
     fi
 }
 
+change_theme() {
+    local theme="$1"
+    local file_path="$HOME/.dotfiles/ghostty/$theme"
+
+    if [[ -f "$file_path" ]]; then
+        ln -sf "$file_path" "$GHOSTTY_CONFIG"
+        pkill -x ghostty && ghostty &
+	return 0
+    fi
+
+    log_error "Configuration file not found: $file_path"
+    return 1
+}
+
 # Command execution functions
 execute_ping() {
     local os="$1"
@@ -177,13 +195,13 @@ execute_clean() {
     remove_symlinks
 
     if [[ "$os" == "linux" ]]; then
-    	remove_symlinks_linux
+        remove_symlinks_linux
     fi
 
     if [[ "$os" == "darwin" ]]; then
-    	remove_symlinks_darwin
+        remove_symlinks_darwin
     fi
-        
+
     exit $?
 }
 
@@ -240,10 +258,10 @@ dispatch_command() {
         execute_connect
         ;;
     "night")
-        echo "Night"
+        change_theme "night"
         ;;
     "day")
-        echo "Day"
+        change_theme "day"
         ;;
     *)
         log_error "Unknown command: $command"
