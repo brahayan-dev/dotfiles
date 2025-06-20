@@ -36,3 +36,13 @@
   loop:
     - bash-language-server
     - yaml-language-server
+
+- name: Set Editor Symlink (NVIM)
+  command: >
+    ln -s -f
+    "/{{ base_dir }}/{{ current_user }}/.dotfiles/nvim"
+    "/{{ base_dir }}/{{ current_user }}/.config/nvim"
+  args:
+    chdir: "/{{ base_dir }}/{{ current_user }}/.dotfiles"
+    creates: "/{{ base_dir }}/{{ current_user }}/.config/nvim/init.lua"
+  notify: Reload Zsh Files

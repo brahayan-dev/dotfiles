@@ -7,9 +7,9 @@
       - zsh
       - curl
       - tree
-      - stow
       - pdftk
       - rlwrap
+      - lazygit
     state: present
 
 - name: Set Zsh As Shell By Default
@@ -49,3 +49,13 @@
     "/{{ base_dir }}/{{ current_user }}/.config/ghostty/config--"
   args:
     creates: "/{{ base_dir }}/{{ current_user }}/.config/ghostty/config--"
+
+- name: Set Terminal Symlink (GHOSTTY)
+  command: >
+    ln -s -f
+    "/{{ base_dir }}/{{ current_user }}/.dotfiles/ghostty/day"
+    "/{{ base_dir }}/{{ current_user }}/.config/ghostty/config"
+  args:
+    chdir: "/{{ base_dir }}/{{ current_user }}/.dotfiles"
+    creates: "/{{ base_dir }}/{{ current_user }}/.config/ghostty/config"
+  notify: Reload Zsh Files

@@ -10,3 +10,9 @@
   community.general.copr:
     name: birkch/dbeaver
     state: enabled
+
+- name: Add Lazygit
+  become: true
+  community.general.copr:
+    name: atim/lazygit
+    state: enabled
