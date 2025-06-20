@@ -287,11 +287,6 @@ Commands:
 
 Supported OS: ${SUPPORTED_OS[*]}
 
-Examples:
-    $0 ping
-    $0 setup
-    $0 clean
-    $0 github
 EOF
 }
 
