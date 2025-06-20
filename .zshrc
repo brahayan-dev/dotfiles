@@ -6,7 +6,7 @@
 export ZSH="$HOME/.oh-my-zsh"
 export LANG=en_US.UTF-8
 
-ZSH_THEME="af-magic"
+ZSH_THEME="robbyrussell"
 HYPHEN_INSENSITIVE="true"
 
 zstyle ':omz:update' mode auto
@@ -30,15 +30,8 @@ alias zrc="source ~/.zshrc"
 # ---------
 # Settings
 # ---------
-# NOTE: Workspace CLI
-export PATH="$HOME/.dotfiles/workspace/:$PATH"
+# NOTE: Workstation CLI
+export PATH="$HOME/.dotfiles/workstation/:$PATH"
 # NOTE: Configurations
 [ -s ~/.workrc ] && source ~/.workrc
 [ -s ~/.akeptousrc ] && source ~/.akeptousrc
-
-# -------
-# Neovim
-# -------
-if [[ "$(uname -a)" =~ Linux ]]; then
-    export PATH="$PATH:/opt/nvim-linux64/bin"
-fi

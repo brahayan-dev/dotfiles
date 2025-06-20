@@ -1,10 +1,14 @@
 #!/usr/bin/env zsh
 
-# -----
-# Brew
-# -----
+# -----------------
+# OS configuration
+# -----------------
 if [[ "$(uname -a)" =~ Darwin ]]; then
     eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+
+if [[ "$(uname -a)" =~ Linux ]]; then
+    export PATH="$PATH:/opt/nvim-linux64/bin"
 fi
 
 # ---------

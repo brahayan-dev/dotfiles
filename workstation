@@ -2,7 +2,7 @@
 
 # Constants
 readonly DOTFILES_DIR="$HOME/.dotfiles"
-readonly SUPPORTED_COMMANDS=("ping" "setup" "clean" "github" "connect")
+readonly SUPPORTED_COMMANDS=("ping" "setup" "clean" "github" "connect" "day" "night")
 readonly SUPPORTED_OS=("darwin" "linux")
 
 # Color codes for output
@@ -48,19 +48,26 @@ set_ssh_key_to_github() {
     gh ssh-key add "$HOME/.ssh/${CURRENT_USER}_rsa.pub" --type signing
 }
 
+
+remove_symlinks() {
+    [ -L ~/.zshrc ] && rm ~/.zshrc
+    [ -L ~/.zprofile ] && rm ~/.zprofile
+    [ -L ~/.private_profile ] && rm ~/.private_profile
+}
+
 remove_symlinks_linux() {
     [ -L ~/.akeptousrc ] && rm ~/.akeptousrc
     [ -L ~/.akeptous_profile ] && rm ~/.akeptous_profile
-    [ -L ~/.private_profile ] && rm ~/.private_profile
-    cd ~/.dotfiles && stow -D .
+    [ -L ~/.config/ghostty ] && rm ~/.config/ghostty
+    [ -L ~/.config/nvim ] && rm ~/.config/nvim
 }
 
 
 remove_symlinks_darwin() {
-    [ -L ~/.workrc       ] && rm ~/.workrc
+    [ -L ~/.workrc ] && rm ~/.workrc
     [ -L ~/.work_profile ] && rm ~/.work_profile
-    [ -L ~/.private_profile  ] && rm ~/.private_profile
-    cd ~/.dotfiles && stow -D .
+    [ -L ~/.config/ghostty ] && rm ~/.config/ghostty
+    [ -L ~/.config/doom ] && rm ~/.config/doom
 }
 
 # Logging functions
@@ -131,10 +138,10 @@ validate_workspace() {
     return 0
 }
 
-# Path utilities
+# Ansible's path
 get_workspace_path() {
     local os="$1"
-    echo "$DOTFILES_DIR/workspace/$os"
+    echo "$DOTFILES_DIR/ansible/$os"
 }
 
 ensure_dotfiles_dir() {
@@ -167,6 +174,7 @@ execute_clean() {
     local os="$1"
 
     log_info "Cleaning symlinks"
+    remove_symlinks
 
     if [[ "$os" == "linux" ]]; then
     	remove_symlinks_linux
@@ -231,6 +239,12 @@ dispatch_command() {
     "connect")
         execute_connect
         ;;
+    "night")
+        echo "Night"
+        ;;
+    "day")
+        echo "Day"
+        ;;
     *)
         log_error "Unknown command: $command"
         return 1
@@ -249,6 +263,9 @@ Commands:
     clean    - Remove symlinks (Linux only)
     github   - Set up SSH key for GitHub
     connect  - Connect dotfiles repository to GitHub by SSH
+
+    night    - XXX
+    day      - YYY
 
 Supported OS: ${SUPPORTED_OS[*]}
 
@@ -273,7 +290,7 @@ main() {
     fi
 
     # Special handling for commands that don't need OS detection
-    if [[ "$command" == "github" || "$command" == "connect" ]]; then
+    if [[ "$command" == "github"  || "$command" == "connect" || "$command" == "night" || "$command" == "day" ]]; then
         validate_command "$command" || exit 1
         dispatch_command "$command"
         exit $?
