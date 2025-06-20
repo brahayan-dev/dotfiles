@@ -12,19 +12,19 @@
     name:
       - jq
       - gh
-      - ripgrep
+      - gcc
       - make
-      - libtool
       - grip
-      - shellcheck
       - tidy
       - shfmt
-      - fd-find
-      - gcc
       - unzip
-      - direnv
       - xclip
+      - direnv
+      - libtool
       - ghostty
+      - ripgrep
+      - fd-find
+      - shellcheck
       - fira-code-fonts
     state: present
 

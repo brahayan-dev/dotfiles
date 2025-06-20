@@ -6,6 +6,7 @@
       - git
       - zsh
       - curl
+      - tmux
       - tree
       - pdftk
       - rlwrap
