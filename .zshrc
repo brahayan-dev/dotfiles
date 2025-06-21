@@ -23,6 +23,11 @@ zsource () {
     source ~/.zprofile
 }
 
+# ------
+# Alias
+# ------
+alias lg='lazygit'
+
 # ---------
 # Settings
 # ---------

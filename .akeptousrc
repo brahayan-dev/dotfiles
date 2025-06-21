@@ -1,1 +1,4 @@
 #!/usr/bin/env zsh
+
+alias kiln='cd "$HOME/Projects/kiln/" && nvim .'
+alias dotfiles='cd "$HOME/.dotfiles/" && nvim .'
