@@ -594,7 +594,16 @@ require("lazy").setup({
 				--    https://github.com/pmizio/typescript-tools.nvim
 				--
 				-- But for many setups, the LSP (`ts_ls`) will work just fine
-				-- ts_ls = {},
+				ruby_lsp = {
+					mason = false,
+					enabled = true,
+					cmd = { vim.fn.expand("/usr/local/bin/ruby-lsp") },
+				},
+				rubocop = {
+					mason = false,
+					enabled = true,
+					cmd = { vim.fn.expand("/usr/local/bin/rubocop") },
+				},
 				--
 
 				lua_ls = {
@@ -800,7 +809,7 @@ require("lazy").setup({
 			---@diagnostic disable-next-line: missing-fields
 			require("tokyonight").setup({
 				styles = {
-					comments = { italic = false }, -- Disable italics in comments
+					comments = { italic = true }, -- Disable italics in comments
 				},
 			})
 
@@ -873,6 +882,7 @@ require("lazy").setup({
 				"markdown",
 				"markdown_inline",
 				"query",
+				"ruby",
 				"vim",
 				"vimdoc",
 			},
