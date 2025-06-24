@@ -2,3 +2,4 @@
 
 alias kiln='cd "$HOME/Projects/kiln/" && nvim .'
 alias dotfiles='cd "$HOME/.dotfiles/" && nvim .'
+alias voynich='cd "$HOME/Akeptous/voynich/" && nvim .'
