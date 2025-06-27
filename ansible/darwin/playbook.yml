@@ -17,6 +17,15 @@
       pip:
         name: black
         state: present
+    - name: Set Editor Symlink (DOOM)
+      command: >
+        ln -s -f
+        "/{{ base_dir }}/{{ current_user }}/.dotfiles/doom"
+        "/{{ base_dir }}/{{ current_user }}/.config/doom"
+      args:
+        chdir: "/{{ base_dir }}/{{ current_user }}/.dotfiles"
+        creates: "/{{ base_dir }}/{{ current_user }}/.config/doom/init.lua"
+      notify: Reload Zsh Files
     - import_tasks: ../common/tasks/environment.yml
 
   handlers:
