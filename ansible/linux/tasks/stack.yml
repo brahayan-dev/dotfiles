@@ -8,6 +8,7 @@
       - npm
       - nodejs
       - python3-pip
+      - golang
       - podman
       - podman-compose
       - vagrant
@@ -27,28 +28,3 @@
       args:
         creates: /usr/local/bin/bb
 
-- name: Install Cljfmt
-  block:
-    - name: Install Cljfmt - Download Installer
-      get_url:
-        url: https://raw.githubusercontent.com/weavejester/cljfmt/HEAD/install.sh
-        dest: /tmp/cljfmt
-        mode: 0777
-    - name: Install Cljfmt - Run Installer
-      become: true
-      shell: /tmp/cljfmt
-      args:
-        creates: /usr/local/bin/cljfmt
-
-- name: Install Clojure LSP
-  block:
-    - name: Install Clojure LSP - Download Installer
-      get_url:
-        url: https://raw.githubusercontent.com/clojure-lsp/clojure-lsp/master/install
-        dest: /tmp/clojure-lsp
-        mode: 0777
-    - name: Install Clojure LSP - Run Installer
-      become: true
-      shell: /tmp/clojure-lsp
-      args:
-        creates: /usr/local/bin/clojure-lsp

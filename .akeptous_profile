@@ -2,5 +2,6 @@
 
 export CURRENT_USER=bxsr
 
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
+export GOPATH="/usr/local/bin"
+export GOBIN="$GOPATH"
+export PATH="$PATH:$GOBIN"

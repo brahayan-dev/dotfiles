@@ -39,6 +39,7 @@
   loop:
     - stylelint
     - js-beautify
+    - prettier
     - bash-language-server
     - yaml-language-server
 
@@ -92,6 +93,14 @@
       shell: /tmp/clojure-lsp
       args:
         creates: /usr/local/bin/clojure-lsp
+
+- name: Install Dockfmt
+  become: true
+  shell: |
+    go install github.com/jessfraz/dockfmt@latest
+    mv /root/go/bin/dockfmt /usr/local/bin/dockfmt
+  args:
+    creates: /usr/local/bin/dockfmt
 
 - name: Set Editor Symlink (NVIM)
   command: >
