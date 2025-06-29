@@ -34,12 +34,12 @@
     - name: Install Polylith - Download Installer
       get_url:
         url: https://github.com/polyfy/polylith/releases/download/v0.2.22/poly-0.2.22.jar
-        dest: /usr/local/polylith
+        dest: /usr/local/polylith.jar
         mode: 0777
     - name: Install Polylith - Set Symlink To CLI
       command: >
         ln -s -f
-        "/{{ base_dir }}/{{ current_user }}/.dotfiles/polytith"
+        "/{{ base_dir }}/{{ current_user }}/.dotfiles/polylith"
         /usr/local/bin/polylith
       args:
         creates: /usr/local/bin/polylith
