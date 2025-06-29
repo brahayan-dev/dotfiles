@@ -16,7 +16,6 @@
 ;; ------
 (setq doom-localleader-key ","
       doom-symbol-font doom-font
-      doom-font (font-spec :family "Fira Code" :size 18)
       doom-modeline-buffer-file-name-style 'truncate-all)
 
 ;; ---------
@@ -88,10 +87,12 @@
 ;; OS
 ;; ------
 (when (equal system-type 'darwin)
+  (setq doom-font (font-spec :family "Fira Code" :size 18))
   (let ((nudev-emacs-path "~/dev/nu/nudev/ides/emacs/"))
     (when (file-directory-p nudev-emacs-path)
       (add-to-list 'load-path nudev-emacs-path)
       (require 'nu nil t))))
 
 (when (equal system-type 'gnu/linux)
-  (setq projectile-project-search-path '("~/Akeptous")))
+  (setq doom-font (font-spec :family "Fira Code" :size 16)
+        projectile-project-search-path '("~/Akeptous")))

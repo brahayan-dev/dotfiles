@@ -3,8 +3,11 @@
   become: true
   dnf:
     name:
-      - rbenv
-      - ruby-devel
+      - clojure
+      - java-latest-openjdk
+      - npm
+      - nodejs
+      - python3-pip
       - podman
       - podman-compose
       - vagrant
@@ -37,16 +40,27 @@
       args:
         creates: /usr/local/bin/cljfmt
 
-- name: Install Clojure-lsp
+- name: Install Clojure LSP
   block:
-    - name: Install Clojure-lsp - Download Installer
+    - name: Install Clojure LSP - Download Installer
       get_url:
         url: https://raw.githubusercontent.com/clojure-lsp/clojure-lsp/master/install
         dest: /tmp/clojure-lsp
         mode: 0777
-    - name: Install Clojure-lsp - Run Installer
+    - name: Install Clojure LSP - Run Installer
       become: true
       shell: /tmp/clojure-lsp
       args:
         creates: /usr/local/bin/clojure-lsp
 
+- name: Install Python Dependencies
+  pip:
+    name:
+      - black
+      - pyflakes
+      - isort
+      - pipenv
+      - nose
+      - pytest
+    extra_args: --user
+    executable: pip3

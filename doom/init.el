@@ -123,8 +123,10 @@
        ;;crystal                      ; ruby at the speed of c
        ;;csharp                       ; unity, .NET, and mono shenanigans
        data                           ; config/data formats
-       (when (equal system-type 'darwin)
+       (:when (featurep :system 'macos)
          (scala +lsp)                 ; java, but good
+         (ruby +lsp
+               +tree-sitter)          ; 1.step {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
          (dart +lsp +flutter))        ; paint ui and not much else
        ;;dhall
        ;;(elixir +lsp)                ; erlang done right
@@ -165,17 +167,14 @@
        ;;graphviz                     ; diagrams for confusing yourself even more
        ;;purescript                   ; javascript, but functional
        (python +lsp
+               +pyenv
                +tree-sitter)          ; beautiful is better than ugly
        ;;qt                           ; the 'cutest' gui framework ever
        ;;racket                       ; a DSL for DSLs
        ;;raku                         ; the artist formerly known as perl6
        ;;rest                         ; Emacs as a REST client
        ;;rst                          ; ReST in peace
-       (ruby +lsp
-             +rails
-             +tree-sitter)            ; 1.step {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
        ;;(rust +lsp)                  ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
-       ;;scala                        ; java, but good
        ;;(scheme +chez)               ; a fully conniving family of lisps
        (sh +lsp +tree-sitter)         ; she sells {ba,z,fi}sh shells on the C xor
        ;;sml

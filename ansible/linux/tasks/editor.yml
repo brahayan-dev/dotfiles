@@ -17,9 +17,11 @@
       - make
       - grip
       - tidy
+      - cmake
       - shfmt
       - unzip
       - xclip
+      - pandoc
       - direnv
       - libtool
       - ghostty
@@ -35,6 +37,8 @@
     name: "{{ item }}"
     global: true
   loop:
+    - stylelint
+    - js-beautify
     - bash-language-server
     - yaml-language-server
 

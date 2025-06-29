@@ -18,7 +18,7 @@ ENABLE_CORRECTION="true"
 plugins=(git direnv)
 [ -s $ZSH/oh-my-zsh.sh ] && source $ZSH/oh-my-zsh.sh
 
-zsource () {
+zsource() {
     source ~/.zshrc
     source ~/.zprofile
 }
@@ -33,6 +33,7 @@ alias lg='lazygit'
 # ---------
 # NOTE: Workstation CLI
 export PATH="$HOME/.dotfiles/:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.config/emacs/bin:$PATH"
 # NOTE: Configurations
 [ -s ~/.workrc ] && source ~/.workrc
