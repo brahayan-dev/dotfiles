@@ -3,7 +3,6 @@
   become: true
   dnf:
     name:
-      - clojure
       - java-latest-openjdk
       - npm
       - nodejs
@@ -14,6 +13,19 @@
       - vagrant
       - dbeaver-ce
     state: present
+
+- name: Install Clojure
+  become: true
+  block:
+    - name: Install Clojure - Download Script
+      get_url:
+        url: https://github.com/clojure/brew-install/releases/latest/download/linux-install.sh
+        dest: /tmp/linux-install.sh
+        mode: 0755
+    - name: Install Clojure - Run Installer
+      shell: /tmp/linux-install.sh
+      args:
+        creates: /usr/local/bin/clojure
 
 - name: Install Babashka
   block:
