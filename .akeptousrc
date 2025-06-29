@@ -5,6 +5,6 @@ alias dotfiles='cd "$HOME/.dotfiles/" && nvim .'
 alias kiln='cd "$HOME/Projects/kiln/" && nvim .'
 alias workbook='cd "$HOME/Projects/workbook/" && nvim .'
 
-alias qumran='cd "$HOME/Akeptous/qumran/" kiln&& nvim .'
+alias qumran='cd "$HOME/Akeptous/qumran/" && nvim .'
 alias lismore='cd "$HOME/Akeptous/lismore/" && nvim .'
 alias voynich='cd "$HOME/Akeptous/voynich/" && nvim .'
