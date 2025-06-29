@@ -52,15 +52,3 @@
       shell: /tmp/clojure-lsp
       args:
         creates: /usr/local/bin/clojure-lsp
-
-- name: Install Python Dependencies
-  pip:
-    name:
-      - black
-      - pyflakes
-      - isort
-      - pipenv
-      - nose
-      - pytest
-    extra_args: --user
-    executable: pip3

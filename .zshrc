@@ -32,9 +32,20 @@ alias lg='lazygit'
 # Settings
 # ---------
 # NOTE: Workstation CLI
+
 export PATH="$HOME/.dotfiles/:$PATH"
-export PATH="$HOME/.local/bin:$PATH"
+
+# NOTE: Doom setup
 export PATH="$HOME/.config/emacs/bin:$PATH"
+
+# NOTE: Python setup
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$HOME/.local/bin:$PATH"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/shims:$PATH"
+[[ -d $PYENV_ROOT/bin ]] && eval "$(pyenv init --path)"
+[[ -d $PYENV_ROOT/bin ]] && eval "$(pyenv init -)"
+
 # NOTE: Configurations
 [ -s ~/.workrc ] && source ~/.workrc
 [ -s ~/.akeptousrc ] && source ~/.akeptousrc
