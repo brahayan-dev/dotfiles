@@ -1,12 +1,13 @@
 ---
-- name: Install Neovim
+- name: Install Editors
   become: true
   dnf:
     name:
       - neovim
+      - emacs
     state: present
 
-- name: Install Neovim Dependencies
+- name: Install Dependencies For Editors
   become: true
   dnf:
     name:
@@ -45,4 +46,14 @@
   args:
     chdir: "/{{ base_dir }}/{{ current_user }}/.dotfiles"
     creates: "/{{ base_dir }}/{{ current_user }}/.config/nvim/init.lua"
+  notify: Reload Zsh Files
+
+- name: Set Editor Symlink (DOOM)
+  command: >
+    ln -s -f
+    "/{{ base_dir }}/{{ current_user }}/.dotfiles/doom"
+    "/{{ base_dir }}/{{ current_user }}/.config/doom"
+  args:
+    chdir: "/{{ base_dir }}/{{ current_user }}/.dotfiles"
+    creates: "/{{ base_dir }}/{{ current_user }}/.config/doom/init.el"
   notify: Reload Zsh Files

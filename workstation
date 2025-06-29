@@ -2,9 +2,12 @@
 
 # Constants
 readonly DOTFILES_DIR="$HOME/.dotfiles"
-readonly SUPPORTED_COMMANDS=("ping" "setup" "clean" "github" "connect" "day" "night")
-readonly SUPPORTED_OS=("darwin" "linux")
 readonly GHOSTTY_CONFIG="$HOME/.config/ghostty/config"
+readonly ICON="$HOME/.local/share/icons/doom.png"
+readonly DESKTOP_FILE=/usr/share/applications/emacs.desktop
+
+readonly SUPPORTED_OS=("darwin" "linux")
+readonly SUPPORTED_COMMANDS=("ping" "setup" "clean" "github" "connect" "day" "night" "doom" "icon")
 
 # Color codes for output
 readonly RED='\033[0;31m'
@@ -47,12 +50,26 @@ install_linux_dependencies() {
     [ ! -e /usr/bin/ansible ] && sudo dnf install ansible
 }
 
+download_doom() {
+    git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.config/emacs
+}
+
+install_doom() {
+    cd ~/.config/emacs/bin || return
+    sh doom install --no-config --install --fonts --color --force --env
+}
+
+change_icon() {
+    mkdir -p "$HOME/.local/share/icons"
+    wget https://raw.githubusercontent.com/eccentric-j/doom-icon/master/cute-doom/doom.png -O "$ICON" &&
+    sudo --preserve-env=ICON,DESKTOP_FILE sed -i "s|Icon=.*|Icon=$ICON|" $DESKTOP_FILE
+}
+
 set_ssh_key_to_github() {
     gh auth login
     gh auth refresh -h github.com -s admin:ssh_signing_key
     gh ssh-key add "$HOME/.ssh/${CURRENT_USER}_rsa.pub" --type signing
 }
-
 
 remove_symlinks() {
     [ -L ~/.zshrc ] && rm ~/.zshrc
@@ -66,7 +83,6 @@ remove_symlinks_linux() {
     [ -L ~/.akeptous_profile ] && rm ~/.akeptous_profile
     [ -L ~/.config/nvim ] && rm ~/.config/nvim
 }
-
 
 remove_symlinks_darwin() {
     [ -L ~/.workrc ] && rm ~/.workrc
@@ -211,8 +227,21 @@ execute_github() {
 }
 
 execute_connect() {
-    log_info "Connect dotfiles to GitHub by SSH"
+    log_info "Connect dotfiles to GitHub over SSH"
     connect
+}
+
+execute_icon() {
+    log_info "Change Emacs icon to Doom icon"
+    change_icon
+}
+
+execute_doom() {
+    log_info "Download Doom"
+    download_doom
+
+    log_info "Install Doom"
+    install_doom
 }
 
 # Dependency installation dispatcher
@@ -251,17 +280,23 @@ dispatch_command() {
     "clean")
         execute_clean "$os"
         ;;
+    "night")
+        change_theme "night"
+        ;;
+    "day")
+        change_theme "day"
+        ;;
     "github")
         execute_github
         ;;
     "connect")
         execute_connect
         ;;
-    "night")
-        change_theme "night"
+    "doom")
+	execute_doom
         ;;
-    "day")
-        change_theme "day"
+    "icon")
+        execute_icon
         ;;
     *)
         log_error "Unknown command: $command"
@@ -281,7 +316,8 @@ Commands:
     clean    - Remove symlinks (Linux only)
     github   - Set up SSH key for GitHub
     connect  - Connect dotfiles repository to GitHub by SSH
-
+    doom     - Install Doom over Emacs
+    icon     - Change Emacs icon to Doom icon
     night    - Set the Ghostty's dark theme
     day      - Set the Ghostty's light theme
 
@@ -303,7 +339,12 @@ main() {
     fi
 
     # Special handling for commands that don't need OS detection
-    if [[ "$command" == "github"  || "$command" == "connect" || "$command" == "night" || "$command" == "day" ]]; then
+    if [[ "$command" == "day" ||
+	  "$command" == "doom" ||
+	  "$command" == "icon" ||
+	  "$command" == "night" ||
+	  "$command" == "github" ||
+	  "$command" == "connect" ]]; then
         validate_command "$command" || exit 1
         dispatch_command "$command"
         exit $?

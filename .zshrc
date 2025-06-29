@@ -33,6 +33,7 @@ alias lg='lazygit'
 # ---------
 # NOTE: Workstation CLI
 export PATH="$HOME/.dotfiles/:$PATH"
+export PATH="$HOME/.config/emacs/bin:$PATH"
 # NOTE: Configurations
 [ -s ~/.workrc ] && source ~/.workrc
 [ -s ~/.akeptousrc ] && source ~/.akeptousrc
