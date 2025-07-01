@@ -2,6 +2,13 @@
 
 export CURRENT_USER=bxsr
 
+# NOTE: Go setup
 export GOPATH="/usr/local/bin"
 export GOBIN="$GOPATH"
 export PATH="$PATH:$GOBIN"
+
+# NOTE: Bun setup
+[ -s "/home/bxsr/.bun/_bun" ] && source "/home/bxsr/.bun/_bun"
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+

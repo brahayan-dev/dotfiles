@@ -56,3 +56,16 @@
       args:
         creates: /usr/local/bin/polylith
       notify: Reload Zsh Files
+
+- name: Install Bun
+  block:
+    - name: Install Bun - Download Installer
+      get_url:
+        url: https://bun.sh/install
+        dest: /tmp/bun-installer
+        mode: 0777
+    - name: Install Bun - Run Installer
+      become: true
+      shell: /tmp/bun-installer
+      args:
+        creates: "/{{ base_dir }}/{{ current_user }}/.bun/_bun"
