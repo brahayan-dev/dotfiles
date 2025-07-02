@@ -7,58 +7,42 @@ vim.g.have_nerd_font = true
 
 -- [[ Setting options ]]
 
--- Make line numbers default
 vim.o.number = true
 vim.o.relativenumber = true
 
--- Enable mouse mode, can be useful for resizing splits for example!
 vim.o.mouse = "a"
 
--- Don't show the mode, since it's already in the status line
 vim.o.showmode = false
 
--- Sync clipboard between OS and Neovim.
 vim.schedule(function()
 	vim.o.clipboard = "unnamedplus"
 end)
 
--- Enable break indent
 vim.o.breakindent = true
 
--- Save undo history
 vim.o.undofile = true
 
--- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
 vim.o.ignorecase = true
 vim.o.smartcase = true
 
--- Keep signcolumn on by default
 vim.o.signcolumn = "yes"
 
--- Decrease update time
 vim.o.updatetime = 250
 
--- Decrease mapped sequence wait time
 vim.o.timeoutlen = 300
 
--- Configure how new splits should be opened
 vim.o.splitright = true
 vim.o.splitbelow = true
 
--- Configure visible whitespace characters.
 vim.o.list = true
 vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 
--- Preview substitutions live, as you type!
 vim.o.inccommand = "split"
 
--- Show which line your cursor is on
 vim.o.cursorline = true
 
--- Minimal number of screen lines to keep above and below the cursor.
 vim.o.scrolloff = 10
 
--- Ask for confirmation before quitting with unsaved changes.
 vim.o.confirm = true
 
 -- [[ Basic Keymaps ]]
@@ -125,16 +109,11 @@ require("lazy").setup({
 
 	{ -- Useful plugin to show you pending keybinds.
 		"folke/which-key.nvim",
-		event = "VimEnter", -- Sets the loading event to 'VimEnter'
+		event = "VimEnter",
 		opts = {
-			-- delay between pressing a key and opening which-key (milliseconds)
-			-- this setting is independent of vim.o.timeoutlen
 			delay = 0,
 			icons = {
-				-- set icon mappings to true if you have a Nerd Font
 				mappings = vim.g.have_nerd_font,
-				-- If you are using a Nerd Font: set icons.keys to an empty table which will use the
-				-- default which-key.nvim defined Nerd Font icons, otherwise define a string table
 				keys = vim.g.have_nerd_font and {} or {
 					Up = "<Up> ",
 					Down = "<Down> ",
@@ -383,12 +362,8 @@ require("lazy").setup({
 					enabled = true,
 					cmd = { vim.fn.expand("/usr/local/bin/rubocop") },
 				},
-				--
 
 				lua_ls = {
-					-- cmd = { ... },
-					-- filetypes = { ... },
-					-- capabilities = {},
 					settings = {
 						Lua = {
 							completion = {
@@ -448,7 +423,6 @@ require("lazy").setup({
 			end,
 			formatters_by_ft = {
 				lua = { "stylua" },
-				-- javascript = { "prettierd", "prettier", stop_after_first = true },
 			},
 		},
 	},
@@ -566,14 +540,6 @@ require("lazy").setup({
 			indent = { enable = true, disable = { "ruby" } },
 		},
 	},
-
-	-- require 'kickstart.plugins.debug',
-	-- require 'kickstart.plugins.indent_line',
-	-- require 'kickstart.plugins.lint',
-	-- require 'kickstart.plugins.autopairs',
-	-- require 'kickstart.plugins.neo-tree',
-	-- require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
-	-- { import = 'custom.plugins' },
 }, {
 	ui = {
 		icons = vim.g.have_nerd_font and {} or {
