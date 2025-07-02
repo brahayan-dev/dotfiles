@@ -3,7 +3,7 @@
 
   vars_files:
     - vars/base.yml
-    - vars/secret.yml
+    - ../common/vars/secret.yml
 
   pre_tasks:
     - import_tasks: tasks/prelude.yml

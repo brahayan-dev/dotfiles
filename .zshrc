@@ -32,7 +32,6 @@ alias lg='lazygit'
 # Settings
 # ---------
 # NOTE: Workstation CLI
-
 export PATH="$HOME/.dotfiles/:$PATH"
 
 # NOTE: Doom setup
