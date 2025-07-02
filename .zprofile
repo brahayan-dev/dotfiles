@@ -14,6 +14,8 @@ fi
 # ---------
 # Settings
 # ---------
+# NOTE: Editor
+export EDITOR=nvim
 # NOTE: Profiles
 [ -f ~/.work_profile ] && source ~/.work_profile
 [ -f ~/.private_profile ] && source ~/.private_profile
