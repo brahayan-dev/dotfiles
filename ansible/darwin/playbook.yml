@@ -3,7 +3,7 @@
 
   vars_files:
     - vars/base.yml
-    - ../common/vars/secret.yml
+    - vars/secret.yml
 
   tasks:
     - name: Install Dependencies

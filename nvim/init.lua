@@ -352,17 +352,6 @@ require("lazy").setup({
 			local capabilities = require("blink.cmp").get_lsp_capabilities()
 
 			local servers = {
-				ruby_lsp = {
-					mason = false,
-					enabled = true,
-					cmd = { vim.fn.expand("/usr/local/bin/ruby-lsp") },
-				},
-				rubocop = {
-					mason = false,
-					enabled = true,
-					cmd = { vim.fn.expand("/usr/local/bin/rubocop") },
-				},
-
 				lua_ls = {
 					settings = {
 						Lua = {
@@ -527,7 +516,6 @@ require("lazy").setup({
 				"markdown",
 				"markdown_inline",
 				"query",
-				"ruby",
 				"vim",
 				"vimdoc",
 			},
