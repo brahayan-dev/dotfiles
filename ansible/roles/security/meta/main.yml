@@ -1,0 +1,9 @@
+---
+galaxy_info:
+  author: Brahayan Xavier
+  description: Security configuration for SSH and Git
+  company: Personal
+  license: MIT
+
+dependencies:
+  - role: base 

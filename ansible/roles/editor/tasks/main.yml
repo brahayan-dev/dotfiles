@@ -1,13 +1,22 @@
 ---
-- name: Install Editors
+- name: Install Editors (Linux)
   become: true
   dnf:
     name:
       - neovim
       - emacs
     state: present
+  when: ansible_os_family == "RedHat"
 
-- name: Install Dependencies For Editors
+- name: Install Editors (macOS)
+  community.general.homebrew:
+    name:
+      - neovim
+      - emacs
+    state: present
+  when: ansible_os_family == "Darwin"
+
+- name: Install Dependencies For Editors (Linux)
   become: true
   dnf:
     name:
@@ -30,6 +39,28 @@
       - shellcheck
       - fira-code-fonts
     state: present
+  when: ansible_os_family == "RedHat"
+
+- name: Install Dependencies For Editors (macOS)
+  community.general.homebrew:
+    name:
+      - jq
+      - gh
+      - gcc
+      - make
+      - grip
+      - tidy
+      - cmake
+      - shfmt
+      - unzip
+      - pandoc
+      - direnv
+      - libtool
+      - ripgrep
+      - fd
+      - shellcheck
+    state: present
+  when: ansible_os_family == "Darwin"
 
 - name: Install NPM Dependencies
   become: true
@@ -68,7 +99,7 @@
       args:
         creates: "/{{ base_dir }}/{{ current_user }}/.pyenv"
 
-- name: Install Cljfmt
+- name: Install Cljfmt*
   block:
     - name: Install Cljfmt - Download Installer
       get_url:
@@ -81,7 +112,7 @@
       args:
         creates: /usr/local/bin/cljfmt
 
-- name: Install Clojure LSP
+- name: Install Clojure LSP*
   block:
     - name: Install Clojure LSP - Download Installer
       get_url:
@@ -120,4 +151,4 @@
   args:
     chdir: "/{{ base_dir }}/{{ current_user }}/.dotfiles"
     creates: "/{{ base_dir }}/{{ current_user }}/.config/doom/init.el"
-  notify: Reload Zsh Files
+  notify: Reload Zsh Files 

@@ -1,0 +1,9 @@
+---
+galaxy_info:
+  author: Brahayan Xavier
+  description: Environment configuration and dotfile management
+  company: Personal
+  license: MIT
+
+dependencies:
+  - role: base 

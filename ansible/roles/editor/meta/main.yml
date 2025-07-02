@@ -1,0 +1,9 @@
+---
+galaxy_info:
+  author: Brahayan Xavier
+  description: Editor configuration with Neovim and Emacs setup
+  company: Personal
+  license: MIT
+
+dependencies:
+  - role: development 

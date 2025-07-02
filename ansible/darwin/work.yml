@@ -5,29 +5,9 @@
     - vars/base.yml
     - vars/secret.yml
 
-  tasks:
-    - name: Install Dependencies
-      community.general.homebrew:
-        name:
-          - grip
-          - stow
-          - direnv
-        state: present
-    - name: Install Python Dependencies
-      pip:
-        name: black
-        state: present
-    - name: Set Editor Symlink (DOOM)
-      command: >
-        ln -s -f
-        "/{{ base_dir }}/{{ current_user }}/.dotfiles/doom"
-        "/{{ base_dir }}/{{ current_user }}/.config/doom"
-      args:
-        chdir: "/{{ base_dir }}/{{ current_user }}/.dotfiles"
-        creates: "/{{ base_dir }}/{{ current_user }}/.config/doom/init.lua"
-      notify: Reload Zsh Files
-    - import_tasks: ../common/tasks/ia.yml
-    - import_tasks: ../common/tasks/environment.yml
-
-  handlers:
-    - import_tasks: ../common/handlers/base.yml
+  roles:
+    - base
+    - development
+    - editor
+    - environment
+    - ai

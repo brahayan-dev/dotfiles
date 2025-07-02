@@ -5,16 +5,11 @@
     - vars/base.yml
     - vars/secret.yml
 
-  pre_tasks:
-    - import_tasks: tasks/prelude.yml
-
-  tasks:
-    - import_tasks: tasks/base.yml
-    - import_tasks: tasks/stack.yml
-    - import_tasks: tasks/editor.yml
-    - import_tasks: tasks/security.yml
-    - import_tasks: ../common/tasks/ai.yml
-    - import_tasks: ../common/tasks/environment.yml
-
-  handlers:
-    - import_tasks: ../common/handlers/base.yml
+  roles:
+    - prerequisites
+    - base
+    - development
+    - editor
+    - security
+    - environment
+    - ai

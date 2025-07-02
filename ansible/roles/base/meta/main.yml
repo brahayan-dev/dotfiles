@@ -1,0 +1,9 @@
+---
+galaxy_info:
+  author: Brahayan Xavier
+  description: Base system setup with shell and terminal configuration
+  company: Personal
+  license: MIT
+
+dependencies:
+  - role: prerequisites 

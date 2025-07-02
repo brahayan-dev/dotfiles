@@ -1,0 +1,9 @@
+---
+galaxy_info:
+  author: Brahayan Xavier
+  description: AI development tools and assistants
+  company: Personal
+  license: MIT
+
+dependencies:
+  - role: development 

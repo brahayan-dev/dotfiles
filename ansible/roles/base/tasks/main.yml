@@ -1,17 +1,30 @@
 ---
-- name: Install Common Dependencies
+- name: Install Common Dependencies (Linux)
   become: true
   dnf:
     name:
       - git
       - zsh
       - curl
-      - tmux
       - tree
       - pdftk
       - rlwrap
       - lazygit
     state: present
+  when: ansible_os_family == "RedHat"
+
+- name: Install Common Dependencies (macOS)
+  community.general.homebrew:
+    name:
+      - git
+      - zsh
+      - curl
+      - tree
+      - pdftk-java
+      - rlwrap
+      - lazygit
+    state: present
+  when: ansible_os_family == "Darwin"
 
 - name: Set Zsh As Shell By Default
   become: true
@@ -59,4 +72,4 @@
   args:
     chdir: "/{{ base_dir }}/{{ current_user }}/.dotfiles"
     creates: "/{{ base_dir }}/{{ current_user }}/.config/ghostty/config"
-  notify: Reload Zsh Files
+  notify: Reload Zsh Files 

@@ -6,14 +6,14 @@
     path: "/{{ base_dir }}/{{ current_user }}/.dotfiles/.{{ workspace_id }}_profile"
   notify: Reload Zsh Files
 
-- name: Propagate GitHub Token
+- name: Propagate GitHub Token**
   lineinfile:
     create: true
     line: "export GITHUB_TOKEN={{ github_token }}"
     path: "/{{ base_dir }}/{{ current_user }}/.dotfiles/.private_profile"
   notify: Reload Zsh Files
 
-- name: Propagate Gemini Api Key
+- name: Propagate Gemini Api Key*
   lineinfile:
     create: true
     line: "export GEMINI_API_KEY={{ gemini_api_key }}"
@@ -68,4 +68,4 @@
   args:
     chdir: "/{{ base_dir }}/{{ current_user }}/.dotfiles"
     creates: "/{{ base_dir }}/{{ current_user }}/.zprofile"
-  notify: Reload Zsh Files
+  notify: Reload Zsh Files 

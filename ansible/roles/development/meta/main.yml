@@ -1,0 +1,9 @@
+---
+galaxy_info:
+  author: Brahayan Xavier
+  description: Development stack with languages and build tools
+  company: Personal
+  license: MIT
+
+dependencies:
+  - role: base 

@@ -5,4 +5,4 @@
     source "/{{ base_dir }}/{{ current_user }}/.zprofile"
     exit 0
   args:
-    executable: /bin/zsh
+    executable: /bin/zsh 

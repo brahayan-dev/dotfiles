@@ -1,18 +1,21 @@
 ---
-- name: Add Ghostty
+- name: Add Ghostty (Linux)
   become: true
   community.general.copr:
     name: pgdev/ghostty
     state: enabled
+  when: ansible_os_family == "RedHat"
 
-- name: Add DBeaver
+- name: Add DBeaver (Linux)
   become: true
   community.general.copr:
     name: birkch/dbeaver
     state: enabled
+  when: ansible_os_family == "RedHat"
 
-- name: Add Lazygit
+- name: Add Lazygit (Linux)
   become: true
   community.general.copr:
     name: atim/lazygit
     state: enabled
+  when: ansible_os_family == "RedHat" 

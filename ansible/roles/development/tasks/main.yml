@@ -1,5 +1,5 @@
 ---
-- name: Install Stack
+- name: Install Development Stack (Linux)
   become: true
   dnf:
     name:
@@ -13,8 +13,22 @@
       - vagrant
       - dbeaver-ce
     state: present
+  when: ansible_os_family == "RedHat"
 
-- name: Install Clojure
+- name: Install Development Stack (macOS)*
+  community.general.homebrew:
+    name:
+      - openjdk
+      - npm
+      - nodejs
+      - python3
+      - go
+      - podman
+      - vagrant
+    state: present
+  when: ansible_os_family == "Darwin"
+
+- name: Install Clojure*
   become: true
   block:
     - name: Install Clojure - Download Installer
@@ -26,8 +40,9 @@
       shell: /tmp/clojure-installer.sh
       args:
         creates: /usr/local/bin/clojure
+  when: ansible_os_family == "Darwin"
 
-- name: Install Babashka
+- name: Install Babashka*
   block:
     - name: Install Babashka - Download Installer
       get_url:
@@ -39,25 +54,9 @@
       shell: /tmp/babashka
       args:
         creates: /usr/local/bin/bb
+  when: ansible_os_family == "Darwin"  
 
-- name: Install Polylith
-  become: true
-  block:
-    - name: Install Polylith - Download Installer
-      get_url:
-        url: https://github.com/polyfy/polylith/releases/download/v0.2.22/poly-0.2.22.jar
-        dest: /usr/local/polylith.jar
-        mode: 0777
-    - name: Install Polylith - Set Symlink To CLI
-      command: >
-        ln -s -f
-        "/{{ base_dir }}/{{ current_user }}/.dotfiles/polylith"
-        /usr/local/bin/polylith
-      args:
-        creates: /usr/local/bin/polylith
-      notify: Reload Zsh Files
-
-- name: Install Bun
+- name: Install Bun*
   block:
     - name: Install Bun - Download Installer
       get_url:
@@ -68,4 +67,4 @@
       become: true
       shell: /tmp/bun-installer
       args:
-        creates: "/{{ base_dir }}/{{ current_user }}/.bun/_bun"
+        creates: "/{{ base_dir }}/{{ current_user }}/.bun/_bun" 
