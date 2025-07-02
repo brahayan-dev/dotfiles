@@ -7,7 +7,7 @@ readonly ICON="$HOME/.local/share/icons/doom.png"
 readonly DESKTOP_FILE=/usr/share/applications/emacs.desktop
 
 readonly SUPPORTED_OS=("darwin" "linux")
-readonly SUPPORTED_COMMANDS=("ping" "setup" "clean" "github" "connect" "day" "night" "doom" "icon")
+readonly SUPPORTED_COMMANDS=("ping" "setup" "clean" "github" "connect" "day" "night" "doom" "icon" "mark")
 
 # Color codes for output
 readonly RED='\033[0;31m'
@@ -27,14 +27,28 @@ ping() {
 # Function to setup the workspace
 setup() {
     local workspace_path="$1"
+    local playbook="$2"
+    local ansible_opts=()
 
     cd "$workspace_path" || return
+
+    if [[ -f "$workspace_path/.become_password" ]]; then
+        ansible_opts+=(--become-password-file "$workspace_path/.become_password")
+    fi
+
+    if [[ -f "$workspace_path/.vault_password" ]]; then
+        ansible_opts+=(--vault-password-file "$workspace_path/.vault_password")
+    fi
+
     ansible-playbook -c local \
         -i ../hosts.ini \
-        --become-password-file "$1/.become_password" \
-        --vault-password-file "$1/.vault_password" \
-        playbook.yml
+        "${ansible_opts[@]}" \
+        "$playbook"
     return
+}
+
+mark() {
+    touch ~/.akeptous
 }
 
 connect() {
@@ -62,7 +76,7 @@ install_doom() {
 change_icon() {
     mkdir -p "$HOME/.local/share/icons"
     wget https://raw.githubusercontent.com/eccentric-j/doom-icon/master/cute-doom/doom.png -O "$ICON" &&
-    sudo --preserve-env=ICON,DESKTOP_FILE sed -i "s|Icon=.*|Icon=$ICON|" $DESKTOP_FILE
+        sudo --preserve-env=ICON,DESKTOP_FILE sed -i "s|Icon=.*|Icon=$ICON|" $DESKTOP_FILE
 }
 
 set_ssh_key_to_github() {
@@ -115,6 +129,15 @@ detect_os() {
     else
         log_error "Unsupported operating system: $os_info"
         return 1
+    fi
+}
+
+# Select playbook
+get_playbook_name() {
+    if [[ -f ~/.akeptous ]]; then
+        echo "akeptous.yml"
+    else
+        echo "work.yml"
     fi
 }
 
@@ -201,7 +224,9 @@ execute_setup() {
 
     log_info "Executing setup for $os"
     install_dependencies "$os"
-    setup "$workspace_path"
+
+    playbook=$(get_playbook_name) || exit 1
+    setup "$workspace_path" "$playbook"
 }
 
 execute_clean() {
@@ -293,7 +318,7 @@ dispatch_command() {
         execute_connect
         ;;
     "doom")
-	execute_doom
+        execute_doom
         ;;
     "icon")
         execute_icon
@@ -340,11 +365,11 @@ main() {
 
     # Special handling for commands that don't need OS detection
     if [[ "$command" == "day" ||
-	  "$command" == "doom" ||
-	  "$command" == "icon" ||
-	  "$command" == "night" ||
-	  "$command" == "github" ||
-	  "$command" == "connect" ]]; then
+        "$command" == "doom" ||
+        "$command" == "icon" ||
+        "$command" == "night" ||
+        "$command" == "github" ||
+        "$command" == "connect" ]]; then
         validate_command "$command" || exit 1
         dispatch_command "$command"
         exit $?

@@ -20,13 +20,6 @@
     path: "/{{ base_dir }}/{{ current_user }}/.dotfiles/.private_profile"
   notify: Reload Zsh Files
 
-- name: Propagate OpenAI Api Key
-  lineinfile:
-    create: true
-    line: "export OPENAI_API_KEY={{ openai_api_key }}"
-    path: "/{{ base_dir }}/{{ current_user }}/.dotfiles/.private_profile"
-  notify: Reload Zsh Files
-
 - name: Set Private Symlink
   command: >
     ln -s -f
