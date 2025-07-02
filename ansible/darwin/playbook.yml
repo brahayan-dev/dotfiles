@@ -26,6 +26,7 @@
         chdir: "/{{ base_dir }}/{{ current_user }}/.dotfiles"
         creates: "/{{ base_dir }}/{{ current_user }}/.config/doom/init.lua"
       notify: Reload Zsh Files
+    - import_tasks: ../common/tasks/ia.yml
     - import_tasks: ../common/tasks/environment.yml
 
   handlers:

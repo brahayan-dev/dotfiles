@@ -13,6 +13,7 @@
     - import_tasks: tasks/stack.yml
     - import_tasks: tasks/editor.yml
     - import_tasks: tasks/security.yml
+    - import_tasks: ../common/tasks/ai.yml
     - import_tasks: ../common/tasks/environment.yml
 
   handlers:
