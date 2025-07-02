@@ -37,6 +37,9 @@ export PATH="$HOME/.dotfiles/:$PATH"
 # NOTE: Doom setup
 export PATH="$HOME/.config/emacs/bin:$PATH"
 
+# NOTE: Aider setup
+export OPENAI_API_BASE=https://api.githubcopilot.com
+
 # NOTE: Python setup
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$HOME/.local/bin:$PATH"
