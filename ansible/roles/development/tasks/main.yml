@@ -15,19 +15,6 @@
     state: present
   when: ansible_os_family == "RedHat"
 
-- name: Install Development Stack (macOS)*
-  community.general.homebrew:
-    name:
-      - openjdk
-      - npm
-      - nodejs
-      - python3
-      - go
-      - podman
-      - vagrant
-    state: present
-  when: ansible_os_family == "Darwin"
-
 - name: Install Clojure*
   become: true
   block:
@@ -67,4 +54,4 @@
       become: true
       shell: /tmp/bun-installer
       args:
-        creates: "/{{ base_dir }}/{{ current_user }}/.bun/_bun" 
+        creates: "/{{ base_dir }}/{{ current_user }}/.bun/_bun"

@@ -63,6 +63,7 @@
     "/{{ base_dir }}/{{ current_user }}/.config/ghostty/config--"
   args:
     creates: "/{{ base_dir }}/{{ current_user }}/.config/ghostty/config--"
+  when: ansible_os_family == "RedHat"
 
 - name: Set Terminal Symlink (GHOSTTY)
   command: >
@@ -72,4 +73,5 @@
   args:
     chdir: "/{{ base_dir }}/{{ current_user }}/.dotfiles"
     creates: "/{{ base_dir }}/{{ current_user }}/.config/ghostty/config"
-  notify: Reload Zsh Files 
+  notify: Reload Zsh Files
+  when: ansible_os_family == "RedHat"

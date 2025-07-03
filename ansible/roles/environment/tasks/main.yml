@@ -19,6 +19,7 @@
     line: "export GEMINI_API_KEY={{ gemini_api_key }}"
     path: "/{{ base_dir }}/{{ current_user }}/.dotfiles/.private_profile"
   notify: Reload Zsh Files
+  when: ansible_os_family == "RedHat"
 
 - name: Set Private Symlink
   command: >
@@ -68,4 +69,4 @@
   args:
     chdir: "/{{ base_dir }}/{{ current_user }}/.dotfiles"
     creates: "/{{ base_dir }}/{{ current_user }}/.zprofile"
-  notify: Reload Zsh Files 
+  notify: Reload Zsh Files

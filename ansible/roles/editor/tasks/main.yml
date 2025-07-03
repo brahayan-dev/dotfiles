@@ -12,7 +12,6 @@
   community.general.homebrew:
     name:
       - neovim
-      - emacs
     state: present
   when: ansible_os_family == "Darwin"
 
@@ -46,10 +45,10 @@
     name:
       - jq
       - gh
+      - fd
       - gcc
       - make
       - grip
-      - tidy
       - cmake
       - shfmt
       - unzip
@@ -57,7 +56,7 @@
       - direnv
       - libtool
       - ripgrep
-      - fd
+      - ghostty
       - shellcheck
     state: present
   when: ansible_os_family == "Darwin"
@@ -73,6 +72,7 @@
     - prettier
     - bash-language-server
     - yaml-language-server
+  when: ansible_os_family == "RedHat"
 
 - name: Install Python Dependencies
   become: true
@@ -151,4 +151,4 @@
   args:
     chdir: "/{{ base_dir }}/{{ current_user }}/.dotfiles"
     creates: "/{{ base_dir }}/{{ current_user }}/.config/doom/init.el"
-  notify: Reload Zsh Files 
+  notify: Reload Zsh Files
