@@ -123,11 +123,10 @@
        ;;crystal                      ; ruby at the speed of c
        ;;csharp                       ; unity, .NET, and mono shenanigans
        data                           ; config/data formats
-       (:when (featurep :system 'macos)
-         (scala +lsp)                 ; java, but good
-         (ruby +lsp
-               +tree-sitter)          ; 1.step {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
-         (dart +lsp +flutter))        ; paint ui and not much else
+       (scala +lsp)                   ; java, but good
+       (ruby +lsp
+             +tree-sitter)            ; 1.step {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
+       (dart +lsp +flutter)           ; paint ui and not much else
        ;;dhall
        ;;(elixir +lsp)                ; erlang done right
        ;;(elm +lsp)                   ; care for a cup of TEA?

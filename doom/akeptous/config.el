@@ -54,44 +54,11 @@
   (add-hook 'lsp-after-apply-edits-hook
             (lambda (&rest _) (save-buffer))))
 
-;; ---------
-;; Paredit
-;; ---------
-(use-package! paredit
-  :diminish
-  :ensure t
-  ;; Bind RET to nil, to fix Cider REPL buffer eval issue
-  :bind (:map paredit-mode-map ("RET" . nil))
-  :hook ((clojure-mode . paredit-mode)
-         (emacs-lisp-mode . paredit-mode)
-         (clojurescript-mode . paredit-mode)))
-
-(after! paredit
-  (define-key paredit-mode-map (kbd "C-<left>") nil)
-  (define-key paredit-mode-map (kbd "C-<right>") nil)
-  (map! :nvi
-        :desc "Forward barf"
-        "M-<left>" #'paredit-forward-barf-sexp
-        :desc "Forward slurp"
-        "M-<right>" #'paredit-forward-slurp-sexp
-        :desc "Backward slurp"
-        "M-S-<left>" #'paredit-backward-slurp-sexp
-        :desc "Backward barf"
-        "M-S-<right>" #'paredit-backward-barf-sexp
-        :desc "Backward"
-        "C-c <left>" #'paredit-backward
-        :desc "Forward"
-        "C-c <right>" #'paredit-forward))
-
 ;; ------
 ;; OS
 ;; ------
 (when (equal system-type 'darwin)
-  (setq doom-font (font-spec :family "Fira Code" :size 18))
-  (let ((nudev-emacs-path "~/dev/nu/nudev/ides/emacs/"))
-    (when (file-directory-p nudev-emacs-path)
-      (add-to-list 'load-path nudev-emacs-path)
-      (require 'nu nil t))))
+  (setq doom-font (font-spec :family "Fira Code" :size 18)))
 
 (when (equal system-type 'gnu/linux)
   (setq doom-font (font-spec :family "Fira Code" :size 16)

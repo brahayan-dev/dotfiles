@@ -156,7 +156,7 @@
 - name: Set Editor Symlink (DOOM)
   command: >
     ln -s -f
-    "/{{ base_dir }}/{{ current_user }}/.dotfiles/doom"
+    "/{{ base_dir }}/{{ current_user }}/.dotfiles/doom/{{ workspace_id }}"
     "/{{ base_dir }}/{{ current_user }}/.config/doom"
   args:
     chdir: "/{{ base_dir }}/{{ current_user }}/.dotfiles"
