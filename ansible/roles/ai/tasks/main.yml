@@ -1,11 +1,12 @@
 ---
 - name: Install Aider
   block:
-     - name: Install Aider - Download Installer
-       pip:
-         name: aider-install
-         state: present
-     - name: Install Aider - Run Installer
-       shell: aider-install
-       args:
-         creates: "/{{ base_dir }}/{{ current_user }}/.local/bin/aider" 
+    - name: Install Aider - Download Installer
+      pip:
+        name: aider-install
+        state: present
+        executable: /usr/bin/pip3
+    - name: Install Aider - Run Installer
+      shell: aider-install
+      args:
+        creates: "/{{ base_dir }}/{{ current_user }}/.local/bin/aider"
