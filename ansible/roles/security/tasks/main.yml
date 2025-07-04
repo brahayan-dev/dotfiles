@@ -5,7 +5,7 @@
     state: directory
     mode: 0755
 
-- name: Add Ssh Key To Agent
+- name: Add SSH Key To Agent
   become: true
   shell: |
     eval "$(ssh-agent -s)"
