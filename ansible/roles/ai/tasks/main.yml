@@ -1,11 +1,14 @@
 ---
 - name: Install Aider
   block:
-    - name: Install Aider - Download Installer
+    - name: Install Aider - Download Installer (Linux)
       pip:
         name: aider-install
         state: present
-        executable: /usr/bin/pip3
+      when: ansible_os_family == "RedHat"
+    - name: Install Aider - Download Installer (macOS)
+      shell: curl -LsSf https://aider.chat/install.sh | sh
+      when: ansible_os_family == "Darwin"
     - name: Install Aider - Run Installer
       shell: aider-install
       args:
