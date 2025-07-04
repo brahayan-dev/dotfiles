@@ -114,11 +114,18 @@
         url: https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer
         dest: /tmp/pyenv
         mode: 0777
-    - name: Install Pyenv - Run Installer
+    - name: Install Pyenv - Run Installer (Linux)
       become: true
       shell: /tmp/pyenv
       args:
         creates: "/{{ base_dir }}/{{ current_user }}/.pyenv"
+      when: ansible_os_family == "RedHat"
+    - name: Install Pyenv - Run Installer (macOS)
+      become: true
+      shell: /tmp/pyenv
+      args:
+        creates: "/var/root/.pyenv"
+      when: ansible_os_family == "Darwin"
 
 - name: Install Cljfmt
   block:
@@ -148,13 +155,23 @@
         creates: /usr/local/bin/clojure-lsp
   when: not akeptous_file.stat.exists
 
-- name: Install Dockfmt
+- name: Install Dockfmt (Linux)
   become: true
   shell: |
     go install github.com/jessfraz/dockfmt@latest
     mv /root/go/bin/dockfmt /usr/local/bin/dockfmt
   args:
     creates: /usr/local/bin/dockfmt
+  when: ansible_os_family == "RedHat"
+
+- name: Install Dockfmt (macOS)
+  become: true
+  shell: |
+    go install github.com/jessfraz/dockfmt@latest
+    mv /var/root/go/bin/dockfmt /usr/local/bin/dockfmt
+  args:
+    creates: /usr/local/bin/dockfmt
+  when: ansible_os_family == "Darwin"
 
 - name: Set Editor Symlink (NVIM)
   command: >
