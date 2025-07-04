@@ -20,7 +20,6 @@
       - zsh
       - curl
       - tree
-      - pdftk-java
       - rlwrap
       - lazygit
     state: present
@@ -49,29 +48,41 @@
         creates: "/{{ base_dir }}/{{ current_user }}/.oh-my-zsh"
 
 - name: Rename Zshrc File
-  command: >
-    mv
-    "/{{ base_dir }}/{{ current_user }}/.zshrc"
-    "/{{ base_dir }}/{{ current_user }}/.zshrc--"
-  args:
-    creates: "/{{ base_dir }}/{{ current_user }}/.zshrc--"
+  block:
+    - name: Rename Zshrc File - Verify Operation
+      stat:
+        path: "/{{ base_dir }}/{{ current_user }}/.zshrc"
+      register: zshrc_file
+    - name: Rename Zshrc File - Execute Operation
+      command: >
+        mv
+        "/{{ base_dir }}/{{ current_user }}/.zshrc"
+        "/{{ base_dir }}/{{ current_user }}/.zshrc--"
+      args:
+        creates: "/{{ base_dir }}/{{ current_user }}/.zshrc--"
+      when: zshrc_file.stat.exists
 
-- name: Rename Ghostty File
-  command: >
-    mv
-    "/{{ base_dir }}/{{ current_user }}/.config/ghostty/config"
-    "/{{ base_dir }}/{{ current_user }}/.config/ghostty/config--"
-  args:
-    creates: "/{{ base_dir }}/{{ current_user }}/.config/ghostty/config--"
-  when: ansible_os_family == "RedHat"
-
-- name: Set Terminal Symlink (GHOSTTY)
-  command: >
-    ln -s -f
-    "/{{ base_dir }}/{{ current_user }}/.dotfiles/ghostty/day"
-    "/{{ base_dir }}/{{ current_user }}/.config/ghostty/config"
-  args:
-    chdir: "/{{ base_dir }}/{{ current_user }}/.dotfiles"
-    creates: "/{{ base_dir }}/{{ current_user }}/.config/ghostty/config"
-  notify: Reload Zsh Files
-  when: ansible_os_family == "RedHat"
+- name: Configure Ghostty
+  block:
+    - name: Configure Ghostty - Verify Operation
+      stat:
+        path: "/{{ base_dir }}/{{ current_user }}/.config/ghostty/config"
+      register: ghostty_file
+    - name: Rename Ghostty File - Execute Operation
+      command: >
+        mv
+        "/{{ base_dir }}/{{ current_user }}/.config/ghostty/config"
+        "/{{ base_dir }}/{{ current_user }}/.config/ghostty/config--"
+      args:
+        creates: "/{{ base_dir }}/{{ current_user }}/.config/ghostty/config--"
+      when: ghostty_file.stat.exists
+    - name: Set Terminal Symlink Ghostty - Execute Operation
+      command: >
+        ln -s -f
+        "/{{ base_dir }}/{{ current_user }}/.dotfiles/ghostty/day"
+        "/{{ base_dir }}/{{ current_user }}/.config/ghostty/config"
+      args:
+        chdir: "/{{ base_dir }}/{{ current_user }}/.dotfiles"
+        creates: "/{{ base_dir }}/{{ current_user }}/.config/ghostty/config"
+      notify: Reload Zsh Files
+      when: ghostty_file.stat.exists

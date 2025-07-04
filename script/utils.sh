@@ -9,7 +9,7 @@ readonly SUPPORTED_COMMANDS=("ping" "setup" "clean" "github" "connect" "day" "ni
 
 # Mark function
 mark() {
-    touch ~/.akeptous
+    [[ ! -e ~/.akeptous ]] && touch ~/.akeptous
 }
 
 # Validation functions
@@ -41,7 +41,7 @@ validate_workspace() {
 # Get workspace path (simplified without OS detection)
 get_workspace_path() {
     local workspace_type="$1"
-    
+
     # Default to looking for both possible workspace directories
     if [[ -d "$DOTFILES_DIR/ansible/darwin" && -f ~/.akeptous ]]; then
         echo "$DOTFILES_DIR/ansible/linux"
@@ -87,4 +87,4 @@ Commands:
     mark     - Mark workspace as akeptous
 
 EOF
-} 
+}

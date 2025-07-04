@@ -2,8 +2,8 @@
 - hosts: Workspace
 
   vars_files:
-    - work/base.yml
-    - work/secret.yml
+    - akeptous/base.yml
+    - akeptous/secret.yml
 
   pre_tasks:
     - name: Verify Akeptous Workstation
@@ -15,5 +15,6 @@
     - base
     - development
     - editor
+    - security
     - environment
     - ai

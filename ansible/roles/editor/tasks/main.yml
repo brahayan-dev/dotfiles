@@ -9,10 +9,18 @@
   when: ansible_os_family == "RedHat"
 
 - name: Install Editors (macOS)
-  community.general.homebrew:
-    name:
-      - neovim
-    state: present
+  block:
+    - name: Install Editors (macOS) - Emacs
+      shell: >
+        brew tap d12frosted/emacs-plus
+        brew install emacs-plus --with-modern-doom3-icon --with-native-comp --with-mailutils
+      args:
+        creates: /opt/homebrew/Library/Taps/d12frosted/homebrew-emacs-plus
+    - name: Install Editors (macOS) - Neovim
+      community.general.homebrew:
+        name:
+          - neovim
+        state: present
   when: ansible_os_family == "Darwin"
 
 - name: Install Dependencies For Editors (Linux)
@@ -72,7 +80,7 @@
     - prettier
     - bash-language-server
     - yaml-language-server
-  when: ansible_os_family == "RedHat"
+  when: akeptous_file.stat.exists
 
 - name: Install Python Dependencies
   become: true
@@ -99,7 +107,7 @@
       args:
         creates: "/{{ base_dir }}/{{ current_user }}/.pyenv"
 
-- name: Install Cljfmt*
+- name: Install Cljfmt
   block:
     - name: Install Cljfmt - Download Installer
       get_url:
@@ -111,8 +119,9 @@
       shell: /tmp/cljfmt
       args:
         creates: /usr/local/bin/cljfmt
+  when: not akeptous_file.stat.exists
 
-- name: Install Clojure LSP*
+- name: Install Clojure LSP
   block:
     - name: Install Clojure LSP - Download Installer
       get_url:
@@ -124,6 +133,7 @@
       shell: /tmp/clojure-lsp
       args:
         creates: /usr/local/bin/clojure-lsp
+  when: not akeptous_file.stat.exists
 
 - name: Install Dockfmt
   become: true

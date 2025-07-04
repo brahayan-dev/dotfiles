@@ -15,7 +15,7 @@
     state: present
   when: ansible_os_family == "RedHat"
 
-- name: Install Clojure*
+- name: Install Clojure
   become: true
   block:
     - name: Install Clojure - Download Installer
@@ -27,9 +27,9 @@
       shell: /tmp/clojure-installer.sh
       args:
         creates: /usr/local/bin/clojure
-  when: ansible_os_family == "Darwin"
+  when: not akeptous_file.stat.exists
 
-- name: Install Babashka*
+- name: Install Babashka
   block:
     - name: Install Babashka - Download Installer
       get_url:
@@ -41,9 +41,9 @@
       shell: /tmp/babashka
       args:
         creates: /usr/local/bin/bb
-  when: ansible_os_family == "Darwin"  
+  when: not akeptous_file.stat.exists
 
-- name: Install Bun*
+- name: Install Bun
   block:
     - name: Install Bun - Download Installer
       get_url:
@@ -55,3 +55,4 @@
       shell: /tmp/bun-installer
       args:
         creates: "/{{ base_dir }}/{{ current_user }}/.bun/_bun"
+  when: akeptous_file.stat.exists

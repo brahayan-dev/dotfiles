@@ -2,14 +2,20 @@
 - hosts: Workspace
 
   vars_files:
-    - vars/base.yml
-    - vars/secret.yml
+      - akeptous/base.yml
+      - akeptous/secret.yml
+
+  pre_tasks:
+      - name: Verify Akeptous Workstation
+        stat:
+            path: "/{{ base_dir }}/{{ current_user }}/.akeptous"
+        register: akeptous_file
 
   roles:
-    - prerequisites
-    - base
-    - development
-    - editor
-    - security
-    - environment
-    - ai
+      - prerequisites
+      - base
+      - development
+      - editor
+      - security
+      - environment
+      - ai
