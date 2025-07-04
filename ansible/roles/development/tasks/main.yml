@@ -57,14 +57,9 @@
 
 - name: Install Bun
   block:
-    - name: Install Bun - Download Installer
-      get_url:
-        url: https://bun.sh/install
-        dest: /tmp/bun-installer
-        mode: 0777
     - name: Install Bun - Run Installer
       become: true
-      shell: /tmp/bun-installer
+      shell: curl -fsSL https://bun.sh/install | bash
       args:
         creates: "/{{ base_dir }}/{{ current_user }}/.bun/_bun"
   when: akeptous_file.stat.exists

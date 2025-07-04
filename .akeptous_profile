@@ -1,14 +1,21 @@
 #!/usr/bin/env zsh
 
-export CURRENT_USER=bxsr
+# ---------
+# Settings
+# ---------
+if [[ "$(uname -a)" =~ Darwin ]]; then
+    export CURRENT_USER=brahayanxavier
+    [ -s "/Users/brahayanxavier/.bun/_bun" ] && source "/Users/brahayanxavier/.bun/_bun"
+fi
 
-# NOTE: Go setup
-export GOPATH="/usr/local/bin"
-export GOBIN="$GOPATH"
-export PATH="$PATH:$GOBIN"
+if [[ "$(uname -a)" =~ Linux ]]; then
+    export CURRENT_USER=bxsr
+    [ -s "/home/bxsr/.bun/_bun" ] && source "/home/bxsr/.bun/_bun"
+fi
 
-# NOTE: Bun setup
-[ -s "/home/bxsr/.bun/_bun" ] && source "/home/bxsr/.bun/_bun"
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
+export GOPATH="/usr/local/bin"
+export GOBIN="$GOPATH"
+export PATH="$PATH:$GOBIN"
