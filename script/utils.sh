@@ -40,10 +40,13 @@ validate_workspace() {
 
 # Get workspace path (simplified without OS detection)
 get_workspace_path() {
+    local os
+    os="$(uname)"
+
     # Default to looking for both possible workspace directories
-    if [[ -d "$DOTFILES_DIR/ansible/darwin" ]]; then
+    if [[ "$os" == "Darwin" ]]; then
         echo "$DOTFILES_DIR/ansible/darwin"
-    elif [[ -d "$DOTFILES_DIR/ansible/linux" ]]; then
+    elif [[ "$os" == "Linux" ]]; then
         echo "$DOTFILES_DIR/ansible/linux"
     else
         log_error "No ansible workspace directory found"

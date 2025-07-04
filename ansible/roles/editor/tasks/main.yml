@@ -11,7 +11,7 @@
 - name: Install Editors (macOS)
   block:
     - name: Install Editors (macOS) - Emacs
-      shell: >
+      shell: |
         brew tap d12frosted/emacs-plus
         brew install emacs-plus --with-modern-doom3-icon --with-native-comp --with-mailutils
       args:
