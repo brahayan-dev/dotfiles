@@ -16,4 +16,3 @@ export PATH="$PATH:$GOBIN"
 # NOTE: User
 [[ "$(uname)" == "Darwin" ]] && export CURRENT_USER=brahayanxavier
 [[ "$(uname)" == "Linux" ]] && export CURRENT_USER=bxsr
-export CURRENT_USER=bxsr
