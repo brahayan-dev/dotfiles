@@ -10,12 +10,17 @@
 
 - name: Install Editors (macOS)
   block:
-    - name: Install Editors (macOS) - Emacs
+    - name: Install Editors (macOS) - Add Emacs Plus
       shell: |
         brew tap d12frosted/emacs-plus
-        brew install emacs-plus --with-modern-doom3-icon --with-native-comp --with-mailutils
       args:
         creates: /opt/homebrew/Library/Taps/d12frosted/homebrew-emacs-plus
+    - name: Install Editors (macOS) - Install Emacs Plus
+      community.general.homebrew:
+        name: 
+          - emacs-plus
+        state: present
+        install_options: "--with-modern-doom3-icon,--with-mailutils"
     - name: Install Editors (macOS) - Neovim
       community.general.homebrew:
         name:
