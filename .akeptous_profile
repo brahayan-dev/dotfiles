@@ -3,19 +3,13 @@
 # ---------
 # Settings
 # ---------
-if [[ "$(uname -a)" =~ Darwin ]]; then
-    export CURRENT_USER=brahayanxavier
-    [ -s "/Users/brahayanxavier/.bun/_bun" ] && source "/Users/brahayanxavier/.bun/_bun"
-fi
-
-if [[ "$(uname -a)" =~ Linux ]]; then
-    export CURRENT_USER=bxsr
-    [ -s "/home/bxsr/.bun/_bun" ] && source "/home/bxsr/.bun/_bun"
-fi
-
+# NOTE: Bun setup
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
+# NOTE: Golang setup
 export GOPATH="/usr/local/bin"
 export GOBIN="$GOPATH"
 export PATH="$PATH:$GOBIN"
+export CURRENT_USER=brahayanxavier

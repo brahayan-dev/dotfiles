@@ -47,6 +47,21 @@
       args:
         creates: "/{{ base_dir }}/{{ current_user }}/.oh-my-zsh"
 
+- name: Rename Zprofile File
+  block:
+    - name: Rename Zprofile File - Verify Operation
+      stat:
+        path: "/{{ base_dir }}/{{ current_user }}/.zshrc"
+      register: zprofile_file
+    - name: Rename Zprofile File - Execute Operation
+      command: >
+        mv
+        "/{{ base_dir }}/{{ current_user }}/.zprofile"
+        "/{{ base_dir }}/{{ current_user }}/.zprofile--"
+      args:
+        creates: "/{{ base_dir }}/{{ current_user }}/.zprofile--"
+      when: zprofile_file.stat.exists
+
 - name: Rename Zshrc File
   block:
     - name: Rename Zshrc File - Verify Operation
