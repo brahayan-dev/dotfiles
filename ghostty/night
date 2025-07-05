@@ -1,5 +1,5 @@
+import = ["~/.config/ghostty/common"]
+
 foreground = "#c0caf5"
 background = "#24283b"
 selection-background = "#33467c"
-
-font-family = "Fira Code"
