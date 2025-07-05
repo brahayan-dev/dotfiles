@@ -71,6 +71,7 @@
       - ripgrep
       - ghostty
       - shellcheck
+      - font-fira-code
     state: present
   when: ansible_os_family == "Darwin"
 
