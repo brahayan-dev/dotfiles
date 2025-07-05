@@ -6,7 +6,6 @@
     mode: 0755
 
 - name: Add SSH Key To Agent
-  become: true
   shell: |
     eval "$(ssh-agent -s)"
     ssh-add "/{{ base_dir }}/{{ current_user }}/.ssh/{{ current_user }}_rsa"
