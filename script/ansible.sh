@@ -6,8 +6,10 @@ source "$(dirname "${BASH_SOURCE[0]}")/logging.sh"
 # Function to ping the workspace
 ping_workspace() {
     local workspace_path="$1"
+    local playbook="$2"
 
     cd "$workspace_path" || return
+    ANSIBLE_CONFIG="$workspace_path/$playbook/ansible.cfg" \
     ansible -i ../hosts.ini Workspace -c local -m ping
     return
 }
@@ -54,8 +56,6 @@ install_dependencies() {
         [ ! -e /opt/homebrew/bin/ansible ] && brew install ansible
     elif command -v dnf &> /dev/null; then
         [ ! -e /usr/bin/ansible ] && sudo dnf install ansible
-    elif command -v apt &> /dev/null; then
-        [ ! -e /usr/bin/ansible ] && sudo apt install ansible
     else
         log_error "Could not detect package manager to install ansible"
         return 1
@@ -82,21 +82,22 @@ remove_symlinks() {
 # Execute ping command
 execute_ping() {
     local workspace_path="$1"
+    local playbook
+    playbook=$(get_playbook_name) || exit 1
     
     log_info "Executing ping"
     install_dependencies
-    ping_workspace "$workspace_path"
+    ping_workspace "$workspace_path" "$playbook"
 }
 
 # Execute setup command
 execute_setup() {
     local workspace_path="$1"
+    local playbook
+    playbook=$(get_playbook_name) || exit 1
     
     log_info "Executing setup"
     install_dependencies
-    
-    local playbook
-    playbook=$(get_playbook_name) || exit 1
     setup_workspace "$workspace_path" "$playbook"
 }
 
