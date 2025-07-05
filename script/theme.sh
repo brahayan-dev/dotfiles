@@ -13,7 +13,6 @@ change_theme() {
 
     if [[ -f "$file_path" ]]; then
         ln -sf "$file_path" "$GHOSTTY_CONFIG"
-        pkill -x ghostty && ghostty &
         return 0
     fi
 
