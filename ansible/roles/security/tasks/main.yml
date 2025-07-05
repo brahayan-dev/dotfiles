@@ -5,11 +5,28 @@
     state: directory
     mode: 0755
 
-- name: Add SSH Key To Agent
+- name: Set SSH Symlink (macOS)
+  command: >
+    ln -s -f
+    "/{{ base_dir }}/{{ current_user }}/.dotfiles/ssh/config"
+    "/{{ base_dir }}/{{ current_user }}/.ssh/config"
+  args:
+    chdir: "/{{ base_dir }}/{{ current_user }}/.dotfiles"
+    creates: "/{{ base_dir }}/{{ current_user }}/.ssh/config"
+  notify: Reload Zsh Files
+  when: (akeptous_file.stat.exists) and ansible_os_family == "Darwin"
+
+- name: Add SSH Key To Agent (Linux)
   shell: |
     eval "$(ssh-agent -s)"
     ssh-add "/{{ base_dir }}/{{ current_user }}/.ssh/{{ current_user }}_rsa"
-  when: akeptous_file.stat.exists
+  when: ansible_os_family == "RedHat"
+
+- name: Add SSH Key To Agent (macOS)
+  shell: |
+    eval "$(ssh-agent -s)"
+    ssh-add --apple-use-keychain "/{{ base_dir }}/{{ current_user }}/.ssh/{{ current_user }}_rsa"
+  when: (akeptous_file.stat.exists) and ansible_os_family == "Darwin"
 
 - name: Add Git Configuration
   community.general.git_config:
