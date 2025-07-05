@@ -9,9 +9,6 @@
   shell: |
     eval "$(ssh-agent -s)"
     ssh-add "/{{ base_dir }}/{{ current_user }}/.ssh/{{ current_user }}_rsa"
-  args:
-    executable: /bin/bash
-    creates: "/{{ base_dir }}/{{ current_user }}/.ssh/{{ current_user }}_rsa"
   when: akeptous_file.stat.exists
 
 - name: Add Git Configuration
