@@ -5,8 +5,6 @@
 # -----------------
 if [[ "$(uname -a)" =~ Darwin ]]; then
     eval "$(/opt/homebrew/bin/brew shellenv)"
-    eval "$(ssh-agent -s)"
-    ssh-add ~/.ssh/brahayanxavier_rsa
 fi
 
 if [[ "$(uname -a)" =~ Linux ]]; then
