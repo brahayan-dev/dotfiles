@@ -12,4 +12,8 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 export GOPATH="/usr/local/bin"
 export GOBIN="$GOPATH"
 export PATH="$PATH:$GOBIN"
-export CURRENT_USER=brahayanxavier
+
+# NOTE: User
+[[ "$(uname)" == "Darwin" ]] && export CURRENT_USER=brahayanxavier
+[[ "$(uname)" == "Linux" ]] && export CURRENT_USER=bxsr
+export CURRENT_USER=bxsr
