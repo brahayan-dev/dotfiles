@@ -77,7 +77,7 @@ Commands:
     ping     - Install dependencies and ping workspace
     setup    - Install dependencies and setup workspace
     clean    - Remove symlinks
-    github   - Set up SSH key for GitHub
+    github   - Set up SSH key for GitHub (requires a Token)
     connect  - Connect dotfiles repository to GitHub by SSH
     doom     - Install Doom over Emacs
     icon     - Change Emacs icon to Doom icon

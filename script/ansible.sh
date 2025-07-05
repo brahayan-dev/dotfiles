@@ -28,19 +28,20 @@ setup_workspace() {
         ansible_opts+=(--vault-password-file "$workspace_path/.vault_password")
     fi
 
+    ANSIBLE_CONFIG="$workspace_path/$playbook/ansible.cfg" \
     ansible-playbook -c local \
         -i ../hosts.ini \
         "${ansible_opts[@]}" \
-        "$playbook"
+        "$playbook.yml"
     return
 }
 
 # Select playbook based on marker file
 get_playbook_name() {
     if [[ -f ~/.akeptous ]]; then
-        echo "akeptous.yml"
+        echo "akeptous"
     else
-        echo "work.yml"
+        echo "work"
     fi
 }
 
