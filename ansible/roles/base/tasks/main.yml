@@ -78,26 +78,7 @@
       when: zshrc_file.stat.exists
 
 - name: Configure Ghostty
-  block:
-    - name: Configure Ghostty - Verify Operation
-      stat:
-        path: "/{{ base_dir }}/{{ current_user }}/.config/ghostty/config"
-      register: ghostty_file
-    - name: Rename Ghostty File - Execute Operation
-      command: >
-        mv
-        "/{{ base_dir }}/{{ current_user }}/.config/ghostty/config"
-        "/{{ base_dir }}/{{ current_user }}/.config/ghostty/config--"
-      args:
-        creates: "/{{ base_dir }}/{{ current_user }}/.config/ghostty/config--"
-      when: ghostty_file.stat.exists
-    - name: Set Terminal Symlink Ghostty - Execute Operation
-      command: >
-        ln -s -f
-        "/{{ base_dir }}/{{ current_user }}/.dotfiles/ghostty/day"
-        "/{{ base_dir }}/{{ current_user }}/.config/ghostty/config"
-      args:
-        chdir: "/{{ base_dir }}/{{ current_user }}/.dotfiles"
-        creates: "/{{ base_dir }}/{{ current_user }}/.config/ghostty/config"
-      notify: Reload Zsh Files
-      when: ghostty_file.stat.exists
+  file:
+    mode: 755
+    state: directory
+    path: "/{{ base_dir }}/{{ current_user }}/.config/ghostty"

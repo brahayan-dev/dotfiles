@@ -179,16 +179,6 @@
     state: directory
     mode: 0755
 
-- name: Set Ghostty Symlink
-  command: >
-    ln -s -f
-    "/{{ base_dir }}/{{ current_user }}/.dotfiles/ghostty"
-    "/{{ base_dir }}/{{ current_user }}/.config/ghostty"
-  args:
-    chdir: "/{{ base_dir }}/{{ current_user }}/.dotfiles"
-    creates: "/{{ base_dir }}/{{ current_user }}/.config/ghostty/day"
-  notify: Reload Zsh Files
-
 - name: Set Editor Symlink (NVIM)
   command: >
     ln -s -f

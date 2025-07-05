@@ -1,4 +1,4 @@
-import = ["~/.config/ghostty/common"]
+config-file = ~/.dotfiles/ghostty/common
 
 foreground = "#3760bf"
 background = "#e1e2e7"
