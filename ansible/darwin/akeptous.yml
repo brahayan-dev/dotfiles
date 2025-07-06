@@ -1,5 +1,5 @@
 ---
-- hosts: Workspace
+- hosts: Workstation
 
   vars_files:
     - akeptous/base.yml

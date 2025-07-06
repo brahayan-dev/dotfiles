@@ -31,7 +31,7 @@ validate_workspace() {
     local workspace_path="$1"
 
     if [[ ! -d "$workspace_path" ]]; then
-        log_error "Workspace directory not found: $workspace_path"
+        log_error "Workstation directory not found: $workspace_path"
         return 1
     fi
 

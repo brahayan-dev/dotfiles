@@ -92,7 +92,7 @@ main() {
     validate_workspace "$workspace_path" || exit 1
 
     # Execute command
-    log_info "Workspace path: $workspace_path"
+    log_info "Workstation path: $workspace_path"
     dispatch_command "$command" "$workspace_path"
 }
 

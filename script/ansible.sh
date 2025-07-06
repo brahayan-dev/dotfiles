@@ -10,7 +10,7 @@ ping_workspace() {
 
     cd "$workspace_path" || return
     ANSIBLE_CONFIG="$workspace_path/$playbook/ansible.cfg" \
-    ansible -i ../hosts.ini Workspace -c local -m ping
+        ansible -i ../hosts.ini Workstation -c local -m ping
     return
 }
 
@@ -31,7 +31,7 @@ setup_workspace() {
     fi
 
     ANSIBLE_CONFIG="$workspace_path/$playbook/ansible.cfg" \
-    ansible-playbook -c local \
+        ansible-playbook -c local \
         -i ../hosts.ini \
         "${ansible_opts[@]}" \
         "$playbook.yml"
@@ -50,11 +50,11 @@ get_playbook_name() {
 # Install dependencies (simplified without OS detection)
 install_dependencies() {
     log_info "Installing dependencies"
-    
+
     # Check if we're on macOS or Linux and install accordingly
-    if command -v brew &> /dev/null; then
+    if command -v brew &>/dev/null; then
         [ ! -e /opt/homebrew/bin/ansible ] && brew install ansible
-    elif command -v dnf &> /dev/null; then
+    elif command -v dnf &>/dev/null; then
         [ ! -e /usr/bin/ansible ] && sudo dnf install ansible
     else
         log_error "Could not detect package manager to install ansible"
@@ -69,7 +69,7 @@ remove_symlinks() {
     [ -L ~/.zprofile ] && rm ~/.zprofile
     [ -L ~/.private_profile ] && rm ~/.private_profile
     [ -L ~/.config/ghostty ] && rm ~/.config/ghostty
-    
+
     # Additional symlinks based on available files
     [ -L ~/.akeptousrc ] && rm ~/.akeptousrc
     [ -L ~/.akeptous_profile ] && rm ~/.akeptous_profile
@@ -84,7 +84,7 @@ execute_ping() {
     local workspace_path="$1"
     local playbook
     playbook=$(get_playbook_name) || exit 1
-    
+
     log_info "Executing ping"
     install_dependencies
     ping_workspace "$workspace_path" "$playbook"
@@ -95,7 +95,7 @@ execute_setup() {
     local workspace_path="$1"
     local playbook
     playbook=$(get_playbook_name) || exit 1
-    
+
     log_info "Executing setup"
     install_dependencies
     setup_workspace "$workspace_path" "$playbook"
@@ -105,4 +105,4 @@ execute_setup() {
 execute_clean() {
     log_info "Cleaning symlinks"
     remove_symlinks
-} 
+}
