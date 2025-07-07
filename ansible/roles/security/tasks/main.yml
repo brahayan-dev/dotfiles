@@ -16,17 +16,28 @@
   notify: Reload Zsh Files
   when: (akeptous_file.stat.exists) and ansible_os_family == "Darwin"
 
+- name: Verify SSH Key Was Added
+  command: ssh-add -l
+  register: ssh_keys
+  failed_when: false
+  changed_when: false
+
 - name: Add SSH Key To Agent (Linux)
   shell: |
     eval "$(ssh-agent -s)"
     ssh-add "/{{ base_dir }}/{{ current_user }}/.ssh/{{ current_user }}_rsa"
-  when: ansible_os_family == "RedHat"
+  when:
+    - ansible_os_family == "RedHat"
+    - "'ansible-generated' not in ssh_keys.stdout"
 
 - name: Add SSH Key To Agent (macOS)
   shell: |
     eval "$(ssh-agent -s)"
     ssh-add --apple-use-keychain "/{{ base_dir }}/{{ current_user }}/.ssh/{{ current_user }}_rsa"
-  when: (akeptous_file.stat.exists) and ansible_os_family == "Darwin"
+  when:
+    - akeptous_file.stat.exists
+    - ansible_os_family == "Darwin"
+    - "'ansible-generated' not in ssh_keys.stdout"
 
 - name: Add Git Configuration
   community.general.git_config:

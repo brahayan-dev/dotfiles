@@ -55,10 +55,7 @@
   when: not akeptous_file.stat.exists
 
 - name: Install Bun
-  block:
-    - name: Install Bun - Run Installer
-      become: true
-      shell: curl -fsSL https://bun.sh/install | bash
-      args:
-        creates: "/{{ base_dir }}/{{ current_user }}/.bun/_bun"
+  shell: curl -fsSL https://bun.sh/install | bash
+  args:
+    creates: "/{{ base_dir }}/{{ current_user }}/.bun/_bun"
   when: akeptous_file.stat.exists
