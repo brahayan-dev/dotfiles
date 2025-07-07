@@ -22,8 +22,6 @@
       - npm
       - podman
       - podman-compose
-      - vagrant
-      - virtualbox
       - dbeaver-community
     state: present
   when: akeptous_file.stat.exists and (ansible_os_family == "Darwin")

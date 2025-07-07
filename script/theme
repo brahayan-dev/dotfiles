@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
-# Source logging functions
-source "$(dirname "${BASH_SOURCE[0]}")/logging.sh"
+source "$(dirname "${BASH_SOURCE[0]}")/base"
 
 # Constants
 readonly GHOSTTY_CONFIG="$HOME/.config/ghostty/config"
@@ -30,4 +29,4 @@ execute_day() {
 execute_night() {
     log_info "Setting night theme"
     change_theme "night"
-} 
+}

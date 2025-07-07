@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
-# Source logging functions
-source "$(dirname "${BASH_SOURCE[0]}")/logging.sh"
+source "$(dirname "${BASH_SOURCE[0]}")/base"
 
 # Constants
 readonly ICON="$HOME/.local/share/icons/doom.png"
@@ -38,4 +37,4 @@ execute_doom() {
 execute_icon() {
     log_info "Changing Emacs icon to Doom icon"
     change_icon
-} 
+}
