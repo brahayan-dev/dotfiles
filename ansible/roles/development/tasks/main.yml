@@ -16,14 +16,36 @@
   when: ansible_os_family == "RedHat"
 
 - name: Install Development Stack (macOS)
-  community.general.homebrew:
-    name:
-      - go
-      - npm
-      - podman
-      - podman-compose
-      - dbeaver-community
-    state: present
+  block:
+    - name: Install Development Stack (macOS) - Add Tap
+      community.general.homebrew_tap:
+        name:
+          - coursier/formulas
+        state: present
+    - name: Install Development Stack (macOS) - Run Brew
+      community.general.homebrew:
+        name:
+          - go
+          - npm
+          - lima
+          - coursier
+          - dbeaver-community
+        state: present
+  when: akeptous_file.stat.exists and (ansible_os_family == "Darwin")
+
+- name: Install Scala Setup
+  shell: |
+    echo "Y" | coursier setup
+    coursier install metals
+  args:
+    creates: "/{{ base_dir }}/{{ current_user }}/Library/Application Support/Coursier/bin/scala"
+  when: akeptous_file.stat.exists and (ansible_os_family == "Darwin")
+
+- name: Install Scala Metals
+  shell: |
+    coursier install metals
+  args:
+    creates: "/{{ base_dir }}/{{ current_user }}/Library/Application Support/Coursier/bin/metals"
   when: akeptous_file.stat.exists and (ansible_os_family == "Darwin")
 
 - name: Install Clojure
@@ -53,9 +75,3 @@
       args:
         creates: /usr/local/bin/bb
   when: not akeptous_file.stat.exists
-
-- name: Install Bun
-  shell: curl -fsSL https://bun.sh/install | bash
-  args:
-    creates: "/{{ base_dir }}/{{ current_user }}/.bun/_bun"
-  when: akeptous_file.stat.exists

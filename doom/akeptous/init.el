@@ -123,13 +123,15 @@
        ;;crystal                      ; ruby at the speed of c
        ;;csharp                       ; unity, .NET, and mono shenanigans
        data                           ; config/data formats
-       ;;(scala +lsp)                 ; java, but good
+       (scala +lsp
+              +tree-sitter)           ; java, but good
        ;;(ruby +lsp
        ;;      +tree-sitter)          ; 1.step {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
        ;;(dart +lsp +flutter)         ; paint ui and not much else
        ;;dhall
        ;;(elixir +lsp)                ; erlang done right
-       ;;(elm +lsp)                   ; care for a cup of TEA?
+       (elm +lsp
+            +tree-sitter)             ; care for a cup of TEA?
        emacs-lisp                     ; drown in parentheses
        ;;erlang                       ; an elegant language for a more civilized age
        ;;ess                          ; emacs speaks statistics
@@ -165,9 +167,9 @@
        ;;plantuml                     ; diagrams for confusing people more
        ;;graphviz                     ; diagrams for confusing yourself even more
        ;;purescript                   ; javascript, but functional
-       (python +lsp
-               +pyenv
-               +tree-sitter)          ; beautiful is better than ugly
+       ;;(python +lsp
+       ;;        +pyenv
+       ;;        +tree-sitter)        ; beautiful is better than ugly
        ;;qt                           ; the 'cutest' gui framework ever
        ;;racket                       ; a DSL for DSLs
        ;;raku                         ; the artist formerly known as perl6

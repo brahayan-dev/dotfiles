@@ -3,16 +3,18 @@
 # ---------
 # Settings
 # ---------
-# NOTE: Bun setup
-[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
 
 # NOTE: Golang setup
 export GOPATH="/usr/local/bin"
 export GOBIN="$GOPATH"
 export PATH="$PATH:$GOBIN"
 
+if [[ "$(uname)" == "Darwin" ]]; then
+    # NOTE: User
+    export CURRENT_USER=brahayanxavier
+    # NOTE: Scala setup
+    export PATH="$PATH:/Users/brahayanxavier/Library/Application Support/Coursier/bin"
+fi
+
 # NOTE: User
-[[ "$(uname)" == "Darwin" ]] && export CURRENT_USER=brahayanxavier
 [[ "$(uname)" == "Linux" ]] && export CURRENT_USER=bxsr
