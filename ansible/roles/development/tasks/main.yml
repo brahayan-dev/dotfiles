@@ -48,6 +48,11 @@
     creates: "/{{ base_dir }}/{{ current_user }}/Library/Application Support/Coursier/bin/metals"
   when: akeptous_file.stat.exists and (ansible_os_family == "Darwin")
 
+- name: Install Java
+  shell: |
+    cs java --setup
+  when: akeptous_file.stat.exists and (ansible_os_family == "Darwin")
+
 - name: Install Clojure
   become: true
   block:

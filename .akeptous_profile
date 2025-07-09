@@ -14,6 +14,8 @@ if [[ "$(uname)" == "Darwin" ]]; then
     export CURRENT_USER=brahayanxavier
     # NOTE: Scala setup
     export PATH="$PATH:/Users/brahayanxavier/Library/Application Support/Coursier/bin"
+    # NOTE: Java setup
+    export JAVA_HOME="/Users/brahayanxavier/Library/Caches/Coursier/arc/https/cdn.azul.com/zulu/bin/zulu21.42.19-ca-jdk21.0.7-macosx_aarch64.tar.gz/zulu21.42.19-ca-jdk21.0.7-macosx_aarch64"
 fi
 
 # NOTE: User
