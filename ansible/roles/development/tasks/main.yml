@@ -51,6 +51,8 @@
 - name: Install Java
   shell: |
     cs java --setup
+  args:
+    creates: "/usr/bin/java"
   when: akeptous_file.stat.exists and (ansible_os_family == "Darwin")
 
 - name: Install Clojure

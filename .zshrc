@@ -40,14 +40,6 @@ export PATH="$HOME/.config/emacs/bin:$PATH"
 # NOTE: Aider setup
 export OPENAI_API_BASE=https://api.githubcopilot.com
 
-# NOTE: Python setup
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$HOME/.local/bin:$PATH"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/shims:$PATH"
-[[ -d $PYENV_ROOT/bin ]] && eval "$(pyenv init --path)"
-[[ -d $PYENV_ROOT/bin ]] && eval "$(pyenv init -)"
-
 # NOTE: Configurations
 [ -s ~/.workrc ] && source ~/.workrc
 [ -s ~/.akeptousrc ] && source ~/.akeptousrc
