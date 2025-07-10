@@ -3,10 +3,12 @@
 ;; ---------
 ;; Themes
 ;; ---------
-(setq doom-theme 'doom-bluloco-light)
+;; (setq doom-theme 'doom-bluloco-light)
 ;; (setq doom-theme 'doom-nord-light)
 ;; (setq doom-theme 'doom-solarized-light)
 ;; (setq doom-theme 'doom-nord-aurora)
+(setq doom-theme 'doom-tokyo-night)
+;; (setq doom-theme 'doom-monokai-pro)
 ;; (setq doom-theme 'doom-dracula)
 
 ;; ------
@@ -26,7 +28,7 @@
       projectile-enable-caching nil
       display-line-numbers-type 'relative
       vterm-shell "/bin/zsh"
-      org-directory "~/Projects/workbooks/"
+      org-directory "~/Projects/workbook/"
       read-process-output-max (* 1024 1024)
       projectile-project-search-path '("~/Projects")
       backup-directory-alist `(("." . ,(expand-file-name ".tmp/backups/" user-emacs-directory)))
@@ -61,3 +63,9 @@
 (when (equal system-type 'gnu/linux)
   (setq doom-font (font-spec :family "Fira Code" :size 16)
         projectile-project-search-path '("~/Akeptous")))
+
+;; ------
+;; Pug
+;; ------
+(after! pug-mode
+  (setq-hook! 'pug-mode-hook +format-with 'prettier))
