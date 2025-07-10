@@ -7,8 +7,9 @@ readonly GHOSTTY_CONFIG="$HOME/.config/ghostty/config"
 
 # Change theme function
 change_theme() {
+    local os="$2"
     local theme="$1"
-    local file_path="$HOME/.dotfiles/ghostty/$theme"
+    local file_path="$HOME/.dotfiles/ghostty/$os/$theme"
 
     if [[ -f "$file_path" ]]; then
         ln -sf "$file_path" "$GHOSTTY_CONFIG"
@@ -19,14 +20,18 @@ change_theme() {
     return 1
 }
 
+get_os() {
+    uname | tr "[:upper:]" "[:lower:]"
+}
+
 # Execute day theme
 execute_day() {
     log_info "Setting day theme"
-    change_theme "day"
+    change_theme "day" "$(get_os)"
 }
 
 # Execute night theme
 execute_night() {
     log_info "Setting night theme"
-    change_theme "night"
+    change_theme "night" "$(get_os)"
 }

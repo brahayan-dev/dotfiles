@@ -1,4 +1,4 @@
-config-file = ~/.dotfiles/ghostty/common
+config-file = ~/.dotfiles/ghostty/darwin/common
 
 foreground = "#3760bf"
 background = "#e1e2e7"

@@ -20,7 +20,7 @@
     - name: Install Lima VM (Linux) - Set Version
       set_fact:
         lima_version: "{{ lima_release.content | from_json | json_query('tag_name') }}"
-    - name: Install Lima VM (Linux) - Install Binary
+    - name: Install Lima VM (Linux) - Install Binaries
       become: true
       shell: |
         curl -fsSL "https://github.com/lima-vm/lima/releases/download/${VERSION}/lima-${VERSION:1}-Linux-x86_64.tar.gz" | tar Cxzvm /usr/local
