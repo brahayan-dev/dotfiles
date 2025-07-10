@@ -84,8 +84,11 @@
     - stylelint
     - js-beautify
     - prettier
+    - typescript
+    - typescript-language-server
     - bash-language-server
     - yaml-language-server
+    - vscode-langservers-extracted
     - "@elm-tooling/elm-language-server"
   when: akeptous_file.stat.exists
 
