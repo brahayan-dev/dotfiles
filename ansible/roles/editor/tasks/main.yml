@@ -81,6 +81,8 @@
     name: "{{ item }}"
     global: true
   loop:
+    - elm
+    - elm-format
     - stylelint
     - js-beautify
     - prettier
