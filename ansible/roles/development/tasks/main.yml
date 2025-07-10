@@ -3,16 +3,32 @@
   become: true
   dnf:
     name:
-      - java-latest-openjdk
       - npm
-      - nodejs
-      - python3-pip
       - golang
-      - podman
-      - podman-compose
-      - vagrant
       - dbeaver-ce
     state: present
+  when: ansible_os_family == "RedHat"
+
+- name: Install Lima VM (Linux)
+  block:
+    - name: Install Lima VM (Linux) - Get Data
+      uri:
+        url: https://api.github.com/repos/lima-vm/lima/releases/latest
+        method: GET
+        return_content: yes
+      register: lima_release
+    - name: Install Lima VM (Linux) - Set Version
+      set_fact:
+        lima_version: "{{ lima_release.content | from_json | json_query('tag_name') }}"
+    - name: Install Lima VM (Linux) - Install Binary
+      become: true
+      shell: |
+        curl -fsSL "https://github.com/lima-vm/lima/releases/download/${VERSION}/lima-${VERSION:1}-Linux-x86_64.tar.gz" | tar Cxzvm /usr/local
+        curl -fsSL "https://github.com/lima-vm/lima/releases/download/${VERSION}/lima-additional-guestagents-${VERSION:1}-Linux-x86_64.tar.gz" | tar Cxzvm /usr/local
+      environment:
+        VERSION: "{{ lima_version }}"
+      args:
+        creates: /usr/local/bin/limactl
   when: ansible_os_family == "RedHat"
 
 - name: Install Development Stack (macOS)
@@ -36,7 +52,6 @@
 - name: Install Scala Setup
   shell: |
     echo "Y" | coursier setup
-    coursier install metals
   args:
     creates: "/{{ base_dir }}/{{ current_user }}/Library/Application Support/Coursier/bin/scala"
   when: akeptous_file.stat.exists and (ansible_os_family == "Darwin")
@@ -50,7 +65,7 @@
 
 - name: Install Java
   shell: |
-    cs java --setup
+    coursier java --jvm=17 --setup
   args:
     creates: "/usr/bin/java"
   when: akeptous_file.stat.exists and (ansible_os_family == "Darwin")
