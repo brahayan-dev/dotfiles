@@ -79,6 +79,6 @@
 
 - name: Configure Ghostty
   file:
-    mode: 755
-    state: directory
     path: "/{{ base_dir }}/{{ current_user }}/.config/ghostty"
+    state: directory
+    mode: 0755

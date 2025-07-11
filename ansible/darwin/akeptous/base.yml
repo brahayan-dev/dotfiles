@@ -2,3 +2,6 @@
 base_dir: Users
 workspace_id: akeptous
 current_user: brahayanxavier
+
+scala_version: 3.3.6
+coursier_path: "/Library/Application Support/Coursier/bin"

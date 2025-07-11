@@ -31,6 +31,22 @@
         creates: /usr/local/bin/limactl
   when: ansible_os_family == "RedHat"
 
+- name: Install Coursier (Linux)
+  block:
+    - name: Install Coursier (Linux) - Download Binary
+      shell: |
+        curl -fL "https://github.com/coursier/launchers/raw/master/cs-x86_64-pc-linux.gz" | gzip -d > coursier
+      args:
+        chdir: /tmp
+        creates: /usr/local/bin/coursier
+    - name: Install Coursier (Linux) - Install Binary
+      become: true
+      copy:
+        src: /tmp/coursier
+        dest: /usr/local/bin/coursier
+        mode: 0755
+  when: akeptous_file.stat.exists and (ansible_os_family == "RedHat")
+
 - name: Install Development Stack (macOS)
   block:
     - name: Install Development Stack (macOS) - Add Tap
@@ -49,26 +65,68 @@
         state: present
   when: akeptous_file.stat.exists and (ansible_os_family == "Darwin")
 
-- name: Install Scala Setup
+- name: Install Scala
   shell: |
-    echo "Y" | coursier setup
+    coursier install "scala:{{ scala_version }}"
   args:
-    creates: "/{{ base_dir }}/{{ current_user }}/Library/Application Support/Coursier/bin/scala"
-  when: akeptous_file.stat.exists and (ansible_os_family == "Darwin")
+    creates: "/{{ base_dir }}/{{ current_user }}/{{ coursier_path }}/scala"
+  when: akeptous_file.stat.exists
+
+- name: Install Scala Compiler
+  shell: |
+    coursier install "scalac:{{ scala_version }}"
+  args:
+    creates: "/{{ base_dir }}/{{ current_user }}/{{ coursier_path }}/scalac"
+  when: akeptous_file.stat.exists
 
 - name: Install Scala Metals
   shell: |
     coursier install metals
   args:
-    creates: "/{{ base_dir }}/{{ current_user }}/Library/Application Support/Coursier/bin/metals"
-  when: akeptous_file.stat.exists and (ansible_os_family == "Darwin")
+    creates: "/{{ base_dir }}/{{ current_user }}/{{ coursier_path }}/metals"
+  when: akeptous_file.stat.exists
+
+- name: Install Scala Ammonite
+  shell: |
+    coursier install ammonite
+  args:
+    creates: "/{{ base_dir }}/{{ current_user }}/{{ coursier_path }}/ammonite"
+  when: akeptous_file.stat.exists
+
+- name: Install Scala Sbt
+  shell: |
+    coursier install sbt
+  args:
+    creates: "/{{ base_dir }}/{{ current_user }}/{{ coursier_path }}/sbt"
+  when: akeptous_file.stat.exists
+
+- name: Install Scala Sbtn
+  shell: |
+    coursier install sbtn
+  args:
+    creates: "/{{ base_dir }}/{{ current_user }}/{{ coursier_path }}/sbtn"
+  when: akeptous_file.stat.exists
+
+- name: Install Scala CLI
+  shell: |
+    coursier install scala-cli
+  args:
+    creates: "/{{ base_dir }}/{{ current_user }}/{{ coursier_path }}/scala-cli"
+  when: akeptous_file.stat.exists
+
+- name: Install Scalafmt
+  shell: |
+    coursier install scalafmt
+  args:
+    creates: "/{{ base_dir }}/{{ current_user }}/{{ coursier_path }}/scalafmt"
+  when: akeptous_file.stat.exists
 
 - name: Install Java
   shell: |
     coursier java --jvm=17 --setup
   args:
     creates: "/usr/bin/java"
-  when: akeptous_file.stat.exists and (ansible_os_family == "Darwin")
+  when: akeptous_file.stat.exists
 
 - name: Install Clojure
   become: true
