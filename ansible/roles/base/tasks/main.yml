@@ -25,6 +25,11 @@
     state: present
   when: ansible_os_family == "Darwin"
 
+- name: Install Common Cask Dependencies (macOS)
+  community.general.homebrew_cask:
+    name: arc
+    state: present
+
 - name: Set Zsh As Shell By Default
   become: true
   user:
