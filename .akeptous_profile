@@ -16,6 +16,8 @@ if [[ "$(uname)" == "Darwin" ]]; then
     export PATH="$PATH:$HOME/Library/Application Support/Coursier/bin"
     # NOTE: Java setup
     export JAVA_HOME="$HOME/Library/Caches/Coursier/arc/https/cdn.azul.com/zulu/bin/zulu17.58.21-ca-jdk17.0.15-macosx_aarch64.tar.gz/zulu17.58.21-ca-jdk17.0.15-macosx_aarch64"
+    # NOTE: Other configurations
+    source "$HOME/.local/bin/env"
 fi
 
 if [[ "$(uname)" == "Linux" ]]; then
