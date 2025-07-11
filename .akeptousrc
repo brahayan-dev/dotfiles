@@ -11,4 +11,4 @@ alias lismore='cd "$HOME/Akeptous/lismore/" && nvim .'
 alias voynich='cd "$HOME/Akeptous/voynich/" && nvim .'
 
 alias gemini='aider --multiline --vim --model gemini'
-alias claude='aider --multiline --vim --model claude-3-5-sonnet-20241022'
+alias claude='aider --multiline --vim --model anthropic/claude-sonnet-4-20250514'
