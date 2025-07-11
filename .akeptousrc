@@ -6,7 +6,9 @@ alias kiln='cd "$HOME/Projects/kiln/" && nvim .'
 alias workbook='cd "$HOME/Projects/workbook/" && nvim .'
 
 alias qumran='cd "$HOME/Akeptous/qumran/" && nvim .'
+alias mikvah='cd "$HOME/Akeptous/mikvah/" && nvim .'
 alias lismore='cd "$HOME/Akeptous/lismore/" && nvim .'
 alias voynich='cd "$HOME/Akeptous/voynich/" && nvim .'
 
-alias gemini='aider --model gemini'
+alias gemini='aider --multiline --vim --model gemini'
+alias claude='aider --multiline --vim --model claude-3-5-sonnet-20241022'

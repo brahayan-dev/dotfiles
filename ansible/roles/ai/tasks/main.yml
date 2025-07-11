@@ -15,3 +15,27 @@
       shell: aider-install
       args:
         creates: "/{{ base_dir }}/{{ current_user }}/.local/bin/aider"
+
+- name: Propagate GitHub Token
+  lineinfile:
+    create: true
+    line: "export GITHUB_TOKEN={{ github_token }}"
+    path: "/{{ base_dir }}/{{ current_user }}/.dotfiles/.private_profile"
+  notify: Reload Zsh Files
+  when: akeptous_file.stat.exists
+
+- name: Propagate Gemini Api Key
+  lineinfile:
+    create: true
+    line: "export GEMINI_API_KEY={{ gemini_api_key }}"
+    path: "/{{ base_dir }}/{{ current_user }}/.dotfiles/.private_profile"
+  notify: Reload Zsh Files
+  when: akeptous_file.stat.exists
+
+- name: Propagate Anthropic Api Key
+  lineinfile:
+    create: true
+    line: "export ANTHROPIC_API_KEY={{ anthropic_api_key }}"
+    path: "/{{ base_dir }}/{{ current_user }}/.dotfiles/.private_profile"
+  notify: Reload Zsh Files
+  when: akeptous_file.stat.exists
