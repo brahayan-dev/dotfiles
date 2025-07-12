@@ -45,3 +45,10 @@
     scope: global
     value: bxsr@proton.me
   when: akeptous_file.stat.exists
+
+- name: Set Default Git Branch Globally
+  community.general.git_config:
+    name: init.defaultBranch
+    value: main
+    scope: global
+
