@@ -81,17 +81,14 @@
     name: "{{ item }}"
     global: true
   loop:
-    - elm
-    - elm-format
-    - stylelint
-    - js-beautify
     - prettier
+    - stylelint
     - typescript
-    - typescript-language-server
+    - js-beautify
     - bash-language-server
     - yaml-language-server
+    - typescript-language-server
     - vscode-langservers-extracted
-    - "@elm-tooling/elm-language-server"
   when: akeptous_file.stat.exists
 
 - name: Install Cljfmt
@@ -106,7 +103,6 @@
       shell: /tmp/cljfmt
       args:
         creates: /usr/local/bin/cljfmt
-  when: not akeptous_file.stat.exists
 
 - name: Install Clojure LSP
   block:
@@ -120,7 +116,6 @@
       shell: /tmp/clojure-lsp
       args:
         creates: /usr/local/bin/clojure-lsp
-  when: not akeptous_file.stat.exists
 
 - name: Install Dockfmt (Linux)
   become: true

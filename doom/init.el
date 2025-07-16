@@ -88,13 +88,13 @@
        ;;grammar           ; tasing grammar mistake every you make
 
        :tools
+       lsp                 ; M-x vscode
        magit               ; a git porcelain for Emacs
        direnv
        docker
        lookup              ; navigate your code and its documentation
        ansible
        tree-sitter         ; syntax and parsing, sitting in a tree...
-       (lsp +eglot)        ; M-x vscode
        (eval +overlay)     ; run code, run (also, repls)
        ;;biblio            ; Writes a PhD for you (citation needed)
        ;;collab            ; buffers with friends
@@ -117,21 +117,20 @@
        data                           ; config/data formats
        json                           ; At least it ain't XML
        emacs-lisp                     ; drown in parentheses
+       (markdown +grip)               ; writing docs for people to ignore
+       (scala +lsp
+              +tree-sitter)           ; java, but good
+       (sh +lsp +tree-sitter)         ; she sells {ba,z,fi}sh shells on the C xor
        (web +lsp +tree-sitter)        ; the tubes
        (yaml +lsp +tree-sitter)       ; JSON, but readable
        (org +passwords +pretty)       ; organize your plain life in plain text
-       (sh +lsp +tree-sitter)         ; she sells {ba,z,fi}sh shells on the C xor
-       (markdown +grip)               ; writing docs for people to ignore
        (javascript +lsp
                    +tree-sitter)      ; all(hope(abandon(ye(who(enter(here))))))
-       (scala +lsp
-              +tree-sitter)           ; java, but good
+       (clojure +lsp
+                +tree-sitter)         ; java with a lisp
        (:if (string= "work" (getenv "WORKSPACE"))
-           (progn
-             (clojure +lsp
-                      +tree-sitter)   ; java with a lisp
-             (dart +lsp
-                   +flutter)))        ; paint ui and not much else
+           (dart +lsp
+                 +flutter))           ; paint ui and not much else
        ;;(ruby +lsp
        ;;      +tree-sitter)          ; 1.step {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
        ;;(python +lsp
