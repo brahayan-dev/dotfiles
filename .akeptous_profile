@@ -3,6 +3,7 @@
 # ---------
 # Settings
 # ---------
+export WORKSPACE="akeptous"
 
 # NOTE: Golang setup
 export GOPATH="/usr/local/bin"

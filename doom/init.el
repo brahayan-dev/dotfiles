@@ -126,10 +126,12 @@
                    +tree-sitter)      ; all(hope(abandon(ye(who(enter(here))))))
        (scala +lsp
               +tree-sitter)           ; java, but good
-       (clojure +lsp
-                +tree-sitter)         ; java with a lisp
-       (dart +lsp
-             +flutter)                ; paint ui and not much else
+       (:if (string= "work" (getenv "WORKSPACE"))
+           (progn
+             (clojure +lsp
+                      +tree-sitter)   ; java with a lisp
+             (dart +lsp
+                   +flutter)))        ; paint ui and not much else
        ;;(ruby +lsp
        ;;      +tree-sitter)          ; 1.step {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
        ;;(python +lsp

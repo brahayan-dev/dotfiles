@@ -1,5 +1,7 @@
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
+(defvar current-workspace (getenv "WORKSPACE"))
+
 ;; ---------
 ;; Themes
 ;; ---------
@@ -28,9 +30,8 @@
       projectile-enable-caching nil
       display-line-numbers-type 'relative
       vterm-shell "/bin/zsh"
-      org-directory "~/Projects/workbook/"
+      org-directory "~/.dotfiles/doom/"
       read-process-output-max (* 1024 1024)
-      projectile-project-search-path '("~/Projects")
       backup-directory-alist `(("." . ,(expand-file-name ".tmp/backups/" user-emacs-directory)))
       projectile-project-root-functions '(projectile-root-local
                                           projectile-root-top-down
@@ -54,28 +55,26 @@
   (add-hook 'lsp-after-apply-edits-hook
             (lambda (&rest _) (save-buffer))))
 
-;; ------
-;; OS
-;; ------
-(when (equal system-type 'darwin)
-  (setq doom-font (font-spec :family "Fira Code" :size 18)))
+;; ------------
+;; Workspace
+;; ------------
+(when (string= current-workspace "akeptous")
+  (setq projectile-project-search-path '("~/Akeptous"))
 
-(when (equal system-type 'gnu/linux)
-  (setq doom-font (font-spec :family "Fira Code" :size 16)
-        projectile-project-search-path '("~/Akeptous")))
+  (when (equal system-type 'gnu/linux)
+    (setq doom-font (font-spec :family "Fira Code" :size 16)))
+  (when (equal system-type 'darwin)
+    (setq doom-font (font-spec :family "Fira Code" :size 18))))
 
-;; ------
-;; Pug
-;; ------
-(after! pug-mode
-  (setq-hook! 'pug-mode-hook +format-with 'prettier))
 
-;; ---------
-;; Paredit (macOS only when nudev exists)
-;; ---------
-(when (equal system-type 'darwin)
+(when (string= current-workspace "work")
+  (setq doom-font (font-spec :family "Fira Code" :size 18))
+  (setq projectile-project-search-path '("~/Projects" "~/dev/nu/"))
+
   (let ((nudev-emacs-path "~/dev/nu/nudev/ides/emacs/"))
     (when (file-directory-p nudev-emacs-path)
+      (require 'nu nil t)
+      (add-to-list 'load-path nudev-emacs-path)
       (use-package! paredit
         :diminish
         :ensure t
@@ -101,12 +100,3 @@
               "C-c <left>" #'paredit-backward
               :desc "Forward"
               "C-c <right>" #'paredit-forward)))))
-
-;; ---------
-;; Nubank (macOS only when nudev exists)
-;; ---------
-(when (equal system-type 'darwin)
-  (let ((nudev-emacs-path "~/dev/nu/nudev/ides/emacs/"))
-    (when (file-directory-p nudev-emacs-path)
-      (add-to-list 'load-path nudev-emacs-path)
-      (require 'nu nil t))))
