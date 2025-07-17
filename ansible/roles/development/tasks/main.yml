@@ -53,6 +53,7 @@
     - name: Install Development Stack (macOS) - Add Tap
       community.general.homebrew_tap:
         name:
+          - polyfy/polylith
           - coursier/formulas
         state: present
     - name: Install Development Stack (macOS) - Run Brew
@@ -60,6 +61,7 @@
         name:
           - go
           - npm
+          - poly
           - lima
           - coursier
           - dbeaver-community
