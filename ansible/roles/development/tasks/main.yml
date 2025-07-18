@@ -158,7 +158,14 @@
         creates: /usr/local/bin/bb
 
 - name: Install Rust
-  become: true
-  shell: curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-  args:
-    creates: /usr/local/bin/cargo
+  block:
+    - name: Install Rust - Download Installer
+      get_url:
+        url: https://sh.rustup.rs
+        dest: /tmp/rustup-installer.sh
+        mode: 0755
+    - name: Install Rust - Run Installer
+      become: true
+      shell: /tmp/rustup-installer.sh -y
+      args:
+        creates: /usr/local/bin/cargo
