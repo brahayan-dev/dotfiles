@@ -53,7 +53,6 @@
     - name: Install Development Stack (macOS) - Add Tap
       community.general.homebrew_tap:
         name:
-          - polyfy/polylith
           - coursier/formulas
         state: present
     - name: Install Development Stack (macOS) - Run Brew
@@ -61,9 +60,9 @@
         name:
           - go
           - npm
-          - poly
           - lima
           - coursier
+          - leiningen
           - dbeaver-community
         state: present
   when: akeptous_file.stat.exists and (ansible_os_family == "Darwin")
@@ -156,16 +155,3 @@
       shell: /tmp/babashka
       args:
         creates: /usr/local/bin/bb
-
-- name: Install Rust
-  block:
-    - name: Install Rust - Download Installer
-      get_url:
-        url: https://sh.rustup.rs
-        dest: /tmp/rustup-installer.sh
-        mode: 0755
-    - name: Install Rust - Run Installer
-      become: true
-      shell: /tmp/rustup-installer.sh -y
-      args:
-        creates: /usr/local/bin/cargo
