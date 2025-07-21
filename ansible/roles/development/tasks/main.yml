@@ -62,6 +62,7 @@
           - npm
           - lima
           - coursier
+          - leiningen
           - dbeaver-community
         state: present
   when: akeptous_file.stat.exists and (ansible_os_family == "Darwin")
@@ -91,7 +92,7 @@
   shell: |
     coursier install ammonite
   args:
-    creates: "/{{ base_dir }}/{{ current_user }}/{{ coursier_path }}/ammonite"
+    creates: "/{{ base_dir }}/{{ current_user }}/{{ coursier_path }}/amm"
   when: akeptous_file.stat.exists
 
 - name: Install Scala Sbt
@@ -141,7 +142,6 @@
       shell: /tmp/clojure-installer.sh
       args:
         creates: /usr/local/bin/clojure
-  when: not akeptous_file.stat.exists
 
 - name: Install Babashka
   block:
@@ -155,4 +155,3 @@
       shell: /tmp/babashka
       args:
         creates: /usr/local/bin/bb
-  when: not akeptous_file.stat.exists

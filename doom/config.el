@@ -6,11 +6,11 @@
 ;; Themes
 ;; ---------
 ;; (setq doom-theme 'doom-bluloco-light)
-(setq doom-theme 'doom-nord-light)
+;; (setq doom-theme 'doom-nord-light)
 ;; (setq doom-theme 'doom-solarized-light)
 ;; (setq doom-theme 'doom-nord-aurora)
 ;; (setq doom-theme 'doom-tokyo-night)
-;; (setq doom-theme 'doom-monokai-pro)
+(setq doom-theme 'doom-monokai-pro)
 ;; (setq doom-theme 'doom-dracula)
 
 ;; ------
@@ -56,7 +56,6 @@
   (add-hook 'lsp-after-apply-edits-hook
             (lambda (&rest _) (save-buffer))))
 
-
 (use-package! paredit
   :diminish
   :ensure t
@@ -88,12 +87,10 @@
 ;; ------------
 (when (string= current-workspace "akeptous")
   (setq projectile-project-search-path '("~/Akeptous"))
-
   (when (equal system-type 'gnu/linux)
     (setq doom-font (font-spec :family "Fira Code" :size 16)))
   (when (equal system-type 'darwin)
     (setq doom-font (font-spec :family "Fira Code" :size 18))))
-
 
 (when (string= current-workspace "work")
   (setq doom-font (font-spec :family "Fira Code" :size 18)

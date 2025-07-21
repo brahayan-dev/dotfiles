@@ -89,7 +89,6 @@
 
        :tools
        lsp                 ; M-x vscode
-       ein                 ; tame Jupyter notebooks with emacs
        magit               ; a git porcelain for Emacs
        direnv
        docker
@@ -97,6 +96,7 @@
        ansible
        tree-sitter         ; syntax and parsing, sitting in a tree...
        (eval +overlay)     ; run code, run (also, repls)
+       ;;ein               ; tame Jupyter notebooks with emacs
        ;;biblio            ; Writes a PhD for you (citation needed)
        ;;collab            ; buffers with friends
        ;;debugger          ; FIXME stepping through code, to help you add bugs
@@ -118,14 +118,14 @@
        data                           ; config/data formats
        json                           ; At least it ain't XML
        emacs-lisp                     ; drown in parentheses
-       (web +lsp +tree-sitter)        ; the tubes
-       (yaml +lsp +tree-sitter)       ; JSON, but readable
-       (sh +lsp +tree-sitter)         ; she sells {ba,z,fi}sh shells on the C xor
        (markdown +grip)               ; writing docs for people to ignore
-       (javascript +lsp
-                   +tree-sitter)      ; all(hope(abandon(ye(who(enter(here))))))
        (scala +lsp
               +tree-sitter)           ; java, but good
+       (sh +lsp +tree-sitter)         ; she sells {ba,z,fi}sh shells on the C xor
+       (web +lsp +tree-sitter)        ; the tubes
+       (yaml +lsp +tree-sitter)       ; JSON, but readable
+       (javascript +lsp
+                   +tree-sitter)      ; all(hope(abandon(ye(who(enter(here))))))
        (:if (string= "work" (getenv "WORKSPACE"))
            (progn
              (clojure +lsp
