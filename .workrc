@@ -1,92 +1,170 @@
 #!/usr/bin/env bash
 
-nu-refresh() {
-    echo -e "================ Updating NU CLI ================"
+# ================================================================================
+# NU CLI Management Functions
+# ================================================================================
+
+nu-update-cli() {
+    echo -e "\n🔄 \033[1;34mUpdating NU CLI...\033[0m"
+    echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
     nu update
-
-    echo -e "================ AWS Credentials ================"
-    echo -e "================ Refreshing AWS Credentials ================"
-    nu aws credentials reset
-    nu aws credentials setup
-    nu aws credentials refresh
-    nu aws shared-role-credentials refresh --interactive
-    nu aws shared-role-credentials refresh --account-alias=br --keep-policies admin/cs,admin,eng,prod-eng,databricks-mx-general,databricks-general,casual-dev,lending-engineering,shared-systems-resources
-    nu aws credentials refresh --aws-account='mx'
-    nu aws credentials refresh --aws-account='br'
-    nu aws shared-role-credentials refresh --account-alias br-staging --keep-policies admin/cs,admin,eng,prod-eng,databricks-mx-general,databricks-general,casual-dev,lending-engineering,shared-systems-resources
-    nu aws shared-role-credentials available --account-alias=br
-
-    echo -e "================ Loading Dependencies ================"
-    nu codeartifact login maven
-    nu codeartifact login npm
-
-    echo -e "================ Setting up certificates and tokens ================"
-
-    # CO Environment
-    echo -e "================ Setting up CO environment ================"
-    nu-co certs setup --env prod
-    nu-co certs setup --env staging
-    nu-co auth jwt --env prod
-    nu-co auth jwt --env staging
-    nu-co auth get-refresh-token --env prod --force
-    nu-co auth get-refresh-token --env staging --force
-    nu-co auth get-access-token --env prod
-    nu-co auth get-access-token --env staging
-
-    # IST Environment
-    echo -e "================ Setting up IST environment ================"
-    nu-ist certs setup --env prod
-    nu-ist certs setup --env staging
-    nu-ist auth get-refresh-token --env prod --force
-    nu-ist auth get-access-token --env prod
-    nu-ist auth get-refresh-token --env staging --force
-    nu-ist auth get-access-token --env staging
-
-    # BR Staging Environment
-    echo -e "================ Setting up BR Staging environment ================"
-    nu-br-staging certs setup
-    nu-br-staging auth get-refresh-token
-    nu-br-staging auth get-access-token
-    nu-br-staging aws shared-role-credentials refresh --account-alias=br --keep-policies casual-dev,eng,prod-eng
-
-    # BR Production Environment
-    echo -e "================ Setting up BR Production environment ================"
-    nu-br certs setup --env prod
-    nu-br auth get-refresh-token --env prod --force
-    nu-br auth get-access-token --env prod
-    nu-br aws shared-role-credentials refresh --account-alias=br --keep-policies casual-dev,eng,prod-eng
-
-    # MX Environment
-    echo -e "================ Setting up MX environment ================"
-    nu-mx certs setup --env prod
-    nu-mx certs setup --env staging
-    nu-mx auth get-refresh-token --env prod --force
-    nu-mx auth get-refresh-token --env staging --force
-    nu-mx auth get-access-token --env prod
-    nu-mx auth get-access-token --env staging
-
-    # Data Environment
-    echo -e "================ Setting up Data environment ================"
-    nu-data certs setup --env staging
-    nu-data certs setup --env prod
-    nu-data auth get-refresh-token --env prod --force
-    nu-data auth get-refresh-token --env staging --force
-    nu-data auth get-access-token --env prod
-    nu-data auth get-access-token --env staging
-
-    # cp -r $HOME/dev/nu/.nu/tokens/br-staging/staging $HOME/dev/nu/.nu/tokens/br/
-    # cp -r $HOME/dev/nu/.nu/tokens/br-staging/staging $HOME/dev/nu/.nu/tokens/br-staging/
+    echo -e "✅ \033[1;32mNU CLI update completed\033[0m"
 }
 
+nu-setup-aws-credentials() {
+    echo -e "\n🔐 \033[1;33mConfiguring AWS Credentials...\033[0m"
+    echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+    
+    echo -e "🔄 Resetting AWS credentials..."
+    nu aws credentials reset
+    
+    echo -e "⚙️  Setting up AWS credentials..."
+    nu aws credentials setup
+    
+    echo -e "🔄 Refreshing AWS credentials..."
+    nu aws credentials refresh
+    
+    echo -e "👥 Setting up shared role credentials..."
+    nu aws shared-role-credentials refresh --interactive
+    nu aws shared-role-credentials refresh --account-alias=br --keep-policies admin/cs,admin,eng,prod-eng,databricks-mx-general,databricks-general,casual-dev,lending-engineering,shared-systems-resources
+    
+    echo -e "🌎 Refreshing credentials for specific accounts..."
+    nu aws credentials refresh --aws-account='mx'
+    nu aws credentials refresh --aws-account='br'
+    
+    echo -e "🏗️  Setting up BR staging credentials..."
+    nu aws shared-role-credentials refresh --account-alias br-staging --keep-policies admin/cs,admin,eng,prod-eng,databricks-mx-general,databricks-general,casual-dev,lending-engineering,shared-systems-resources
+    
+    echo -e "📋 Checking available credentials..."
+    nu aws shared-role-credentials available --account-alias=br
+    
+    echo -e "✅ \033[1;32mAWS credentials setup completed\033[0m"
+}
+
+nu-setup-dependencies() {
+    echo -e "\n📦 \033[1;35mLoading Dependencies...\033[0m"
+    echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+    
+    echo -e "☕ Logging into Maven CodeArtifact..."
+    nu codeartifact login maven
+    
+    echo -e "📦 Logging into NPM CodeArtifact..."
+    nu codeartifact login npm
+    
+    echo -e "✅ \033[1;32mDependencies setup completed\033[0m"
+}
+
+nu-setup-co-environment() {
+    echo -e "\n🇨🇴 \033[1;36mSetting up CO Environment...\033[0m"
+    echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+    
+    echo -e "🔐 Setting up certificates..."
+    nu-co certs setup --env prod
+    nu-co certs setup --env staging
+    
+    echo -e "🎫 Setting up JWT authentication..."
+    nu-co auth jwt --env prod
+    nu-co auth jwt --env staging
+    
+    echo -e "🔄 Getting refresh tokens..."
+    nu-co auth get-refresh-token --env prod --force
+    nu-co auth get-refresh-token --env staging --force
+    
+    echo -e "🎟️  Getting access tokens..."
+    nu-co auth get-access-token --env prod
+    nu-co auth get-access-token --env staging
+    
+    echo -e "✅ \033[1;32mCO environment setup completed\033[0m"
+}
+
+nu-setup-ist-environment() {
+    echo -e "\n🏛️  \033[1;31mSetting up IST Environment...\033[0m"
+    echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+    
+    echo -e "🔐 Setting up certificates..."
+    nu-ist certs setup --env prod
+    nu-ist certs setup --env staging
+    
+    echo -e "🔄 Getting refresh tokens..."
+    nu-ist auth get-refresh-token --env prod --force
+    nu-ist auth get-refresh-token --env staging --force
+    
+    echo -e "🎟️  Getting access tokens..."
+    nu-ist auth get-access-token --env prod
+    nu-ist auth get-access-token --env staging
+    
+    echo -e "✅ \033[1;32mIST environment setup completed\033[0m"
+}
+
+nu-setup-mx-environment() {
+    echo -e "\n🇲🇽 \033[1;32mSetting up MX Environment...\033[0m"
+    echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+    
+    echo -e "🔐 Setting up certificates..."
+    nu-mx certs setup --env prod
+    nu-mx certs setup --env staging
+    
+    echo -e "🔄 Getting refresh tokens..."
+    nu-mx auth get-refresh-token --env prod --force
+    nu-mx auth get-refresh-token --env staging --force
+    
+    echo -e "🎟️  Getting access tokens..."
+    nu-mx auth get-access-token --env prod
+    nu-mx auth get-access-token --env staging
+    
+    echo -e "✅ \033[1;32mMX environment setup completed\033[0m"
+}
+
+# ================================================================================
+# Main Refresh Function
+# ================================================================================
+
+nu-refresh() {
+    echo -e "\n🚀 \033[1;37;44m Starting NU Environment Refresh \033[0m"
+    echo -e "════════════════════════════════════════════════════════════════════════════════"
+    
+    nu-update-cli
+    nu-setup-aws-credentials
+    nu-setup-dependencies
+    nu-setup-co-environment
+    nu-setup-ist-environment
+    nu-setup-mx-environment
+    
+    echo -e "\n🎉 \033[1;37;42m NU Environment Refresh Completed Successfully! \033[0m"
+    echo -e "════════════════════════════════════════════════════════════════════════════════\n"
+}
+
+# ================================================================================
+# Development Functions
+# ================================================================================
+
 nu-mmr() {
+    echo -e "\n📱 \033[1;37;45m Starting Mini Meta Repo Development Environment \033[0m"
+    echo -e "════════════════════════════════════════════════════════════════════════════════"
+    
+    echo -e "📱 Creating iPhone 16 simulator..."
     xcrun simctl create 'iPhone 16 18-2' \
         com.apple.CoreSimulator.SimDeviceType.iPhone-16 \
         com.apple.CoreSimulator.SimRuntime.iOS-18-2
+    
+    echo -e "🔄 Booting simulator..."
     xcrun simctl boot 'iPhone 16 18-2'
+    
+    echo -e "📂 Navigating to mini-meta-repo..."
     cd ~/dev/nu/mini-meta-repo
+    
+    echo -e "🔧 Running monocli doctor..."
     monocli doctor
+    
+    echo -e "🌐 Getting localization files..."
     monocli l10n get
+    
+    echo -e "📦 Getting Flutter desktop dependencies..."
     monocli deps get -p flutter-desktop
+    
+    echo -e "🔐 Getting CO staging certificates..."
     nu-co customer get-keys-and-certificates --env staging
+    
+    echo -e "🚀 Launching Flutter app..."
     flutter run -d macos -t lib/main_desktop.dart
 }

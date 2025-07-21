@@ -88,19 +88,19 @@
        ;;grammar           ; tasing grammar mistake every you make
 
        :tools
+       lsp                 ; M-x vscode
+       ein                 ; tame Jupyter notebooks with emacs
        magit               ; a git porcelain for Emacs
        direnv
        docker
        lookup              ; navigate your code and its documentation
        ansible
        tree-sitter         ; syntax and parsing, sitting in a tree...
-       (lsp +eglot)        ; M-x vscode
        (eval +overlay)     ; run code, run (also, repls)
        ;;biblio            ; Writes a PhD for you (citation needed)
        ;;collab            ; buffers with friends
        ;;debugger          ; FIXME stepping through code, to help you add bugs
        ;;editorconfig      ; let someone else argue about tabs vs spaces
-       ;;ein               ; tame Jupyter notebooks with emacs
        ;;make              ; run make tasks from Emacs
        ;;pass              ; password manager for nerds
        ;;pdf               ; pdf enhancements
@@ -114,12 +114,12 @@
        tty                                    ; improve the terminal Emacs experience
 
        :lang
+       org                            ; organize your plain life in plain text
        data                           ; config/data formats
        json                           ; At least it ain't XML
        emacs-lisp                     ; drown in parentheses
        (web +lsp +tree-sitter)        ; the tubes
        (yaml +lsp +tree-sitter)       ; JSON, but readable
-       (org +passwords +pretty)       ; organize your plain life in plain text
        (sh +lsp +tree-sitter)         ; she sells {ba,z,fi}sh shells on the C xor
        (markdown +grip)               ; writing docs for people to ignore
        (javascript +lsp
@@ -201,7 +201,7 @@
        ;;emms
        ;;everywhere        ; *leave* Emacs!? You must be joking
        ;;irc               ; how neckbeards socialize
-       ;;(rss +org)        ; emacs as an RSS reader
+       (rss +org)          ; emacs as an RSS reader
 
        :config
        ;;literate
