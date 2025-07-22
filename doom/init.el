@@ -130,7 +130,7 @@
                 +tree-sitter)         ; java with a lisp
        (:if (string= "work" (getenv "WORKSPACE"))
            (dart +lsp
-                 +flutter))         ; paint ui and not much else
+                 +flutter))           ; paint ui and not much else
        ;;(ruby +lsp
        ;;      +tree-sitter)          ; 1.step {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
        ;;(python +lsp
