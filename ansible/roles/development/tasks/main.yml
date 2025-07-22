@@ -31,6 +31,11 @@
         creates: /usr/local/bin/limactl
   when: ansible_os_family == "RedHat"
 
+- name: Install Coursier (Linux) - Check Binary
+  stat:
+    path: /usr/local/bin/coursier
+  register: coursier_binary
+
 - name: Install Coursier (Linux)
   block:
     - name: Install Coursier (Linux) - Download Binary
@@ -38,7 +43,6 @@
         curl -fL "https://github.com/coursier/launchers/raw/master/cs-x86_64-pc-linux.gz" | gzip -d > coursier
       args:
         chdir: /tmp
-        creates: /usr/local/bin/coursier
     - name: Install Coursier (Linux) - Install Binary
       become: true
       copy:
@@ -46,7 +50,10 @@
         dest: /usr/local/bin/coursier
         mode: 0755
         force: false
-  when: akeptous_file.stat.exists and (ansible_os_family == "RedHat")
+  when:
+    - not coursier_binary.stat.exists
+    - akeptous_file.stat.exists
+    - ansible_os_family == "RedHat"
 
 - name: Install Development Stack (macOS)
   block:

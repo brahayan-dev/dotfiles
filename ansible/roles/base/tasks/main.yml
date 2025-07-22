@@ -29,6 +29,7 @@
   community.general.homebrew_cask:
     name: arc
     state: present
+  when: ansible_os_family == "Darwin"
 
 - name: Set Zsh As Shell By Default
   become: true
