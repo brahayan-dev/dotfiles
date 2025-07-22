@@ -126,12 +126,11 @@
        (yaml +lsp +tree-sitter)       ; JSON, but readable
        (javascript +lsp
                    +tree-sitter)      ; all(hope(abandon(ye(who(enter(here))))))
+       (clojure +lsp
+                +tree-sitter)         ; java with a lisp
        (:if (string= "work" (getenv "WORKSPACE"))
-           (progn
-             (clojure +lsp
-                      +tree-sitter)   ; java with a lisp
-             (dart +lsp
-                   +flutter)))        ; paint ui and not much else
+           (dart +lsp
+                 +flutter))         ; paint ui and not much else
        ;;(ruby +lsp
        ;;      +tree-sitter)          ; 1.step {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
        ;;(python +lsp
