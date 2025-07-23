@@ -17,6 +17,7 @@
   shell: curl -fsS https://dl.brave.com/install.sh | sh
   args:
     creates: "/usr/bin/brave-browser"
+  when: ansible_os_family == "RedHat"
 
 - name: Install Common Dependencies (macOS)
   community.general.homebrew:
