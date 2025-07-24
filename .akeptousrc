@@ -12,3 +12,4 @@ alias voynich='cd "$HOME/Akeptous/voynich/" && nvim .'
 
 alias gemini='aider --multiline --vim --model gemini'
 alias claude='aider --multiline --vim --model anthropic/claude-sonnet-4-20250514'
+alias models='aider --list-models openrouter/ && aider --list-models anthropic/'
