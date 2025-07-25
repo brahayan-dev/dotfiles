@@ -80,6 +80,7 @@
   community.general.npm:
     name: "{{ item }}"
     global: true
+    force: true
   loop:
     - prettier
     - stylelint
@@ -89,7 +90,7 @@
     - yaml-language-server
     - typescript-language-server
     - vscode-langservers-extracted
-  when: akeptous_file.stat.exists
+    - "@github/copilot-language-server"
 
 - name: Install Cljfmt
   block:

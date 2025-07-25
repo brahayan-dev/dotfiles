@@ -5,10 +5,10 @@
 
 ;; Theme
 ;; (setq doom-theme 'doom-bluloco-light)
-;; (setq doom-theme 'doom-nord-light)
+(setq doom-theme 'doom-nord-light)
 ;; (setq doom-theme 'doom-solarized-light)
 ;; (setq doom-theme 'doom-nord-aurora)
-(setq doom-theme 'doom-tokyo-night)
+;; (setq doom-theme 'doom-tokyo-night)
 ;; (setq doom-theme 'doom-monokai-pro)
 ;; (setq doom-theme 'doom-dracula)
 
@@ -34,6 +34,14 @@
                                           projectile-root-bottom-up
                                           projectile-root-top-down-recurring))
 
+;; LSP Configuration
+(use-package! lsp-mode
+  :commands lsp
+  :config
+  (setq lsp-copilot-enabled t)
+  (setq lsp-semantic-tokens-enable t)
+  (setq lsp-inline-completion-idle-delay 1))
+
 ;; Hooks
 (add-hook! 'before-save-hook #'whitespace-cleanup)
 (add-hook! 'elfeed-search-mode-hook #'elfeed-update)
@@ -52,14 +60,13 @@
       "M-d" #'evil-multiedit-match-and-next
       "M-D" #'evil-multiedit-match-and-prev)
 
-;; LSP Configuration
-(use-package! lsp-mode
-  :commands lsp
-  :config
-  (setq lsp-semantic-tokens-enable t)
-  (setq lsp-warn-no-matched-clients nil)
-  (add-hook 'lsp-after-apply-edits-hook
-            (lambda (&rest _) (save-buffer))))
+(map! :after lsp-mode
+      :map lsp-mode-map
+      :n "M-l" #'lsp
+      :i "C-0" (lambda ()
+                 (interactive)
+                 (corfu-quit)
+                 (lsp-inline-completion-display)))
 
 ;; Workspace Configuration
 (when (string= current-workspace "akeptous")
@@ -75,5 +82,5 @@
 
   (let ((nudev-emacs-path "~/dev/nu/nudev/ides/emacs/"))
     (when (file-directory-p nudev-emacs-path)
-      (require 'nu nil t)
-      (add-to-list 'load-path nudev-emacs-path))))
+      (add-to-list 'load-path nudev-emacs-path)
+      (require 'nu nil t))))
