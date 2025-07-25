@@ -17,7 +17,6 @@
        ;;ivy               ; a search engine for love and life
 
        :ui
-       zen                 ; distraction-free coding or writing
        doom                ; what makes DOOM look the way it does
        hl-todo             ; highlight TODO/FIXME/NOTE/DEPRECATED/HACK/REVIEW
        unicode             ; extended unicode support for various languages
@@ -30,6 +29,7 @@
        (popup +defaults)   ; tame sudden yet inevitable temporary windows
        (ligatures +fira)   ; ligatures and symbols to make your code pretty again
        (vc-gutter +pretty) ; vcs diff in the fringe
+       ;;zen               ; distraction-free coding or writing
        ;;doom-quit         ; DOOM quit-message prompts when you quit Emacs
        ;;(emoji +unicode)  ; 🙂
        ;;deft              ; notational velocity for Emacs

@@ -44,6 +44,10 @@
 (add-hook! 'before-save-hook #'whitespace-cleanup)
 (add-hook! 'elfeed-search-mode-hook #'elfeed-update)
 
+(add-hook! 'clojure-mode-hook #'evil-cleverparens-mode)
+(add-hook! 'clojurescript-mode-hook #'evil-cleverparens-mode)
+(add-hook! 'emacs-lisp-mode-hook #'evil-cleverparens-mode)
+
 ;; ------
 ;; Lsp
 ;; ------
@@ -59,7 +63,7 @@
 ;; Workspace
 ;; ------------
 (when (string= current-workspace "akeptous")
-  (setq projectile-project-search-path '("~/Akeptous"))
+  (setq projectile-project-search-path '("~/Projects" "~/Akeptous"))
   (when (equal system-type 'gnu/linux)
     (setq doom-font (font-spec :family "Fira Code" :size 16)))
   (when (equal system-type 'darwin)
