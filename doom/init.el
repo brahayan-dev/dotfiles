@@ -1,5 +1,8 @@
 ;;; init.el -*- lexical-binding: t; -*-
 
+;; Variables
+(defvar current-workspace (getenv "WORKSPACE"))
+
 (doom! :input
 
        :completion
@@ -66,9 +69,9 @@
        (yaml +lsp +tree-sitter)
        (clojure +lsp +tree-sitter)
        (javascript +lsp +tree-sitter)
-       (:if (string= "work" (getenv "WORKSPACE"))
+       (:if (string= current-workspace "work")
            (scala +lsp +tree-sitter))
-       (:if (string= "work" (getenv "WORKSPACE"))
+       (:if (string= current-workspace "work")
            (dart +lsp +flutter))
 
        :app
