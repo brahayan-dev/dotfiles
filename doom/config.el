@@ -53,6 +53,11 @@
 (add-hook! 'clojurescript-mode-hook #'smartparens-strict-mode)
 (add-hook! 'emacs-lisp-mode-hook #'smartparens-strict-mode)
 
+(map! :v
+      "M-r" #'evil-multiedit-match-all
+      "M-d" #'evil-multiedit-match-and-next
+      "M-D" #'evil-multiedit-match-and-prev)
+
 ;; ------
 ;; Lsp
 ;; ------
