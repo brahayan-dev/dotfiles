@@ -48,7 +48,6 @@
 ;; Lsp
 ;; ------
 (use-package! lsp-mode
-  :ensure t
   :commands lsp
   :config
   (setq lsp-semantic-tokens-enable t
