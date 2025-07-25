@@ -9,8 +9,8 @@
 ;; (setq doom-theme 'doom-nord-light)
 ;; (setq doom-theme 'doom-solarized-light)
 ;; (setq doom-theme 'doom-nord-aurora)
-;; (setq doom-theme 'doom-tokyo-night)
-(setq doom-theme 'doom-monokai-pro)
+(setq doom-theme 'doom-tokyo-night)
+;; (setq doom-theme 'doom-monokai-pro)
 ;; (setq doom-theme 'doom-dracula)
 
 ;; ------
@@ -48,39 +48,12 @@
 ;; Lsp
 ;; ------
 (use-package! lsp-mode
-  :ensure t
   :commands lsp
   :config
   (setq lsp-semantic-tokens-enable t
         lsp-warn-no-matched-clients nil)
   (add-hook 'lsp-after-apply-edits-hook
             (lambda (&rest _) (save-buffer))))
-
-(use-package! paredit
-  :diminish
-  :ensure t
-  ;; Bind RET to nil, to fix Cider REPL buffer eval issue
-  :bind (:map paredit-mode-map ("RET" . nil))
-  :hook ((clojure-mode . paredit-mode)
-         (emacs-lisp-mode . paredit-mode)
-         (clojurescript-mode . paredit-mode)))
-
-(after! paredit
-  (define-key paredit-mode-map (kbd "C-<left>") nil)
-  (define-key paredit-mode-map (kbd "C-<right>") nil)
-  (map! :nvi
-        :desc "Forward barf"
-        "M-<left>" #'paredit-forward-barf-sexp
-        :desc "Forward slurp"
-        "M-<right>" #'paredit-forward-slurp-sexp
-        :desc "Backward slurp"
-        "M-S-<left>" #'paredit-backward-slurp-sexp
-        :desc "Backward barf"
-        "M-S-<right>" #'paredit-backward-barf-sexp
-        :desc "Backward"
-        "C-c <left>" #'paredit-backward
-        :desc "Forward"
-        "C-c <right>" #'paredit-forward))
 
 ;; ------------
 ;; Workspace

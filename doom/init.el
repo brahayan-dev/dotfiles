@@ -1,19 +1,5 @@
 ;;; init.el -*- lexical-binding: t; -*-
 
-;; This file controls what Doom modules are enabled and what order they load
-;; in. Remember to run 'doom sync' after modifying it!
-
-;; NOTE Press 'SPC h d h' (or 'C-h d h' for non-vim users) to access Doom's
-;;      documentation. There you'll find a link to Doom's Module Index where all
-;;      of our modules are listed, including what flags they support.
-
-;; NOTE Move your cursor over a module's name (or its flags) and press 'K' (or
-;;      'C-c c k' for non-vim users) to view its documentation. This works on
-;;      flags as well (those symbols that start with a plus).
-;;
-;;      Alternatively, press 'gd' (or 'C-c c d') on a module to browse its
-;;      directory (for easy access to its source code).
-
 (doom! :input
        ;;bidi              ; (tfel ot) thgir etirw uoy gnipleh
        ;;chinese
@@ -31,11 +17,13 @@
        ;;ivy               ; a search engine for love and life
 
        :ui
+       zen                 ; distraction-free coding or writing
        doom                ; what makes DOOM look the way it does
        hl-todo             ; highlight TODO/FIXME/NOTE/DEPRECATED/HACK/REVIEW
        unicode             ; extended unicode support for various languages
        ophints             ; highlight the region an operation acts on
        modeline            ; snazzy, Atom-inspired modeline, plus API
+       nav-flash           ; blink cursor line after big motions
        workspaces          ; tab emulation, persistence & separate workspaces
        doom-dashboard      ; a nifty splash screen for Emacs
        vi-tilde-fringe     ; fringe tildes to mark beyond EOB
@@ -47,23 +35,21 @@
        ;;deft              ; notational velocity for Emacs
        ;;indent-guides     ; highlighted indent columns
        ;;minimap           ; show a map of the code on the side
-       ;;nav-flash         ; blink cursor line after big motions
        ;;neotree           ; a project drawer, like NERDTree for vim
        ;;tabs              ; a tab bar for Emacs
        ;;treemacs          ; a project drawer, like neotree but cooler
        ;;window-select     ; visually switch windows
-       ;;zen               ; distraction-free coding or writing
 
        :editor
        fold                ; (nigh) universal code folding
        snippets            ; my elves. They type so I don't have to
        word-wrap           ; soft wrapping with language-aware indent
        file-templates      ; auto-snippets for empty files
+       multiple-cursors    ; editing in many places at once
        (format +onsave)    ; automated prettiness
        (evil +everywhere)  ; come to the dark side, we have cookies
        ;;god               ; run Emacs commands without modifier keys
        ;;lispy             ; vim for lisp, for people who don't like vim
-       ;;multiple-cursors  ; editing in many places at once
        ;;objed             ; text object editing for the innocent
        ;;parinfer          ; turn lisp into python, sort of
        ;;rotate-text       ; cycle region at point between text candidates
@@ -119,23 +105,34 @@
        json                           ; At least it ain't XML
        emacs-lisp                     ; drown in parentheses
        (markdown +grip)               ; writing docs for people to ignore
-       (scala +lsp
-              +tree-sitter)           ; java, but good
-       (sh +lsp +tree-sitter)         ; she sells {ba,z,fi}sh shells on the C xor
-       (web +lsp +tree-sitter)        ; the tubes
-       (yaml +lsp +tree-sitter)       ; JSON, but readable
-       (javascript +lsp
-                   +tree-sitter)      ; all(hope(abandon(ye(who(enter(here))))))
+       (sh +lsp
+           +tree-sitter)              ; she sells {ba,z,fi}sh shells on the C xor
+       (web +lsp
+            +tree-sitter)             ; the tubes
+       (yaml +lsp
+             +tree-sitter)            ; JSON, but readable
        (clojure +lsp
                 +tree-sitter)         ; java with a lisp
+       (javascript +lsp
+                   +tree-sitter)      ; all(hope(abandon(ye(who(enter(here))))))
+       (:if (string= "work" (getenv "WORKSPACE"))
+           (scala +lsp
+                  +tree-sitter))      ; java, but good
        (:if (string= "work" (getenv "WORKSPACE"))
            (dart +lsp
                  +flutter))           ; paint ui and not much else
+       ;;(elm +lsp
+       ;;     +tree-sitter)           ; care for a cup of TEA?
        ;;(ruby +lsp
        ;;      +tree-sitter)          ; 1.step {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
+       ;;(lua +lsp
+       ;;     +tree-sitter)           ; one-based indices? one-based indices
        ;;(python +lsp
        ;;        +pyenv
        ;;        +tree-sitter)        ; beautiful is better than ugly
+       ;;(latex +lsp
+       ;;       +cdlatex
+       ;;       +latexmk)             ; writing papers in Emacs has never been so fun
        ;;agda                         ; types of types of types of types...
        ;;beancount                    ; mind the GAAP
        ;;(cc +lsp)                    ; C > C++ == 1
@@ -145,8 +142,6 @@
        ;;csharp                       ; unity, .NET, and mono shenanigans
        ;;dhall
        ;;(elixir +lsp)                ; erlang done right
-       ;;(elm +lsp
-       ;;     +tree-sitter)           ; care for a cup of TEA?
        ;;erlang                       ; an elegant language for a more civilized age
        ;;ess                          ; emacs speaks statistics
        ;;factor
@@ -163,13 +158,8 @@
        ;;(java +lsp)                  ; the poster child for carpal tunnel syndrome
        ;;julia                        ; a better, faster MATLAB
        ;;kotlin                       ; a better, slicker Java(Script)
-       ;;(latex +lsp
-       ;;       +cdlatex
-       ;;       +latexmk)             ; writing papers in Emacs has never been so fun
        ;;lean                         ; for folks with too much to prove
        ;;ledger                       ; be audit you can number-to-string
-       ;;(lua +lsp
-       ;;     +tree-sitter)           ; one-based indices? one-based indices
        ;;nim                          ; python + lisp at the speed of c
        ;;nix                          ; I hereby declare "nix geht mehr!"
        ;;ocaml                        ; an objective camel

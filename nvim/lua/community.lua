@@ -6,6 +6,5 @@
 return {
   "AstroNvim/astrocommunity",
   { import = "astrocommunity.pack.lua" },
-  { import = "astrocommunity.pack.scala" },
   { import = "astrocommunity.pack.clojure" },
 }

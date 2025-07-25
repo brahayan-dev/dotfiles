@@ -1,4 +1,6 @@
 ;; -*- no-byte-compile: t; -*-
 ;;; ~/.dotfiles/.config/doom/packages.el
 
-(package! paredit)
+(package! evil-cleverparens)
+(package! zprint-mode)
+(package! git-link)

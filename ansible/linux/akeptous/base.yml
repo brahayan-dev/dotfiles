@@ -3,5 +3,4 @@ base_dir: home
 current_user: bxsr
 workspace_id: akeptous
 
-scala_version: 3.3.6
 coursier_path: .local/share/coursier/bin
