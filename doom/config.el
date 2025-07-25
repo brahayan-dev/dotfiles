@@ -58,7 +58,6 @@
 
 (use-package! paredit
   :diminish
-  :ensure t
   ;; Bind RET to nil, to fix Cider REPL buffer eval issue
   :bind (:map paredit-mode-map ("RET" . nil))
   :hook ((clojure-mode . paredit-mode)
