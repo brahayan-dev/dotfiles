@@ -26,6 +26,7 @@
 (if (fboundp 'toggle-frame-fullscreen) (toggle-frame-fullscreen))
 (setq no-byte-compile nil
       vterm-shell "/bin/zsh"
+      evil-move-beyond-eol t
       frame-resize-pixelwise t
       package-native-compile t
       projectile-enable-caching nil
@@ -47,6 +48,10 @@
 (add-hook! 'clojure-mode-hook #'evil-cleverparens-mode)
 (add-hook! 'clojurescript-mode-hook #'evil-cleverparens-mode)
 (add-hook! 'emacs-lisp-mode-hook #'evil-cleverparens-mode)
+
+(add-hook! 'clojure-mode-hook #'smartparens-strict-mode)
+(add-hook! 'clojurescript-mode-hook #'smartparens-strict-mode)
+(add-hook! 'emacs-lisp-mode-hook #'smartparens-strict-mode)
 
 ;; ------
 ;; Lsp
