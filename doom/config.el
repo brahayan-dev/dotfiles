@@ -1,47 +1,34 @@
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
+;; Variables
 (defvar current-workspace (getenv "WORKSPACE"))
 
-;; ---------
-;; Themes
-;; ---------
-;; (setq doom-theme 'doom-bluloco-light)
-;; (setq doom-theme 'doom-nord-light)
-;; (setq doom-theme 'doom-solarized-light)
-;; (setq doom-theme 'doom-nord-aurora)
+;; Theme
 (setq doom-theme 'doom-tokyo-night)
-;; (setq doom-theme 'doom-monokai-pro)
-;; (setq doom-theme 'doom-dracula)
 
-;; ------
-;; Doom
-;; ------
-(setq doom-localleader-key ","
-      doom-symbol-font doom-font
-      doom-modeline-buffer-file-name-style 'truncate-all)
+;; Doom Configuration
+(setq doom-localleader-key ",")
+(setq doom-symbol-font doom-font)
+(setq doom-modeline-buffer-file-name-style 'truncate-all)
 
-;; ---------
-;; Editor
-;; ---------
+;; Editor Configuration
 (if (fboundp 'toggle-frame-fullscreen) (toggle-frame-fullscreen))
-(setq no-byte-compile nil
-      vterm-shell "/bin/zsh"
-      evil-move-beyond-eol t
-      frame-resize-pixelwise t
-      package-native-compile t
-      projectile-enable-caching nil
-      org-directory "~/.dotfiles/doom/"
-      display-line-numbers-type 'relative
-      read-process-output-max (* 1024 1024)
-      backup-directory-alist `(("." . ,(expand-file-name ".tmp/backups/" user-emacs-directory)))
-      projectile-project-root-functions '(projectile-root-local
+(setq no-byte-compile nil)
+(setq vterm-shell "/bin/zsh")
+(setq evil-move-beyond-eol t)
+(setq frame-resize-pixelwise t)
+(setq package-native-compile t)
+(setq projectile-enable-caching nil)
+(setq org-directory "~/.dotfiles/doom/")
+(setq display-line-numbers-type 'relative)
+(setq read-process-output-max (* 1024 1024))
+(setq backup-directory-alist `(("." . ,(expand-file-name ".tmp/backups/" user-emacs-directory))))
+(setq projectile-project-root-functions '(projectile-root-local
                                           projectile-root-top-down
                                           projectile-root-bottom-up
                                           projectile-root-top-down-recurring))
 
-;; ------
-;; Hook
-;; ------
+;; Hooks
 (add-hook! 'before-save-hook #'whitespace-cleanup)
 (add-hook! 'elfeed-search-mode-hook #'elfeed-update)
 
@@ -53,25 +40,22 @@
 (add-hook! 'clojurescript-mode-hook #'smartparens-strict-mode)
 (add-hook! 'emacs-lisp-mode-hook #'smartparens-strict-mode)
 
+;; Key Mappings
 (map! :v
       "M-r" #'evil-multiedit-match-all
       "M-d" #'evil-multiedit-match-and-next
       "M-D" #'evil-multiedit-match-and-prev)
 
-;; ------
-;; Lsp
-;; ------
+;; LSP Configuration
 (use-package! lsp-mode
   :commands lsp
   :config
-  (setq lsp-semantic-tokens-enable t
-        lsp-warn-no-matched-clients nil)
+  (setq lsp-semantic-tokens-enable t)
+  (setq lsp-warn-no-matched-clients nil)
   (add-hook 'lsp-after-apply-edits-hook
             (lambda (&rest _) (save-buffer))))
 
-;; ------------
-;; Workspace
-;; ------------
+;; Workspace Configuration
 (when (string= current-workspace "akeptous")
   (setq projectile-project-search-path '("~/Projects" "~/Akeptous"))
   (when (equal system-type 'gnu/linux)
@@ -80,8 +64,8 @@
     (setq doom-font (font-spec :family "Fira Code" :size 18))))
 
 (when (string= current-workspace "work")
-  (setq doom-font (font-spec :family "Fira Code" :size 18)
-        projectile-project-search-path '("~/Projects" "~/dev/nu/"))
+  (setq doom-font (font-spec :family "Fira Code" :size 18))
+  (setq projectile-project-search-path '("~/Projects" "~/dev/nu/"))
 
   (let ((nudev-emacs-path "~/dev/nu/nudev/ides/emacs/"))
     (when (file-directory-p nudev-emacs-path)
