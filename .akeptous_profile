@@ -15,6 +15,8 @@ if [[ "$(uname)" == "Darwin" ]]; then
     export CURRENT_USER=brahayanxavier
     # NOTE: Coursier path
     export PATH="$PATH:$HOME/Library/Application Support/Coursier/bin"
+    # NOTE: Copilot path
+    export PATH="$PATH:/opt/homebrew/Cellar/node/24.4.1/lib/node_modules/@github/copilot-language-server/native/darwin-arm64/"
     # NOTE: Java setup
     export JAVA_HOME="$HOME/Library/Caches/Coursier/arc/https/github.com/adoptium/temurin24-binaries/releases/download/jdk-24.0.1%252B9/OpenJDK24U-jdk_aarch64_mac_hotspot_24.0.1_9.tar.gz/jdk-24.0.1+9/Contents/Home"
     # NOTE: Other configurations
