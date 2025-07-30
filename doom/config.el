@@ -70,8 +70,8 @@
 
 (after! evil-cleverparens
   (map! :map evil-cleverparens-mode-map
-        :n "[["  #'evil-cp-beginning-of-defun
-        :n "]]"  #'evil-cp-end-of-defun))
+        :n "[[" #'evil-cp-beginning-of-defun
+        :n "]]" #'evil-cp-end-of-defun))
 
 ;; Workspace Configuration
 (when (string= current-workspace "akeptous")
