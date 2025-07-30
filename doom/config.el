@@ -5,12 +5,12 @@
 
 ;; Theme
 ;; (setq doom-theme 'doom-bluloco-light)
-(setq doom-theme 'doom-nord-light)
+;; (setq doom-theme 'doom-nord-light)
 ;; (setq doom-theme 'doom-solarized-light)
 ;; (setq doom-theme 'doom-nord-aurora)
 ;; (setq doom-theme 'doom-tokyo-night)
 ;; (setq doom-theme 'doom-monokai-pro)
-;; (setq doom-theme 'doom-dracula)
+(setq doom-theme 'doom-dracula)
 
 ;; Doom Configuration
 (setq doom-localleader-key ",")
@@ -60,13 +60,18 @@
       "M-d" #'evil-multiedit-match-and-next
       "M-D" #'evil-multiedit-match-and-prev)
 
-(map! :after lsp-mode
-      :map lsp-mode-map
-      :n "M-l" #'lsp
-      :i "C-0" (lambda ()
-                 (interactive)
-                 (corfu-quit)
-                 (lsp-inline-completion-display)))
+(after! lsp-mode
+  (map! :map lsp-mode-map
+        :n "M-l" #'lsp
+        :i "C-0" (lambda ()
+                   (interactive)
+                   (corfu-quit)
+                   (lsp-inline-completion-display))))
+
+(after! evil-cleverparens
+  (map! :map evil-cleverparens-mode-map
+        :n "[["  #'evil-cp-beginning-of-defun
+        :n "]]"  #'evil-cp-end-of-defun))
 
 ;; Workspace Configuration
 (when (string= current-workspace "akeptous")
