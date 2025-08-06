@@ -4,6 +4,8 @@
 # Settings
 # ---------
 export WORKSPACE="akeptous"
+export AWS_PROFILE="development"
+export AWS_DEFAULT_REGION="us-east-1"
 
 # NOTE: Golang setup
 export GOPATH="/usr/local/bin"
