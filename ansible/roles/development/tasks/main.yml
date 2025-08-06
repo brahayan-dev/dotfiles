@@ -33,6 +33,14 @@
     - akeptous_file.stat.exists
     - ansible_os_family == "RedHat"
 
+- name: Install NVM
+  shell: |
+    curl -o- "https://raw.githubusercontent.com/nvm-sh/nvm/v{{ nvm_version }}/install.sh" | bash
+  args:
+    creates: "/{{ base_dir }}/{{ current_user }}/.nvm/nvm.sh"
+  when:
+    - akeptous_file.stat.exists
+
 - name: Install Development Stack (macOS)
   block:
     - name: Install Development Stack (macOS) - Add Tap
