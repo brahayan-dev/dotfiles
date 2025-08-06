@@ -1,5 +1,4 @@
 * root :elfeed:
-** Live :live:
-*** [[https://es.ligonier.org/feed/][Ligonier]]
 ** Engineering :engineering:
 *** [[https://engineering.atspotify.com/feed][Spotify]]
+*** [[https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-cloudformation-user-guide-updates.rss][Cloudformation]]
