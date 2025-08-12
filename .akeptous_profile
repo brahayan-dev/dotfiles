@@ -12,6 +12,9 @@ export GOPATH="/usr/local/bin"
 export GOBIN="$GOPATH"
 export PATH="$PATH:$GOBIN"
 
+# NOTE: Node.js setup
+[[ -e "$HOME/nvm/nvm.sh" ]] && source "$HOME/.nvm/nvm.sh"
+
 if [[ "$(uname)" == "Darwin" ]]; then
     # NOTE: User
     export CURRENT_USER=brahayanxavier
@@ -23,7 +26,6 @@ if [[ "$(uname)" == "Darwin" ]]; then
     export JAVA_HOME="$HOME/Library/Caches/Coursier/arc/https/github.com/adoptium/temurin24-binaries/releases/download/jdk-24.0.1%252B9/OpenJDK24U-jdk_aarch64_mac_hotspot_24.0.1_9.tar.gz/jdk-24.0.1+9/Contents/Home"
     # NOTE: Other configurations
     source "$HOME/.local/bin/env"
-    [[ -e "$HOME/nvm/nvm.sh" ]] && source "$HOME/.nvm/nvm.sh"
 fi
 
 if [[ "$(uname)" == "Linux" ]]; then
