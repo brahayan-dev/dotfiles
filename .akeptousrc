@@ -8,9 +8,13 @@ alias workbook='cd "$HOME/Projects/workbook/" && nvim .'
 alias qumran='cd "$HOME/Akeptous/qumran/" && nvim .'
 alias lismore='cd "$HOME/Akeptous/lismore/" && nvim .'
 alias voynich='cd "$HOME/Akeptous/voynich/" && nvim .'
+alias mikvah='cd "$HOME/Akeptous/mikvah/" && nvim .'
 
 alias gemini='aider --multiline --vim --model gemini'
 alias claude='aider --multiline --vim --model anthropic/claude-sonnet-4-20250514'
 alias models='aider --list-models openrouter/ && aider --list-models anthropic/'
 
 alias kill-doom='emacsclient -e "(kill-emacs)"'
+
+# NOTE: Direnv setup
+eval "$(direnv hook zsh)"
