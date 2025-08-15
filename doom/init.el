@@ -53,6 +53,7 @@
        ansible
        tree-sitter
        (eval +overlay)
+       (terraform +lsp)
 
        :os
        (:if (featurep :system 'macos) macos)

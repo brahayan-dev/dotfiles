@@ -3,6 +3,7 @@ base_dir: home
 current_user: bxsr
 workspace_id: akeptous
 
+jvm_version: 24
 nvm_version: 0.40.3
 
 coursier_path: .local/share/coursier/bin
