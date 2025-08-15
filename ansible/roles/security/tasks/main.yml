@@ -51,19 +51,3 @@
     name: init.defaultBranch
     value: main
     scope: global
-
-- name: Propagate AWS Secret Access Key
-  lineinfile:
-    create: true
-    line: "export AWS_SECRET_ACCESS_KEY={{ aws_secret_access_key }}"
-    path: "/{{ base_dir }}/{{ current_user }}/.dotfiles/.private_profile"
-  notify: Reload Zsh Files
-  when: akeptous_file.stat.exists
-
-- name: Propagate AWS Access Key Id
-  lineinfile:
-    create: true
-    line: "export AWS_ACCESS_KEY_ID={{ aws_access_key }}"
-    path: "/{{ base_dir }}/{{ current_user }}/.dotfiles/.private_profile"
-  notify: Reload Zsh Files
-  when: akeptous_file.stat.exists
