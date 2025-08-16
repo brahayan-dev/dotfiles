@@ -15,6 +15,7 @@ alias claude='aider --multiline --vim --model anthropic/claude-sonnet-4-20250514
 alias models='aider --list-models openrouter/ && aider --list-models anthropic/'
 
 alias kill-doom='emacsclient -e "(kill-emacs)"'
+alias lisp='rlwrap sbcl'
 
 # NOTE: Direnv setup
 eval "$(direnv hook zsh)"
