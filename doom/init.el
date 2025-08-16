@@ -53,7 +53,7 @@
        ansible
        tree-sitter
        (eval +overlay)
-       (terraform +lsp)
+       ;; (terraform +lsp)
 
        :os
        (:if (featurep :system 'macos) macos)
@@ -70,10 +70,9 @@
        (yaml +lsp +tree-sitter)
        (clojure +lsp +tree-sitter)
        (javascript +lsp +tree-sitter)
-       (:if (string= current-workspace "work")
-           (scala +lsp +tree-sitter))
-       (:if (string= current-workspace "work")
-           (dart +lsp +flutter))
+       (:if (string= current-workspace "akeptous") common-lisp)
+       (:if (string= current-workspace "work") (dart +lsp +flutter))
+       (:if (string= current-workspace "work") (scala +lsp +tree-sitter))
 
        :app
        (rss +org)
