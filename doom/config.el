@@ -48,14 +48,17 @@
                    (lsp-inline-completion-display))))
 
 (use-package! smartparens
-  :hook ((clojure-mode clojurescript-mode emacs-lisp-mode) . smartparens-strict-mode))
+  :hook ((clojure-mode clojurescript-mode emacs-lisp-mode lisp-mode) . smartparens-strict-mode))
 
 (use-package! evil-cleverparens
-  :hook ((clojure-mode clojurescript-mode emacs-lisp-mode) . evil-cleverparens-mode)
+  :hook ((clojure-mode clojurescript-mode emacs-lisp-mode lisp-mode) . evil-cleverparens-mode)
   :config
   (map! :map evil-cleverparens-mode-map
         :n "[[" #'evil-cp-beginning-of-defun
         :n "]]" #'evil-cp-end-of-defun))
+
+(after! clojure-mode
+  (add-to-list 'auto-mode-alist '("\\.edn\\'" . clojure-mode)))
 
 ;; Hooks
 (add-hook! 'before-save-hook #'whitespace-cleanup)
