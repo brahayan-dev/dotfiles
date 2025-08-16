@@ -4,6 +4,7 @@
   dnf:
     name:
       - npm
+      - sbcl
       - golang
       - podman
       - opentofu
@@ -55,6 +56,7 @@
         name:
           - go
           - npm
+          - sbcl
           - podman
           - coursier
           - opentofu
@@ -94,3 +96,21 @@
       shell: /tmp/babashka
       args:
         creates: /usr/local/bin/bb
+
+- name: Install Quicklisp
+  block:
+    - name: Install Quicklisp - Download Installer
+      get_url:
+        url: https://beta.quicklisp.org/quicklisp.lisp
+        dest: /tmp/quicklisp.lisp
+        mode: 0644
+    - name: Install Quicklisp - Run Installer
+      command: >
+        sbcl
+        --non-interactive
+        --load /tmp/quicklisp.lisp
+        --eval '(quicklisp-quickstart:install :path "~/.quicklisp")'
+        --eval '(quit)'
+      args:
+        creates: "/{{ base_dir }}/{{ current_user }}/.quicklisp/setup.lisp"
+  when: akeptous_file.stat.exists
