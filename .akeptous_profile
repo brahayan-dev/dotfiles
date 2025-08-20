@@ -35,4 +35,6 @@ if [[ "$(uname)" == "Linux" ]]; then
     # NOTE: Java setup
     export JAVA_HOME="$HOME/.cache/coursier/arc/https/github.com/adoptium/temurin17-binaries/releases/download/jdk-17.0.15%252B6/OpenJDK17U-jdk_x64_linux_hotspot_17.0.15_6.tar.gz/jdk-17.0.15+6"
     export PATH="$PATH:$JAVA_HOME/bin"
+    # NOTE: Other configurations
+    export PATH="$HOME/.local/bin:$PATH"
 fi
