@@ -56,7 +56,9 @@
         name:
           - go
           - npm
+          - lima
           - sbcl
+          - guile
           - podman
           - coursier
           - opentofu

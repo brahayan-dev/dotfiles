@@ -64,6 +64,7 @@
        data
        json
        emacs-lisp
+       (scheme +guile)
        (markdown +grip)
        (sh +lsp +tree-sitter)
        (web +lsp +tree-sitter)
