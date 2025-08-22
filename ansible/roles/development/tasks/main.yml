@@ -57,6 +57,7 @@
           - go
           - npm
           - sbcl
+          - guile
           - podman
           - coursier
           - opentofu
