@@ -48,10 +48,10 @@
                    (lsp-inline-completion-display))))
 
 (use-package! smartparens
-  :hook ((clojure-mode clojurescript-mode emacs-lisp-mode lisp-mode) . smartparens-strict-mode))
+  :hook ((scheme-mode clojure-mode clojurescript-mode emacs-lisp-mode lisp-mode) . smartparens-strict-mode))
 
 (use-package! evil-cleverparens
-  :hook ((clojure-mode clojurescript-mode emacs-lisp-mode lisp-mode) . evil-cleverparens-mode)
+  :hook ((scheme-mode clojure-mode clojurescript-mode emacs-lisp-mode lisp-mode) . evil-cleverparens-mode)
   :config
   (map! :map evil-cleverparens-mode-map
         :n "[[" #'evil-cp-beginning-of-defun
