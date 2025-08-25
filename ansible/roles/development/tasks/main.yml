@@ -60,10 +60,12 @@
           - sbcl
           - guile
           - podman
+          - flyway
           - coursier
           - opentofu
           - dbeaver-community
         state: present
+  notify: Reload Zsh Files
   when: akeptous_file.stat.exists and (ansible_os_family == "Darwin")
 
 - name: Install Java
