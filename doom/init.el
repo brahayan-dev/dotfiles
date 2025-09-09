@@ -71,6 +71,7 @@
        (yaml +lsp +tree-sitter)
        (clojure +lsp +tree-sitter)
        (javascript +lsp +tree-sitter)
+       (ruby +rails *rbenv +lsp +tree-sitter)
        (:if (string= current-workspace "akeptous") common-lisp)
        (:if (string= current-workspace "work") (dart +lsp +flutter))
        (:if (string= current-workspace "work") (scala +lsp +tree-sitter))
