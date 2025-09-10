@@ -4,38 +4,35 @@
   dnf:
     name:
       - npm
-      - sbcl
-      - rbenv
+      - gcc
+      - gcc-c++
+      - make
+      - glibc-devel
+      - pkgconf-pkg-config
+      - rust
+      - cargo
+      - openssl-devel
+      - libyaml-devel
+      - zlib-devel
+      - gmp-devel
       - golang
+      - libffi-devel
+      - readline-devel
+      - libffi-devel
+      - readline-devel
       - podman
       - opentofu
       - dbeaver-ce
     state: present
   when: ansible_os_family == "RedHat"
 
-- name: Install Coursier (Linux) - Check Binary
-  stat:
-    path: /usr/local/bin/coursier
-  register: coursier_binary
-
-- name: Install Coursier (Linux)
-  block:
-    - name: Install Coursier (Linux) - Download Binary
-      shell: |
-        curl -fL "https://github.com/coursier/launchers/raw/master/cs-x86_64-pc-linux.gz" | gzip -d > coursier
-      args:
-        chdir: /tmp
-    - name: Install Coursier (Linux) - Install Binary
-      become: true
-      copy:
-        src: /tmp/coursier
-        dest: /usr/local/bin/coursier
-        mode: 0755
-        force: false
-  when:
-    - not coursier_binary.stat.exists
-    - akeptous_file.stat.exists
-    - ansible_os_family == "RedHat"
+- name: Install Mise
+  shell: |
+    curl https://mise.run | sh
+  args:
+    creates: "/{{ base_dir }}/{{ current_user }}/.local/bin/mise"
+  notify: Reload Zsh Files
+  when: akeptous_file.stat.exists
 
 - name: Install NVM
   shell: |
@@ -57,66 +54,14 @@
         name:
           - go
           - npm
+          - gmp
+          - rust
           - lima
-          - sbcl
-          - rbenv
-          - guile
           - podman
-          - flyway
-          - coursier
+          - libyaml
           - opentofu
+          - openssl@3
           - dbeaver-community
         state: present
   notify: Reload Zsh Files
   when: akeptous_file.stat.exists and (ansible_os_family == "Darwin")
-
-- name: Install Java
-  shell: |
-    coursier java "--jvm={{ jvm_version }}" --setup
-  args:
-    creates: "/usr/bin/java"
-  when: akeptous_file.stat.exists
-
-- name: Install Clojure
-  become: true
-  block:
-    - name: Install Clojure - Download Installer
-      get_url:
-        url: https://github.com/clojure/brew-install/releases/latest/download/linux-install.sh
-        dest: /tmp/clojure-installer.sh
-        mode: 0755
-    - name: Install Clojure - Run Installer
-      shell: /tmp/clojure-installer.sh
-      args:
-        creates: /usr/local/bin/clojure
-
-- name: Install Babashka
-  block:
-    - name: Install Babashka - Download Installer
-      get_url:
-        url: https://raw.githubusercontent.com/babashka/babashka/master/install
-        dest: /tmp/babashka
-        mode: 0777
-    - name: Install Babashka - Run Installer
-      become: true
-      shell: /tmp/babashka
-      args:
-        creates: /usr/local/bin/bb
-
-- name: Install Quicklisp
-  block:
-    - name: Install Quicklisp - Download Installer
-      get_url:
-        url: https://beta.quicklisp.org/quicklisp.lisp
-        dest: /tmp/quicklisp.lisp
-        mode: 0644
-    - name: Install Quicklisp - Run Installer
-      command: >
-        sbcl
-        --non-interactive
-        --load /tmp/quicklisp.lisp
-        --eval '(quicklisp-quickstart:install :path "~/.quicklisp")'
-        --eval '(quit)'
-      args:
-        creates: "/{{ base_dir }}/{{ current_user }}/.quicklisp/setup.lisp"
-  when: akeptous_file.stat.exists
