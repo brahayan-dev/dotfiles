@@ -5,6 +5,7 @@
     name:
       - npm
       - sbcl
+      - rbenv
       - golang
       - podman
       - opentofu
@@ -58,6 +59,7 @@
           - npm
           - lima
           - sbcl
+          - rbenv
           - guile
           - podman
           - flyway
