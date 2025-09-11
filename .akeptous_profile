@@ -22,8 +22,6 @@ if [[ "$(uname)" == "Darwin" ]]; then
     export CURRENT_USER=brahayanxavier
     # NOTE: Copilot path
     export PATH="$PATH:/opt/homebrew/Cellar/node/24.4.1/lib/node_modules/@github/copilot-language-server/native/darwin-arm64/"
-    # NOTE: Other configurations
-    source "$HOME/.local/bin/env"
 fi
 
 if [[ "$(uname)" == "Linux" ]]; then
