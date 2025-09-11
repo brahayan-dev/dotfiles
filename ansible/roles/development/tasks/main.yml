@@ -52,12 +52,12 @@
     - name: Install Development Stack (macOS) - Run Brew
       community.general.homebrew:
         name:
-          - go
           - npm
           - gmp
           - rust
           - lima
           - podman
+          - golang
           - libyaml
           - opentofu
           - openssl@3
