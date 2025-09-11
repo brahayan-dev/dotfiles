@@ -1,13 +1,13 @@
 #!/usr/bin/env zsh
 
-alias dotfiles='cd "$HOME/.dotfiles/" && nvim .'
+alias dotfiles='cd "$HOME/.dotfiles/" && zed .'
 
-alias kiln='cd "$HOME/Projects/kiln/" && nvim .'
-alias workbook='cd "$HOME/Projects/workbook/" && nvim .'
+alias kiln='cd "$HOME/Projects/kiln/" && zed .'
+alias workbook='cd "$HOME/Projects/workbook/" && zed .'
 
-alias cloud='cd "$HOME/Akeptous/cloud/" && nvim .'
-alias handbook='cd "$HOME/Akeptous/handbook/" && nvim .'
-alias gifttech='cd "$HOME/Akeptous/gifttech/" && nvim .'
+alias cloud='cd "$HOME/Akeptous/cloud/" && zed .'
+alias handbook='cd "$HOME/Akeptous/handbook/" && zed .'
+alias gifttech='cd "$HOME/Akeptous/gifttech/" && zed .'
 
 alias gemini='aider --multiline --vim --model gemini'
 alias claude='aider --multiline --vim --model anthropic/claude-sonnet-4-20250514'
