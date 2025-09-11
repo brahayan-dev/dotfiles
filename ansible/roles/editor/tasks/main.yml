@@ -1,65 +1,5 @@
 ---
-- name: Install Editors (Linux)
-  become: true
-  dnf:
-    name:
-      - zed
-      - neovim
-    state: present
-  when: ansible_os_family == "RedHat"
-
-- name: Install Editors (macOS)
-  community.general.homebrew:
-    name:
-      - zed
-      - neovim
-    state: present
-  when: ansible_os_family == "Darwin"
-
-- name: Install Dependencies For Editors (Linux)
-  become: true
-  dnf:
-    name:
-      - gcc
-      - make
-      - grip
-      - tidy
-      - cmake
-      - shfmt
-      - unzip
-      - xclip
-      - pandoc
-      - libtool
-      - ripgrep
-      - fd-find
-      - shellcheck
-      - fira-code-fonts
-    state: present
-  when: ansible_os_family == "RedHat"
-
-- name: Install Dependencies For Editors (macOS)
-  community.general.homebrew:
-    name:
-      - jq
-      - gh
-      - fd
-      - gcc
-      - make
-      - grip
-      - cmake
-      - shfmt
-      - unzip
-      - pandoc
-      - direnv
-      - libtool
-      - ripgrep
-      - ghostty
-      - shellcheck
-      - font-fira-code
-    state: present
-  when: ansible_os_family == "Darwin"
-
-- name: Install NPM Dependencies
+- name: Install NPM Dependencies (DOOM)
   become: true
   community.general.npm:
     name: "{{ item }}"
@@ -75,31 +15,25 @@
     - typescript-language-server
     - vscode-langservers-extracted
     - "@github/copilot-language-server"
-
-- name: Install Dockfmt (Linux)
-  become: true
-  shell: |
-    mkdir /usr/local/bin/dockfmt
-    go install github.com/jessfraz/dockfmt@latest
-    mv /root/go/bin/dockfmt /usr/local/bin/dockfmt
-  args:
-    creates: /usr/local/bin/dockfmt
-  when: ansible_os_family == "RedHat"
-
-- name: Install Dockfmt (macOS)
-  become: true
-  shell: |
-    go install github.com/jessfraz/dockfmt@latest
-    mv /var/root/go/bin/dockfmt /usr/local/bin/dockfmt
-  args:
-    creates: /usr/local/bin/dockfmt
-  when: ansible_os_family == "Darwin"
+  when:
+    - not akeptous_file.stat.exists
+    - ansible_os_family == "Darwin"
 
 - name: Create Configuration Directory
   ansible.builtin.file:
     path: "/{{ base_dir }}/{{ current_user }}/.config"
     state: directory
     mode: 0755
+
+- name: Set Editor Symlink (ZED)
+  command: >
+    ln -s -f
+    "/{{ base_dir }}/{{ current_user }}/.dotfiles/zed"
+    "/{{ base_dir }}/{{ current_user }}/.config/zed"
+  args:
+    chdir: "/{{ base_dir }}/{{ current_user }}/.dotfiles"
+    creates: "/{{ base_dir }}/{{ current_user }}/.config/zed/settings.json"
+  notify: Reload Zsh Files
 
 - name: Set Editor Symlink (NVIM)
   command: >
@@ -120,3 +54,6 @@
     chdir: "/{{ base_dir }}/{{ current_user }}/.dotfiles"
     creates: "/{{ base_dir }}/{{ current_user }}/.config/doom/init.el"
   notify: Reload Zsh Files
+  when:
+    - not akeptous_file.stat.exists
+    - ansible_os_family == "Darwin"

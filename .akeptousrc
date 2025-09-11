@@ -5,16 +5,13 @@ alias dotfiles='cd "$HOME/.dotfiles/" && nvim .'
 alias kiln='cd "$HOME/Projects/kiln/" && nvim .'
 alias workbook='cd "$HOME/Projects/workbook/" && nvim .'
 
-alias cdk='cd "$HOME/Akeptous/cdk/" && nvim .'
-alias doc='cd "$HOME/Akeptous/doc/" && nvim .'
-alias sdk='cd "$HOME/Akeptous/sdk/" && nvim .'
+alias cloud='cd "$HOME/Akeptous/cloud/" && nvim .'
+alias handbook='cd "$HOME/Akeptous/handbook/" && nvim .'
+alias gifttech='cd "$HOME/Akeptous/gifttech/" && nvim .'
 
 alias gemini='aider --multiline --vim --model gemini'
 alias claude='aider --multiline --vim --model anthropic/claude-sonnet-4-20250514'
 alias models='aider --list-models openrouter/ && aider --list-models anthropic/'
-
-alias kill-doom='emacsclient -e "(kill-emacs)"'
-alias lisp='rlwrap sbcl'
 
 # NOTE: Direnv setup
 eval "$(direnv hook zsh)"

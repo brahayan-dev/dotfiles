@@ -34,12 +34,6 @@ alias lg='lazygit'
 # NOTE: Workstation CLI
 export PATH="$HOME/.dotfiles/:$PATH"
 
-# NOTE: Doom setup
-export PATH="$HOME/.config/emacs/bin:$PATH"
-
-# NOTE: Aider setup
-export OPENAI_API_BASE=https://api.githubcopilot.com
-
 # NOTE: Configurations
 [ -s ~/.workrc ] && source ~/.workrc
 [ -s ~/.akeptousrc ] && source ~/.akeptousrc

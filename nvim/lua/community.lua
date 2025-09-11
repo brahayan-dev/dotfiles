@@ -6,5 +6,5 @@
 return {
   "AstroNvim/astrocommunity",
   { import = "astrocommunity.pack.lua" },
-  { import = "astrocommunity.pack.clojure" },
+  { import = "astrocommunity.pack.ruby" },
 }

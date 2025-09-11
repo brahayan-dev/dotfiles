@@ -1,16 +1,13 @@
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
-;; Variables
-(defvar current-workspace (getenv "WORKSPACE"))
-
 ;; Theme
 ;; (setq doom-theme 'doom-bluloco-light)
-;; (setq doom-theme 'doom-nord-light)
+(setq doom-theme 'doom-nord-light)
 ;; (setq doom-theme 'doom-solarized-light)
 ;; (setq doom-theme 'doom-nord-aurora)
 ;; (setq doom-theme 'doom-tokyo-night)
 ;; (setq doom-theme 'doom-monokai-pro)
-(setq doom-theme 'doom-dracula)
+;; (setq doom-theme 'doom-dracula)
 
 ;; Doom Configuration
 (setq doom-localleader-key ","
@@ -48,10 +45,10 @@
                    (lsp-inline-completion-display))))
 
 (use-package! smartparens
-  :hook ((scheme-mode clojure-mode clojurescript-mode emacs-lisp-mode lisp-mode) . smartparens-strict-mode))
+  :hook ((clojure-mode clojurescript-mode emacs-lisp-mode) . smartparens-strict-mode))
 
 (use-package! evil-cleverparens
-  :hook ((scheme-mode clojure-mode clojurescript-mode emacs-lisp-mode lisp-mode) . evil-cleverparens-mode)
+  :hook ((clojure-mode clojurescript-mode emacs-lisp-mode) . evil-cleverparens-mode)
   :config
   (map! :map evil-cleverparens-mode-map
         :n "[[" #'evil-cp-beginning-of-defun
@@ -71,17 +68,10 @@
       "M-D" #'evil-multiedit-match-and-prev)
 
 ;; Workspace Configuration
-(when (string= current-workspace "akeptous")
-  (setq projectile-project-search-path '("~/Projects" "~/Akeptous"))
-  (when (equal system-type 'gnu/linux)
-    (setq doom-font (font-spec :family "Fira Code" :size 16)))
-  (when (equal system-type 'darwin)
-    (setq doom-font (font-spec :family "Fira Code" :size 18))))
+(setq doom-font (font-spec :family "Fira Code" :size 18)
+      projectile-project-search-path '("~/Projects" "~/dev/nu/"))
 
-(when (string= current-workspace "work")
-  (setq doom-font (font-spec :family "Fira Code" :size 18)
-        projectile-project-search-path '("~/Projects" "~/dev/nu/"))
-  (let ((nudev-emacs-path "~/dev/nu/nudev/ides/emacs/"))
-    (when (file-directory-p nudev-emacs-path)
-      (add-to-list 'load-path nudev-emacs-path)
-      (require 'nu nil t))))
+(let ((nudev-emacs-path "~/dev/nu/nudev/ides/emacs/"))
+  (when (file-directory-p nudev-emacs-path)
+    (add-to-list 'load-path nudev-emacs-path)
+    (require 'nu nil t)))

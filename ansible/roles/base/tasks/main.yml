@@ -1,18 +1,88 @@
 ---
-- name: Install Common Dependencies (Linux)
+- name: Install Dependencies (Linux)
   become: true
   dnf:
     name:
       - git
       - zsh
+      - zed
+      - npm
+      - gcc
       - curl
       - tree
+      - make
+      - rust
+      - cargo
       - unzip
       - pdftk
       - rlwrap
+      - neovim
+      - golang
+      - podman
+      - direnv
       - lazygit
+      - gcc-c++
+      - opentofu
+      - gmp-devel
+      - zlib-devel
+      - dbeaver-ce
+      - glibc-devel
+      - libffi-devel
+      - openssl-devel
+      - libyaml-devel
+      - readline-devel
+      - pkgconf-pkg-config
     state: present
   when: ansible_os_family == "RedHat"
+
+- name: Install Dependencies (macOS)
+  community.general.homebrew:
+    name:
+      - jq
+      - gh
+      - zed
+      - zsh
+      - git
+      - npm
+      - gmp
+      - rust
+      - lima
+      - curl
+      - tree
+      - unzip
+      - rlwrap
+      - neovim
+      - podman
+      - golang
+      - direnv
+      - lazygit
+      - libyaml
+      - ghostty
+      - opentofu
+      - openssl@3
+      - font-fira-code
+      - dbeaver-community
+    state: present
+  when: ansible_os_family == "Darwin"
+
+- name: Install Dependencies For Work (macOS)
+  community.general.homebrew:
+    name:
+      - fd
+      - gcc
+      - make
+      - grip
+      - cmake
+      - shfmt
+      - pandoc
+      - libtool
+      - ripgrep
+      - coursier
+      - shellcheck
+    state: present
+  when:
+    - not akeptous_file.stat.exists
+    - ansible_os_family == "Darwin"
 
 - name: Install Brave (Linux)
   shell: curl -fsS https://dl.brave.com/install.sh | sh
@@ -23,13 +93,6 @@
 - name: Install Common Dependencies (macOS)
   community.general.homebrew:
     name:
-      - git
-      - zsh
-      - curl
-      - tree
-      - unzip
-      - rlwrap
-      - lazygit
     state: present
   when: ansible_os_family == "Darwin"
 
