@@ -7,6 +7,12 @@ readonly ICON="$HOME/.local/share/icons/doom.png"
 readonly DESKTOP_FILE=/usr/share/applications/emacs.desktop
 
 # Download Doom Emacs
+download_emacs() {
+    brew tap d12frosted/emacs-plus
+    brew install emacs-plus --with-modern-doom3-icon
+}
+
+# Download Doom Emacs
 download_doom() {
     git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.config/emacs
 }
@@ -26,6 +32,9 @@ change_icon() {
 
 # Execute doom command
 execute_doom() {
+    log_info "Downloading Emacs"
+    download_emacs
+
     log_info "Downloading Doom Emacs"
     download_doom
 
