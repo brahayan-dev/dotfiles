@@ -3,37 +3,23 @@
   become: true
   dnf:
     name:
+      - zed
       - neovim
-      - emacs
     state: present
   when: ansible_os_family == "RedHat"
 
 - name: Install Editors (macOS)
-  block:
-    - name: Install Editors (macOS) - Add Emacs Plus
-      shell: |
-        brew tap d12frosted/emacs-plus
-      args:
-        creates: /opt/homebrew/Library/Taps/d12frosted/homebrew-emacs-plus
-    - name: Install Editors (macOS) - Install Emacs Plus
-      community.general.homebrew:
-        name:
-          - emacs-plus
-        state: present
-        install_options: "with-modern-doom3-icon,with-mailutils"
-    - name: Install Editors (macOS) - Neovim
-      community.general.homebrew:
-        name:
-          - neovim
-        state: present
+  community.general.homebrew:
+    name:
+      - zed
+      - neovim
+    state: present
   when: ansible_os_family == "Darwin"
 
 - name: Install Dependencies For Editors (Linux)
   become: true
   dnf:
     name:
-      - jq
-      - gh
       - gcc
       - make
       - grip
@@ -43,9 +29,7 @@
       - unzip
       - xclip
       - pandoc
-      - direnv
       - libtool
-      - ghostty
       - ripgrep
       - fd-find
       - shellcheck

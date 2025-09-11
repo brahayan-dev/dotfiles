@@ -7,6 +7,7 @@
       - zsh
       - curl
       - tree
+      - unzip
       - pdftk
       - rlwrap
       - lazygit
@@ -26,6 +27,7 @@
       - zsh
       - curl
       - tree
+      - unzip
       - rlwrap
       - lazygit
     state: present

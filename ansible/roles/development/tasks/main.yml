@@ -21,6 +21,7 @@
       - libffi-devel
       - readline-devel
       - podman
+      - direnv
       - opentofu
       - dbeaver-ce
     state: present
@@ -43,25 +44,22 @@
     - akeptous_file.stat.exists
 
 - name: Install Development Stack (macOS)
-  block:
-    - name: Install Development Stack (macOS) - Add Tap
-      community.general.homebrew_tap:
-        name:
-          - coursier/formulas
-        state: present
-    - name: Install Development Stack (macOS) - Run Brew
-      community.general.homebrew:
-        name:
-          - npm
-          - gmp
-          - rust
-          - lima
-          - podman
-          - golang
-          - libyaml
-          - opentofu
-          - openssl@3
-          - dbeaver-community
-        state: present
+  community.general.homebrew:
+    name:
+      - jq
+      - gh
+      - npm
+      - gmp
+      - rust
+      - lima
+      - podman
+      - golang
+      - direnv
+      - libyaml
+      - ghostty
+      - opentofu
+      - openssl@3
+      - dbeaver-community
+    state: present
   notify: Reload Zsh Files
   when: akeptous_file.stat.exists and (ansible_os_family == "Darwin")
