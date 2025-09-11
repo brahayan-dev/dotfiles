@@ -32,13 +32,13 @@ change_icon() {
 
 # Execute doom command
 execute_doom() {
-    log_info "Downloading Emacs"
+    log_info "Installing Emacs"
     download_emacs
 
-    log_info "Downloading Doom Emacs"
+    log_info "Downloading Doom"
     download_doom
 
-    log_info "Installing Doom Emacs"
+    log_info "Installing Doom"
     install_doom
 }
 
