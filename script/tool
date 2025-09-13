@@ -4,7 +4,7 @@ source "$(dirname "${BASH_SOURCE[0]}")/base"
 
 # Constants
 readonly DOTFILES_DIR="$HOME/.dotfiles"
-readonly SUPPORTED_COMMANDS=("ping" "setup" "clean" "github" "connect" "day" "night" "doom" "icon" "mark")
+readonly SUPPORTED_COMMANDS=("ping" "setup" "clean" "github" "connect" "day" "night" "doom" "icon" "mark" "clone")
 
 # Mark function
 mark() {
@@ -83,6 +83,7 @@ Commands:
     night    - Set the Ghostty's dark theme
     day      - Set the Ghostty's light theme
     mark     - Mark workspace as akeptous
+    clone    - Clone akeptous repositories
 
 EOF
 }

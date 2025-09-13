@@ -38,6 +38,9 @@ dispatch_command() {
     "connect")
         execute_connect
         ;;
+    "clone")
+        execute_clone
+        ;;
     "doom")
         execute_doom
         ;;
@@ -78,6 +81,7 @@ main() {
         "$command" == "night" ||
         "$command" == "github" ||
         "$command" == "connect" ||
+        "$command" == "clone" ||
         "$command" == "mark" ||
         "$command" == "clean" ]]; then
         dispatch_command "$command"

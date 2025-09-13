@@ -15,6 +15,30 @@ set_ssh_key_to_github() {
     gh ssh-key add "$HOME/.ssh/${CURRENT_USER}_rsa.pub" -t "${CURRENT_USER}-ssh"
 }
 
+# Create Akeptous directory and clone repositories
+clone_akeptous_repos() {
+    local akeptous_dir="$HOME/Akeptous"
+
+    # Create Akeptous directory if it doesn't exist
+    if [[ ! -d "$akeptous_dir" ]]; then
+        log_info "Creating Akeptous directory at $akeptous_dir"
+        mkdir -p "$akeptous_dir"
+    fi
+
+    cd "$akeptous_dir" || return
+
+    # Clone repositories using gh
+    local repos=("akli" "cloud" "gifttech" "handbook")
+    for repo in "${repos[@]}"; do
+        if [[ ! -d "$repo" ]]; then
+            log_info "Cloning $repo repository"
+            gh repo clone "akeptous/$repo"
+        else
+            log_info "$repo repository already exists, skipping"
+        fi
+    done
+}
+
 # Execute connect command
 execute_connect() {
     log_info "Connecting dotfiles to GitHub over SSH"
@@ -25,4 +49,10 @@ execute_connect() {
 execute_github() {
     log_info "Setting up GitHub SSH key"
     set_ssh_key_to_github
+}
+
+# Execute clone command
+execute_clone() {
+    log_info "Cloning Akeptous repositories from GitHub"
+    clone_akeptous_repos
 }
