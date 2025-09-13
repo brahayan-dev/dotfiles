@@ -16,6 +16,9 @@ export PATH="$PATH:$GOBIN"
 # NOTE: Ruby setup
 eval "$(~/.local/bin/mise activate)"
 
+# NOTE: Akeptous CLI
+export PATH="$HOME/Akeptous/akli/:$PATH"
+
 if [[ "$(uname)" == "Darwin" ]]; then
     # NOTE: User
     export CURRENT_USER=brahayanxavier

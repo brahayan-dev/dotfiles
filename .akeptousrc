@@ -5,6 +5,7 @@ alias dotfiles='cd "$HOME/.dotfiles/" && zed .'
 alias kiln='cd "$HOME/Projects/kiln/" && zed .'
 alias workbook='cd "$HOME/Projects/workbook/" && zed .'
 
+alias akli='cd "$HOME/Akeptous/akli/" && zed .'
 alias cloud='cd "$HOME/Akeptous/cloud/" && zed .'
 alias handbook='cd "$HOME/Akeptous/handbook/" && zed .'
 alias gifttech='cd "$HOME/Akeptous/gifttech/" && zed .'
