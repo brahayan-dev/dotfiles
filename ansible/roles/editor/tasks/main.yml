@@ -1,4 +1,17 @@
 ---
+- name: Install NPM Dependencies (NVIM)
+  become: true
+  community.general.npm:
+    name: "{{ item }}"
+    global: true
+    force: true
+  loop:
+    - bash-language-server
+    - yaml-language-server
+    - "@github/copilot-language-server"
+  when:
+    - akeptous_file.stat.exists
+
 - name: Install NPM Dependencies (DOOM)
   become: true
   community.general.npm:
@@ -15,22 +28,14 @@
     - typescript-language-server
     - vscode-langservers-extracted
     - "@github/copilot-language-server"
+  when:
+    - not akeptous_file.stat.exists
 
 - name: Create Configuration Directory
   ansible.builtin.file:
     path: "/{{ base_dir }}/{{ current_user }}/.config"
     state: directory
     mode: 0755
-
-- name: Set Editor Symlink (ZED)
-  command: >
-    ln -s -f
-    "/{{ base_dir }}/{{ current_user }}/.dotfiles/zed"
-    "/{{ base_dir }}/{{ current_user }}/.config/zed"
-  args:
-    chdir: "/{{ base_dir }}/{{ current_user }}/.dotfiles"
-    creates: "/{{ base_dir }}/{{ current_user }}/.config/zed/settings.json"
-  notify: Reload Zsh Files
 
 - name: Set Editor Symlink (NVIM)
   command: >
