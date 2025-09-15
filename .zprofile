@@ -16,6 +16,8 @@ fi
 # ---------
 # NOTE: Editor
 export EDITOR=nvim
+# NOTE: Doom setup
+export PATH="$HOME/.config/emacs/bin:$PATH"
 # NOTE: Profiles
 [ -f ~/.work_profile ] && source ~/.work_profile
 [ -f ~/.private_profile ] && source ~/.private_profile

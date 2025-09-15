@@ -20,6 +20,8 @@
       - golang
       - podman
       - direnv
+      - fd-find
+      - ripgrep
       - lazygit
       - gcc-c++
       - opentofu
@@ -39,6 +41,7 @@
   community.general.homebrew:
     name:
       - jq
+      - fd
       - gh
       - zed
       - zsh
@@ -56,6 +59,7 @@
       - golang
       - direnv
       - lazygit
+      - ripgrep
       - libyaml
       - ghostty
       - opentofu

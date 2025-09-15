@@ -55,5 +55,4 @@
     creates: "/{{ base_dir }}/{{ current_user }}/.config/doom/init.el"
   notify: Reload Zsh Files
   when:
-    - not akeptous_file.stat.exists
-    - ansible_os_family == "Darwin"
+    - akeptous_file.stat.exists

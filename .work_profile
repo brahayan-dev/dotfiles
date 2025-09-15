@@ -60,6 +60,3 @@ export NU_COUNTRY=co
 eval "$(rbenv init -)"
 
 export CURRENT_USER=xavier.ramirez
-
-# NOTE: Doom setup
-export PATH="$HOME/.config/emacs/bin:$PATH"

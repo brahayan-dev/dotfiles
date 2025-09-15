@@ -22,6 +22,8 @@
   loop:
     - thor
     - rails
+    - rubocop
+    - solargraph
   notify: Reload Zsh Files
   when: akeptous_file.stat.exists
 
