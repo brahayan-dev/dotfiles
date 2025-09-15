@@ -15,9 +15,6 @@
     - typescript-language-server
     - vscode-langservers-extracted
     - "@github/copilot-language-server"
-  when:
-    - not akeptous_file.stat.exists
-    - ansible_os_family == "Darwin"
 
 - name: Create Configuration Directory
   ansible.builtin.file:

@@ -48,11 +48,15 @@
       - git
       - npm
       - gmp
+      - grip
       - rust
       - lima
       - curl
       - tree
+      - cmake
+      - shfmt
       - unzip
+      - pandoc
       - rlwrap
       - neovim
       - podman
@@ -64,6 +68,7 @@
       - ghostty
       - opentofu
       - openssl@3
+      - shellcheck
       - font-fira-code
       - dbeaver-community
     state: present
