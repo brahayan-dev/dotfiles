@@ -37,6 +37,18 @@
     state: directory
     mode: 0755
 
+- name: Set Editor Symlink (ZED)
+  command: >
+    ln -s -f
+    "/{{ base_dir }}/{{ current_user }}/.dotfiles/zed"
+    "/{{ base_dir }}/{{ current_user }}/.config/zed"
+  args:
+    chdir: "/{{ base_dir }}/{{ current_user }}/.dotfiles"
+    creates: "/{{ base_dir }}/{{ current_user }}/.config/zed/settings.json"
+  notify: Reload Zsh Files
+  when:
+    - akeptous_file.stat.exists
+
 - name: Set Editor Symlink (NVIM)
   command: >
     ln -s -f
