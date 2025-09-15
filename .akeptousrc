@@ -1,14 +1,20 @@
 #!/usr/bin/env zsh
 
-alias zdotfiles='cd "$HOME/.dotfiles/" && zed .'
+alias _dotfiles='cd "$HOME/.dotfiles/"'
+alias _kiln='cd "$HOME/Projects/kiln/"'
+alias _workbook='cd "$HOME/Projects/workbook/"'
+alias _akli='cd "$HOME/Akeptous/akli/"'
+alias _cloud='cd "$HOME/Akeptous/cloud/"'
+alias _handbook='cd "$HOME/Akeptous/handbook/"'
+alias _gifttech='cd "$HOME/Akeptous/gifttech/"'
 
-alias zkiln='cd "$HOME/Projects/kiln/" && zed .'
-alias zworkbook='cd "$HOME/Projects/workbook/" && zed .'
-
-alias zakli='cd "$HOME/Akeptous/akli/" && zed .'
-alias zcloud='cd "$HOME/Akeptous/cloud/" && zed .'
-alias zhandbook='cd "$HOME/Akeptous/handbook/" && zed .'
-alias zgifttech='cd "$HOME/Akeptous/gifttech/" && zed .'
+alias __dotfiles='cd "$HOME/.dotfiles/" && nvim .'
+alias __kiln='cd "$HOME/Projects/kiln/" && nvim .'
+alias __workbook='cd "$HOME/Projects/workbook/" && nvim .'
+alias __akli='cd "$HOME/Akeptous/akli/" && nvim .'
+alias __cloud='cd "$HOME/Akeptous/cloud/" && nvim .'
+alias __handbook='cd "$HOME/Akeptous/handbook/" && nvim .'
+alias __gifttech='cd "$HOME/Akeptous/gifttech/" && nvim .'
 
 alias gemini='aider --multiline --vim --model gemini'
 alias claude='aider --multiline --vim --model anthropic/claude-sonnet-4-20250514'

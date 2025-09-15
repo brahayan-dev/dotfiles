@@ -23,7 +23,7 @@
     - thor
     - rails
     - rubocop
-    - solargraph
+    - ruby-lsp
   notify: Reload Zsh Files
   when: akeptous_file.stat.exists
 

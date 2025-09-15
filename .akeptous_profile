@@ -22,8 +22,8 @@ export PATH="$HOME/Akeptous/akli/:$PATH"
 if [[ "$(uname)" == "Darwin" ]]; then
     # NOTE: User
     export CURRENT_USER=brahayanxavier
-    # NOTE: Copilot path
-    export PATH="$PATH:/opt/homebrew/Cellar/node/24.4.1/lib/node_modules/@github/copilot-language-server/native/darwin-arm64/"
+    # NOTE: Path to binaries on Brew
+    export PATH="/opt/homebrew/bin:$PATH"
 fi
 
 if [[ "$(uname)" == "Linux" ]]; then
