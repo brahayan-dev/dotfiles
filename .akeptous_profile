@@ -17,7 +17,7 @@ export PATH="$PATH:$GOBIN"
 eval "$(~/.local/bin/mise activate)"
 
 # NOTE: Akeptous CLI
-export PATH="$HOME/Akeptous/akli/console/bin/:$PATH"
+export PATH="$HOME/Akeptous/akli/console/:$PATH"
 
 if [[ "$(uname)" == "Darwin" ]]; then
     # NOTE: User
