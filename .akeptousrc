@@ -1,16 +1,18 @@
 #!/usr/bin/env zsh
 
 alias _dotfiles='cd "$HOME/.dotfiles/"'
-alias _kiln='cd "$HOME/Projects/kiln/"'
-alias _workbook='cd "$HOME/Projects/workbook/"'
+alias _kiln='cd "$HOME/Private/kiln/"'
+alias _max-neef='cd "$HOME/Private/max-neef/"'
+alias _workbook='cd "$HOME/Private/workbook/"'
 alias _akli='cd "$HOME/Akeptous/akli/"'
 alias _cloud='cd "$HOME/Akeptous/cloud/"'
 alias _handbook='cd "$HOME/Akeptous/handbook/"'
 alias _gifttech='cd "$HOME/Akeptous/gifttech/"'
 
 alias __dotfiles='cd "$HOME/.dotfiles/" && nvim .'
-alias __kiln='cd "$HOME/Projects/kiln/" && nvim .'
-alias __workbook='cd "$HOME/Projects/workbook/" && nvim .'
+alias __kiln='cd "$HOME/Private/kiln/" && nvim .'
+alias __max-neef='cd "$HOME/Private/max-neef/" && nvim .'
+alias __workbook='cd "$HOME/Private/workbook/" && nvim .'
 alias __akli='cd "$HOME/Akeptous/akli/" && nvim .'
 alias __cloud='cd "$HOME/Akeptous/cloud/" && nvim .'
 alias __handbook='cd "$HOME/Akeptous/handbook/" && nvim .'
