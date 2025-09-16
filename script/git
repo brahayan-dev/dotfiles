@@ -2,6 +2,9 @@
 
 source "$(dirname "${BASH_SOURCE[0]}")/base"
 
+readonly AKEPTOUS_REPOS=("akli" "cloud" "gifttech" "handbook")
+readonly PERSONAL_REPOS=("kiln" "max-neef" "workbook")
+
 # Connect dotfiles to GitHub
 connect_github() {
     cd ~/.dotfiles || return
@@ -15,26 +18,26 @@ set_ssh_key_to_github() {
     gh ssh-key add "$HOME/.ssh/${CURRENT_USER}_rsa.pub" -t "${CURRENT_USER}-ssh"
 }
 
-# Create Akeptous directory and clone repositories
-clone_akeptous_repos() {
-    local akeptous_dir="$HOME/Akeptous"
+# Create directory and clone repositories
+clone_repos() {
+    local owner="$1"
+    local dir="$2"
+    shift 2
+    local repos=("$@")
 
     # Create Akeptous directory if it doesn't exist
-    if [[ ! -d "$akeptous_dir" ]]; then
-        log_info "Creating Akeptous directory at $akeptous_dir"
-        mkdir -p "$akeptous_dir"
+    if [[ ! -d "$dir" ]]; then
+        log_info "Creating directory at $dir"
+        mkdir -p "$dir"
     fi
 
-    cd "$akeptous_dir" || return
+    cd "$dir" || return
 
     # Clone repositories using gh
-    local repos=("akli" "cloud" "gifttech" "handbook")
     for repo in "${repos[@]}"; do
         if [[ ! -d "$repo" ]]; then
             log_info "Cloning $repo repository"
-            gh repo clone "akeptous/$repo"
-        else
-            log_info "$repo repository already exists, skipping"
+            gh repo clone "$owner/$repo" 
         fi
     done
 }
@@ -54,5 +57,8 @@ execute_github() {
 # Execute clone command
 execute_clone() {
     log_info "Cloning Akeptous repositories from GitHub"
-    clone_akeptous_repos
+    clone_repos "akeptous" "$HOME/Akeptous" "${AKEPTOUS_REPOS[@]}"
+
+    log_info "Cloning Private repositories from GitHub"
+    clone_repos "brahayan-dev" "$HOME/Private" "${PERSONAL_REPOS[@]}"
 }

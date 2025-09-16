@@ -8,10 +8,8 @@
   when: akeptous_file.stat.exists
 
 - name: Install Ruby
-  command: >
+  shell: |
     mise use -g ruby@3
-  args:
-    creates: "/usr/bin/ruby"
   notify: Reload Zsh Files
   when: akeptous_file.stat.exists
 
