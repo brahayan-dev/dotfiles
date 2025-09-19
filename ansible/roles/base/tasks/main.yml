@@ -50,6 +50,7 @@
       - gmp
       - grip
       - rust
+      - ruby
       - lima
       - curl
       - tree

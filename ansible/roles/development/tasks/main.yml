@@ -14,12 +14,15 @@
   when: akeptous_file.stat.exists
 
 - name: Install Gems
+  become: true
   gem:
     name: "{{ item }}"
     state: present
+    user_install: false
   loop:
     - thor
     - rails
+    - bundler
     - rubocop
     - ruby-lsp
   notify: Reload Zsh Files

@@ -13,9 +13,6 @@ export PATH="$PATH:$GOBIN"
 # NOTE: Node.js setup
 [[ -e "$HOME/nvm/nvm.sh" ]] && source "$HOME/.nvm/nvm.sh"
 
-# NOTE: Ruby setup
-eval "$(~/.local/bin/mise activate)"
-
 # NOTE: Akeptous CLI
 export PATH="$HOME/Akeptous/akli/:$PATH"
 
@@ -24,6 +21,8 @@ if [[ "$(uname)" == "Darwin" ]]; then
     export CURRENT_USER=brahayanxavier
     # NOTE: Path to binaries on Brew
     export PATH="/opt/homebrew/bin:$PATH"
+    # NOTE: Ruby setup
+    export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
 fi
 
 if [[ "$(uname)" == "Linux" ]]; then
