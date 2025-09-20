@@ -7,7 +7,6 @@
     user_install: false
   loop:
     - thor
-    - rails
     - bundler
     - rubocop
     - ruby-lsp
