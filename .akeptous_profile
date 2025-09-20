@@ -23,6 +23,7 @@ if [[ "$(uname)" == "Darwin" ]]; then
     export PATH="/opt/homebrew/bin:$PATH"
     # NOTE: Ruby setup
     export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+    export PATH="$(ruby -r rubygems -e 'puts Gem.bindir'):$PATH"
 fi
 
 if [[ "$(uname)" == "Linux" ]]; then

@@ -1,18 +1,4 @@
 ---
-- name: Install Mise
-  shell: |
-    curl https://mise.run | sh
-  args:
-    creates: "/{{ base_dir }}/{{ current_user }}/.local/bin/mise"
-  notify: Reload Zsh Files
-  when: akeptous_file.stat.exists
-
-- name: Install Ruby
-  shell: |
-    mise use -g ruby@3
-  notify: Reload Zsh Files
-  when: akeptous_file.stat.exists
-
 - name: Install Gems
   become: true
   gem:
