@@ -53,13 +53,14 @@ vim.o.confirm = true
 vim.opt.swapfile = false
 
 -- Navigate vim panes better
-vim.keymap.set("n", "<leader>zq", "<C-w>q", { desc = "Close current window" })
-vim.keymap.set("n", "<leader>zv", "<C-w>v", { desc = "Split window vertically" })
-vim.keymap.set("n", "<leader>zs", "<C-w>s", { desc = "Split window horizontally" })
-vim.keymap.set("n", "<localleader>k", "<C-w><C-k>", { desc = "Move focus to the upper window" })
-vim.keymap.set("n", "<localleader>j", "<C-w><C-j>", { desc = "Move focus to the lower window" })
-vim.keymap.set("n", "<localleader>h", "<C-w><C-h>", { desc = "Move focus to the left window" })
-vim.keymap.set("n", "<localleader>l", "<C-w><C-l>", { desc = "Move focus to the right window" })
+vim.keymap.set("n", "<Leader>ww", "<C-w>w", { desc = "Go to next window" })
+vim.keymap.set("n", "<Leader>wq", "<C-w>q", { desc = "Close current window" })
+vim.keymap.set("n", "<Leader>wv", "<C-w>v", { desc = "Split window vertically" })
+vim.keymap.set("n", "<Leader>ws", "<C-w>s", { desc = "Split window horizontally" })
+vim.keymap.set("n", "<Leader>w<Up>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
+vim.keymap.set("n", "<Leader>w<Down>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
+vim.keymap.set("n", "<Leader>w<Left>", "<C-w><C-h>", { desc = "Move focus to the left window" })
+vim.keymap.set("n", "<Leader>w<Right>", "<C-w><C-l>", { desc = "Move focus to the right window" })
 
 -- Clear highlights on search when pressing <Esc> in normal mode
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
