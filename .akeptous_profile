@@ -14,7 +14,7 @@ export PATH="$PATH:$GOBIN"
 [[ -e "$HOME/nvm/nvm.sh" ]] && source "$HOME/.nvm/nvm.sh"
 
 # NOTE: Akeptous CLI
-export PATH="$HOME/Akeptous/akli/:$PATH"
+export PATH="$HOME/Akeptous/akeptous-cli/bin/:$PATH"
 
 if [[ "$(uname)" == "Darwin" ]]; then
     # NOTE: User
