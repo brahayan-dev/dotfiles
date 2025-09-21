@@ -3,14 +3,15 @@
   become: true
   dnf:
     name:
+      - gh
       - git
       - zsh
-      - zed
       - npm
       - gcc
       - curl
       - tree
       - make
+      - ruby
       - rust
       - cargo
       - unzip
@@ -21,14 +22,17 @@
       - podman
       - direnv
       - fd-find
+      - ghostty
       - ripgrep
       - lazygit
       - gcc-c++
       - opentofu
       - gmp-devel
+      - ruby-devel
       - zlib-devel
       - dbeaver-ce
       - glibc-devel
+      - python3-pip
       - libffi-devel
       - openssl-devel
       - libyaml-devel
