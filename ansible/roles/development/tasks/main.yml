@@ -13,6 +13,13 @@
   notify: Reload Zsh Files
   when: akeptous_file.stat.exists
 
+- name: Install Haskell
+  shell: |
+    echo '' | curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh
+  args:
+    creates: "/{{ base_dir }}/{{ current_user }}/.ghcup/bin/ghcup"
+  when: akeptous_file.stat.exists
+
 - name: Install NVM
   shell: |
     curl -o- "https://raw.githubusercontent.com/nvm-sh/nvm/v{{ nvm_version }}/install.sh" | bash
