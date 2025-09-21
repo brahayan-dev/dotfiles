@@ -6,9 +6,14 @@
     global: true
     force: true
   loop:
+    - elm
+    - elm-test
+    - elm-format
     - bash-language-server
     - yaml-language-server
+    - "@volar/pug-language-server"
     - "@github/copilot-language-server"
+    - "@elm-tooling/elm-language-server"
   when:
     - akeptous_file.stat.exists
 

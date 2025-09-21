@@ -16,6 +16,7 @@
 - name: Install Haskell
   shell: |
     echo '' | curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh
+    ghcup install hls
   args:
     creates: "/{{ base_dir }}/{{ current_user }}/.ghcup/bin/ghcup"
   when: akeptous_file.stat.exists
