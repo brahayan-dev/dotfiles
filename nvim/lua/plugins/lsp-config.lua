@@ -6,23 +6,25 @@ return {
             local capabilities = require('cmp_nvim_lsp').default_capabilities()
             local lspconfig = require("lspconfig")
 
-            -- Ruby
-            lspconfig.ruby_lsp.setup({
-                capabilities = capabilities
-            })
+            if vim.env.WORSPACE == "akeptous" then
+              -- Ruby
+              lspconfig.ruby_lsp.setup({
+                  capabilities = capabilities
+              })
+
+              -- Elm
+              lspconfig.elmls.setup({
+                  capabilities = capabilities
+              })
+
+              -- PugJS
+              lspconfig.pugls.setup({
+                  capabilities = capabilities
+              })
+            end
 
             -- Haskell
             lspconfig.hls.setup({
-                capabilities = capabilities
-            })
-
-            -- Elm
-            lspconfig.elmls.setup({
-                capabilities = capabilities
-            })
-
-            -- PugJS
-            lspconfig.pugls.setup({
                 capabilities = capabilities
             })
 

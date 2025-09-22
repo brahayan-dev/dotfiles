@@ -50,6 +50,8 @@ get_playbook_name() {
 install_dependencies() {
     log_info "Installing dependencies"
 
+    [ ! -e "$HOME/.ghcup/bin/ghcup" ] && curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh
+
     # Check if we're on macOS or Linux and install accordingly
     if command -v brew &>/dev/null; then
         [ ! -e /opt/homebrew/bin/ansible ] && brew install ansible
@@ -72,9 +74,10 @@ remove_symlinks() {
     # Additional symlinks based on available files
     [ -L ~/.akeptousrc ] && rm ~/.akeptousrc
     [ -L ~/.akeptous_profile ] && rm ~/.akeptous_profile
-    [ -L ~/.config/nvim ] && rm ~/.config/nvim
     [ -L ~/.workrc ] && rm ~/.workrc
     [ -L ~/.work_profile ] && rm ~/.work_profile
+    [ -L ~/.config/zed ] && rm ~/.config/zed
+    [ -L ~/.config/nvim ] && rm ~/.config/nvim
     [ -L ~/.config/doom ] && rm ~/.config/doom
 }
 
