@@ -14,7 +14,7 @@ return {
             -- Haskell
             lspconfig.hls.setup({
                 capabilities = capabilities
-            }
+            })
 
             -- Elm
             lspconfig.elmls.setup({
@@ -24,7 +24,7 @@ return {
             -- PugJS
             lspconfig.pugls.setup({
                 capabilities = capabilities
-            }))
+            })
 
             -- Keymaps LSP
             vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
