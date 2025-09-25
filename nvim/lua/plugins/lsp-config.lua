@@ -23,11 +23,6 @@ return {
               })
             end
 
-            -- Haskell
-            lspconfig.hls.setup({
-                capabilities = capabilities
-            })
-
             -- Keymaps LSP
             vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
             vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, {})
