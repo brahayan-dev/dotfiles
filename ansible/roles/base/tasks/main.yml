@@ -57,6 +57,7 @@
       - cmake
       - shfmt
       - unzip
+      - awscli
       - pandoc
       - rlwrap
       - neovim
@@ -70,6 +71,7 @@
       - opentofu
       - openssl@3
       - shellcheck
+      - aws-sam-cli
       - font-fira-code
       - dbeaver-community
     state: present
