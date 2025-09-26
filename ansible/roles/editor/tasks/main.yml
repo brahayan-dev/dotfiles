@@ -9,8 +9,11 @@
     - elm
     - elm-test
     - elm-format
+    - typescript
     - bash-language-server
     - yaml-language-server
+    - typescript-language-server
+    - vscode-langservers-extracted
     - "@volar/pug-language-server"
     - "@github/copilot-language-server"
     - "@elm-tooling/elm-language-server"

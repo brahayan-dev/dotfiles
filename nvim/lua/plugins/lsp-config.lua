@@ -6,7 +6,7 @@ return {
             local capabilities = require('cmp_nvim_lsp').default_capabilities()
             local lspconfig = require("lspconfig")
 
-            if vim.env.WORSPACE == "akeptous" then
+            if vim.env.WORKSPACE == "akeptous" then
               -- Ruby
               lspconfig.ruby_lsp.setup({
                   capabilities = capabilities
@@ -22,6 +22,27 @@ return {
                   capabilities = capabilities
               })
             end
+
+            -- JavaScript / TypeScript
+            lspconfig.tsserver.setup({
+                capabilities = capabilities
+            })
+
+            -- SCSS / CSS
+            lspconfig.cssls.setup({
+                capabilities = capabilities
+            })
+
+            -- Bash + Zsh
+            lspconfig.bashls.setup({
+                filetypes = { "sh", "zsh" },
+                capabilities = capabilities
+            })
+
+            -- Yaml
+            lspconfig.yamlls.setup({
+                capabilities = capabilities
+            })
 
             -- Keymaps LSP
             vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
