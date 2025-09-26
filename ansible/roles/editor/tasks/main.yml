@@ -7,6 +7,7 @@
     force: true
   loop:
     - elm
+    - emmet-ls
     - elm-test
     - elm-format
     - typescript
@@ -14,7 +15,6 @@
     - yaml-language-server
     - typescript-language-server
     - vscode-langservers-extracted
-    - "@volar/pug-language-server"
     - "@github/copilot-language-server"
     - "@elm-tooling/elm-language-server"
   when:
