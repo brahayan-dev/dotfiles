@@ -74,6 +74,7 @@
       - aws-sam-cli
       - font-fira-code
       - dbeaver-community
+      - lua-language-server
     state: present
   when: ansible_os_family == "Darwin"
 
