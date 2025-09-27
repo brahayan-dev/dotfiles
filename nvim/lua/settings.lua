@@ -14,43 +14,30 @@ vim.g.have_nerd_font = true
 
 vim.o.number = true
 vim.o.relativenumber = true
-
 vim.o.mouse = "a"
-
 vim.o.showmode = false
+vim.o.breakindent = true
+vim.o.undofile = true
+vim.o.ignorecase = true
+vim.o.smartcase = true
+vim.o.signcolumn = "yes"
+vim.o.updatetime = 250
+vim.o.timeoutlen = 300
+vim.o.splitright = true
+vim.o.splitbelow = true
+vim.o.list = true
+vim.o.inccommand = "split"
+vim.o.cursorline = true
+vim.o.scrolloff = 10
+vim.o.confirm = true
+vim.o.autoread = true
+
+vim.opt.swapfile = false
+vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 
 vim.schedule(function()
   vim.o.clipboard = "unnamedplus"
 end)
-
-vim.o.breakindent = true
-
-vim.o.undofile = true
-
-vim.o.ignorecase = true
-vim.o.smartcase = true
-
-vim.o.signcolumn = "yes"
-
-vim.o.updatetime = 250
-
-vim.o.timeoutlen = 300
-
-vim.o.splitright = true
-vim.o.splitbelow = true
-
-vim.o.list = true
-vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
-
-vim.o.inccommand = "split"
-
-vim.o.cursorline = true
-
-vim.o.scrolloff = 10
-
-vim.o.confirm = true
-
-vim.opt.swapfile = false
 
 -- Navigate vim panes better
 vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
@@ -61,18 +48,39 @@ vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right win
 -- Clear highlights on search when pressing <Esc> in normal mode
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
--- Highlight when yanking (copying) text
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold" }, {
+  command = "checktime",
+})
+
 vim.api.nvim_create_autocmd("TextYankPost", {
-  desc = "Highlight when yanking (copying) text",
   group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
   callback = function()
     vim.hl.on_yank()
   end,
+  desc = "Highlight when yanking (copying) text"
 })
 
--- Format on save using LSP
 vim.api.nvim_create_autocmd("BufWritePre", {
   callback = function()
     vim.lsp.buf.format({ async = false })
   end,
+  desc = "Format on save using LSP",
+})
+
+vim.api.nvim_create_autocmd("BufWritePost", {
+  pattern = "*.pug",
+  callback = function(args)
+    -- Ejecuta Prettier solo sobre el archivo actual
+    vim.fn.jobstart({ "npx", "prettier", "--write", args.file }, {
+      stdout_buffered = true,
+      stderr_buffered = true,
+      on_stderr = function(_, data)
+        -- Si hay errores, mostrarlos como notificación en Neovim
+        if data and #data > 0 then
+          vim.notify(table.concat(data, "\n"), vim.log.levels.ERROR)
+        end
+      end,
+    })
+  end,
+  desc = "Format current .pug file with Prettier on save",
 })
