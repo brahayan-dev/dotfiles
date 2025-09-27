@@ -68,19 +68,15 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 })
 
 vim.api.nvim_create_autocmd("BufWritePost", {
-  pattern = "*.pug",
+  pattern = { "*.pug", "*.scss", "*.json", ".prettierrc" },
   callback = function(args)
-    -- Ejecuta Prettier solo sobre el archivo actual
-    vim.fn.jobstart({ "npx", "prettier", "--write", args.file }, {
-      stdout_buffered = true,
-      stderr_buffered = true,
-      on_stderr = function(_, data)
-        -- Si hay errores, mostrarlos como notificación en Neovim
-        if data and #data > 0 then
-          vim.notify(table.concat(data, "\n"), vim.log.levels.ERROR)
-        end
-      end,
-    })
+    local output = vim.fn.system({ "npx", "prettier", "--write", args.file })
+
+    if vim.v.shell_error ~= 0 then
+      vim.notify(output, vim.log.levels.ERROR)
+    else
+      vim.cmd("edit!")
+    end
   end,
-  desc = "Format current .pug file with Prettier on save",
+  desc = "Format current file with Prettier (sync) on save",
 })
