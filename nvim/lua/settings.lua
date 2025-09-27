@@ -68,7 +68,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 })
 
 vim.api.nvim_create_autocmd("BufWritePost", {
-  pattern = { "*.pug", "*.scss", "*.json", ".prettierrc" },
+  pattern = { "*.pug", "*.scss", "*.json" },
   callback = function(args)
     local output = vim.fn.system({ "npx", "prettier", "--write", args.file })
 
