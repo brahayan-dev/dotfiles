@@ -8,8 +8,6 @@
   loop:
     - thor
     - bundler
-    - rubocop
-    - ruby-lsp
   notify: Reload Zsh Files
   when: akeptous_file.stat.exists
 
@@ -60,4 +58,3 @@
   when:
     - not akeptous_file.stat.exists
     - ansible_os_family == "Darwin"
-

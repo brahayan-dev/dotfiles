@@ -12,6 +12,7 @@
       - tree
       - make
       - rust
+      - rbenv
       - cargo
       - unzip
       - pdftk
@@ -50,7 +51,7 @@
       - gmp
       - grip
       - rust
-      - ruby
+      - rbenv
       - lima
       - curl
       - tree

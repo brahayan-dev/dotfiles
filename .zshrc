@@ -34,9 +34,6 @@ alias lg='lazygit'
 # NOTE: Workstation CLI
 export PATH="$HOME/.dotfiles/:$PATH"
 
-# NOTE: Haskell setup
-[ -f "$HOME/.ghcup/env" ] && . "$HOME/.ghcup/env" # ghcup-env
-
 # NOTE: Configurations
 [ -s ~/.workrc ] && source ~/.workrc
 [ -s ~/.akeptousrc ] && source ~/.akeptousrc
