@@ -6,6 +6,9 @@
     global: true
     force: true
   loop:
+    - elm
+    - elm-test
+    - elm-format
     - emmet-ls
     - typescript
     - bash-language-server
@@ -13,6 +16,7 @@
     - typescript-language-server
     - vscode-langservers-extracted
     - "@github/copilot-language-server"
+    - "@elm-tooling/elm-language-server"
     - "@ansible/ansible-language-server"
   when:
     - akeptous_file.stat.exists
