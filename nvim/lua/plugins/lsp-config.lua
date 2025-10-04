@@ -32,7 +32,7 @@ return {
       vim.lsp.config("hls", {
         settings = {
           haskell = {
-            formattingProvider = "formolu",
+            formattingProvider = "fourmolu",
             cabalFormattingProvider = 'cabal-fmt'
           },
         },
