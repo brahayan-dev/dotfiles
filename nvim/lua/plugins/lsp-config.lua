@@ -33,7 +33,6 @@ return {
         settings = {
           haskell = {
             formattingProvider = "fourmolu",
-            cabalFormattingProvider = 'cabal-fmt'
           },
         },
       })

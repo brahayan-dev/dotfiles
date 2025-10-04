@@ -80,3 +80,10 @@ vim.api.nvim_create_autocmd("BufWritePost", {
   end,
   desc = "Format current file with Prettier (sync) on save",
 })
+
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = "*.cabal",
+  callback = function()
+    vim.cmd("silent %!cabal-fmt")
+  end,
+})
