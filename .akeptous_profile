@@ -13,11 +13,11 @@ export PATH="$PATH:$GOBIN"
 # NOTE: Node.js setup
 [[ -e "$HOME/nvm/nvm.sh" ]] && source "$HOME/.nvm/nvm.sh"
 
-# NOTE: Akeptous CLI
-export PATH="$HOME/Akeptous/akeptous-cli/bin/:$PATH"
-
 # NOTE: Aider setup
 source $HOME/.local/bin/env
+
+# NOTE: Haskell setup
+[ -f "$HOME/.ghcup/env" ] && . "$HOME/.ghcup/env" # ghcup-env
 
 if [[ "$(uname)" == "Darwin" ]]; then
     # NOTE: User

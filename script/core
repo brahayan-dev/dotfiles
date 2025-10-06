@@ -8,42 +8,57 @@ readonly DESKTOP_FILE=/usr/share/applications/emacs.desktop
 
 # Download Doom Emacs
 install_emacs() {
-    brew tap d12frosted/emacs-plus
-    brew install emacs-plus@31 --with-modern-doom3-icon
+  brew tap d12frosted/emacs-plus
+  brew install emacs-plus@31 --with-modern-doom3-icon
 }
 
 # Download Doom Emacs
 download_doom() {
-    git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.config/emacs
+  git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.config/emacs
 }
 
 # Install Doom Emacs
 install_doom() {
-    cd ~/.config/emacs/bin || return
-    sh doom install --no-config --install --fonts --color --force --env
+  cd ~/.config/emacs/bin || return
+  sh doom install --no-config --install --fonts --color --force --env
 }
 
 # Change Emacs icon to Doom icon
 change_icon() {
-    mkdir -p "$HOME/.local/share/icons"
-    wget https://raw.githubusercontent.com/eccentric-j/doom-icon/master/cute-doom/doom.png -O "$ICON" &&
-        sudo --preserve-env=ICON,DESKTOP_FILE sed -i "s|Icon=.*|Icon=$ICON|" $DESKTOP_FILE
+  mkdir -p "$HOME/.local/share/icons"
+  wget https://raw.githubusercontent.com/eccentric-j/doom-icon/master/cute-doom/doom.png -O "$ICON" &&
+    sudo --preserve-env=ICON,DESKTOP_FILE sed -i "s|Icon=.*|Icon=$ICON|" $DESKTOP_FILE
+}
+
+install_haskell() {
+  if [[ ! -f "$HOME/.ghcup/env" ]]; then
+    curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh
+    [ -f "$HOME/.ghcup/env" ] && . "$HOME/.ghcup/env"
+    cabal install cabal-fmt
+    cabal install fourmolu
+  fi
 }
 
 # Execute doom command
 execute_doom() {
-    log_info "Installing Emacs"
-    install_emacs
+  log_info "Installing Emacs"
+  install_emacs
 
-    log_info "Downloading Doom"
-    download_doom
+  log_info "Downloading Doom"
+  download_doom
 
-    log_info "Installing Doom"
-    install_doom
+  log_info "Installing Doom"
+  install_doom
 }
 
 # Execute icon command
 execute_icon() {
-    log_info "Changing Emacs icon to Doom icon"
-    change_icon
+  log_info "Changing Emacs icon to Doom icon"
+  change_icon
+}
+
+# Execute haskell command
+execute_haskell() {
+  log_info "Installing Haskell"
+  install_haskell
 }
