@@ -77,22 +77,49 @@
       - dbeaver-community
       - lua-language-server
     state: present
-  when: ansible_os_family == "Darwin"
+  when: 
+    - akeptous_file.stat.exists
+    - ansible_os_family == "Darwin"
 
 - name: Install Dependencies For Work (macOS)
   community.general.homebrew:
     name:
+      - jq
       - fd
+      - gh
       - gcc
-      - make
+      - zsh
+      - git
+      - npm
+      - gmp
       - grip
+      - rust
+      - make
+      - curl
+      - tree
       - cmake
       - shfmt
+      - unzip
+      - direnv
+      - awscli
       - pandoc
-      - libtool
+      - rlwrap
+      - neovim
+      - podman
+      - golang
+      - direnv
+      - lazygit
       - ripgrep
+      - libtool
+      - libyaml
+      - ghostty
       - coursier
+      - opentofu
+      - openssl@3
       - shellcheck
+      - aws-sam-cli
+      - font-fira-code
+      - lua-language-server
     state: present
   when:
     - not akeptous_file.stat.exists
