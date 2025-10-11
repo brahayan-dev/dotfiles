@@ -1,15 +1,27 @@
 ---
-- name: Install Gems
-  become: true
-  gem:
-    name: "{{ item }}"
-    state: present
-    user_install: false
-  loop:
-    - thor
-    - bundler
-  notify: Reload Zsh Files
-  when: akeptous_file.stat.exists
+- name: Install Coursier (Linux) - Check Binary
+  stat:
+    path: /usr/local/bin/coursier
+  register: coursier_binary
+
+- name: Install Coursier (Linux)
+  block:
+    - name: Install Coursier (Linux) - Download Binary
+      shell: |
+        curl -fL "https://github.com/coursier/launchers/raw/master/cs-x86_64-pc-linux.gz" | gzip -d > coursier
+      args:
+        chdir: /tmp
+    - name: Install Coursier (Linux) - Install Binary
+      become: true
+      copy:
+        src: /tmp/coursier
+        dest: /usr/local/bin/coursier
+        mode: 0755
+        force: false
+  when:
+    - not coursier_binary.stat.exists
+    - akeptous_file.stat.exists
+    - ansible_os_family == "RedHat"
 
 - name: Install NVM
   shell: |
@@ -24,8 +36,7 @@
   args:
     creates: "/usr/bin/java"
   when:
-    - not akeptous_file.stat.exists
-    - ansible_os_family == "Darwin"
+    - akeptous_file.stat.exists
 
 - name: Install Clojure
   become: true
@@ -39,9 +50,6 @@
       shell: /tmp/clojure-installer.sh
       args:
         creates: /usr/local/bin/clojure
-  when:
-    - not akeptous_file.stat.exists
-    - ansible_os_family == "Darwin"
 
 - name: Install Babashka
   block:
@@ -55,6 +63,24 @@
       shell: /tmp/babashka
       args:
         creates: /usr/local/bin/bb
-  when:
-    - not akeptous_file.stat.exists
-    - ansible_os_family == "Darwin"
+
+- name: Install Cljfmt
+  become: true
+  shell: |
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/weavejester/cljfmt/HEAD/install.sh)"
+  args:
+    creates: /usr/local/bin/cljfmt
+
+- name: Install Scala Metals
+  shell: |
+    coursier install metals
+  args:
+    creates: "/{{ base_dir }}/{{ current_user }}/{{ coursier_path }}/metals"
+  when: not akeptous_file.stat.exists
+
+- name: Install Scalafmt
+  shell: |
+    coursier install scalafmt
+  args:
+    creates: "/{{ base_dir }}/{{ current_user }}/{{ coursier_path }}/scalafmt"
+  when: not akeptous_file.stat.exists
