@@ -16,9 +16,6 @@ export PATH="$PATH:$GOBIN"
 # NOTE: Aider setup
 source $HOME/.local/bin/env
 
-# NOTE: Haskell setup
-[ -f "$HOME/.ghcup/env" ] && . "$HOME/.ghcup/env" # ghcup-env
-
 if [[ "$(uname)" == "Darwin" ]]; then
     # NOTE: User
     export CURRENT_USER=brahayanxavier
