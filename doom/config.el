@@ -44,6 +44,9 @@
                    (corfu-quit)
                    (lsp-inline-completion-display))))
 
+(after! clojure-mode
+  (add-to-list 'auto-mode-alist '("\\.edn\\'" . clojure-mode)))
+
 (use-package! smartparens
   :hook ((clojure-mode clojurescript-mode emacs-lisp-mode) . smartparens-strict-mode))
 
@@ -53,9 +56,6 @@
   (map! :map evil-cleverparens-mode-map
         :n "]]" #'evil-cp-end-of-defun
         :n "[[" #'evil-cp-beginning-of-defun))
-
-(after! clojure-mode
-  (add-to-list 'auto-mode-alist '("\\.edn\\'" . clojure-mode)))
 
 ;; Hooks
 (add-hook! 'before-save-hook #'whitespace-cleanup)
