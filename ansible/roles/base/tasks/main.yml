@@ -70,6 +70,7 @@
       - libyaml
       - ghostty
       - opentofu
+      - coursier
       - openssl@3
       - shellcheck
       - aws-sam-cli
@@ -77,7 +78,7 @@
       - dbeaver-community
       - lua-language-server
     state: present
-  when: 
+  when:
     - akeptous_file.stat.exists
     - ansible_os_family == "Darwin"
 
