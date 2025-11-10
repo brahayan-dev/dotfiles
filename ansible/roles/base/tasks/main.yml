@@ -74,6 +74,7 @@
       - openssl@3
       - shellcheck
       - aws-sam-cli
+      - clojure-lsp
       - font-fira-code
       - dbeaver-community
       - lua-language-server

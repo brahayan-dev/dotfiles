@@ -44,24 +44,23 @@
                    (corfu-quit)
                    (lsp-inline-completion-display))))
 
-(use-package! smartparens
-  :hook ((clojure-mode clojurescript-mode emacs-lisp-mode) . smartparens-strict-mode))
-
-(use-package! evil-cleverparens
-  :hook ((clojure-mode clojurescript-mode emacs-lisp-mode) . evil-cleverparens-mode)
-  :config
-  (map! :map evil-cleverparens-mode-map
-        :n "]]" #'evil-cp-end-of-defun
-        :n "[[" #'evil-cp-beginning-of-defun))
-
 (after! clojure-mode
   (add-to-list 'auto-mode-alist '("\\.edn\\'" . clojure-mode)))
 
 ;; Hooks
+(add-hook! '(clojure-mode-hook
+             cider-repl-mode-hook
+             emacs-lisp-mode-hook
+             clojurescript-mode-hook)
+           #'smartparens-strict-mode
+           #'evil-cleverparens-mode)
 (add-hook! 'before-save-hook #'whitespace-cleanup)
 (add-hook! 'elfeed-search-mode-hook #'elfeed-update)
 
 ;; Key Mappings
+(map! :map evil-cleverparens-mode-map
+      :n "]]" #'evil-cp-end-of-defun
+      :n "[[" #'evil-cp-beginning-of-defun)
 (map! :v
       "M-r" #'evil-multiedit-match-all
       "M-d" #'evil-multiedit-match-and-next
