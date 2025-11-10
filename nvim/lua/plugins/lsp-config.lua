@@ -29,18 +29,18 @@ return {
         },
       })
 
-      vim.lsp.config("hls", {
-        settings = {
-          haskell = {
-            formattingProvider = "fourmolu",
-          },
-        },
-      })
+      -- vim.lsp.config("hls", {
+      --   settings = {
+      --     haskell = {
+      --       formattingProvider = "fourmolu",
+      --     },
+      --   },
+      -- })
 
       if vim.env.WORKSPACE == "akeptous" then
-        vim.lsp.enable("hls")
-        vim.lsp.enable("elmls")
-        vim.lsp.enable("ruby_lsp")
+        -- vim.lsp.enable("hls")
+        -- vim.lsp.enable("elmls")
+        -- vim.lsp.enable("ruby_lsp")
         -- vim.lsp.enable("terraformls")
       end
 

@@ -1,16 +1,4 @@
 ---
-- name: Install Gems
-  become: true
-  gem:
-    name: "{{ item }}"
-    state: present
-    user_install: false
-  loop:
-    - thor
-    - bundler
-  notify: Reload Zsh Files
-  when: akeptous_file.stat.exists
-
 - name: Install NVM
   shell: |
     curl -o- "https://raw.githubusercontent.com/nvm-sh/nvm/v{{ nvm_version }}/install.sh" | bash
@@ -23,9 +11,6 @@
     coursier java "--jvm={{ jvm_version }}" --setup
   args:
     creates: "/usr/bin/java"
-  when:
-    - not akeptous_file.stat.exists
-    - ansible_os_family == "Darwin"
 
 - name: Install Clojure
   become: true
@@ -39,9 +24,6 @@
       shell: /tmp/clojure-installer.sh
       args:
         creates: /usr/local/bin/clojure
-  when:
-    - not akeptous_file.stat.exists
-    - ansible_os_family == "Darwin"
 
 - name: Install Babashka
   block:
@@ -55,6 +37,3 @@
       shell: /tmp/babashka
       args:
         creates: /usr/local/bin/bb
-  when:
-    - not akeptous_file.stat.exists
-    - ansible_os_family == "Darwin"
