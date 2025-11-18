@@ -38,6 +38,11 @@
     state: present
   when: ansible_os_family == "RedHat"
 
+- name: Enable Polylith Repository On Brew
+  community.general.homebrew_tap:
+    name: polyfy/polylith
+    state: present
+
 - name: Install Dependencies (macOS)
   community.general.homebrew:
     name:
@@ -55,6 +60,7 @@
       - lima
       - curl
       - tree
+      - poly
       - cmake
       - shfmt
       - unzip
@@ -66,6 +72,7 @@
       - golang
       - direnv
       - lazygit
+      - libtool
       - ripgrep
       - libyaml
       - ghostty
@@ -132,12 +139,6 @@
   args:
     creates: "/usr/bin/brave-browser"
   when: ansible_os_family == "RedHat"
-
-- name: Install Common Dependencies (macOS)
-  community.general.homebrew:
-    name:
-    state: present
-  when: ansible_os_family == "Darwin"
 
 - name: Install Common Cask Dependencies (macOS)
   community.general.homebrew_cask:
