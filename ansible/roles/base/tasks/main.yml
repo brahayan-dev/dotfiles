@@ -57,12 +57,13 @@
       - git
       - npm
       - gmp
-      - grip
-      - rust
-      - lima
       - curl
-      - tree
+      - grip
+      - perl
       - poly
+      - lima
+      - rust
+      - tree
       - cmake
       - shfmt
       - unzip
@@ -83,6 +84,7 @@
       - ghostty
       - opentofu
       - coursier
+      - cpanminus
       - openssl@3
       - shellcheck
       - aws-sam-cli
@@ -94,6 +96,13 @@
   when:
     - akeptous_file.stat.exists
     - ansible_os_family == "Darwin"
+
+- name: Install DBI And DBD::SQLite
+  community.general.cpanm:
+    name: "{{ item }}"
+  loop:
+    - DBI
+    - DBD::SQLite
 
 - name: Install Dependencies For Work (macOS)
   community.general.homebrew:
