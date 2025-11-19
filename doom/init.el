@@ -23,7 +23,7 @@
 
        :editor
        fold
-       lispy
+       ;; lispy
        snippets
        word-wrap
        file-templates

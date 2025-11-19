@@ -38,10 +38,13 @@
     state: present
   when: ansible_os_family == "RedHat"
 
-- name: Enable Polylith Repository On Brew
+- name: Enable Repositories On Brew
   community.general.homebrew_tap:
-    name: polyfy/polylith
+    name: "{{ item }}"
     state: present
+  loop:
+    - polyfy/polylith
+    - sqitchers/sqitch
 
 - name: Install Dependencies (macOS)
   community.general.homebrew:
@@ -56,7 +59,6 @@
       - gmp
       - grip
       - rust
-      - rbenv
       - lima
       - curl
       - tree
@@ -64,6 +66,9 @@
       - cmake
       - shfmt
       - unzip
+      - rbenv
+      - sqlite
+      - sqitch
       - awscli
       - pandoc
       - rlwrap
