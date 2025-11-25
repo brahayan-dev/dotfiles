@@ -23,6 +23,7 @@
 
        :editor
        fold
+       ;; lispy
        snippets
        word-wrap
        file-templates
@@ -63,6 +64,7 @@
        (markdown +grip)
        (sh +lsp +tree-sitter)
        (web +lsp +tree-sitter)
+       (elm +lsp +tree-sitter)
        (yaml +lsp +tree-sitter)
        (clojure +lsp +tree-sitter)
        (javascript +lsp +tree-sitter)
