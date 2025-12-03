@@ -53,6 +53,9 @@ dispatch_command() {
   "haskell")
     execute_haskell
     ;;
+  "scala")
+    execute_scala
+    ;;
   *)
     log_error "Unknown command: $command"
     return 1
@@ -87,6 +90,7 @@ main() {
     "$command" == "clone" ||
     "$command" == "mark" ||
     "$command" == "clean" ||
+    "$command" == "scala" ||
     "$command" == "haskell" ]] \
     ; then
     dispatch_command "$command"
