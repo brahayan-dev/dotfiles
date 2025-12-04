@@ -39,7 +39,7 @@ return {
 
       if vim.env.WORKSPACE == "akeptous" then
         -- vim.lsp.enable("hls")
-        -- vim.lsp.enable("elmls")
+        vim.lsp.enable("elmls")
         -- vim.lsp.enable("ruby_lsp")
         -- vim.lsp.enable("terraformls")
       end
@@ -47,6 +47,8 @@ return {
       -- vim.lsp.enable("ansiblels")
       -- vim.lsp.enable("cssls")
 
+      vim.lsp.enable('sqls')
+      vim.lsp.enable('metals')
       vim.lsp.enable("lua_ls")
       vim.lsp.enable("ts_ls")
       vim.lsp.enable("yamlls")
