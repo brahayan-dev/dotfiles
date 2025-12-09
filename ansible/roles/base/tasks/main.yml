@@ -97,7 +97,16 @@
   loop:
     - DBI
     - DBD::SQLite
+
+- name: Install Perl Dependencies (Linux)
+  become: true
+  community.general.cpanm:
+    name: "{{ item }}"
+  loop:
     - App::Sqitch
+  when:
+    - akeptous_file.stat.exists
+    - ansible_os_family == "RedHat"
 
 - name: Install Dependencies For Work (macOS)
   community.general.homebrew:
