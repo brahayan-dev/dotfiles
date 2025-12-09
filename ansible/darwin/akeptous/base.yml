@@ -3,4 +3,6 @@ base_dir: Users
 workspace_id: akeptous
 current_user: brahayanxavier
 
+jvm_version: 23
 nvm_version: 0.40.3
+coursier_path: .local/share/coursier/bin

@@ -72,9 +72,10 @@ remove_symlinks() {
     # Additional symlinks based on available files
     [ -L ~/.akeptousrc ] && rm ~/.akeptousrc
     [ -L ~/.akeptous_profile ] && rm ~/.akeptous_profile
-    [ -L ~/.config/nvim ] && rm ~/.config/nvim
     [ -L ~/.workrc ] && rm ~/.workrc
     [ -L ~/.work_profile ] && rm ~/.work_profile
+    [ -L ~/.config/zed ] && rm ~/.config/zed
+    [ -L ~/.config/nvim ] && rm ~/.config/nvim
     [ -L ~/.config/doom ] && rm ~/.config/doom
 }
 

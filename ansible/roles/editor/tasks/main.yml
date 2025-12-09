@@ -1,17 +1,4 @@
 ---
-- name: Install NPM Dependencies (NVIM)
-  become: true
-  community.general.npm:
-    name: "{{ item }}"
-    global: true
-    force: true
-  loop:
-    - bash-language-server
-    - yaml-language-server
-    - "@github/copilot-language-server"
-  when:
-    - akeptous_file.stat.exists
-
 - name: Install NPM Dependencies (DOOM)
   become: true
   community.general.npm:
@@ -19,17 +6,22 @@
     global: true
     force: true
   loop:
+    - elm
+    - elm-test
     - prettier
+    - emmet-ls
     - stylelint
+    - elm-format
     - typescript
+    - elm-analyse
     - js-beautify
     - bash-language-server
     - yaml-language-server
     - typescript-language-server
     - vscode-langservers-extracted
     - "@github/copilot-language-server"
-  when:
-    - not akeptous_file.stat.exists
+    - "@elm-tooling/elm-language-server"
+    - "@ansible/ansible-language-server"
 
 - name: Create Configuration Directory
   ansible.builtin.file:
@@ -68,6 +60,3 @@
     chdir: "/{{ base_dir }}/{{ current_user }}/.dotfiles"
     creates: "/{{ base_dir }}/{{ current_user }}/.config/doom/init.el"
   notify: Reload Zsh Files
-  when:
-    - not akeptous_file.stat.exists
-    - ansible_os_family == "Darwin"

@@ -13,91 +13,100 @@ source "$SCRIPT_DIR/script/core"
 
 # Command dispatcher
 dispatch_command() {
-    local command="$1"
-    local workspace_path="$2"
+  local command="$1"
+  local workspace_path="$2"
 
-    case "$command" in
-    "ping")
-        execute_ping "$workspace_path"
-        ;;
-    "setup")
-        execute_setup "$workspace_path"
-        ;;
-    "clean")
-        execute_clean
-        ;;
-    "night")
-        execute_night
-        ;;
-    "day")
-        execute_day
-        ;;
-    "github")
-        execute_github
-        ;;
-    "connect")
-        execute_connect
-        ;;
-    "clone")
-        execute_clone
-        ;;
-    "doom")
-        execute_doom
-        ;;
-    "icon")
-        execute_icon
-        ;;
-    "mark")
-        execute_mark
-        ;;
-    *)
-        log_error "Unknown command: $command"
-        return 1
-        ;;
-    esac
+  case "$command" in
+  "ping")
+    execute_ping "$workspace_path"
+    ;;
+  "setup")
+    execute_setup "$workspace_path"
+    ;;
+  "clean")
+    execute_clean
+    ;;
+  "night")
+    execute_night
+    ;;
+  "day")
+    execute_day
+    ;;
+  "github")
+    execute_github
+    ;;
+  "connect")
+    execute_connect
+    ;;
+  "clone")
+    execute_clone
+    ;;
+  "doom")
+    execute_doom
+    ;;
+  "icon")
+    execute_icon
+    ;;
+  "mark")
+    execute_mark
+    ;;
+  "haskell")
+    execute_haskell
+    ;;
+  "scala")
+    execute_scala
+    ;;
+  *)
+    log_error "Unknown command: $command"
+    return 1
+    ;;
+  esac
 }
 
 # Main function
 main() {
-    local command="$1"
-    local workspace_path
+  local command="$1"
+  local workspace_path
 
-    # Check if command is provided
-    if [[ -z "$command" ]]; then
-        show_usage
-        exit 1
-    fi
+  # Check if command is provided
+  if [[ -z "$command" ]]; then
+    show_usage
+    exit 1
+  fi
 
-    # Validate command
-    validate_command "$command" || {
-        show_usage
-        exit 1
-    }
+  # Validate command
+  validate_command "$command" || {
+    show_usage
+    exit 1
+  }
 
-    # Commands that don't need workspace path
-    if [[ "$command" == "day" ||
-        "$command" == "doom" ||
-        "$command" == "icon" ||
-        "$command" == "night" ||
-        "$command" == "github" ||
-        "$command" == "connect" ||
-        "$command" == "clone" ||
-        "$command" == "mark" ||
-        "$command" == "clean" ]]; then
-        dispatch_command "$command"
-        exit $?
-    fi
+  # Commands that don't need workspace path
+  if [[ "$command" == "day" ||
+    "$command" == "doom" ||
+    "$command" == "icon" ||
+    "$command" == "night" ||
+    "$command" == "github" ||
+    "$command" == "connect" ||
+    "$command" == "clone" ||
+    "$command" == "mark" ||
+    "$command" == "clean" ||
+    "$command" == "scala" ||
+    "$command" == "haskell" ]] \
+    ; then
+    dispatch_command "$command"
+    exit $?
+  fi
 
-    # Ensure dotfiles directory exists
-    ensure_dotfiles_dir
+  # Ensure dotfiles directory exists
+  ensure_dotfiles_dir
 
-    # Get and validate workspace path for ansible commands
-    workspace_path=$(get_workspace_path) || exit 1
-    validate_workspace "$workspace_path" || exit 1
+  # Get and validate workspace path for ansible commands
+  workspace_path=$(get_workspace_path) || exit 1
+  validate_workspace "$workspace_path" || exit 1
 
-    # Execute command
-    log_info "Workstation path: $workspace_path"
-    dispatch_command "$command" "$workspace_path"
+  # Execute command
+  log_info "Workstation path: $workspace_path"
+  dispatch_command "$command" "$workspace_path"
 }
 
 # Execute main function with all arguments

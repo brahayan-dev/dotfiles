@@ -13,6 +13,7 @@
       - make
       - ruby
       - rust
+      - rbenv
       - cargo
       - unzip
       - pdftk
@@ -41,6 +42,14 @@
     state: present
   when: ansible_os_family == "RedHat"
 
+- name: Enable Repositories On Brew
+  community.general.homebrew_tap:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - polyfy/polylith
+    - sqitchers/sqitch
+
 - name: Install Dependencies (macOS)
   community.general.homebrew:
     name:
@@ -52,15 +61,74 @@
       - git
       - npm
       - gmp
+      - curl
+      - grip
+      - perl
+      - poly
+      - lima
+      - rust
+      - tree
+      - cmake
+      - shfmt
+      - unzip
+      - rbenv
+      - sqlite
+      - sqitch
+      - awscli
+      - pandoc
+      - rlwrap
+      - neovim
+      - podman
+      - golang
+      - direnv
+      - lazygit
+      - libtool
+      - ripgrep
+      - libyaml
+      - ghostty
+      - opentofu
+      - coursier
+      - cpanminus
+      - openssl@3
+      - shellcheck
+      - aws-sam-cli
+      - clojure-lsp
+      - font-fira-code
+      - dbeaver-community
+      - lua-language-server
+    state: present
+  when:
+    - akeptous_file.stat.exists
+    - ansible_os_family == "Darwin"
+
+- name: Install DBI And DBD::SQLite
+  community.general.cpanm:
+    name: "{{ item }}"
+  loop:
+    - DBI
+    - DBD::SQLite
+
+- name: Install Dependencies For Work (macOS)
+  community.general.homebrew:
+    name:
+      - jq
+      - fd
+      - gh
+      - gcc
+      - zsh
+      - git
+      - npm
+      - gmp
       - grip
       - rust
-      - ruby
-      - lima
+      - make
       - curl
       - tree
       - cmake
       - shfmt
       - unzip
+      - direnv
+      - awscli
       - pandoc
       - rlwrap
       - neovim
@@ -69,30 +137,16 @@
       - direnv
       - lazygit
       - ripgrep
+      - libtool
       - libyaml
       - ghostty
+      - coursier
       - opentofu
       - openssl@3
       - shellcheck
+      - aws-sam-cli
       - font-fira-code
-      - dbeaver-community
-    state: present
-  when: ansible_os_family == "Darwin"
-
-- name: Install Dependencies For Work (macOS)
-  community.general.homebrew:
-    name:
-      - fd
-      - gcc
-      - make
-      - grip
-      - cmake
-      - shfmt
-      - pandoc
-      - libtool
-      - ripgrep
-      - coursier
-      - shellcheck
+      - lua-language-server
     state: present
   when:
     - not akeptous_file.stat.exists
@@ -103,12 +157,6 @@
   args:
     creates: "/usr/bin/brave-browser"
   when: ansible_os_family == "RedHat"
-
-- name: Install Common Dependencies (macOS)
-  community.general.homebrew:
-    name:
-    state: present
-  when: ansible_os_family == "Darwin"
 
 - name: Install Common Cask Dependencies (macOS)
   community.general.homebrew_cask:

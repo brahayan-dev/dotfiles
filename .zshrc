@@ -37,3 +37,4 @@ export PATH="$HOME/.dotfiles/:$PATH"
 # NOTE: Configurations
 [ -s ~/.workrc ] && source ~/.workrc
 [ -s ~/.akeptousrc ] && source ~/.akeptousrc
+

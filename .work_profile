@@ -22,6 +22,8 @@ export PATH="/opt/homebrew/sbin:$PATH"
 export PATH="/usr/local/opt/file-formula/bin:$PATH"
 export PATH="/usr/local/opt/file-formula/bin:$PATH"
 export PATH="${NUCLI_HOME}:${PATH}"
+export GPG_TTY=$(tty)
+export PINENTRY_USER_DATA="USE_CURSES=1"
 
 if [ -d "$(brew --prefix)/opt/grep/libexec/gnubin" ]; then
     PATH="$(brew --prefix)/opt/grep/libexec/gnubin:$PATH"
@@ -36,8 +38,13 @@ export PATH="$HOME/.local/bin:$PATH"
 [[ -d $PYENV_ROOT/bin ]] && eval "$(pyenv init -)"
 
 # {mark} START IT-ENG JAMF SETUP MOBILE ZSHRC
+export MONOREPO_ROOT="$NU_HOME/mini-meta-repo"
 export PATH="$PATH:$MONOREPO_ROOT/monocli/bin"
+export FLUTTER_SDK_HOME="$HOME/sdk-flutter"
+export FLUTTER_ROOT="$FLUTTER_SDK_HOME"
 export PATH="$PATH:$FLUTTER_SDK_HOME/bin:$NU_HOME/.pub-cache/bin:$FLUTTER_ROOT/bin/cache/dart-sdk/bin"
+export ANDROID_HOME="$HOME/Library/Android/sdk"
+export ANDROID_SDK="$ANDROID_HOME"
 export PATH="$PATH:$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME:$ANDROID_HOME/platform-tools:$ANDROID_HOME/emulator"
 # {mark} END IT-ENG JAMF SETUP MOBILE ZSHRC
 

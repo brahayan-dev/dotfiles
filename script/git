@@ -2,7 +2,7 @@
 
 source "$(dirname "${BASH_SOURCE[0]}")/base"
 
-readonly AKEPTOUS_REPOS=("akeptous-cli" "cloud-hub" "gifttech-api" "gifttech-app" "handbook-ref")
+readonly AKEPTOUS_REPOS=("akeptous-app" "akeptous-hub" "cloud-hub" "handbook-ref")
 readonly PERSONAL_REPOS=("kiln" "max-neef" "workbook")
 
 # Connect dotfiles to GitHub
@@ -37,7 +37,7 @@ clone_repos() {
     for repo in "${repos[@]}"; do
         if [[ ! -d "$repo" ]]; then
             log_info "Cloning $repo repository"
-            gh repo clone "$owner/$repo" 
+            gh repo clone "$owner/$repo"
         fi
     done
 }

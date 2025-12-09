@@ -1,6 +1,6 @@
 ;;; init.el -*- lexical-binding: t; -*-
 
-;; Variables
+(defvar current-workspace (getenv "WORKSPACE"))
 (doom! :input
 
        :completion
@@ -23,6 +23,7 @@
 
        :editor
        fold
+       ;; lispy
        snippets
        word-wrap
        file-templates
@@ -45,7 +46,9 @@
        :tools
        lsp
        magit
+       direnv
        lookup
+       ansible
        tree-sitter
        (eval +overlay)
 
@@ -59,13 +62,15 @@
        json
        emacs-lisp
        (markdown +grip)
-       (dart +lsp +flutter)
        (sh +lsp +tree-sitter)
        (web +lsp +tree-sitter)
+       (elm +lsp +tree-sitter)
        (yaml +lsp +tree-sitter)
-       (scala +lsp +tree-sitter)
        (clojure +lsp +tree-sitter)
        (javascript +lsp +tree-sitter)
+       (:if (string= current-workspace "work") (dart +lsp +flutter))
+       (:if (string= current-workspace "work") (scala +lsp +tree-sitter))
+
 
        :app
        (rss +org)

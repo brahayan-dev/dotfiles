@@ -2,11 +2,11 @@
 
 ;; Theme
 ;; (setq doom-theme 'doom-bluloco-light)
-(setq doom-theme 'doom-nord-light)
+;; (setq doom-theme 'doom-nord-light)
 ;; (setq doom-theme 'doom-solarized-light)
 ;; (setq doom-theme 'doom-nord-aurora)
 ;; (setq doom-theme 'doom-tokyo-night)
-;; (setq doom-theme 'doom-monokai-pro)
+(setq doom-theme 'doom-monokai-pro)
 ;; (setq doom-theme 'doom-dracula)
 
 ;; Doom Configuration
@@ -44,20 +44,9 @@
                    (corfu-quit)
                    (lsp-inline-completion-display))))
 
-(use-package! smartparens
-  :hook ((clojure-mode clojurescript-mode emacs-lisp-mode) . smartparens-strict-mode))
-
-(use-package! evil-cleverparens
-  :hook ((clojure-mode clojurescript-mode emacs-lisp-mode) . evil-cleverparens-mode)
-  :config
-  (map! :map evil-cleverparens-mode-map
-        :n "[[" #'evil-cp-beginning-of-defun
-        :n "]]" #'evil-cp-end-of-defun))
-
 (after! clojure-mode
   (add-to-list 'auto-mode-alist '("\\.edn\\'" . clojure-mode)))
 
-;; Hooks
 (add-hook! 'before-save-hook #'whitespace-cleanup)
 (add-hook! 'elfeed-search-mode-hook #'elfeed-update)
 
@@ -69,7 +58,7 @@
 
 ;; Workspace Configuration
 (setq doom-font (font-spec :family "Fira Code" :size 18)
-      projectile-project-search-path '("~/Projects" "~/dev/nu/"))
+      projectile-project-search-path '("~/Akeptous" "~/Private" "~/Projects" "~/dev/nu/"))
 
 (let ((nudev-emacs-path "~/dev/nu/nudev/ides/emacs/"))
   (when (file-directory-p nudev-emacs-path)
