@@ -11,26 +11,20 @@
       - curl
       - tree
       - make
-      - ruby
-      - rust
-      - rbenv
-      - cargo
       - unzip
       - pdftk
+      - sqlite
       - rlwrap
       - neovim
-      - golang
       - podman
       - direnv
       - fd-find
       - ghostty
       - ripgrep
       - lazygit
-      - gcc-c++
       - opentofu
+      - cpanminus
       - gmp-devel
-      - ruby-devel
-      - zlib-devel
       - dbeaver-ce
       - glibc-devel
       - python3-pip
@@ -49,6 +43,7 @@
   loop:
     - polyfy/polylith
     - sqitchers/sqitch
+  when: ansible_os_family == "Darwin"
 
 - name: Install Dependencies (macOS)
   community.general.homebrew:
@@ -56,7 +51,6 @@
       - jq
       - fd
       - gh
-      - zed
       - zsh
       - git
       - npm
@@ -64,14 +58,11 @@
       - curl
       - grip
       - perl
-      - poly
       - lima
-      - rust
       - tree
       - cmake
       - shfmt
       - unzip
-      - rbenv
       - sqlite
       - sqitch
       - awscli
@@ -79,7 +70,6 @@
       - rlwrap
       - neovim
       - podman
-      - golang
       - direnv
       - lazygit
       - libtool
@@ -92,7 +82,6 @@
       - openssl@3
       - shellcheck
       - aws-sam-cli
-      - clojure-lsp
       - font-fira-code
       - dbeaver-community
       - lua-language-server
@@ -101,12 +90,14 @@
     - akeptous_file.stat.exists
     - ansible_os_family == "Darwin"
 
-- name: Install DBI And DBD::SQLite
+- name: Install Perl Dependencies
+  become: true
   community.general.cpanm:
     name: "{{ item }}"
   loop:
     - DBI
     - DBD::SQLite
+    - App::Sqitch
 
 - name: Install Dependencies For Work (macOS)
   community.general.homebrew:
@@ -144,6 +135,7 @@
       - opentofu
       - openssl@3
       - shellcheck
+      - clojure-lsp
       - aws-sam-cli
       - font-fira-code
       - lua-language-server

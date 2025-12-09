@@ -50,6 +50,8 @@
       shell: /tmp/clojure-installer.sh
       args:
         creates: /usr/local/bin/clojure
+  when:
+    - not akeptous_file.stat.exists
 
 - name: Install Babashka
   block:
@@ -63,6 +65,8 @@
       shell: /tmp/babashka
       args:
         creates: /usr/local/bin/bb
+  when:
+    - not akeptous_file.stat.exists
 
 - name: Install Cljfmt
   become: true
@@ -70,6 +74,8 @@
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/weavejester/cljfmt/HEAD/install.sh)"
   args:
     creates: /usr/local/bin/cljfmt
+  when:
+    - not akeptous_file.stat.exists
 
 - name: Install Scala Metals
   shell: |
