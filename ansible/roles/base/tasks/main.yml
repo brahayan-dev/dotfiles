@@ -41,7 +41,6 @@
     name: "{{ item }}"
     state: present
   loop:
-    - polyfy/polylith
     - sqitchers/sqitch
   when: ansible_os_family == "Darwin"
 
