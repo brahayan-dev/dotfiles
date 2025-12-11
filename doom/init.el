@@ -64,12 +64,11 @@
        (markdown +grip)
        (sh +lsp +tree-sitter)
        (web +lsp +tree-sitter)
-       (elm +lsp +tree-sitter)
        (yaml +lsp +tree-sitter)
-       (clojure +lsp +tree-sitter)
+       (scala +lsp +tree-sitter)
        (javascript +lsp +tree-sitter)
        (:if (string= current-workspace "work") (dart +lsp +flutter))
-       (:if (string= current-workspace "work") (scala +lsp +tree-sitter))
+       (:if (string= current-workspace "work") (clojure +lsp +tree-sitter))
 
 
        :app

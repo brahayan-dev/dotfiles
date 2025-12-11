@@ -1,26 +1,21 @@
 ---
-- name: Install NPM Dependencies (DOOM)
+- name: Install NPM Dependencies
   become: true
   community.general.npm:
     name: "{{ item }}"
     global: true
     force: true
   loop:
-    - elm
-    - elm-test
     - prettier
     - emmet-ls
     - stylelint
-    - elm-format
     - typescript
-    - elm-analyse
     - js-beautify
     - bash-language-server
     - yaml-language-server
     - typescript-language-server
     - vscode-langservers-extracted
     - "@github/copilot-language-server"
-    - "@elm-tooling/elm-language-server"
     - "@ansible/ansible-language-server"
 
 - name: Create Configuration Directory
@@ -28,18 +23,6 @@
     path: "/{{ base_dir }}/{{ current_user }}/.config"
     state: directory
     mode: 0755
-
-- name: Set Editor Symlink (ZED)
-  command: >
-    ln -s -f
-    "/{{ base_dir }}/{{ current_user }}/.dotfiles/zed"
-    "/{{ base_dir }}/{{ current_user }}/.config/zed"
-  args:
-    chdir: "/{{ base_dir }}/{{ current_user }}/.dotfiles"
-    creates: "/{{ base_dir }}/{{ current_user }}/.config/zed/settings.json"
-  notify: Reload Zsh Files
-  when:
-    - akeptous_file.stat.exists
 
 - name: Set Editor Symlink (NVIM)
   command: >
@@ -60,3 +43,4 @@
     chdir: "/{{ base_dir }}/{{ current_user }}/.dotfiles"
     creates: "/{{ base_dir }}/{{ current_user }}/.config/doom/init.el"
   notify: Reload Zsh Files
+  when: not akeptous_file.stat.exists

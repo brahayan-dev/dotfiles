@@ -17,6 +17,7 @@ readonly SUPPORTED_COMMANDS=(
   "mark"
   "clone"
   "haskell"
+  "scala"
 )
 
 # Mark function
@@ -98,5 +99,6 @@ Commands:
     mark     - Mark workspace as akeptous
     clone    - Clone akeptous repositories
     haskell  - Install Haskell
+    scala    - Install Scala dependencies
 EOF
 }

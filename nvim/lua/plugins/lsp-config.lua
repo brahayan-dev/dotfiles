@@ -47,6 +47,8 @@ return {
       -- vim.lsp.enable("ansiblels")
       -- vim.lsp.enable("cssls")
 
+      vim.lsp.enable('sqls')
+      -- vim.lsp.enable('metals')
       vim.lsp.enable("lua_ls")
       vim.lsp.enable("ts_ls")
       vim.lsp.enable("yamlls")

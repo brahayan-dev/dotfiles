@@ -2,7 +2,7 @@
 
 source "$(dirname "${BASH_SOURCE[0]}")/base"
 
-readonly AKEPTOUS_REPOS=("akeptous-hub" "akeptous-cli" "cloud-hub" "handbook-ref")
+readonly AKEPTOUS_REPOS=("venture-hub" "cloud-hub" "handbook-ref")
 readonly PERSONAL_REPOS=("kiln" "max-neef" "workbook")
 
 # Connect dotfiles to GitHub

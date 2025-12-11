@@ -23,6 +23,8 @@ if [[ "$(uname)" == "Darwin" ]]; then
     export PATH="/opt/homebrew/bin:$PATH"
     # NOTE: Java setup
     export JAVA_HOME="$HOME/Library/Caches/Coursier/arc/https/github.com/adoptium/temurin23-binaries/releases/download/jdk-23.0.2%252B7/OpenJDK23U-jdk_aarch64_mac_hotspot_23.0.2_7.tar.gz/jdk-23.0.2+7/Contents/Home"
+    #NOTE: Coursier setup
+    export PATH="$PATH:/Users/brahayanxavier/Library/Application Support/Coursier/bin"
 fi
 
 if [[ "$(uname)" == "Linux" ]]; then
