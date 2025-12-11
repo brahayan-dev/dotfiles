@@ -147,6 +147,8 @@ nu-refresh() {
     nu-setup-ist-environment
     nu-setup-mx-environment
 
+    nu aws shared-role-credentials refresh --account-alias=br
+
     echo -e "\n🎉 \033[1;37;42m NU Environment Refresh Completed Successfully! \033[0m"
     echo -e "════════════════════════════════════════════════════════════════════════════════\n"
 }
