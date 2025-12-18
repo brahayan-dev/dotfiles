@@ -44,6 +44,51 @@
     - sqitchers/sqitch
   when: ansible_os_family == "Darwin"
 
+- name: Install Dependencies For Work (macOS)
+  community.general.homebrew:
+    name:
+      - jq
+      - fd
+      - gh
+      - gcc
+      - zsh
+      - git
+      - npm
+      - gmp
+      - grip
+      - rust
+      - make
+      - curl
+      - tree
+      - cmake
+      - shfmt
+      - unzip
+      - direnv
+      - awscli
+      - pandoc
+      - rlwrap
+      - neovim
+      - podman
+      - golang
+      - direnv
+      - lazygit
+      - ripgrep
+      - libtool
+      - libyaml
+      - ghostty
+      - coursier
+      - opentofu
+      - openssl@3
+      - shellcheck
+      - clojure-lsp
+      - aws-sam-cli
+      - font-fira-code
+      - lua-language-server
+    state: present
+  when:
+    - not akeptous_file.stat.exists
+    - ansible_os_family == "Darwin"
+
 - name: Install Dependencies (macOS)
   community.general.homebrew:
     name:
@@ -96,6 +141,8 @@
   loop:
     - DBI
     - DBD::SQLite
+  when:
+    - akeptous_file.stat.exists
 
 - name: Install Perl Dependencies (Linux)
   become: true
@@ -106,51 +153,6 @@
   when:
     - akeptous_file.stat.exists
     - ansible_os_family == "RedHat"
-
-- name: Install Dependencies For Work (macOS)
-  community.general.homebrew:
-    name:
-      - jq
-      - fd
-      - gh
-      - gcc
-      - zsh
-      - git
-      - npm
-      - gmp
-      - grip
-      - rust
-      - make
-      - curl
-      - tree
-      - cmake
-      - shfmt
-      - unzip
-      - direnv
-      - awscli
-      - pandoc
-      - rlwrap
-      - neovim
-      - podman
-      - golang
-      - direnv
-      - lazygit
-      - ripgrep
-      - libtool
-      - libyaml
-      - ghostty
-      - coursier
-      - opentofu
-      - openssl@3
-      - shellcheck
-      - clojure-lsp
-      - aws-sam-cli
-      - font-fira-code
-      - lua-language-server
-    state: present
-  when:
-    - not akeptous_file.stat.exists
-    - ansible_os_family == "Darwin"
 
 - name: Install Brave (Linux)
   shell: curl -fsS https://dl.brave.com/install.sh | sh
