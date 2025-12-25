@@ -134,14 +134,18 @@
     - akeptous_file.stat.exists
     - ansible_os_family == "Darwin"
 
-- name: Install Perl Dependencies
-  become: true
-  community.general.cpanm:
-    name: "{{ item }}"
-  loop:
-    - DBI
-    - DBD::SQLite
+- name: Install Perl Dependencies (macOS)
+  become: yes
+  command: >
+    /opt/homebrew/bin/cpanm
+    --local-lib="/{{ base_dir }}/{{ current_user }}/.perl"
+    --force
+    DBI
+    DBD::SQLite
+  args:
+    creates: "/{{ base_dir }}/{{ current_user }}/.perl"
   when:
+    - ansible_os_family == "Darwin"
     - akeptous_file.stat.exists
 
 - name: Install Perl Dependencies (Linux)
@@ -149,6 +153,8 @@
   community.general.cpanm:
     name: "{{ item }}"
   loop:
+    - DBI
+    - DBD::SQLite
     - App::Sqitch
   when:
     - akeptous_file.stat.exists
