@@ -121,7 +121,6 @@
       - libyaml
       - ghostty
       - opentofu
-      - coursier
       - cpanminus
       - openssl@3
       - shellcheck

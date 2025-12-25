@@ -82,11 +82,11 @@
     coursier install metals
   args:
     creates: "/{{ base_dir }}/{{ current_user }}/{{ coursier_path }}/metals"
-  when: akeptous_file.stat.exists
+  when: not akeptous_file.stat.exists
 
 - name: Install Scalafmt
   shell: |
     coursier install scalafmt
   args:
     creates: "/{{ base_dir }}/{{ current_user }}/{{ coursier_path }}/scalafmt"
-  when: akeptous_file.stat.exists
+  when: not akeptous_file.stat.exists
