@@ -5,12 +5,12 @@
       pip:
         name: aider-install
         state: present
-      when: ansible_os_family == "RedHat"
+      when: ansible_facts["os_family"] == "RedHat"
     - name: Install Aider - Download Installer (macOS)
       shell: curl -LsSf https://aider.chat/install.sh | sh
       args:
         creates: "/{{ base_dir }}/{{ current_user }}/.local/bin/aider"
-      when: ansible_os_family == "Darwin"
+      when: ansible_facts["os_family"] == "Darwin"
     - name: Install Aider - Run Installer
       shell: aider-install
       args:

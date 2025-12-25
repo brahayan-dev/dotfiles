@@ -21,7 +21,7 @@
   when:
     - not coursier_binary.stat.exists
     - akeptous_file.stat.exists
-    - ansible_os_family == "RedHat"
+    - ansible_facts["os_family"] == "RedHat"
 
 - name: Install NVM
   shell: |

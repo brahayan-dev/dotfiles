@@ -34,7 +34,7 @@
       - readline-devel
       - pkgconf-pkg-config
     state: present
-  when: ansible_os_family == "RedHat"
+  when: ansible_facts["os_family"] == "RedHat"
 
 - name: Enable Repositories On Brew
   community.general.homebrew_tap:
@@ -42,7 +42,7 @@
     state: present
   loop:
     - sqitchers/sqitch
-  when: ansible_os_family == "Darwin"
+  when: ansible_facts["os_family"] == "Darwin"
 
 - name: Install Dependencies For Work (macOS)
   community.general.homebrew:
@@ -87,7 +87,7 @@
     state: present
   when:
     - not akeptous_file.stat.exists
-    - ansible_os_family == "Darwin"
+    - ansible_facts["os_family"] == "Darwin"
 
 - name: Install Dependencies (macOS)
   community.general.homebrew:
@@ -131,7 +131,7 @@
     state: present
   when:
     - akeptous_file.stat.exists
-    - ansible_os_family == "Darwin"
+    - ansible_facts["os_family"] == "Darwin"
 
 - name: Install Perl Dependencies (macOS)
   become: yes
@@ -144,7 +144,7 @@
   args:
     creates: "/{{ base_dir }}/{{ current_user }}/.perl"
   when:
-    - ansible_os_family == "Darwin"
+    - ansible_facts["os_family"] == "Darwin"
     - akeptous_file.stat.exists
 
 - name: Install Perl Dependencies (Linux)
@@ -157,19 +157,19 @@
     - App::Sqitch
   when:
     - akeptous_file.stat.exists
-    - ansible_os_family == "RedHat"
+    - ansible_facts["os_family"] == "RedHat"
 
 - name: Install Brave (Linux)
   shell: curl -fsS https://dl.brave.com/install.sh | sh
   args:
     creates: "/usr/bin/brave-browser"
-  when: ansible_os_family == "RedHat"
+  when: ansible_facts["os_family"] == "RedHat"
 
 - name: Install Common Cask Dependencies (macOS)
   community.general.homebrew_cask:
     name: arc
     state: present
-  when: ansible_os_family == "Darwin"
+  when: ansible_facts["os_family"] == "Darwin"
 
 - name: Set Zsh As Shell By Default
   become: true

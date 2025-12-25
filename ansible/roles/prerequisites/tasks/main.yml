@@ -4,18 +4,18 @@
   community.general.copr:
     name: scottames/ghostty
     state: enabled
-  when: ansible_os_family == "RedHat"
+  when: ansible_facts["os_family"] == "RedHat"
 
 - name: Add DBeaver (Linux)
   become: true
   community.general.copr:
     name: birkch/dbeaver
     state: enabled
-  when: ansible_os_family == "RedHat"
+  when: ansible_facts["os_family"] == "RedHat"
 
 - name: Add Lazygit (Linux)
   become: true
   community.general.copr:
     name: atim/lazygit
     state: enabled
-  when: ansible_os_family == "RedHat"
+  when: ansible_facts["os_family"] == "RedHat"
