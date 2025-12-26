@@ -10,9 +10,6 @@
   stat:
     path: /usr/local/bin/coursier
   register: coursier_binary
-  when:
-    - not akeptous_file.stat.exists
-    - ansible_facts["os_family"] == "RedHat"
 
 - name: Install Coursier (Linux)
   block:
@@ -29,7 +26,6 @@
         mode: 0755
         force: false
   when:
-    - not coursier_binary.stat.exists
     - not akeptous_file.stat.exists
     - ansible_facts["os_family"] == "RedHat"
 
