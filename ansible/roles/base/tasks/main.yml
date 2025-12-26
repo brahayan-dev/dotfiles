@@ -109,7 +109,6 @@
       - unzip
       - sqlite
       - sqitch
-      - awscli
       - pandoc
       - rlwrap
       - neovim
@@ -124,7 +123,6 @@
       - cpanminus
       - openssl@3
       - shellcheck
-      - aws-sam-cli
       - font-fira-code
       - dbeaver-community
       - lua-language-server
@@ -134,7 +132,7 @@
     - ansible_facts["os_family"] == "Darwin"
 
 - name: Install Perl Dependencies (macOS)
-  become: yes
+  become: true
   command: >
     /opt/homebrew/bin/cpanm
     --local-lib="/{{ base_dir }}/{{ current_user }}/.perl"
@@ -144,8 +142,8 @@
   args:
     creates: "/{{ base_dir }}/{{ current_user }}/.perl"
   when:
-    - ansible_facts["os_family"] == "Darwin"
     - akeptous_file.stat.exists
+    - ansible_facts["os_family"] == "Darwin"
 
 - name: Install Perl Dependencies (Linux)
   become: true

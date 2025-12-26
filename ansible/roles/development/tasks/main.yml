@@ -1,8 +1,18 @@
 ---
+- name: Install NVM
+  shell: |
+    curl -o- "https://raw.githubusercontent.com/nvm-sh/nvm/v{{ nvm_version }}/install.sh" | bash
+  args:
+    creates: "/{{ base_dir }}/{{ current_user }}/.nvm/nvm.sh"
+  when: akeptous_file.stat.exists
+
 - name: Install Coursier (Linux) - Check Binary
   stat:
     path: /usr/local/bin/coursier
   register: coursier_binary
+  when:
+    - not akeptous_file.stat.exists
+    - ansible_facts["os_family"] == "RedHat"
 
 - name: Install Coursier (Linux)
   block:
@@ -20,23 +30,15 @@
         force: false
   when:
     - not coursier_binary.stat.exists
-    - akeptous_file.stat.exists
+    - not akeptous_file.stat.exists
     - ansible_facts["os_family"] == "RedHat"
-
-- name: Install NVM
-  shell: |
-    curl -o- "https://raw.githubusercontent.com/nvm-sh/nvm/v{{ nvm_version }}/install.sh" | bash
-  args:
-    creates: "/{{ base_dir }}/{{ current_user }}/.nvm/nvm.sh"
-  when: akeptous_file.stat.exists
 
 - name: Install Java
   shell: |
     coursier java "--jvm={{ jvm_version }}" --setup
   args:
     creates: "/usr/bin/java"
-  when:
-    - akeptous_file.stat.exists
+  when: not akeptous_file.stat.exists
 
 - name: Install Clojure
   become: true
@@ -50,8 +52,7 @@
       shell: /tmp/clojure-installer.sh
       args:
         creates: /usr/local/bin/clojure
-  when:
-    - not akeptous_file.stat.exists
+  when: not akeptous_file.stat.exists
 
 - name: Install Babashka
   block:
@@ -65,8 +66,7 @@
       shell: /tmp/babashka
       args:
         creates: /usr/local/bin/bb
-  when:
-    - not akeptous_file.stat.exists
+  when: not akeptous_file.stat.exists
 
 - name: Install Cljfmt
   become: true
@@ -74,8 +74,7 @@
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/weavejester/cljfmt/HEAD/install.sh)"
   args:
     creates: /usr/local/bin/cljfmt
-  when:
-    - not akeptous_file.stat.exists
+  when: not akeptous_file.stat.exists
 
 - name: Install Scala Metals
   shell: |
