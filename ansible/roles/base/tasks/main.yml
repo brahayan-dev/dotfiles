@@ -12,6 +12,7 @@
       - curl
       - tree
       - make
+      - sbcl
       - unzip
       - pdftk
       - sqlite
@@ -102,6 +103,7 @@
       - npm
       - gmp
       - entr
+      - sbcl
       - curl
       - grip
       - perl
