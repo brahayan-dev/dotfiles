@@ -9,7 +9,7 @@ readonly DESKTOP_FILE=/usr/share/applications/emacs.desktop
 # Download Doom Emacs
 install_emacs() {
   brew tap d12frosted/emacs-plus
-  brew install emacs-plus --with-modern-doom3-icon
+  brew install emacs-plus
 }
 
 # Download Doom Emacs

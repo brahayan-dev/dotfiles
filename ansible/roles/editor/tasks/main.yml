@@ -48,3 +48,14 @@
     chdir: "/{{ base_dir }}/{{ current_user }}/.dotfiles"
     creates: "/{{ base_dir }}/{{ current_user }}/.config/doom/init.el"
   notify: Reload Zsh Files
+
+- name: Set Editor Symlink (EMACS PLUS)
+  command: >
+    ln -s -f
+    "/{{ base_dir }}/{{ current_user }}/.dotfiles/emacs-plus"
+    "/{{ base_dir }}/{{ current_user }}/.config/emacs-plus"
+  args:
+    chdir: "/{{ base_dir }}/{{ current_user }}/.dotfiles"
+    creates: "/{{ base_dir }}/{{ current_user }}/.config/emacs-plus/build.yml"
+  notify: Reload Zsh Files
+  when: ansible_facts["os_family"] == "Darwin"
