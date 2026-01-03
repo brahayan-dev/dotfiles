@@ -9,18 +9,19 @@ readonly DESKTOP_FILE=/usr/share/applications/emacs.desktop
 # Download Doom Emacs
 install_emacs() {
   brew tap d12frosted/emacs-plus
-  brew install emacs-plus
+  brew install emacs-plus@30
 }
 
 # Download Doom Emacs
 download_doom() {
+  rm -rf ~/.config/emacs
   git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.config/emacs
 }
 
 # Install Doom Emacs
 install_doom() {
   cd ~/.config/emacs/bin || return
-  sh doom install --no-config --install --fonts --color --force --env
+  sh doom install --no-config --install --color --force --env
 }
 
 # Change Emacs icon to Doom icon
