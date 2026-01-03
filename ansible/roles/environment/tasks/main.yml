@@ -48,24 +48,3 @@
     chdir: "/{{ base_dir }}/{{ current_user }}/.dotfiles"
     creates: "/{{ base_dir }}/{{ current_user }}/.zprofile"
   notify: Reload Zsh Files
-
-- name: Set SBCL Symlink (RC)
-  command: >
-    ln -s -f
-    "/{{ base_dir }}/{{ current_user }}/.dotfiles/.sbclrc"
-    "/{{ base_dir }}/{{ current_user }}/.sbclrc"
-  args:
-    chdir: "/{{ base_dir }}/{{ current_user }}/.dotfiles"
-    creates: "/{{ base_dir }}/{{ current_user }}/.sbclrc"
-  notify: Reload Zsh Files
-
-- name: Set Editor Symlink (CL)
-  command: >
-    ln -s -f
-    "/{{ base_dir }}/{{ current_user }}/.dotfiles/common-lisp"
-    "/{{ base_dir }}/{{ current_user }}/.config/common-lisp"
-  args:
-    chdir: "/{{ base_dir }}/{{ current_user }}/.dotfiles"
-    creates: "/{{ base_dir }}/{{ current_user }}/.config/common-lisp/source-registry.conf"
-  notify: Reload Zsh Files
-  when: akeptous_file.stat.exists

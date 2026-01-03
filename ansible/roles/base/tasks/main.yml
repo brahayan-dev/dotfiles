@@ -12,7 +12,7 @@
       - curl
       - tree
       - make
-      - sbcl
+      - guile
       - unzip
       - pdftk
       - sqlite
@@ -103,12 +103,12 @@
       - npm
       - gmp
       - entr
-      - sbcl
       - curl
       - grip
       - perl
       - lima
       - tree
+      - guile
       - cmake
       - shfmt
       - unzip
