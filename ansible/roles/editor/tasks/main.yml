@@ -6,12 +6,9 @@
     global: true
     force: true
   loop:
-    - elm
-    - elm-test
     - prettier
     - emmet-ls
     - stylelint
-    - elm-format
     - typescript
     - js-beautify
     - bash-language-server
@@ -20,7 +17,6 @@
     - vscode-langservers-extracted
     - "@astrojs/language-server"
     - "@github/copilot-language-server"
-    - "@elm-tooling/elm-language-server"
     - "@ansible/ansible-language-server"
 
 - name: Create Configuration Directory
