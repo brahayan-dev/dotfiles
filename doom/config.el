@@ -1,5 +1,7 @@
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
+(defvar current-workspace (getenv "WORKSPACE"))
+
 ;; Theme
 ;; (setq doom-theme 'doom-bluloco-light)
 (setq doom-theme 'doom-nord-light)
@@ -43,6 +45,12 @@
                    (interactive)
                    (corfu-quit)
                    (lsp-inline-completion-display))))
+
+(if (eq system-type 'gnu/linux)
+    (use-package! geiser
+      :config
+      (setq geiser-guile-binary "/usr/bin/guile3.0")
+      (add-to-list 'interpreter-mode-alist '("guile3.0" . scheme-mode))))
 
 (after! clojure-mode
   (add-to-list 'auto-mode-alist '("\\.edn\\'" . clojure-mode)))
