@@ -1,7 +1,7 @@
 ---
 - name: Install Dependencies (Linux)
   become: true
-  dnf:
+  apt:
     name:
       - gh
       - git
@@ -24,13 +24,13 @@
       - podman
       - direnv
       - pandoc
-      - guile30
       - fd-find
       - ghostty
       - ripgrep
       - lazygit
       - opentofu
       - cpanminus
+      - guile-3.0
       - gmp-devel
       - ShellCheck
       - dbeaver-ce
@@ -43,7 +43,7 @@
       - fira-code-fonts
       - pkgconf-pkg-config
     state: present
-  when: ansible_facts["os_family"] == "RedHat"
+  when: ansible_facts["os_family"] == "Debian"
 
 - name: Enable Repositories On Brew
   community.general.homebrew_tap:
@@ -167,13 +167,13 @@
     - App::Sqitch
   when:
     - akeptous_file.stat.exists
-    - ansible_facts["os_family"] == "RedHat"
+    - ansible_facts["os_family"] == "Debian"
 
 - name: Install Brave (Linux)
   shell: curl -fsS https://dl.brave.com/install.sh | sh
   args:
     creates: "/usr/bin/brave-browser"
-  when: ansible_facts["os_family"] == "RedHat"
+  when: ansible_facts["os_family"] == "Debian"
 
 - name: Install Common Cask Dependencies (macOS)
   community.general.homebrew_cask:
