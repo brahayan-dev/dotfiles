@@ -8,8 +8,18 @@ readonly DESKTOP_FILE=/usr/share/applications/emacs.desktop
 
 # Download Doom Emacs
 install_emacs() {
-  brew tap d12frosted/emacs-plus
-  brew install emacs-plus@30
+  local os
+  os="$(uname)"
+
+  if [[ "$os" == "Darwin" ]]; then
+    brew tap d12frosted/emacs-plus
+    brew install emacs-plus@30
+  elif [[ "$os" == "Linux" ]]; then
+    sudo dnf install emacs
+  else
+    log_error "No package manager found"
+    return 1
+  fi
 }
 
 # Download Doom Emacs

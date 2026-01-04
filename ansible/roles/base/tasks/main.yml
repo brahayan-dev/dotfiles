@@ -12,7 +12,6 @@
       - curl
       - tree
       - make
-      - guile
       - unzip
       - pdftk
       - sqlite
@@ -20,6 +19,7 @@
       - neovim
       - podman
       - direnv
+      - guile30
       - fd-find
       - ghostty
       - ripgrep
