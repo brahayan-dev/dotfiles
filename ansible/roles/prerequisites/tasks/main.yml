@@ -1,21 +1,21 @@
 ---
-- name: Install Ghostty (Linux)
+- name: Add Ghostty (Linux)
   become: true
-  community.general.snap:
-    name: ghostty
-    classic: true
-  when: ansible_facts["os_family"] == "Debian"
+  community.general.copr:
+    name: scottames/ghostty
+    state: enabled
+  when: ansible_facts["os_family"] == "RedHat"
 
-- name: Install DBeaver (Linux)
+- name: Add DBeaver (Linux)
   become: true
-  community.general.snap:
-    name: dbeaver-ce
-    classic: true
-  when: ansible_facts["os_family"] == "Debian"
+  community.general.copr:
+    name: birkch/dbeaver
+    state: enabled
+  when: ansible_facts["os_family"] == "RedHat"
 
-- name: Install Emacs (Linux)
+- name: Add Lazygit (Linux)
   become: true
-  community.general.snap:
-    name: emacs
-    classic: true
-  when: ansible_facts["os_family"] == "Debian"
+  community.general.copr:
+    name: atim/lazygit
+    state: enabled
+  when: ansible_facts["os_family"] == "RedHat"

@@ -27,7 +27,7 @@
     eval "$(ssh-agent -s)"
     ssh-add "/{{ base_dir }}/{{ current_user }}/.ssh/{{ current_user }}_rsa"
   when:
-    - ansible_facts["os_family"] == "Debian"
+    - ansible_facts["os_family"] == "RedHat"
     - "'ansible-generated' not in ssh_keys_added.stdout"
 
 - name: Add SSH Key To Agent (macOS)

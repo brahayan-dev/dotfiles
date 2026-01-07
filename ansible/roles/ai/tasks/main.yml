@@ -5,7 +5,7 @@
       pip:
         name: aider-install
         state: present
-      when: ansible_facts["os_family"] == "Debian"
+      when: ansible_facts["os_family"] == "RedHat"
     - name: Install Aider - Download Installer (macOS)
       shell: curl -LsSf https://aider.chat/install.sh | sh
       args:
