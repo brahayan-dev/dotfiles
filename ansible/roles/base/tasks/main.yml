@@ -24,11 +24,14 @@
       - podman
       - direnv
       - pandoc
-      - guile30
       - fd-find
       - ghostty
       - ripgrep
       - lazygit
+      - guile30
+      - libtool
+      - autoconf
+      - automake
       - opentofu
       - cpanminus
       - gmp-devel
@@ -73,6 +76,7 @@
       - cmake
       - shfmt
       - unzip
+      - guile
       - direnv
       - awscli
       - pandoc
@@ -83,9 +87,11 @@
       - direnv
       - lazygit
       - ripgrep
-      - libtool
       - libyaml
       - ghostty
+      - libtool
+      - autoconf
+      - automake
       - coursier
       - opentofu
       - openssl@3
@@ -131,6 +137,9 @@
       - ripgrep
       - libyaml
       - ghostty
+      - libtool
+      - autoconf
+      - automake
       - opentofu
       - cpanminus
       - openssl@3
