@@ -56,16 +56,6 @@
 (after! clojure-mode
   (add-to-list 'auto-mode-alist '("\\.edn\\'" . clojure-mode)))
 
-(add-hook! 'before-save-hook #'whitespace-cleanup)
-(add-hook! 'elfeed-search-mode-hook #'elfeed-update)
-(add-hook! 'smartparens-mode-hook #'evil-cleverparens-mode)
-
-;; Key Mappings
-(map! :v
-      "M-r" #'evil-multiedit-match-all
-      "M-d" #'evil-multiedit-match-and-next
-      "M-D" #'evil-multiedit-match-and-prev)
-
 (when (string= current-workspace "work")
   (let ((nudev-emacs-path "~/dev/nu/nudev/ides/emacs/"))
     (when (file-directory-p nudev-emacs-path)
@@ -79,3 +69,12 @@
 (when (featurep :system 'macos)
   (load-guile-lib "/opt/homebrew/opt/guile/share/guile/3.0")
   (load-guile-lib "/opt/homebrew/opt/haunt/share/guile/site/3.0"))
+
+(add-hook! 'before-save-hook #'whitespace-cleanup)
+(add-hook! 'smartparens-mode-hook #'evil-cleverparens-mode)
+
+;; Key Mappings
+(map! :v
+      "M-r" #'evil-multiedit-match-all
+      "M-d" #'evil-multiedit-match-and-next
+      "M-D" #'evil-multiedit-match-and-prev)
