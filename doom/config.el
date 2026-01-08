@@ -4,16 +4,17 @@
 
 ;; Theme
 ;; (setq doom-theme 'doom-bluloco-light)
-(setq doom-theme 'doom-nord-light)
+;; (setq doom-theme 'doom-nord-light)
 ;; (setq doom-theme 'doom-solarized-light)
 ;; (setq doom-theme 'doom-nord-aurora)
 ;; (setq doom-theme 'doom-tokyo-night)
 ;; (setq doom-theme 'doom-monokai-pro)
-;; (setq doom-theme 'doom-dracula)
+(setq doom-theme 'doom-dracula)
 
 ;; Doom Configuration
 (setq doom-localleader-key ","
       doom-symbol-font doom-font
+      doom-font (font-spec :family "Fira Code" :size 18)
       doom-modeline-buffer-file-name-style 'truncate-all)
 
 ;; Editor Configuration
@@ -28,12 +29,14 @@
       display-line-numbers-type 'relative
       read-process-output-max (* 1024 1024)
       backup-directory-alist `(("." . ,(expand-file-name ".tmp/backups/" user-emacs-directory)))
+      projectile-project-search-path '("~/Akeptous" "~/Private" "~/Projects" "~/dev/nu/")
       projectile-project-root-functions '(projectile-root-local
                                           projectile-root-top-down
                                           projectile-root-bottom-up
                                           projectile-root-top-down-recurring))
 
 (use-package! lsp-mode
+  :defer t
   :commands lsp
   :config
   (setq lsp-copilot-enabled t
@@ -46,11 +49,19 @@
                    (corfu-quit)
                    (lsp-inline-completion-display))))
 
+(use-package! evil-cleverparens-mode
+  :defer t
+  :hook (scheme-mode . evil-cleverparens-mode)
+  :hook (clojure-mode . evil-cleverparens-mode)
+  :hook (emacs-lisp-mode . evil-cleverparens-mode)
+  :hook (clojurescript-mode . evil-cleverparens-mode))
+
 (after! clojure-mode
   (add-to-list 'auto-mode-alist '("\\.edn\\'" . clojure-mode)))
 
 (add-hook! 'before-save-hook #'whitespace-cleanup)
 (add-hook! 'elfeed-search-mode-hook #'elfeed-update)
+(add-hook! 'smartparens-mode-hook #'evil-cleverparens-mode)
 
 ;; Key Mappings
 (map! :v
@@ -58,11 +69,8 @@
       "M-d" #'evil-multiedit-match-and-next
       "M-D" #'evil-multiedit-match-and-prev)
 
-;; Workspace Configuration
-(setq doom-font (font-spec :family "Fira Code" :size 18)
-      projectile-project-search-path '("~/Akeptous" "~/Private" "~/Projects" "~/dev/nu/"))
-
-(let ((nudev-emacs-path "~/dev/nu/nudev/ides/emacs/"))
-  (when (file-directory-p nudev-emacs-path)
-    (add-to-list 'load-path nudev-emacs-path)
-    (require 'nu nil t)))
+(if (string= current-workspace "work")
+    (let ((nudev-emacs-path "~/dev/nu/nudev/ides/emacs/"))
+      (when (file-directory-p nudev-emacs-path)
+        (add-to-list 'load-path nudev-emacs-path)
+        (require 'nu nil t))))
