@@ -51,10 +51,7 @@
 
 (use-package! evil-cleverparens-mode
   :defer t
-  :hook (scheme-mode . evil-cleverparens-mode)
-  :hook (clojure-mode . evil-cleverparens-mode)
-  :hook (emacs-lisp-mode . evil-cleverparens-mode)
-  :hook (clojurescript-mode . evil-cleverparens-mode))
+  :hook ((emacs-lisp-mode scheme-mode clojure-mode clojurescript-mode) . evil-cleverparens-mode))
 
 (after! clojure-mode
   (add-to-list 'auto-mode-alist '("\\.edn\\'" . clojure-mode)))
