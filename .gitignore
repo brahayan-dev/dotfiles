@@ -3,3 +3,19 @@
 
 **/.vault_password
 **/.become_password
+
+# Guile
+*.go
+*.so
+*.dylib
+.cache/
+
+# Doom Emacs
+*~
+\#*\#
+
+# macOS
+.DS_Store
+
+# Builds
+/build/
