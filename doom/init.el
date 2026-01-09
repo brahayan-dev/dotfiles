@@ -71,7 +71,6 @@
        (:if (string= current-workspace "work") (scala +lsp +tree-sitter))
        (:if (string= current-workspace "work") (clojure +lsp +tree-sitter))
 
-
        :app
        (rss +org)
 
