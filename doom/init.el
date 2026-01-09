@@ -44,11 +44,12 @@
 
        :tools
        lsp
-       magit
+       make
        direnv
        lookup
        ansible
        tree-sitter
+       (magit +forge)
        (eval +overlay)
 
        :os
@@ -72,7 +73,6 @@
        (:if (string= current-workspace "work") (clojure +lsp +tree-sitter))
 
        :app
-       (rss +org)
 
        :config
        (default +bindings +smartparens))

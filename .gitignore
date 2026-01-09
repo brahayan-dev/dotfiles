@@ -1,6 +1,5 @@
 .private_profile
+.aider*
 
-**/*.mdb
 **/.vault_password
 **/.become_password
-.aider*
