@@ -1,5 +1,2 @@
 ---
-- name: Debug
-  ansible.builtin.debug:
-    msg: "Ansible | Roles | Common"
-
+- import_tasks: security.yml

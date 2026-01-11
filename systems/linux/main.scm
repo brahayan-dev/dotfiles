@@ -10,11 +10,16 @@
   (playbook! ansible-config-file setup-playbook-file))
 
 (define (install!)
-  (match package
+  (match (->entity)
 	 ("doom" (doom!))))
 
-(match command
+(define (connect!)
+  (match (->entity)
+	 ("github" (github!))))
+
+(match (->command)
        ("setup" (setup!))
        ("install" (install!))
+       ("connect" (connect!))
        ("ping" (ping! ansible-config-file))
        (_ (display "Command Not Found\n")))

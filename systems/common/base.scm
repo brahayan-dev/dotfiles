@@ -1,15 +1,16 @@
 (define-module (systems common base)
 	#:use-module (ice-9 rdelim)
-	#:export (command
-		  package
+	#:export (->args
+		  ->command
+		  ->entity
 		  ping!
 		  playbook!))
 
 (define ->args
   (compose cdr command-line))
 
-(define command (car (->args)))
-(define package (cadr (->args)))
+(define (->command) (car (->args)))
+(define (->entity) (cadr (->args)))
 
 (define vault-file "systems/common/.vault")
 (define become-file "systems/common/.become")
