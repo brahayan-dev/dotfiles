@@ -1,8 +1,9 @@
+.nvimlog
 .private_profile
 .aider*
 
-**/.vault_password
-**/.become_password
+**/.vault
+**/.become
 
 # Guile
 *.go
