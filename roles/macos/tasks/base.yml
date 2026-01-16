@@ -1,0 +1,73 @@
+---
+- name: Enable Repositories On Brew
+  community.general.homebrew_tap:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - sqitchers/sqitch
+    - aconchillo/guile
+
+- name: Install Dependencies
+  community.general.homebrew:
+    name:
+      - jq
+      - fd
+      - gh
+      - zsh
+      - git
+      - npm
+      - gmp
+      - entr
+      - curl
+      - grip
+      - perl
+      - lima
+      - tree
+      - guile
+      - haunt
+      - cmake
+      - shfmt
+      - unzip
+      - sqlite
+      - sqitch
+      - pandoc
+      - rlwrap
+      - neovim
+      - podman
+      - direnv
+      - lazygit
+      - libtool
+      - ripgrep
+      - libyaml
+      - ghostty
+      - libtool
+      - autoconf
+      - automake
+      - opentofu
+      - cpanminus
+      - openssl@3
+      - shellcheck
+      - font-fira-code
+      - dbeaver-community
+      - lua-language-server
+    state: latest
+  notify:
+    - "event_download_ohmyzsh"
+    - "event_install_ohmyzsh"
+
+- name: Install Common Cask Dependencies
+  community.general.homebrew_cask:
+    name: arc
+    state: present
+
+- name: Install Perl Dependencies
+  become: true
+  command: >
+    /opt/homebrew/bin/cpanm
+    --local-lib="{{ ansible_facts['user_dir'] }}/.perl"
+    --force
+    DBI
+    DBD::SQLite
+  args:
+    creates: "{{ ansible_facts['user_dir'] }}/.perl"
+
