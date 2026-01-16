@@ -2,10 +2,10 @@
 - name: Set SSH Symlink
   command: >
     ln -s -f
-    "/{{ ansible_facts['user_dir'] }}/Akeptous/dotfiles/roles/macos/files/ssh/config"
+    "/{{ ansible_facts['user_dir'] }}/Projects/dotfiles/roles/macos/files/ssh/config"
     "/{{ ansible_facts['user_dir'] }}/.ssh/config"
   args:
-    chdir: "/{{ ansible_facts['user_dir'] }}/Akeptous/dotfiles/roles/macos/files"
+    chdir: "/{{ ansible_facts['user_dir'] }}/Projects/dotfiles/roles/macos/files"
     creates: "/{{ ansible_facts['user_dir'] }}/.ssh/config"
   notify:
     - "event_reload_zsh_files"
@@ -13,10 +13,10 @@
 - name: Set Editor Symlink (EMACS PLUS)
   command: >
     ln -s -f
-    "{{ ansible_facts['user_dir'] }}/Akeptous/dotfiles/roles/macos/files/emacs-plus"
+    "{{ ansible_facts['user_dir'] }}/Projects/dotfiles/roles/macos/files/emacs-plus"
     "{{ ansible_facts['user_dir'] }}/.config/emacs-plus"
   args:
-    chdir: "/{{ ansible_facts['user_dir'] }}/Akeptous/dotfiles/roles/macos/files"
+    chdir: "/{{ ansible_facts['user_dir'] }}/Projects/dotfiles/roles/macos/files"
     creates: "/{{ ansible_facts['user_dir'] }}/.config/emacs-plus/build.yml"
   notify:
     - "event_reload_zsh_files"

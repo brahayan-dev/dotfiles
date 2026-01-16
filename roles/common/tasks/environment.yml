@@ -8,17 +8,17 @@
 - name: Set Editor Symlink (NVIM)
   command: >
     ln -s -f
-    "/{{ ansible_facts['user_dir'] }}/Akeptous/dotfiles/roles/common/files/nvim"
+    "/{{ ansible_facts['user_dir'] }}/Projects/dotfiles/roles/common/files/nvim"
     "/{{ ansible_facts['user_dir'] }}/.config/nvim"
   args:
-    chdir: "/{{ ansible_facts['user_dir'] }}/Akeptous/dotfiles/roles/common/files"
+    chdir: "/{{ ansible_facts['user_dir'] }}/Projects/dotfiles/roles/common/files"
     creates: "/{{ ansible_facts['user_dir'] }}/.config/nvim/init.lua"
 
 - name: Set Editor Symlink (DOOM)
   command: >
     ln -s -f
-    "/{{ ansible_facts['user_dir'] }}/Akeptous/dotfiles/roles/common/files/doom"
+    "/{{ ansible_facts['user_dir'] }}/Projects/dotfiles/roles/common/files/doom"
     "/{{ ansible_facts['user_dir'] }}/.config/doom"
   args:
-    chdir: "/{{ ansible_facts['user_dir'] }}/Akeptous/dotfiles/roles/common/files"
+    chdir: "/{{ ansible_facts['user_dir'] }}/Projects/dotfiles/roles/common/files"
     creates: "/{{ ansible_facts['user_dir'] }}/.config/doom/init.el"

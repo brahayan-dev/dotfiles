@@ -29,7 +29,7 @@
       display-line-numbers-type 'relative
       read-process-output-max (* 1024 1024)
       backup-directory-alist `(("." . ,(expand-file-name ".tmp/backups/" user-emacs-directory)))
-      projectile-project-search-path '("~/Akeptous" "~/Private" "~/Projects" "~/dev/nu/")
+      projectile-project-search-path '("~/Projects" "~/dev/nu/")
       projectile-project-root-functions '(projectile-root-local
                                           projectile-root-top-down
                                           projectile-root-bottom-up
