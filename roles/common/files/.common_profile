@@ -17,15 +17,11 @@ export PATH="$PATH:$GOBIN"
 source $HOME/.local/bin/env
 
 if [[ "$(uname)" == "Darwin" ]]; then
-    # NOTE: User
-    export CURRENT_USER=brahayanxavier
     # NOTE: Path to binaries on Brew
     export PATH="/opt/homebrew/bin:$PATH"
 fi
 
 if [[ "$(uname)" == "Linux" ]]; then
-    # NOTE: User
-    export CURRENT_USER=bxsr
     # NOTE: Other configurations
     export PATH="$HOME/.local/bin:$PATH"
 fi
