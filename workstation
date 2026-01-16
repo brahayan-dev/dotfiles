@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 # Color codes for output
 RED='\033[0;31m'
@@ -15,26 +15,26 @@ log_error() {
 }
 
 install_brew() {
-	[ ! -e /opt/homebrew/bin/brew ] && \
-		log_info "Installing Brew" && \
-		/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"  fi
+    [ ! -e /opt/homebrew/bin/brew ] &&
+        log_info "Installing Brew" &&
+        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 }
 
 install_deps() {
-    if command -v brew &>/dev/null; then
-        [ ! -e /opt/homebrew/bin/ansible ] && \
-    		log_info "Installing Ansible" && \
-		brew install ansible
-        [ ! -e /opt/homebrew/bin/guile ] && \
-    		log_info "Installing Guile" && \
-		brew install guile 
-    elif command -v dnf &>/dev/null; then
-        [ ! -e /usr/bin/ansible ] && \
-    		log_info "Installing Ansible" && \
-		sudo dnf install ansible
-        [ ! -e /usr/bin/guile3.0 ] && \
-    		log_info "Installing Guile" && \
-		sudo dnf install guile30 
+    if command -v brew >/dev/null 2>&1; then
+        [ ! -e /opt/homebrew/bin/ansible ] &&
+            log_info "Installing Ansible" &&
+            brew install ansible
+        [ ! -e /opt/homebrew/bin/guile ] &&
+            log_info "Installing Guile" &&
+            brew install guile
+    elif command -v dnf >/dev/null 2>&1; then
+        [ ! -e /usr/bin/ansible ] &&
+            log_info "Installing Ansible" &&
+            sudo dnf install ansible
+        [ ! -e /usr/bin/guile3.0 ] &&
+            log_info "Installing Guile" &&
+            sudo dnf install guile30
     else
         log_error "Could Not Detect Package Manager To Install Dependencies"
         return 1
@@ -42,20 +42,20 @@ install_deps() {
 }
 
 main() {
-	local os
-	os="$(uname)"
+    local os
+    os="$(uname)"
 
-  if [[ "$os" == "Darwin" ]]; then
-	install_brew
-	install_deps
-	guile -L . --fresh-auto-compile systems/macos/main.scm "$@"
-  elif [[ "$os" == "Linux" ]]; then
-	install_deps
-	guile -L . --fresh-auto-compile systems/linux/main.scm "$@"
-  else
-    log_error "OS Not Supported"
-    return 1
-  fi
+    if [[ "$os" == "Darwin" ]]; then
+        install_brew
+        install_deps
+        guile -L . --fresh-auto-compile systems/macos/main.scm "$@"
+    elif [[ "$os" == "Linux" ]]; then
+        install_deps
+        guile -L . --fresh-auto-compile systems/linux/main.scm "$@"
+    else
+        log_error "OS Not Supported"
+        return 1
+    fi
 }
 
 main "$@"
