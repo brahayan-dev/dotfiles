@@ -1,0 +1,29 @@
+#!/usr/bin/env zsh
+
+alias _kiln='cd "$HOME/Private/kiln/"'
+alias _dotfiles='cd "$HOME/.dotfiles/"'
+alias _max-neef='cd "$HOME/Private/max-neef/"'
+alias _workbook='cd "$HOME/Private/workbook/"'
+alias _cloud-hub='cd "$HOME/Akeptous/cloud-hub/"'
+alias _handbook-ref='cd "$HOME/Akeptous/handbook-ref/"'
+alias _venture-hub='cd "$HOME/Akeptous/venture-hub/"'
+alias _startup-kit='cd "$HOME/Akeptous/startup-kit/"'
+
+alias __kiln='cd "$HOME/Private/kiln/" && nvim .'
+alias __dotfiles='cd "$HOME/.dotfiles/" && nvim .'
+alias __max-neef='cd "$HOME/Private/max-neef/" && nvim .'
+alias __workbook='cd "$HOME/Private/workbook/" && nvim .'
+alias __cloud-hub='cd "$HOME/Akeptous/cloud-hub/" && nvim .'
+alias __handbook-ref='cd "$HOME/Akeptous/handbook-ref/" && nvim .'
+alias __venture-hub='cd "$HOME/Akeptous/venture-hub/" && nvim .'
+alias __startup-kit='cd "$HOME/Akeptous/startup-kit/" && nvim .'
+
+alias gemini='aider --multiline --vim --model gemini'
+alias claude='aider --multiline --vim --model anthropic/claude-sonnet-4-20250514'
+alias models='aider --list-models openrouter/ && aider --list-models anthropic/'
+
+# NOTE: Akeptous CLI
+# alias akli='akeptous-cli'
+
+# NOTE: Direnv setup
+eval "$(direnv hook zsh)"

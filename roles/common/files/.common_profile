@@ -1,0 +1,31 @@
+#!/usr/bin/env zsh
+
+# ---------
+# Settings
+# ---------
+export WORKSPACE="no-work"
+
+# NOTE: Golang setup
+export GOPATH="/usr/local/bin"
+export GOBIN="$GOPATH"
+export PATH="$PATH:$GOBIN"
+
+# NOTE: Node.js setup
+[[ -e "$HOME/nvm/nvm.sh" ]] && source "$HOME/.nvm/nvm.sh"
+
+# NOTE: Aider setup
+source $HOME/.local/bin/env
+
+if [[ "$(uname)" == "Darwin" ]]; then
+    # NOTE: User
+    export CURRENT_USER=brahayanxavier
+    # NOTE: Path to binaries on Brew
+    export PATH="/opt/homebrew/bin:$PATH"
+fi
+
+if [[ "$(uname)" == "Linux" ]]; then
+    # NOTE: User
+    export CURRENT_USER=bxsr
+    # NOTE: Other configurations
+    export PATH="$HOME/.local/bin:$PATH"
+fi

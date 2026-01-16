@@ -14,10 +14,13 @@ log_error() {
     echo -e "${RED}[ERROR]${NC} $1" >&2
 }
 
-install_brew() {
+prepare_brew() {
     [ ! -e /opt/homebrew/bin/brew ] &&
         log_info "Installing Brew" &&
-        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" &&
+        log_info "Enabling Brew" &&
+        eval "$(/opt/homebrew/bin/brew shellenv)" &&
+        export PATH="/opt/homebrew/bin:$PATH"
 }
 
 install_deps() {
@@ -46,7 +49,7 @@ main() {
     os="$(uname)"
 
     if [[ "$os" == "Darwin" ]]; then
-        install_brew
+        prepare_brew
         install_deps
         guile -L . --fresh-auto-compile systems/macos/main.scm "$@"
     elif [[ "$os" == "Linux" ]]; then
