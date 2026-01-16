@@ -1,15 +1,4 @@
 ---
-- name: Set SSH Symlink
-  command: >
-    ln -s -f
-    "/{{ ansible_facts['user_dir'] }}/Akeptous/dotfiles/systems/macos/ssh/config"
-    "/{{ ansible_facts['user_dir'] }}/.ssh/config"
-  args:
-    chdir: "/{{ ansible_facts['user_dir'] }}/Akeptous/dotfiles/systems/macos"
-    creates: "/{{ ansible_facts['user_dir'] }}/.ssh/config"
-  notify: 
-    - "event_reload_zsh_files"
-
 - name: Add SSH Key To Agent
   shell: |
     eval "$(ssh-agent -s)"

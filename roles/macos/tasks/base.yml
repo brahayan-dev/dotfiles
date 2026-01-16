@@ -6,6 +6,7 @@
   loop:
     - sqitchers/sqitch
     - aconchillo/guile
+    - d12frosted/emacs-plus
 
 - name: Install Dependencies
   community.general.homebrew:
@@ -46,6 +47,7 @@
       - opentofu
       - cpanminus
       - openssl@3
+      - emacs-plus
       - shellcheck
       - font-fira-code
       - dbeaver-community
@@ -54,6 +56,7 @@
   notify:
     - "event_download_ohmyzsh"
     - "event_install_ohmyzsh"
+    - "event_install_npm_dependencies"
 
 - name: Install Common Cask Dependencies
   community.general.homebrew_cask:

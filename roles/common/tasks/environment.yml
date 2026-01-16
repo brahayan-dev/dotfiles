@@ -1,0 +1,24 @@
+---
+- name: Create Configuration Directory
+  ansible.builtin.file:
+    path: "/{{ ansible_facts['user_dir'] }}/.config"
+    state: directory
+    mode: 0755
+
+- name: Set Editor Symlink (NVIM)
+  command: >
+    ln -s -f
+    "/{{ ansible_facts['user_dir'] }}/Akeptous/dotfiles/systems/common/nvim"
+    "/{{ ansible_facts['user_dir'] }}/.config/nvim"
+  args:
+    chdir: "/{{ ansible_facts['user_dir'] }}/Akeptous/dotfiles/systems/common"
+    creates: "/{{ ansible_facts['user_dir'] }}/.config/nvim/init.lua"
+
+- name: Set Editor Symlink (DOOM)
+  command: >
+    ln -s -f
+    "/{{ ansible_facts['user_dir'] }}/Akeptous/dotfiles/systems/common/doom"
+    "/{{ ansible_facts['user_dir'] }}/.config/doom"
+  args:
+    chdir: "/{{ ansible_facts['user_dir'] }}/Akeptous/dotfiles/systems/common"
+    creates: "/{{ ansible_facts['user_dir'] }}/.config/doom/init.el"

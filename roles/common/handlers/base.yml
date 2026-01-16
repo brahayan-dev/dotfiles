@@ -13,3 +13,22 @@
       args:
         creates: "{{ ansible_facts['user_dir'] }}/.oh-my-zsh"
       listen: "event_install_ohmyzsh"
+
+- name: Install NPM Dependencies
+  community.general.npm:
+    name: "{{ item }}"
+    global: true
+    force: true
+  loop:
+    - prettier
+    - emmet-ls
+    - stylelint
+    - typescript
+    - js-beautify
+    - bash-language-server
+    - yaml-language-server
+    - typescript-language-server
+    - vscode-langservers-extracted
+    - "@github/copilot-language-server"
+    - "@ansible/ansible-language-server"
+  listen: "event_install_npm_dependencies"
