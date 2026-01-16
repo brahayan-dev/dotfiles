@@ -1,0 +1,6 @@
+font-size = 13
+font-family = "Fira Code"
+cursor-style = bar
+adjust-cursor-thickness = "300%"
+
+theme = dark:~/.dotfiles/ghostty/night,light:~/.dotfiles/ghostty/day
