@@ -23,7 +23,7 @@
          (user (getenv "USER"))
          (ssh-key-path (string-append home "/.ssh/" user "_rsa.pub"))
          (ssh-key-title (string-append user "-ssh")))
-    (system* "gh" "auth" "login")
+    (system* "git" "remote" "set-url" "origin" "git@github.com:brahayan-dev/dotfiles.git")
     (system* "gh" "auth" "refresh"
              "-h" "github.com"
              "-s" "admin:ssh_signing_key")
