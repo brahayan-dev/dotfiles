@@ -1,8 +1,8 @@
 ---
 - hosts: Workstation
 
-  # vars_files:
-  #   - include/secret.yml
+  vars_files:
+    - ../../common/secret.yml
 
   roles:
     - common

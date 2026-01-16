@@ -6,7 +6,7 @@
     state: link
     force: true
   notify:
-    - "event_reload_zsh_files"
+    - event_reload_zsh_files
 
 - name: Set Editor Symlink (EMACS PLUS)
   ansible.builtin.file:
@@ -15,4 +15,4 @@
     state: link
     force: true
   notify:
-    - "event_reload_zsh_files"
+    - event_reload_zsh_files

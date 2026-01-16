@@ -26,3 +26,5 @@
     - .common_profile
     - .zprofile
     - .zshrc
+    - .private_profile
+  notify: event_reload_zsh_files

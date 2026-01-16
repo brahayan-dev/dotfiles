@@ -1,4 +1,14 @@
 ---
+- name: Add COPR Repositories
+  become: true
+  community.general.copr:
+    name: "{{ item }}"
+    state: enabled
+  loop:
+    - scottames/ghostty
+    - birkch/dbeaver
+    - atim/lazygit
+
 - name: Install Dependencies
   become: true
   dnf:
@@ -68,4 +78,3 @@
         echo "Y" | sh /tmp/ohmyzsh.sh
       args:
         creates: "{{ ansible_env.HOME }}/.oh-my-zsh"
-

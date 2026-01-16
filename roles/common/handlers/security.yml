@@ -6,5 +6,5 @@
     exit 0
   args:
     executable: /bin/zsh 
-  listen: "event_reload_zsh_files"
+  listen: event_reload_zsh_files
 

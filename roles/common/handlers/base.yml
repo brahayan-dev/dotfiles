@@ -6,13 +6,13 @@
         url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
         dest: /tmp/ohmyzsh.sh
         mode: 0777
-      listen: "event_download_ohmyzsh"
+      listen: event_download_ohmyzsh
     - name: Install Ohmyzsh - Run Installer
       shell: |
         echo "Y" | sh /tmp/ohmyzsh.sh
       args:
         creates: "{{ ansible_facts['user_dir'] }}/.oh-my-zsh"
-      listen: "event_install_ohmyzsh"
+      listen: event_install_ohmyzsh
 
 - name: Install NPM Dependencies
   community.general.npm:
@@ -31,4 +31,4 @@
     - vscode-langservers-extracted
     - "@github/copilot-language-server"
     - "@ansible/ansible-language-server"
-  listen: "event_install_npm_dependencies"
+  listen: event_install_npm_dependencies
