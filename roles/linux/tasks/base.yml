@@ -34,6 +34,7 @@
       - pandoc
       - fd-find
       - ripgrep
+      - lazygit
       - guile30
       - libtool
       - autoconf
