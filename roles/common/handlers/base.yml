@@ -44,4 +44,5 @@
       - pipenv
       - pytest
       - nose
+      - uv
   listen: event_install_pip_dependencies
