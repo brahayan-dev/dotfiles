@@ -30,7 +30,7 @@
       (display message)
       (force-output)
       (let ((password (read-line)))
-	(make-file file password)))))
+        (make-file file password)))))
 
 (define (ensure-vault-file) (ensure-file vault-file "Vault Password:\n"))
 (define (ensure-become-file) (ensure-file become-file "Become Password:\n"))
