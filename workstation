@@ -54,7 +54,7 @@ main() {
         guile -L . --fresh-auto-compile systems/macos/main.scm "$@"
     elif [[ "$os" == "Linux" ]]; then
         install_deps
-        guile30 -L . --fresh-auto-compile systems/linux/main.scm "$@"
+        guile3.0 -L . --fresh-auto-compile systems/linux/main.scm "$@"
     else
         log_error "OS Not Supported"
         return 1
