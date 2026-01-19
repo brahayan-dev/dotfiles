@@ -18,8 +18,8 @@
   community.general.npm:
     name: "{{ item }}"
     global: true
-    become: true
     force: true
+    state: latest
   loop:
     - prettier
     - emmet-ls
