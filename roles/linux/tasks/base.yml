@@ -37,6 +37,7 @@
       - lazygit
       - guile30
       - libtool
+      - ghostty
       - autoconf
       - automake
       - alacritty
