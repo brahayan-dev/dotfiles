@@ -32,3 +32,14 @@
     - "@github/copilot-language-server"
     - "@ansible/ansible-language-server"
   listen: event_install_npm_dependencies
+
+- name: Install PIP Dependencies
+  ansible.builtin.pip:
+    name:
+      - black
+      - pyflakes
+      - isort
+      - pipenv
+      - pytest
+      - nose
+  listen: event_install_pip_dependencies
