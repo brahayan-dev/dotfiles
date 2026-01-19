@@ -15,6 +15,7 @@
       listen: event_install_ohmyzsh
 
 - name: Install NPM Dependencies
+  become: true
   community.general.npm:
     name: "{{ item }}"
     global: true

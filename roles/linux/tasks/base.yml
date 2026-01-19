@@ -43,6 +43,7 @@
       - alacritty
       - cpanminus
       - gmp-devel
+      - dbeaver-ce
       - ShellCheck
       - glibc-devel
       - python3-pip
