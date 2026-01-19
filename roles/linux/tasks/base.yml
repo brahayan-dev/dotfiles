@@ -23,6 +23,7 @@
       - tree
       - tidy
       - make
+      - emacs
       - cmake
       - shfmt
       - unzip
