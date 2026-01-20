@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 
 alias _kiln='cd "$HOME/Projects/kiln/"'
-alias _dotfiles='cd "$HOME/.dotfiles/"'
+alias _dotfiles='cd "$HOME/Projects/dotfiles/"'
 alias _max-neef='cd "$HOME/Projects/max-neef/"'
 alias _workbook='cd "$HOME/Projects/workbook/"'
 alias _cloud-hub='cd "$HOME/Projects/cloud-hub/"'
@@ -10,7 +10,7 @@ alias _venture-hub='cd "$HOME/Projects/venture-hub/"'
 alias _startup-kit='cd "$HOME/Projects/startup-kit/"'
 
 alias __kiln='cd "$HOME/Projects/kiln/" && nvim .'
-alias __dotfiles='cd "$HOME/.dotfiles/" && nvim .'
+alias __dotfiles='cd "$HOME/Projects/dotfiles/" && nvim .'
 alias __max-neef='cd "$HOME/Projects/max-neef/" && nvim .'
 alias __workbook='cd "$HOME/Projects/workbook/" && nvim .'
 alias __cloud-hub='cd "$HOME/Projects/cloud-hub/" && nvim .'
@@ -21,9 +21,6 @@ alias __startup-kit='cd "$HOME/Projects/startup-kit/" && nvim .'
 alias gemini='aider --multiline --vim --model gemini'
 alias claude='aider --multiline --vim --model anthropic/claude-sonnet-4-20250514'
 alias models='aider --list-models openrouter/ && aider --list-models anthropic/'
-
-# NOTE: Projects CLI
-# alias Projectseptous-cli'
 
 # NOTE: Direnv setup
 eval "$(direnv hook zsh)"
