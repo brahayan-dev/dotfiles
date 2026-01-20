@@ -4,10 +4,10 @@
 
 ;; Theme
 ;; (setq doom-theme 'doom-bluloco-light)
-(setq doom-theme 'doom-nord-light)
+;; (setq doom-theme 'doom-nord-light)
 ;; (setq doom-theme 'doom-tokyo-night)
 ;; (setq doom-theme 'doom-monokai-pro)
-;; (setq doom-theme 'doom-dracula)
+(setq doom-theme 'doom-dracula)
 
 ;; Doom Configuration
 (setq doom-localleader-key ","

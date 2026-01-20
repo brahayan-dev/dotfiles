@@ -11,38 +11,42 @@
 - name: Install Dependencies
   community.general.homebrew:
     name:
-      - jq
       - fd
       - gh
+      - m4
       - zsh
       - git
       - npm
       - gmp
+      - gcc
       - entr
       - curl
       - grip
       - perl
       - lima
       - tree
+      - make
+      - cmake
       - guile
       - haunt
-      - cmake
       - shfmt
       - unzip
+      - libffi
+      - bdw-gc
       - sqlite
       - sqitch
       - pandoc
-      - rlwrap
       - neovim
       - podman
       - direnv
       - lazygit
-      - libtool
       - ripgrep
       - libyaml
       - ghostty
       - libtool
+      - pkgconf
       - autoconf
+      - readline
       - automake
       - opentofu
       - cpanminus
