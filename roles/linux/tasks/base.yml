@@ -13,6 +13,7 @@
   become: true
   dnf:
     name:
+      - m4
       - gh
       - git
       - zsh
@@ -39,9 +40,10 @@
       - guile30
       - libtool
       - ghostty
+      - pkgconf
       - autoconf
       - automake
-      - alacritty
+      - opentofu
       - cpanminus
       - gmp-devel
       - dbeaver-ce
