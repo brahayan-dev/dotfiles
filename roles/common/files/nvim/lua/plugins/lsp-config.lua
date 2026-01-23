@@ -29,32 +29,10 @@ return {
         },
       })
 
-      -- vim.lsp.config("hls", {
-      --   settings = {
-      --     haskell = {
-      --       formattingProvider = "fourmolu",
-      --     },
-      --   },
-      -- })
-
-      -- if vim.env.WORKSPACE == "no-work" then
-      --   vim.lsp.enable("astro")
-      --   vim.lsp.enable("elmls")
-      --   vim.lsp.enable("hls")
-      --   vim.lsp.enable("ruby_lsp")
-      --   vim.lsp.enable("terraformls")
-      -- end
-
-      -- vim.lsp.enable("ansiblels")
-      vim.lsp.enable("cssls")
-
-      vim.lsp.enable('sqls')
-      -- vim.lsp.enable('metals')
       vim.lsp.enable("lua_ls")
-      vim.lsp.enable("ts_ls")
-      vim.lsp.enable("yamlls")
       vim.lsp.enable("bashls")
-      vim.lsp.enable("emmet_ls")
+      vim.lsp.enable("ruby_lsp")
+      -- vim.lsp.enable("terraformls")
 
       -- Keymaps LSP
       vim.keymap.set("n", "K", vim.lsp.buf.hover, {})

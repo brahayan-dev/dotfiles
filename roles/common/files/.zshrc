@@ -32,7 +32,7 @@ alias lg='lazygit'
 # Settings
 # ---------
 # NOTE: Workstation CLI
-export PATH="$HOME/.dotfiles/:$PATH"
+export PATH="$HOME/Projects/dotfiles/:$PATH"
 
 # NOTE: Configurations
 [ -s ~/.workrc ] && source ~/.workrc

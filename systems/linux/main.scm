@@ -20,20 +20,29 @@
              "-O" icon)
     (system* "sudo" "sed" "-i" sed-pattern desktop-file)))
 
+(define (clojure!)
+  (begin
+    (system* "curl" "-L" "-O"
+             "https://github.com/clojure/brew-install/releases/latest/download/linux-install.sh")
+    (system* "chmod" "+x" "linux-install.sh")
+    (system* "sudo" "./linux-install.sh")))
+
 (define (editor!)
   (begin (doom!) (icon!)))
 
 (define (install!)
   (match (->entity)
-    ("doom" (editor!))))
+    ["doom" (editor!)]
+    ["cljfmt" (cljfmt!)]
+    ["clojure" (clojure!)]))
 
 (define (connect!)
   (match (->entity)
-    ("github" (github!))))
+    ["github" (github!)]))
 
 (match (->command)
-  ("setup" (setup!))
-  ("install" (install!))
-  ("connect" (connect!))
-  ("ping" (ping! ansible-config-file))
-  (_ (display "Command Not Found\n")))
+  ["setup" (setup!)]
+  ["install" (install!)]
+  ["connect" (connect!)]
+  ["ping" (ping! ansible-config-file)]
+  [_ (display "Command Not Found\n")])

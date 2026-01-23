@@ -13,6 +13,7 @@
   become: true
   dnf:
     name:
+      - m4
       - gh
       - git
       - zsh
@@ -30,6 +31,7 @@
       - pdftk
       - sqlite
       - neovim
+      - rlwrap
       - podman
       - direnv
       - pandoc
@@ -39,9 +41,10 @@
       - guile30
       - libtool
       - ghostty
+      - pkgconf
       - autoconf
       - automake
-      - alacritty
+      - opentofu
       - cpanminus
       - gmp-devel
       - dbeaver-ce
@@ -54,6 +57,7 @@
       - readline-devel
       - fira-code-fonts
       - pkgconf-pkg-config
+      - java-latest-openjdk
     state: latest
   notify:
     - event_download_ohmyzsh

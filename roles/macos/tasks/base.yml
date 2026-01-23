@@ -7,42 +7,55 @@
     - sqitchers/sqitch
     - aconchillo/guile
     - d12frosted/emacs-plus
+    - clojure/tools
 
 - name: Install Dependencies
   community.general.homebrew:
     name:
-      - jq
       - fd
       - gh
+      - uv
+      - m4
       - zsh
       - git
       - npm
       - gmp
+      - gcc
       - entr
       - curl
+      - pipx
       - grip
       - perl
       - lima
       - tree
+      - make
+      - cmake
       - guile
       - haunt
-      - cmake
       - shfmt
       - unzip
+      - black
+      - isort
+      - libffi
+      - pipenv
+      - pytest
+      - bdw-gc
       - sqlite
       - sqitch
       - pandoc
-      - rlwrap
       - neovim
       - podman
       - direnv
       - lazygit
-      - libtool
       - ripgrep
       - libyaml
+      - openjdk
+      - clojure
       - ghostty
       - libtool
+      - pkgconf
       - autoconf
+      - readline
       - automake
       - opentofu
       - cpanminus
@@ -57,7 +70,18 @@
     - event_download_ohmyzsh
     - event_install_ohmyzsh
     - event_install_npm_dependencies
-    - event_install_pip_dependencies
+
+- name: Install Pyflakes Dependency
+  shell: |
+    pipx install pyflakes
+  args:
+    creates: "{{ ansible_facts['user_dir'] }}/.local/bin/pyflakes"
+
+- name: Install Nosetests Dependency
+  shell: |
+    pipx install nose
+  args:
+    creates: "{{ ansible_facts['user_dir'] }}/.local/bin/nosetests"
 
 - name: Install Common Cask Dependencies
   community.general.homebrew_cask:

@@ -5,6 +5,7 @@
 # -----------------
 if [[ "$(uname -a)" =~ Darwin ]]; then
     eval "$(/opt/homebrew/bin/brew shellenv)"
+    export PATH="$PATH:$HOME/.local/bin"
 fi
 
 if [[ "$(uname -a)" =~ Linux ]]; then

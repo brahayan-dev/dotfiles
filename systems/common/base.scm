@@ -1,10 +1,10 @@
 (define-module (systems common base)
-	#:use-module (ice-9 rdelim)
-	#:export (->args
-		  ->command
-		  ->entity
-		  ping!
-		  playbook!))
+  #:use-module (ice-9 rdelim)
+  #:export (->args
+            ->command
+            ->entity
+            ping!
+            playbook!))
 
 (define ->args
   (compose cdr command-line))
@@ -41,11 +41,11 @@
     (ensure-become-file)
     (set-ansible-config config-file)
     (system* "ansible-playbook"
-	     "-c" "local"
-	     "-i" host-file
-	     "--vault-password-file" vault-file
-	     "--become-password-file" become-file
-	     playbook-file)))
+             "-c" "local"
+             "-i" host-file
+             "--vault-password-file" vault-file
+             "--become-password-file" become-file
+             playbook-file)))
 
 (define (ping! config-file)
   (begin
