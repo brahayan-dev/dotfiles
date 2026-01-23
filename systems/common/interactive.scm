@@ -37,5 +37,7 @@
 (define (cljfmt!)
   (begin
     (system* "sudo" "mkdir" "-p" "/usr/local/bin")
-    (system* "curl" "-fsSL" "-o" "/tmp/cljfmt-install.sh" "https://raw.githubusercontent.com/weavejester/cljfmt/HEAD/install.sh")
+    (system* "curl" "-fsSL"
+             "-o" "/tmp/cljfmt-install.sh"
+             "https://raw.githubusercontent.com/weavejester/cljfmt/HEAD/install.sh")
     (system* "/bin/bash" "/tmp/cljfmt-install.sh")))

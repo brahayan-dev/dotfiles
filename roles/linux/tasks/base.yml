@@ -31,6 +31,7 @@
       - pdftk
       - sqlite
       - neovim
+      - rlwrap
       - podman
       - direnv
       - pandoc
@@ -56,6 +57,7 @@
       - readline-devel
       - fira-code-fonts
       - pkgconf-pkg-config
+      - java-latest-openjdk
     state: latest
   notify:
     - event_download_ohmyzsh
