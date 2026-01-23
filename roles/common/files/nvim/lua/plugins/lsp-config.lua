@@ -35,7 +35,6 @@ return {
       vim.lsp.enable("yamlls")
       vim.lsp.enable("lua_ls")
       vim.lsp.enable("bashls")
-      vim.lsp.enable('metals')
       vim.lsp.enable("ruby_lsp")
       vim.lsp.enable("emmet_ls")
       vim.lsp.enable("ansiblels")
