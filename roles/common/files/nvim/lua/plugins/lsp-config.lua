@@ -29,16 +29,10 @@ return {
         },
       })
 
-      vim.lsp.enable('sqls')
-      vim.lsp.enable("ts_ls")
-      vim.lsp.enable("cssls")
-      vim.lsp.enable("yamlls")
       vim.lsp.enable("lua_ls")
       vim.lsp.enable("bashls")
       vim.lsp.enable("ruby_lsp")
-      vim.lsp.enable("emmet_ls")
-      vim.lsp.enable("ansiblels")
-      vim.lsp.enable("terraformls")
+      -- vim.lsp.enable("terraformls")
 
       -- Keymaps LSP
       vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
