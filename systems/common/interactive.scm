@@ -1,6 +1,7 @@
 (define-module (systems common interactive)
   #:export (doom!
-            github!))
+            github!
+            cljfmt!))
 
 (define (doom!)
   (let* ((home (getenv "HOME"))
@@ -32,3 +33,9 @@
              ssh-key-path
              "-t"
              ssh-key-title)))
+
+(define (cljfmt!)
+  (begin
+    (system* "sudo" "mkdir" "-p" "/usr/local/bin")
+    (system* "curl" "-fsSL" "-o" "/tmp/cljfmt-install.sh" "https://raw.githubusercontent.com/weavejester/cljfmt/HEAD/install.sh")
+    (system* "/bin/bash" "/tmp/cljfmt-install.sh")))
