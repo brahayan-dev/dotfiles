@@ -48,13 +48,17 @@ main() {
     local os
     os="$(uname)"
 
-    if [[ "$os" == "Darwin" ]]; then
+    if [[ "$os" == "Darwin" && -e "$HOME/.nurc" ]]; then
         prepare_brew
         install_deps
-        guile -L . --fresh-auto-compile systems/macos/main.scm "$@"
+        guile -L . systems/work/main.scm "$@"
+    elif [[ "$os" == "Darwin" ]]; then
+        prepare_brew
+        install_deps
+        guile -L . systems/macos/main.scm "$@"
     elif [[ "$os" == "Linux" ]]; then
         install_deps
-        guile3.0 -L . --fresh-auto-compile systems/linux/main.scm "$@"
+        guile3.0 -L . systems/linux/main.scm "$@"
     else
         log_error "OS Not Supported"
         return 1

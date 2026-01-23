@@ -35,7 +35,6 @@
     (system* "nu-co" "auth" "get-refresh-token" "--env" "staging" "--force")
     (system* "nu-ist" "auth" "get-refresh-token" "--env" "staging" "--force")
     (system* "nu-mx" "auth" "get-refresh-token" "--env" "staging" "--force")
-
     (system* "nu-co" "auth" "get-access-token" "--env" "staging")
     (system* "nu-ist" "auth" "get-access-token" "--env" "staging")
     (system* "nu-mx" "auth" "get-access-token" "--env" "staging")))
