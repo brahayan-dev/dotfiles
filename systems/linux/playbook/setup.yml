@@ -1,9 +1,6 @@
 ---
 - hosts: Workstation
 
-  vars_files:
-    - ../../common/secret.yml
-
   roles:
     - common
     - linux
