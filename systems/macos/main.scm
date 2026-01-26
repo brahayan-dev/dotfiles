@@ -1,26 +1,23 @@
 (define-module (systems macos main)
-  #:use-module (ice-9 match)
-  #:use-module (systems common base)
+  #:use-module (systems common command)
   #:use-module (systems common interactive))
 
 (define ansible-config-file "systems/macos/ansible.cfg")
 (define setup-playbook-file "systems/macos/playbook/setup.yml")
 
-(define (setup!)
-  (playbook! ansible-config-file setup-playbook-file))
+(command (display "Command Not Found\n"))
 
-(define (install!)
-  (match (->entity)
-    ["doom" (doom!)]
-    ["cljfmt" (cljfmt!)]))
+(command 'ping
+         (ping! ansible-config-file))
 
-(define (connect!)
-  (match (->entity)
-    ["github" (github!)]))
+(command 'setup
+         (playbook! ansible-config-file setup-playbook-file))
 
-(match (->command)
-  ["setup" (setup!)]
-  ["install" (install!)]
-  ["connect" (connect!)]
-  ["ping" (ping! ansible-config-file)]
-  [_ (display "Command Not Found\n")])
+(command 'install 'doom
+         (doom!))
+
+(command 'install 'cljfmt
+         (cljfmt!))
+
+(command 'connect 'github
+         (github!))

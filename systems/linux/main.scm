@@ -1,48 +1,27 @@
 (define-module (systems linux main)
-  #:use-module (ice-9 match)
-  #:use-module (systems common base)
-  #:use-module (systems common interactive))
+  #:use-module (systems common command)
+  #:use-module (systems common interactive)
+  #:use-module (systems linux internal))
 
 (define ansible-config-file "systems/linux/ansible.cfg")
 (define setup-playbook-file "systems/linux/playbook/setup.yml")
 
-(define (setup!)
-  (playbook! ansible-config-file setup-playbook-file))
+(command (display "Command Not Found\n"))
 
-(define (icon!)
-  (let* ((home (getenv "HOME"))
-         (icon (string-append home "/.local/share/icons/doom.png"))
-         (desktop-file "/usr/share/applications/emacs.desktop")
-         (sed-pattern (string-append "s|Icon=.*|Icon=" icon "|")))
-    (system* "mkdir" "-p" (string-append home "/.local/share/icons"))
-    (system* "wget"
-             "https://raw.githubusercontent.com/eccentric-j/doom-icon/master/cute-doom/doom.png"
-             "-O" icon)
-    (system* "sudo" "sed" "-i" sed-pattern desktop-file)))
+(command 'ping
+         (ping! ansible-config-file))
 
-(define (clojure!)
-  (begin
-    (system* "curl" "-L" "-O"
-             "https://github.com/clojure/brew-install/releases/latest/download/linux-install.sh")
-    (system* "chmod" "+x" "linux-install.sh")
-    (system* "sudo" "./linux-install.sh")))
+(command 'setup
+         (playbook! ansible-config-file setup-playbook-file))
 
-(define (editor!)
-  (begin (doom!) (icon!)))
+(command 'install 'cljfmt
+         (cljfmt!))
 
-(define (install!)
-  (match (->entity)
-    ["doom" (editor!)]
-    ["cljfmt" (cljfmt!)]
-    ["clojure" (clojure!)]))
+(command 'install 'doom
+         (editor!))
 
-(define (connect!)
-  (match (->entity)
-    ["github" (github!)]))
+(command 'install 'clojure
+         (clojure!))
 
-(match (->command)
-  ["setup" (setup!)]
-  ["install" (install!)]
-  ["connect" (connect!)]
-  ["ping" (ping! ansible-config-file)]
-  [_ (display "Command Not Found\n")])
+(command 'connect 'github
+         (github!))
