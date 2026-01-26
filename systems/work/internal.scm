@@ -1,10 +1,5 @@
 (define-module (systems work internal)
-  #:export (nu-update-proj
-            nu-dev-bd
-            nu-creds-br
-            nu-certs
-            nu-jwt-co
-            nu-tokens-stg))
+  #:export (nu!))
 
 (define (nu-update-proj)
   (begin
@@ -41,3 +36,12 @@
     (system* "nu-co" "auth" "get-access-token" "--env" "staging")
     (system* "nu-ist" "auth" "get-access-token" "--env" "staging")
     (system* "nu-mx" "auth" "get-access-token" "--env" "staging")))
+
+(define (nu!)
+  (begin
+    (nu-update-proj)
+    (nu-dev-bd)
+    (nu-creds-br)
+    (nu-certs)
+    (nu-jwt-co)
+    (nu-tokens-stg)))
