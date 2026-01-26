@@ -50,8 +50,8 @@
 
 (define (refresh!)
   (match (->entity)
-    ("nu" (nu!))))
+    ["nu" (nu!)]))
 
 (match (->command)
-  ("refresh" (refresh!))
-  (_ (display "Command Not Found\n")))
+  ["refresh" (refresh!)]
+  [_ (display "Command Not Found\n")])
