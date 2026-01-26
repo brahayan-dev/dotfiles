@@ -14,7 +14,5 @@
 (command 'setup
          (playbook! ansible-config-file setup-playbook-file))
 
-(command (display "Command Not Found\n"))
-
 (command 'refresh 'nu
          (nu!))

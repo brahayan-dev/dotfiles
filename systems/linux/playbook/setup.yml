@@ -2,5 +2,6 @@
 - hosts: Workstation
 
   roles:
-    - common
-    - linux
+    - alpha
+    - gamma
+    - zeta
