@@ -36,8 +36,8 @@
 (global-auto-revert-mode 1)
 
 (set-face-attribute 'default nil
-                    :family "Fira Code"
                     :height 190
+                    :family "Fira Code"
                     :weight 'regular)
 
 (if (fboundp 'toggle-frame-fullscreen) (toggle-frame-fullscreen))
@@ -54,8 +54,6 @@
 ;;;; ------------------------------------------------------------
 
 (use-package ef-themes
-  :ensure t
-  :defer t
   :init
   (ef-themes-take-over-modus-themes-mode 1)
   :config
@@ -70,16 +68,14 @@
 (add-to-list 'load-path "~/.emacs.d/lisp/xah-fly-keys")
 (use-package xah-fly-keys
   :ensure nil
-  :defer t
   :config
   (xah-fly-keys-set-layout "qwerty")
   (xah-fly-keys 1))
 
 (use-package puni
   :defer t
-  :hook ((emacs-lisp-mode
-          clojure-mode
-          scheme-mode) . puni-mode))
+  :init
+  (puni-global-mode))
 
 ;;;; ------------------------------------------------------------
 ;;;; Custom file
