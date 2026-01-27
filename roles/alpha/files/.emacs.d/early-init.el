@@ -31,6 +31,9 @@
 
 (setq inhibit-compacting-font-caches t)
 
+(add-to-list 'default-frame-alist
+             '(font . "Fira Code-19"))
+
 ;;;; ------------------------------------------------------------
 ;;;; Package system (delegated to init.el)
 ;;;; ------------------------------------------------------------

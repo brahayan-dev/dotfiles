@@ -2,6 +2,9 @@
 .private_profile
 
 **/.emacs.d/eln-cache
+**/.emacs.d/elpa
+**/.emacs.d/lisp
+**/.emacs.d/custom.el
 **/.vault
 **/.become
 

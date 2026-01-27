@@ -29,10 +29,18 @@
 ;;;; ------------------------------------------------------------
 
 (setq display-line-numbers-type 'relative)
+(setq frame-resize-pixelwise t)
 (global-display-line-numbers-mode 1)
 
 (setq-default indent-tabs-mode nil)
 (global-auto-revert-mode 1)
+
+(set-face-attribute 'default nil
+                    :family "Fira Code"
+                    :height 190
+                    :weight 'regular)
+
+(if (fboundp 'toggle-frame-fullscreen) (toggle-frame-fullscreen))
 
 ;;;; ------------------------------------------------------------
 ;;;; Native compilation
@@ -42,16 +50,39 @@
 (setq comp-deferred-compilation t)
 
 ;;;; ------------------------------------------------------------
-;;;; Themes
+;;;; Theme
 ;;;; ------------------------------------------------------------
 
 (use-package ef-themes
-  :commands (ef-themes-load-random ef-themes-rotate)
+  :ensure t
+  :defer t
   :init
-  (ef-themes-load-random))
+  (ef-themes-take-over-modus-themes-mode 1)
+  :config
+  (setq modus-themes-mixed-fonts t)
+  (setq modus-themes-italic-constructs t)
+  (modus-themes-load-theme 'ef-deuteranopia-light))
 
 ;;;; ------------------------------------------------------------
-;;;; Custom file (belongs here, not early-init)
+;;;; Modes & Structural edition
+;;;; ------------------------------------------------------------
+
+(add-to-list 'load-path "~/.emacs.d/lisp/xah-fly-keys")
+(use-package xah-fly-keys
+  :ensure nil
+  :defer t
+  :config
+  (xah-fly-keys-set-layout "qwerty")
+  (xah-fly-keys 1))
+
+(use-package puni
+  :defer t
+  :hook ((emacs-lisp-mode
+          clojure-mode
+          scheme-mode) . puni-mode))
+
+;;;; ------------------------------------------------------------
+;;;; Custom file
 ;;;; ------------------------------------------------------------
 
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
