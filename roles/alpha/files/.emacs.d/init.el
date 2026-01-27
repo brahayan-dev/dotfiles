@@ -1,5 +1,4 @@
-;;; init.el -*- lexical-binding: t; -*-
-;;; init.el --- My Emacs configuration. -*- lexical-binding: t; -*-
+;;; init.el --- Emacs configuration. -*- lexical-binding: t; -*-
 
 (setq package-archives
       '(("melpa" . "http://melpa.org/packages/")
