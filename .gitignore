@@ -1,7 +1,7 @@
 .nvimlog
 .private_profile
-.aider*
 
+**/.emacs.d/eln-cache
 **/.vault
 **/.become
 

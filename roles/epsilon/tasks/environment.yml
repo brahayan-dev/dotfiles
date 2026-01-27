@@ -1,7 +1,7 @@
 ---
 - name: Set SSH Symlink
   ansible.builtin.file:
-    src: "/{{ ansible_facts['user_dir'] }}/Projects/dotfiles/roles/macos/files/ssh/config"
+    src: "/{{ ansible_facts['user_dir'] }}/Projects/dotfiles/roles/epsilon/files/ssh/config"
     dest: "/{{ ansible_facts['user_dir'] }}/.ssh/config"
     state: link
     force: true
@@ -10,7 +10,7 @@
 
 - name: Set Editor Symlink (EMACS PLUS)
   ansible.builtin.file:
-    src: "/{{ ansible_facts['user_dir'] }}/Projects/dotfiles/roles/macos/files/emacs-plus"
+    src: "/{{ ansible_facts['user_dir'] }}/Projects/dotfiles/roles/epsilon/files/emacs-plus"
     dest: "/{{ ansible_facts['user_dir'] }}/.config/emacs-plus"
     state: link
     force: true
@@ -19,7 +19,7 @@
 
 - name: Set Ghostty Symlink
   ansible.builtin.file:
-    src: "/{{ ansible_facts['user_dir'] }}/Projects/dotfiles/roles/common/files/ghostty/macos"
+    src: "/{{ ansible_facts['user_dir'] }}/Projects/dotfiles/roles/alpha/files/ghostty/macos"
     dest: "/{{ ansible_facts['user_dir'] }}/.config/ghostty/config"
     state: link
     force: true

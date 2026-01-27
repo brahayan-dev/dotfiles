@@ -1,10 +1,11 @@
 (define-module (systems common interactive)
+  #:use-module (ice-9 rdelim)
   #:export (doom!
             github!
             cljfmt!
             ;; Base
             ping!
-            playbook! ))
+            playbook!))
 
 (define (doom!)
   (let* ((home (getenv "HOME"))

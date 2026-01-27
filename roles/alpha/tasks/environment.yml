@@ -7,8 +7,8 @@
 
 - name: Set Editor Symlinks
   ansible.builtin.file:
-    src: "/{{ ansible_facts['user_dir'] }}/Projects/dotfiles/roles/common/files/{{ item }}"
-    dest: "/{{ ansible_facts['user_dir'] }}/.config/{{ item }}"
+    src: "/{{ ansible_facts['user_dir'] }}/Projects/dotfiles/roles/alpha/files/{{ item }}"
+    dest: "/{{ ansible_facts['user_dir'] }}/{{ item }}"
     state: link
     force: true
   loop:
@@ -16,7 +16,7 @@
 
 - name: Set Dotfiles Symlinks
   ansible.builtin.file:
-    src: "/{{ ansible_facts['user_dir'] }}/Projects/dotfiles/roles/common/files/{{ item }}"
+    src: "/{{ ansible_facts['user_dir'] }}/Projects/dotfiles/roles/alpha/files/{{ item }}"
     dest: "/{{ ansible_facts['user_dir'] }}/{{ item }}"
     state: link
     force: true
