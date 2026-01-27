@@ -165,7 +165,7 @@
 (use-package eglot
   :defer t
   :config
-  (add-to-list 'eglot-server-programs `(scheme-mode . ("guile-lsp-server")))
+  (add-to-list 'eglot-server-programs '(scheme-mode . ("guile-lsp-server")))
   :custom
   (eglot-connect-timeout 120)
   (eglot-extend-to-xref t))
