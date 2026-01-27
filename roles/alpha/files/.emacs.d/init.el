@@ -14,6 +14,20 @@
 
 (setq comp-num-cpus 4)
 (setq comp-deferred-compilation t)
+(global-display-line-numbers-mode t)
+(setq-default indent-tabs-mode nil)
+(global-auto-revert-mode t)
+
+(require 'package)
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+
+(setq use-package-verbose t)
+(setq use-package-minimum-reported-time 0)
+
+(require 'use-package-ensure)
+(setq use-package-always-ensure t)
 
 (add-hook 'emacs-startup-hook
           (lambda ()
