@@ -3,14 +3,8 @@
 # ---------
 # Settings
 # ---------
-export WORKSPACE="no-work"
 
-# NOTE: Golang setup
-export GOPATH="/usr/local/bin"
-export GOBIN="$GOPATH"
-export PATH="$PATH:$GOBIN"
-
-# NOTE: Node.js setup
+# NOTE: Nvm setup
 [[ -e "$HOME/nvm/nvm.sh" ]] && source "$HOME/.nvm/nvm.sh"
 
 # NOTE: Aider setup
