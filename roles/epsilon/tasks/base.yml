@@ -7,7 +7,6 @@
     - sqitchers/sqitch
     - aconchillo/guile
     - d12frosted/emacs-plus
-    - clojure/tools
 
 - name: Install Dependencies
   community.general.homebrew:
@@ -49,8 +48,6 @@
       - lazygit
       - ripgrep
       - libyaml
-      - openjdk
-      - clojure
       - ghostty
       - libtool
       - pkgconf

@@ -13,7 +13,7 @@
 
 (setq comp-num-cpus 4)
 (setq comp-deferred-compilation t)
-(global-display-line-numbers-mode t)
+(global-display-line-numbers-mode 'relative)
 (setq-default indent-tabs-mode nil)
 (global-auto-revert-mode t)
 
