@@ -22,32 +22,23 @@
       - gcc
       - entr
       - curl
-      - pipx
       - grip
       - perl
       - lima
       - tree
       - make
-      - cmake
       - guile
       - haunt
       - shfmt
       - unzip
-      - black
-      - isort
       - libffi
-      - pipenv
-      - pytest
       - bdw-gc
       - sqlite
       - sqitch
       - pandoc
-      - neovim
       - podman
       - direnv
-      - lazygit
       - ripgrep
-      - libyaml
       - ghostty
       - libtool
       - pkgconf
@@ -61,24 +52,10 @@
       - shellcheck
       - font-fira-code
       - dbeaver-community
-      - lua-language-server
     state: latest
   notify:
     - event_download_ohmyzsh
     - event_install_ohmyzsh
-    - event_install_npm_dependencies
-
-- name: Install Pyflakes Dependency
-  shell: |
-    pipx install pyflakes
-  args:
-    creates: "{{ ansible_facts['user_dir'] }}/.local/bin/pyflakes"
-
-- name: Install Nosetests Dependency
-  shell: |
-    pipx install nose
-  args:
-    creates: "{{ ansible_facts['user_dir'] }}/.local/bin/nosetests"
 
 - name: Install Common Cask Dependencies
   community.general.homebrew_cask:

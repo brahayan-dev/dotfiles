@@ -10,6 +10,7 @@
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
+(setq inhibit-startup-message t)
 
 (setq custom-file (expand-file-name "~/.emacs.d/custom.el"))
 (when (file-exists-p custom-file)

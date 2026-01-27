@@ -13,36 +13,3 @@
       args:
         creates: "{{ ansible_facts['user_dir'] }}/.oh-my-zsh"
       listen: event_install_ohmyzsh
-
-- name: Install NPM Dependencies
-  become: true
-  community.general.npm:
-    name: "{{ item }}"
-    global: true
-    force: true
-    state: latest
-  loop:
-    - prettier
-    - emmet-ls
-    - stylelint
-    - typescript
-    - js-beautify
-    - bash-language-server
-    - yaml-language-server
-    - typescript-language-server
-    - vscode-langservers-extracted
-    - "@github/copilot-language-server"
-    - "@ansible/ansible-language-server"
-  listen: event_install_npm_dependencies
-
-- name: Install PIP Dependencies
-  ansible.builtin.pip:
-    name:
-      - black
-      - pyflakes
-      - isort
-      - pipenv
-      - pytest
-      - nose
-      - uv
-  listen: event_install_pip_dependencies
