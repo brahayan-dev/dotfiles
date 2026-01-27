@@ -14,11 +14,11 @@
 (command 'setup
          (playbook! ansible-config-file setup-playbook-file))
 
+(command 'change 'icon
+         (icon!))
+
 (command 'install 'cljfmt
          (cljfmt!))
-
-(command 'install 'doom
-         (editor!))
 
 (command 'install 'clojure
          (clojure!))

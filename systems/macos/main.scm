@@ -13,9 +13,6 @@
 (command 'setup
          (playbook! ansible-config-file setup-playbook-file))
 
-(command 'install 'doom
-         (doom!))
-
 (command 'install 'cljfmt
          (cljfmt!))
 
