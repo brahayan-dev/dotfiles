@@ -5,6 +5,7 @@
 **/.emacs.d/elpa
 **/.emacs.d/lisp
 **/.emacs.d/custom.el
+**/.emacs.d/transient
 **/.vault
 **/.become
 

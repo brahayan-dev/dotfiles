@@ -38,6 +38,7 @@
       - pandoc
       - podman
       - direnv
+      - lazygit
       - ripgrep
       - ghostty
       - libtool

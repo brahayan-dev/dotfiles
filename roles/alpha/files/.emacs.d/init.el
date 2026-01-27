@@ -57,8 +57,8 @@
 ;;;; Native compilation
 ;;;; ------------------------------------------------------------
 
-(setq comp-num-cpus 4)
-(setq comp-deferred-compilation t)
+(setq native-comp-async-jobs-number 4)
+(setq native-comp-deferred-compilation t) 
 
 ;;;; ------------------------------------------------------------
 ;;;; Theme
@@ -67,6 +67,8 @@
 (use-package ef-themes
   :init
   (ef-themes-take-over-modus-themes-mode 1)
+  :bind
+  (("C-<f5>" . modus-themes-select))
   :config
   (setq modus-themes-mixed-fonts t)
   (setq modus-themes-italic-constructs t)
@@ -102,7 +104,7 @@
   :hook ((text-mode prog-mode) . abbrev-mode)
   :custom
   ;; Set the name of file from which to read abbrevs.
-  (abbrev-file-name "~/.config/emacs/abbrev_defs")
+  (abbrev-file-name (expand-file-name "abbrev_defs" user-emacs-directory))
   ;; Silently save word abbrevs too when files are saved.
   (save-abbrevs 'silently))
 
@@ -164,6 +166,8 @@
 
 (use-package eglot
   :defer t
+  :hook ((scheme-mode . eglot-ensure)
+         (js-mode . eglot-ensure))
   :config
   (add-to-list 'eglot-server-programs '(scheme-mode . ("guile-lsp-server")))
   :custom
@@ -184,7 +188,7 @@
   (dired-listing-switches "-alh"))
 
 (use-package magit
-  :bind (("C-x C-g s" . magit-status))
+  :bind (("C-x g" . magit-status))
   :config
   (setq magit-stage-all-confirm nil)
   (setq magit-unstage-all-confirm nil)
