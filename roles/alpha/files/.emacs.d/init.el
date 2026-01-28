@@ -26,9 +26,9 @@
 
 ;;;; ------------------------------------------------------------
 ;;;; UI / UX
-;;;; ------------------------------------------------------------
+;;;;-------------------------------------------------------------
 
-(setq display-line-numbers-type 'relative)
+(setq display-line-numbers-type t)
 (setq frame-resize-pixelwise t)
 (global-display-line-numbers-mode 1)
 
@@ -85,22 +85,21 @@
   (xah-fly-keys-set-layout "qwerty")
   (xah-fly-keys 1))
 
+(use-package avy
+  :bind (("C-'" . avy-goto-char-timer)
+         ("C-:" . avy-goto-line)))
+
 (use-package puni
   :defer t
   :init
   (puni-global-mode))
-
-(use-package avy
-  :bind (("M-j" . avy-goto-char-timer)
-         :map isearch-mode-map
-         ("C-'" . avy-search)))
 
 ;;;; ------------------------------------------------------------
 ;;;; Abbrev, Vertico, Corfu & Cape
 ;;;; ------------------------------------------------------------
 
 (use-package abbrev
-  :diminish
+  :ensure nil
   :hook ((text-mode prog-mode) . abbrev-mode)
   :custom
   ;; Set the name of file from which to read abbrevs.
@@ -139,11 +138,22 @@
 ;;;; Languages
 ;;;; ------------------------------------------------------------
 
-(use-package arei
-  :commands (arei))
-
 (use-package geiser
   :commands (geiser run-geiser))
+
+(use-package geiser-guile
+  :defer t
+  :after geiser
+  :custom
+  (geiser-default-implementation 'guile)
+  :config
+  (add-to-list 'geiser-guile-load-path (expand-file-name "/opt/homebrew/opt/guile/share/guile/3.0"))
+  (add-to-list 'geiser-guile-load-path (expand-file-name "/opt/homebrew/opt/haunt/share/guile/site/3.0")))
+
+(use-package lsp-scheme
+  :hook (scheme-mode . lsp-scheme)
+  :config
+  (setq lsp-scheme-implementation "guile"))
 
 (use-package scheme
   :mode (("\\.scm\\'" . scheme-mode))
@@ -157,7 +167,6 @@
 
 (use-package yaml-mode
   :mode (("\\.yaml\\'" . yaml-mode)
-         ("\\.yaml.tmpl\\'" . yaml-mode)
          ("\\.yml\\'" . yaml-mode)))
 
 ;;;; ------------------------------------------------------------
@@ -179,6 +188,7 @@
 ;;;; ------------------------------------------------------------
 
 (use-package dired
+  :ensure nil
   :bind (("C-x C-d" . dired))
   :commands (dired)
   :custom
