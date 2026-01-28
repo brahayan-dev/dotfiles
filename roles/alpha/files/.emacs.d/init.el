@@ -40,8 +40,6 @@
                     :family "Fira Code"
                     :weight 'regular)
 
-(if (fboundp 'toggle-frame-fullscreen) (toggle-frame-fullscreen))
-
 (set-frame-parameter (selected-frame) 'alpha '(85 50))
 (add-to-list 'default-frame-alist '(alpha 85 50))
 
@@ -61,7 +59,7 @@
 (setq native-comp-deferred-compilation t) 
 
 ;;;; ------------------------------------------------------------
-;;;; Theme
+;;;; Theme & Project
 ;;;; ------------------------------------------------------------
 
 (use-package ef-themes
@@ -72,7 +70,10 @@
   :config
   (setq modus-themes-mixed-fonts t)
   (setq modus-themes-italic-constructs t)
-  (modus-themes-load-theme 'ef-deuteranopia-light))
+  (modus-themes-load-theme 'ef-bio))
+
+(use-package project
+  :ensure nil)
 
 ;;;; ------------------------------------------------------------
 ;;;; Movements, Modes & Structural Edition
@@ -176,7 +177,8 @@
 (use-package eglot
   :defer t
   :hook ((scheme-mode . eglot-ensure)
-         (js-mode . eglot-ensure))
+         (js-mode . eglot-ensure)
+         (yaml-mode . eglot-ensure))
   :config
   (add-to-list 'eglot-server-programs '(scheme-mode . ("guile-lsp-server")))
   :custom
