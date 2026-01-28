@@ -214,10 +214,6 @@
   :custom
   (vterm-max-scrollback 100000))
 
-(use-package clipetty
-  :ensure t
-  :bind ("M-w" . clipetty-kill-ring-save))
-
 ;;;; ------------------------------------------------------------
 ;;;; Custom file
 ;;;; ------------------------------------------------------------

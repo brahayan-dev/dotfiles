@@ -54,7 +54,6 @@
       - shellcheck
       - font-fira-code
       - guile-lsp-server
-      - dbeaver-community
     state: latest
   notify:
     - event_download_ohmyzsh

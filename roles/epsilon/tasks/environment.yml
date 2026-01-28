@@ -7,19 +7,3 @@
     force: true
   notify:
     - event_reload_zsh_files
-
-- name: Set Editor Symlink (EMACS PLUS)
-  ansible.builtin.file:
-    src: "/{{ ansible_facts['user_dir'] }}/Projects/dotfiles/roles/epsilon/files/emacs-plus"
-    dest: "/{{ ansible_facts['user_dir'] }}/.config/emacs-plus"
-    state: link
-    force: true
-  notify:
-    - event_reload_zsh_files
-
-- name: Set Ghostty Symlink
-  ansible.builtin.file:
-    src: "/{{ ansible_facts['user_dir'] }}/Projects/dotfiles/roles/alpha/files/ghostty/macos"
-    dest: "/{{ ansible_facts['user_dir'] }}/.config/ghostty/config"
-    state: link
-    force: true
