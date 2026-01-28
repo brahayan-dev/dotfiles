@@ -8,20 +8,13 @@ if [[ "$(uname -a)" =~ Darwin ]]; then
     export PATH="$PATH:$HOME/.local/bin"
 fi
 
-if [[ "$(uname -a)" =~ Linux ]]; then
-    export PATH="$PATH:/opt/nvim-linux64/bin"
-fi
-
 # ---------
 # Settings
 # ---------
 # NOTE: Editor
-export EDITOR=nvim
-
-# NOTE: Doom setup
-export PATH="$HOME/.config/emacs/bin:$PATH"
+export EDITOR=emacs
 
 # NOTE: Profiles
-[ -f ~/.work_profile ] && source ~/.work_profile
-[ -f ~/.common_profile ] && source ~/.common_profile
+[ -f ~/.gamma_profile ] && source ~/.gamma_profile
+[ -f ~/.delta_profile ] && source ~/.delta_profile
 [ -f ~/.private_profile ] && source ~/.private_profile

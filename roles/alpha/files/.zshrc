@@ -36,4 +36,4 @@ export PATH="$HOME/Projects/dotfiles/:$PATH"
 
 # NOTE: Configurations
 [ -s ~/.workrc ] && source ~/.workrc
-[ -s ~/.commonrc ] && source ~/.commonrc
+[ -s ~/.alpharc ] && source ~/.alpharc
