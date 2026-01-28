@@ -15,6 +15,7 @@ fi
 export EDITOR=emacs
 
 # NOTE: Profiles
-[ -f ~/.gamma_profile ] && source ~/.gamma_profile
+[ -f ~/.beta_profile ] && source ~/.beta_profile
 [ -f ~/.delta_profile ] && source ~/.delta_profile
+[ -f ~/.gamma_profile ] && source ~/.gamma_profile
 [ -f ~/.private_profile ] && source ~/.private_profile

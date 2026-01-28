@@ -1,10 +1,4 @@
 ---
-- name: Create SSH Directory
-  ansible.builtin.file:
-    path: "/{{ ansible_facts['user_dir'] }}/.ssh"
-    state: directory
-    mode: 0755
-
 - name: Set Zsh As Shell By Default
   become: true
   user:
@@ -31,5 +25,3 @@
     name: init.defaultBranch
     value: main
     scope: global
-
-
