@@ -49,9 +49,11 @@
       - opentofu
       - cpanminus
       - openssl@3
+      - guile-json
       - emacs-plus
       - shellcheck
       - font-fira-code
+      - guile-lsp-server
       - dbeaver-community
     state: latest
   notify:

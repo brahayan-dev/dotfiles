@@ -1,11 +1,6 @@
 .nvimlog
 .private_profile
 
-**/.emacs.d/eln-cache
-**/.emacs.d/elpa
-**/.emacs.d/lisp
-**/.emacs.d/custom.el
-**/.emacs.d/transient
 **/.vault
 **/.become
 
@@ -15,11 +10,17 @@
 *.dylib
 .cache/
 
-# Doom Emacs
+# Emacs
 *~
 \#*\#
+**/.emacs.d/eln-cache
+**/.emacs.d/elpa
+**/.emacs.d/lisp
+**/.emacs.d/custom.el
+**/.emacs.d/projects
+**/.emacs.d/transient
 
-# macOS
+# MacOS
 .DS_Store
 
 # Builds
