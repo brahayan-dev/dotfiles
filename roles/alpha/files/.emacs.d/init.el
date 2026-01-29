@@ -9,6 +9,7 @@
 (setq package-archives
       '(("melpa" . "https://melpa.org/packages/")
         ("gnu" . "https://elpa.gnu.org/packages/")
+        ("nongnu" . "https://elpa.nongnu.org/nongnu/")
         ("melpa-stable" . "https://stable.melpa.org/packages/")))
 
 (package-initialize)
@@ -37,8 +38,8 @@
 
 (set-face-attribute 'default nil
                     :height 190
-                    :family "Fira Code"
-                    :weight 'regular)
+                    :weight 'regular
+                    :family "Fira Code")
 
 (set-frame-parameter (selected-frame) 'alpha '(85 50))
 (add-to-list 'default-frame-alist '(alpha 85 50))
@@ -80,8 +81,6 @@
 ;;;; ------------------------------------------------------------
 
 (use-package xah-fly-keys
-  :load-path "~/.emacs.d/lisp/xah-fly-keys"
-  :ensure nil
   :config
   (xah-fly-keys-set-layout "qwerty")
   (xah-fly-keys 1))
@@ -114,10 +113,11 @@
         ("TAB" . corfu-next)
         ([tab] . corfu-next)
         ("C-<tab>" . corfu-previous))
-  :custom
-  (corfu-cycle t)
-  (corfu-preselect 'first)
-  :hook ((after-init . global-corfu-mode)))
+  :config
+  (setq corfu-auto t
+        corfu-cycle t
+        corfu-preselect 'prompt)
+  :hook (after-init . global-corfu-mode))
 
 (use-package cape
   :defer t
@@ -135,6 +135,12 @@
   :custom
   (vertico-cycle t))
 
+(use-package orderless
+  :init
+  (setq completion-styles '(orderless basic)
+        completion-category-defaults nil
+        completion-category-overrides '((file (styles partial-completion)))))
+
 ;;;; ------------------------------------------------------------
 ;;;; Languages
 ;;;; ------------------------------------------------------------
@@ -151,13 +157,16 @@
   (add-to-list 'geiser-guile-load-path (expand-file-name "/opt/homebrew/opt/guile/share/guile/3.0"))
   (add-to-list 'geiser-guile-load-path (expand-file-name "/opt/homebrew/opt/haunt/share/guile/site/3.0")))
 
-(use-package lsp-scheme
-  :hook (scheme-mode . lsp-scheme)
-  :config
-  (setq lsp-scheme-implementation "guile"))
-
 (use-package scheme
+  :ensure nil
   :mode (("\\.scm\\'" . scheme-mode))
+  :hook
+  (scheme-mode . (lambda ()
+                   (setq-local completion-at-point-functions
+                            (list
+                             #'geiser-completion-at-point
+                             #'cape-file
+                             #'cape-dabbrev))))
   :custom
   (scheme-program-name "guile"))
 
@@ -176,11 +185,8 @@
 
 (use-package eglot
   :defer t
-  :hook ((scheme-mode . eglot-ensure)
-         (js-mode . eglot-ensure)
+  :hook ((js-mode . eglot-ensure)
          (yaml-mode . eglot-ensure))
-  :config
-  (add-to-list 'eglot-server-programs '(scheme-mode . ("guile-lsp-server")))
   :custom
   (eglot-connect-timeout 120)
   (eglot-extend-to-xref t))

@@ -1,6 +1,0 @@
----
-- name: Install Xah-Fly-Keys
-  git:
-    repo: https://github.com/xahlee/xah-fly-keys.git
-    dest: "{{ ansible_facts['user_dir'] }}/Projects/dotfiles/roles/alpha/files/.emacs.d/lisp/xah-fly-keys"
-    version: master
