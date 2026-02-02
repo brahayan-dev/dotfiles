@@ -29,6 +29,16 @@ local connect = function()
     "-s", "admin:ssh_signing_key"
   }
   shell(parts__refresh_toke)
+
+  local home = os.getenv("HOME")
+  local host = os.getenv("HOST")
+  local user = os.getenv("USER")
+  local parts__set_ssh_key = {
+    "gh", "ssh-key", "add",
+    home .. "/.ssh/" .. user .. "_rsa.pub",
+    "-t", "Ak " .. host
+  }
+  shell(parts__set_ssh_key)
 end
 
 local setup = function(_)
