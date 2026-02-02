@@ -1,3 +1,6 @@
+local shell = require "systems.library.common".shell
+local set_ansible_cfg = require "systems.library.common".set_ansible_cfg
+
 local vault_file = "systems/.vault_"
 local become_file = "systems/.become_"
 local hosts_file = "systems/hosts.ini"
@@ -9,16 +12,23 @@ local not_found = function(_)
 end
 
 local connect = function()
+  local parts__connect_dotfiles_repo = {
+    "git", "remote",
+    "set-url", "origin", "git@github.com:brahayan-dev/dotfiles.git"
+  }
+  shell(parts__connect_dotfiles_repo)
 
-end
+  local parts__make_login = {
+    "gh", "auth", "login"
+  }
+  shell(parts__make_login)
 
-local set_ansible_cfg = function(file)
-  return "ANSIBLE_CONFIG=" .. file
-end
-
-local shell = function(parts)
-  local cmd = table.concat(parts, " ")
-  os.execute(cmd)
+  local parts__refresh_toke = {
+    "gh", "auth", "refresh",
+    "-h", "github.com",
+    "-s", "admin:ssh_signing_key"
+  }
+  shell(parts__refresh_toke)
 end
 
 local setup = function(_)
