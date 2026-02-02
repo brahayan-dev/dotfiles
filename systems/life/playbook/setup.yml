@@ -1,0 +1,8 @@
+---
+- hosts: Workstation
+
+  roles:
+    - alpha
+    - beta
+    - gamma
+    - epsilon
