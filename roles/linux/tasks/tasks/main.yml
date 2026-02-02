@@ -1,4 +1,0 @@
----
-- import_tasks: environment.yml
-- import_tasks: base.yml
-- import_tasks: security.yml
