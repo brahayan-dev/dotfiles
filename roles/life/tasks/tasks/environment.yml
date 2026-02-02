@@ -1,0 +1,9 @@
+---
+- name: Set SSH Symlink
+  ansible.builtin.file:
+    src: "/{{ ansible_facts['user_dir'] }}/Projects/dotfiles/roles/epsilon/files/ssh/config"
+    dest: "/{{ ansible_facts['user_dir'] }}/.ssh/config"
+    state: link
+    force: true
+  notify:
+    - event_reload_zsh_files

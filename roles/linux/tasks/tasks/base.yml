@@ -1,0 +1,93 @@
+---
+- name: Add COPR Repositories
+  become: true
+  community.general.copr:
+    name: "{{ item }}"
+    state: enabled
+  loop:
+    - scottames/ghostty
+    - birkch/dbeaver
+    - atim/lazygit
+
+- name: Install Dependencies
+  become: true
+  dnf:
+    name:
+      - m4
+      - gh
+      - git
+      - zsh
+      - npm
+      - gcc
+      - curl
+      - grip
+      - tree
+      - tidy
+      - make
+      - emacs
+      - cmake
+      - shfmt
+      - unzip
+      - pdftk
+      - sqlite
+      - neovim
+      - rlwrap
+      - podman
+      - direnv
+      - pandoc
+      - fd-find
+      - ripgrep
+      - lazygit
+      - guile30
+      - libtool
+      - ghostty
+      - pkgconf
+      - autoconf
+      - automake
+      - opentofu
+      - cpanminus
+      - gmp-devel
+      - dbeaver-ce
+      - ShellCheck
+      - glibc-devel
+      - python3-pip
+      - libffi-devel
+      - openssl-devel
+      - libyaml-devel
+      - readline-devel
+      - fira-code-fonts
+      - pkgconf-pkg-config
+      - java-latest-openjdk
+    state: latest
+  notify:
+    - event_download_ohmyzsh
+    - event_install_ohmyzsh
+    - event_install_npm_dependencies
+    - event_install_pip_dependencies
+
+- name: Install Perl Dependencies
+  become: true
+  community.general.cpanm:
+    name: "{{ item }}"
+  loop:
+    - DBI
+    - DBD::SQLite
+    - App::Sqitch
+
+- name: Install Brave
+  shell: curl -fsS https://dl.brave.com/install.sh | sh
+  args:
+    creates: "/usr/bin/brave-browser"
+
+- name: Install Ohmyzsh
+  block:
+    - name: Install Ohmyzsh - Download Installer
+      get_url:
+        url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
+        dest: /tmp/ohmyzsh.sh
+        mode: 0777
+    - name: Install Ohmyzsh - Run Installer
+      shell: |
+        echo "Y" | sh /tmp/ohmyzsh.sh
+      args:
+        creates: "{{ ansible_env.HOME }}/.oh-my-zsh"
