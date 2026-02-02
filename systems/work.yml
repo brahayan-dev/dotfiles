@@ -2,6 +2,6 @@
 - hosts: Workstation
 
   roles:
-    - alpha
-    - beta
-    - delta
+    - common
+    - macos
+    - work

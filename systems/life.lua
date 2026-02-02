@@ -1,3 +1,5 @@
+local vault_file = "systems/.vault_"
+local become_file = "systems/.become_"
 local hosts_file = "systems/hosts.ini"
 local ansible_cfg_file = "systems/life.cfg"
 local setup_playbook_file = "systems/life.yml"
@@ -14,8 +16,23 @@ local set_ansible_cfg = function(file)
   return "ANSIBLE_CONFIG=" .. file
 end
 
-local setup = function(_)
+local shell = function(parts)
+  local cmd = table.concat(parts, " ")
+  os.execute(cmd)
+end
 
+local setup = function(_)
+  local parts = {
+    set_ansible_cfg(ansible_cfg_file),
+    "ansible-playbook",
+    "-c local",
+    "-i " .. hosts_file,
+    "--vault-password-file " .. vault_file,
+    "--become-password-file " .. become_file,
+    setup_playbook_file
+  }
+
+  shell(parts)
 end
 
 local ping = function(_)
@@ -27,9 +44,8 @@ local ping = function(_)
     "-c local",
     "-m ping"
   }
-  local cmd = table.concat(parts, " ")
 
-  os.execute(cmd)
+  shell(parts)
 end
 
 local commands = {
