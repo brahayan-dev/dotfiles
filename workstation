@@ -51,14 +51,14 @@ main() {
     if [[ "$os" == "Darwin" && -e "$HOME/.nurc" ]]; then
         prepare_brew
         install_deps
-        lua -L . systems/work/main.scm "$@"
+        lua systems/work/main.lua "$@"
     elif [[ "$os" == "Darwin" ]]; then
         prepare_brew
         install_deps
-        lua -L . systems/macos/main.scm "$@"
+        lua systems/life/main.lua "$@"
     elif [[ "$os" == "Linux" ]]; then
         install_deps
-        lua -L . systems/linux/main.scm "$@"
+        lua systems/linux/main.lua "$@"
     else
         log_error "OS Not Supported"
         return 1
