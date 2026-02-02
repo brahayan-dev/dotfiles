@@ -7,62 +7,62 @@ NC='\033[0m' # No Color
 
 # Logging functions
 log_info() {
-    echo -e "${GREEN}[INFO]${NC} $1"
+  echo -e "${GREEN}[INFO]${NC} $1"
 }
 
 log_error() {
-    echo -e "${RED}[ERROR]${NC} $1" >&2
+  echo -e "${RED}[ERROR]${NC} $1" >&2
 }
 
 prepare_brew() {
-    [ ! -e /opt/homebrew/bin/brew ] &&
-        log_info "Installing Brew" &&
-        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" &&
-        log_info "Enabling Brew" &&
-        eval "$(/opt/homebrew/bin/brew shellenv)" &&
-        export PATH="/opt/homebrew/bin:$PATH"
+  [ ! -e /opt/homebrew/bin/brew ] &&
+    log_info "Installing Brew" &&
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" &&
+    log_info "Enabling Brew" &&
+    eval "$(/opt/homebrew/bin/brew shellenv)" &&
+    export PATH="/opt/homebrew/bin:$PATH"
 }
 
 install_deps() {
-    if command -v brew >/dev/null 2>&1; then
-        [ ! -e /opt/homebrew/bin/ansible ] &&
-            log_info "Installing Ansible" &&
-            brew install ansible
-        [ ! -e /opt/homebrew/bin/lua ] &&
-            log_info "Installing Lua" &&
-            brew install lua
-    elif command -v apt >/dev/null 2>&1; then
-        [ ! -e /usr/bin/ansible ] &&
-            log_info "Installing Ansible" &&
-            sudo apt install ansible
-        [ ! -e /usr/bin/lua ] &&
-            log_info "Installing Lua" &&
-            sudo apt install lua5.4
-    else
-        log_error "Could Not Detect Package Manager To Install Dependencies"
-        return 1
-    fi
+  if command -v brew >/dev/null 2>&1; then
+    [ ! -e /opt/homebrew/bin/ansible ] &&
+      log_info "Installing Ansible" &&
+      brew install ansible
+    [ ! -e /opt/homebrew/bin/lua ] &&
+      log_info "Installing Lua" &&
+      brew install lua
+  elif command -v apt >/dev/null 2>&1; then
+    [ ! -e /usr/bin/ansible ] &&
+      log_info "Installing Ansible" &&
+      sudo apt install ansible
+    [ ! -e /usr/bin/lua ] &&
+      log_info "Installing Lua" &&
+      sudo apt install lua5.4
+  else
+    log_error "Could Not Detect Package Manager To Install Dependencies"
+    return 1
+  fi
 }
 
 main() {
-    local os
-    os="$(uname)"
+  local os
+  os="$(uname)"
 
-    if [[ "$os" == "Darwin" && -e "$HOME/.nurc" ]]; then
-        prepare_brew
-        install_deps
-        lua systems/work/main.lua "$@"
-    elif [[ "$os" == "Darwin" ]]; then
-        prepare_brew
-        install_deps
-        lua systems/life/main.lua "$@"
-    elif [[ "$os" == "Linux" ]]; then
-        install_deps
-        lua systems/linux/main.lua "$@"
-    else
-        log_error "OS Not Supported"
-        return 1
-    fi
+  if [[ "$os" == "Darwin" && -e "$HOME/.nurc" ]]; then
+    prepare_brew
+    install_deps
+    lua systems/work.lua "$@"
+  elif [[ "$os" == "Darwin" ]]; then
+    prepare_brew
+    install_deps
+    lua systems/life.lua "$@"
+  elif [[ "$os" == "Linux" ]]; then
+    install_deps
+    lua systems/linux.lua "$@"
+  else
+    log_error "OS Not Supported"
+    return 1
+  fi
 }
 
 main "$@"

@@ -1,4 +1,4 @@
-(define-module (systems common interactive)
+--[[(define-module (systems common interactive)
   #:use-module (ice-9 rdelim)
   #:export (github!
             cljfmt!
@@ -67,3 +67,5 @@
   (begin
     (set-ansible-config config-file)
     (system* "ansible" "-i" host-file "Workstation" "-c" "local" "-m" "ping")))
+
+]]
