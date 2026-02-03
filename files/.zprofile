@@ -12,10 +12,10 @@ fi
 # Settings
 # ---------
 # NOTE: Editor
-export EDITOR=emacs
+export EDITOR=nvim
 
 # NOTE: Profiles
-[ -f ~/.beta_profile ] && source ~/.beta_profile
-[ -f ~/.delta_profile ] && source ~/.delta_profile
-[ -f ~/.gamma_profile ] && source ~/.gamma_profile
+[ -f ~/.life_profile ] && source ~/.life_profile
+[ -f ~/.work_profile ] && source ~/.work_profile
+[ -f ~/.linux_profile ] && source ~/.linux_profile
 [ -f ~/.private_profile ] && source ~/.private_profile

@@ -26,6 +26,6 @@
     - yaml-language-server
     - typescript-language-server
     - vscode-langservers-extracted
-    - dockerfile-language-server-nodejs
+    - "@github/copilot-language-server"
     - "@ansible/ansible-language-server"
   listen: event_install_npm_dependencies

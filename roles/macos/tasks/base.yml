@@ -5,8 +5,6 @@
     state: present
   loop:
     - sqitchers/sqitch
-    - aconchillo/guile
-    - d12frosted/emacs-plus
 
 - name: Install Dependencies
   community.general.homebrew:
@@ -14,48 +12,35 @@
       - fd
       - gh
       - uv
-      - m4
       - zsh
       - git
       - npm
       - gmp
       - gcc
+      - lima
       - entr
       - curl
       - grip
       - perl
       - tree
-      - make
       - cmake
-      - guile
-      - haunt
       - shfmt
       - unzip
-      - libffi
-      - docker
-      - colima
-      - bdw-gc
       - sqlite
       - sqitch
       - pandoc
-      - podman
+      - neovim
       - direnv
       - lazygit
       - ripgrep
       - ghostty
-      - libtool
-      - pkgconf
-      - autoconf
       - readline
-      - automake
       - opentofu
       - cpanminus
       - openssl@3
-      - guile-json
-      - emacs-plus
       - shellcheck
       - font-fira-code
-      - guile-lsp-server
+      - lua-language-server
     state: latest
   notify:
     - event_download_ohmyzsh

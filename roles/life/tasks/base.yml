@@ -2,7 +2,6 @@
 - name: Install Dependencies
   community.general.homebrew:
     name:
-      - gcloud-cli
       - dbeaver-community
     state: latest
   notify:

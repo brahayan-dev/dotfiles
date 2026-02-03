@@ -1,19 +1,18 @@
 ---
-- name: Add COPR Repositories
+- name: Install Snap Dependencies
   become: true
-  community.general.copr:
+  community.general.snap:
     name: "{{ item }}"
-    state: enabled
+    classic: true
+    state: present
   loop:
-    - scottames/ghostty
-    - birkch/dbeaver
-    - atim/lazygit
+    - dbeaver-ce
+    - ghostty
 
 - name: Install Dependencies
   become: true
-  dnf:
+  apt:
     name:
-      - m4
       - gh
       - git
       - zsh
@@ -23,8 +22,6 @@
       - grip
       - tree
       - tidy
-      - make
-      - emacs
       - cmake
       - shfmt
       - unzip
@@ -32,32 +29,21 @@
       - sqlite
       - neovim
       - rlwrap
-      - podman
       - direnv
       - pandoc
       - fd-find
       - ripgrep
       - lazygit
-      - guile30
-      - libtool
-      - ghostty
-      - pkgconf
-      - autoconf
-      - automake
       - opentofu
       - cpanminus
       - gmp-devel
-      - dbeaver-ce
-      - ShellCheck
+      - shellcheck
       - glibc-devel
       - python3-pip
-      - libffi-devel
       - openssl-devel
       - libyaml-devel
       - readline-devel
       - fira-code-fonts
-      - pkgconf-pkg-config
-      - java-latest-openjdk
     state: latest
   notify:
     - event_download_ohmyzsh
