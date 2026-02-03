@@ -81,7 +81,7 @@ main() {
     script="systems/linux.lua"
     ;;
   *)
-    log_error "OS not supported: $os"
+    log_error "OS Not Supported: $os"
     return 1
     ;;
   esac
