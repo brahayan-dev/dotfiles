@@ -1,18 +1,14 @@
-(define-module (systems work main)
-  #:use-module (systems common command)
-  #:use-module (systems common interactive)
-  #:use-module (systems work internal))
+local interactive = require "systems.library.interactive"
+local nu = require "systems.library.work".nu
 
-(define ansible-config-file "systems/work/ansible.cfg")
-(define setup-playbook-file "systems/work/playbook/setup.yml")
+local paths = {
+  ansible_cfg_file = "systems/work.cfg",
+  setup_playbook_file = "systems/work.yml"
+}
 
-(command (display "Command Not Found\n"))
-
-(command 'ping
-         (ping! ansible-config-file))
-
-(command 'setup
-         (playbook! ansible-config-file setup-playbook-file))
-
-(command 'refresh 'nu
-         (nu!))
+local commands = {
+  refresh = nu,
+  ping = interactive.ping(paths.ansible_cfg_file),
+  setup = interactive.setup(paths.ansible_cfg_file, paths.setup_playbook_file),
+}
+(commands[arg[1]] or interactive.not_found)(arg)

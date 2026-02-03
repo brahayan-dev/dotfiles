@@ -1,47 +1,55 @@
-(define-module (systems work internal)
-  #:export (nu!))
+local M = {}
 
-(define (nu-update-proj)
-  (begin
-    (system* "nu" "proj" "update" "cljdev")
-    (system* "nu" "proj" "update" "nudev")
-    (system* "nu" "proj" "update" "nucli")))
+local shell = require "systems.library.common".shell
 
-(define (nu-dev-bd)
-  (system* "nu" "dev" "bd" "--countries" "br,mx,co"))
+local nu_update_proj = function()
+  shell { "nu", "proj", "update", "cljdev" }
+  shell { "nu", "proj", "update", "nudev" }
+  shell { "nu", "proj", "update", "nucli" }
+end
 
-(define (nu-creds-br)
-  (system* "nu" "aws" "shared-role-credentials" "refresh"
-           "--account-alias" "br-staging"))
+local nu_dev_bd = function()
+  shell { "nu", "dev", "bd", "--countries", "br,mx,co" }
+end
 
-(define (nu-certs)
-  (begin
-    (system* "nu-co" "certs" "setup" "--env" "prod")
-    (system* "nu-co" "certs" "setup" "--env" "staging")
-    (system* "nu-ist" "certs" "setup" "--env" "prod")
-    (system* "nu-ist" "certs" "setup" "--env" "staging")
-    (system* "nu-mx" "certs" "setup" "--env" "prod")
-    (system* "nu-mx" "certs" "setup" "--env" "staging")))
+local nu_creds_br = function()
+  shell {
+    "nu", "aws", "shared-role-credentials", "refresh",
+    "--account-alias", "br-staging",
+  }
+end
 
-(define (nu-jwt-co)
-  (begin
-    (system* "nu-co" "auth" "jwt" "--env" "prod")
-    (system* "nu-co" "auth" "jwt" "--env" "staging")))
+local nu_certs = function()
+  shell { "nu-co", "certs", "setup", "--env", "prod" }
+  shell { "nu-co", "certs", "setup", "--env", "staging" }
+  shell { "nu-ist", "certs", "setup", "--env", "prod" }
+  shell { "nu-ist", "certs", "setup", "--env", "staging" }
+  shell { "nu-mx", "certs", "setup", "--env", "prod" }
+  shell { "nu-mx", "certs", "setup", "--env", "staging" }
+end
 
-(define (nu-tokens-stg)
-  (begin
-    (system* "nu-co" "auth" "get-refresh-token" "--env" "staging" "--force")
-    (system* "nu-ist" "auth" "get-refresh-token" "--env" "staging" "--force")
-    (system* "nu-mx" "auth" "get-refresh-token" "--env" "staging" "--force")
-    (system* "nu-co" "auth" "get-access-token" "--env" "staging")
-    (system* "nu-ist" "auth" "get-access-token" "--env" "staging")
-    (system* "nu-mx" "auth" "get-access-token" "--env" "staging")))
+local nu_jwt_co = function()
+  shell { "nu-co", "auth", "jwt", "--env", "prod" }
+  shell { "nu-co", "auth", "jwt", "--env", "staging" }
+end
 
-(define (nu!)
-  (begin
-    (nu-update-proj)
-    (nu-dev-bd)
-    (nu-creds-br)
-    (nu-certs)
-    (nu-jwt-co)
-    (nu-tokens-stg)))
+local nu_tokens_stg = function()
+  shell { "nu-co", "auth", "get-refresh-token", "--env", "staging", "--force" }
+  shell { "nu-ist", "auth", "get-refresh-token", "--env", "staging", "--force" }
+  shell { "nu-mx", "auth", "get-refresh-token", "--env", "staging", "--force" }
+
+  shell { "nu-co", "auth", "get-access-token", "--env", "staging" }
+  shell { "nu-ist", "auth", "get-access-token", "--env", "staging" }
+  shell { "nu-mx", "auth", "get-access-token", "--env", "staging" }
+end
+
+M.nu = function(_)
+  nu_update_proj()
+  nu_dev_bd()
+  nu_creds_br()
+  nu_certs()
+  nu_jwt_co()
+  nu_tokens_stg()
+end
+
+return M

@@ -1,27 +1,13 @@
-(define-module (systems linux main)
-  #:use-module (systems common command)
-  #:use-module (systems common interactive)
-  #:use-module (systems linux internal))
+local interactive = require "systems.library.interactive"
 
-(define ansible-config-file "systems/linux/ansible.cfg")
-(define setup-playbook-file "systems/linux/playbook/setup.yml")
+local paths = {
+  ansible_cfg_file = "systems/linux.cfg",
+  setup_playbook_file = "systems/linux.yml"
+}
 
-(command (display "Command Not Found\n"))
-
-(command 'ping
-         (ping! ansible-config-file))
-
-(command 'setup
-         (playbook! ansible-config-file setup-playbook-file))
-
-(command 'change 'icon
-         (icon!))
-
-(command 'install 'cljfmt
-         (cljfmt!))
-
-(command 'install 'clojure
-         (clojure!))
-
-(command 'connect 'github
-         (github!))
+local commands = {
+  connect = interactive.connect,
+  ping = interactive.ping(paths.ansible_cfg_file),
+  setup = interactive.setup(paths.ansible_cfg_file, paths.setup_playbook_file),
+}
+(commands[arg[1]] or interactive.not_found)(arg)
