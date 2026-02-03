@@ -1,43 +1,62 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
-# Color codes for output
-RED='\033[0;31m'
-GREEN='\033[0;32m'
-NC='\033[0m' # No Color
+RED=$'\033[0;31m'
+GREEN=$'\033[0;32m'
+NC=$'\033[0m'
 
-# Logging functions
-log_info() {
-  echo -e "${GREEN}[INFO]${NC} $1"
+log_info() { printf '%s[INFO]%s %s\n' "$GREEN" "$NC" "$*"; }
+log_error() { printf '%s[ERROR]%s %s\n' "$RED" "$NC" "$*" >&2; }
+
+have() { command -v "$1" >/dev/null 2>&1; }
+
+ensure_brew() {
+  if have brew; then
+    return 0
+  fi
+
+  log_info "Installing Homebrew"
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+  if [[ -x /opt/homebrew/bin/brew ]]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+  elif [[ -x /usr/local/bin/brew ]]; then
+    eval "$(/usr/local/bin/brew shellenv)"
+  fi
+
+  have brew || {
+    log_error "Brew Not Found After Install"
+    return 1
+  }
 }
 
-log_error() {
-  echo -e "${RED}[ERROR]${NC} $1" >&2
+ensure_deps_macos() {
+  ensure_brew
+  if ! have ansible; then
+    log_info "Installing Ansible"
+    brew install ansible
+  fi
+  if ! have lua; then
+    log_info "Installing Lua"
+    brew install lua
+  fi
 }
 
-prepare_brew() {
-  [ ! -e /opt/homebrew/bin/brew ] &&
-    log_info "Installing Brew" &&
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" &&
-    log_info "Enabling Brew" &&
-    eval "$(/opt/homebrew/bin/brew shellenv)" &&
-    export PATH="/opt/homebrew/bin:$PATH"
-}
+ensure_deps_linux() {
+  if have apt-get; then
+    if ! have ansible || ! have lua; then
+      log_info "Updating Apt Index"
+      sudo apt-get update
+    fi
 
-install_deps() {
-  if command -v brew >/dev/null 2>&1; then
-    [ ! -e /opt/homebrew/bin/ansible ] &&
-      log_info "Installing Ansible" &&
-      brew install ansible
-    [ ! -e /opt/homebrew/bin/lua ] &&
-      log_info "Installing Lua" &&
-      brew install lua
-  elif command -v apt >/dev/null 2>&1; then
-    [ ! -e /usr/bin/ansible ] &&
-      log_info "Installing Ansible" &&
-      sudo apt install ansible
-    [ ! -e /usr/bin/lua ] &&
-      log_info "Installing Lua" &&
-      sudo apt install lua5.4
+    if ! have ansible; then
+      log_info "Installing Ansible"
+      sudo apt-get install -y ansible
+    fi
+    if ! have lua; then
+      log_info "Installing Lua"
+      sudo apt-get install -y lua5.4
+    fi
   else
     log_error "Could Not Detect Package Manager To Install Dependencies"
     return 1
@@ -45,24 +64,29 @@ install_deps() {
 }
 
 main() {
-  local os
-  os="$(uname)"
+  local os script
+  os="$(uname -s)"
 
-  if [[ "$os" == "Darwin" && -e "$HOME/.nurc" ]]; then
-    prepare_brew
-    install_deps
-    lua systems/work.lua "$@"
-  elif [[ "$os" == "Darwin" ]]; then
-    prepare_brew
-    install_deps
-    lua systems/life.lua "$@"
-  elif [[ "$os" == "Linux" ]]; then
-    install_deps
-    lua systems/linux.lua "$@"
-  else
-    log_error "OS Not Supported"
+  case "$os" in
+  Darwin)
+    ensure_deps_macos
+    if [[ -e "$HOME/.nurc" ]]; then
+      script="systems/work.lua"
+    else
+      script="systems/life.lua"
+    fi
+    ;;
+  Linux)
+    ensure_deps_linux
+    script="systems/linux.lua"
+    ;;
+  *)
+    log_error "OS not supported: $os"
     return 1
-  fi
+    ;;
+  esac
+
+  exec lua "$script" "$@"
 }
 
 main "$@"
