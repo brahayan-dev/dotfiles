@@ -3,4 +3,5 @@ font-family = "Fira Code"
 cursor-style = bar
 adjust-cursor-thickness = "300%"
 
-theme = dark:Dracula,light:Nord Light
+theme = dark:TokyoNight Storm,light:TokyoNight Day
+background-opacity = 0.85

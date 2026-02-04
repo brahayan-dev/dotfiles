@@ -31,6 +31,7 @@
       - pandoc
       - neovim
       - direnv
+      - tofu-ls
       - lazygit
       - ripgrep
       - ghostty
@@ -46,7 +47,7 @@
     - event_download_ohmyzsh
     - event_install_ohmyzsh
     - event_install_npm_dependencies
-    
+
 - name: Install Common Cask Dependencies
   community.general.homebrew_cask:
     name: arc
