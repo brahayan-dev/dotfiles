@@ -40,10 +40,10 @@ vim.schedule(function()
 end)
 
 -- Navigate vim panes better
-vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
-vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
-vim.keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left window" })
-vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right window" })
+vim.keymap.set("n", "<C-i>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
+vim.keymap.set("n", "<C-k>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
+vim.keymap.set("n", "<C-l>", "<C-w><C-h>", { desc = "Move focus to the left window" })
+vim.keymap.set("n", "<C-j>", "<C-w><C-l>", { desc = "Move focus to the right window" })
 
 -- Clear highlights on search when pressing <Esc> in normal mode
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
@@ -68,7 +68,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 })
 
 vim.api.nvim_create_autocmd("BufWritePost", {
-  pattern = { "*.pug", "*.scss", "*.json" },
+  pattern = { "*.html", "*.js", "*.json" },
   callback = function(args)
     local output = vim.fn.system({ "npx", "prettier", "--write", args.file })
 
@@ -79,11 +79,4 @@ vim.api.nvim_create_autocmd("BufWritePost", {
     end
   end,
   desc = "Format current file with Prettier (sync) on save",
-})
-
-vim.api.nvim_create_autocmd("BufWritePre", {
-  pattern = "*.cabal",
-  callback = function()
-    vim.cmd("silent %!cabal-fmt")
-  end,
 })

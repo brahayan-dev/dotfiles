@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 # BASIC CONFIGURATION
 # -------------------
@@ -26,7 +26,7 @@ export GPG_TTY=$(tty)
 export PINENTRY_USER_DATA="USE_CURSES=1"
 
 if [ -d "$(brew --prefix)/opt/grep/libexec/gnubin" ]; then
-    PATH="$(brew --prefix)/opt/grep/libexec/gnubin:$PATH"
+  PATH="$(brew --prefix)/opt/grep/libexec/gnubin:$PATH"
 fi
 
 # NOTE: Python setup
@@ -65,3 +65,5 @@ export PATH="$IOS_CLI_HOME:$PATH"
 
 export NU_COUNTRY=co
 eval "$(rbenv init -)"
+
+[ -f ~/.nurc ] && source ~/.nurc
