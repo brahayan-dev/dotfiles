@@ -14,7 +14,6 @@
       - uv
       - zsh
       - git
-      - npm
       - gmp
       - gcc
       - lima
@@ -46,22 +45,6 @@
   notify:
     - event_download_ohmyzsh
     - event_install_ohmyzsh
-
-- name: Install NPM Dependencies
-  community.general.npm:
-    name: "{{ item }}"
-    global: true
-    force: true
-    state: latest
-  loop:
-    - typescript
-    - bash-language-server
-    - yaml-language-server
-    - typescript-language-server
-    - vscode-langservers-extracted
-    - "@github/copilot-language-server"
-    - "@elm-tooling/elm-language-server"
-    - "@ansible/ansible-language-server"
 
 - name: Install Common Cask Dependencies
   community.general.homebrew_cask:
