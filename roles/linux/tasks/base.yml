@@ -48,7 +48,6 @@
   notify:
     - event_download_ohmyzsh
     - event_install_ohmyzsh
-    - event_install_npm_dependencies
     - event_install_pip_dependencies
 
 - name: Install Perl Dependencies

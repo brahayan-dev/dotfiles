@@ -4,5 +4,3 @@
     name:
       - dbeaver-community
     state: latest
-  notify:
-    - event_install_npm_dependencies

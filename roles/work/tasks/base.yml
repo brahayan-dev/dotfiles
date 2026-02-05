@@ -13,5 +13,3 @@
       - coursier
       - clojure-lsp-native
     state: latest
-  notify:
-    - event_install_npm_dependencies
