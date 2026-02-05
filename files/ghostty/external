@@ -4,4 +4,3 @@ cursor-style = bar
 adjust-cursor-thickness = "300%"
 
 theme = dark:TokyoNight Storm,light:TokyoNight Day
-background-opacity = 0.85
