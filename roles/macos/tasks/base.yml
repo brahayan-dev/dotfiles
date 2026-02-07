@@ -34,6 +34,7 @@
       - lazygit
       - ripgrep
       - ghostty
+      - luarocks
       - readline
       - opentofu
       - cpanminus
